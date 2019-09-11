@@ -971,7 +971,7 @@ namespace unvell.ReoGrid.DataFormat
 				{
 					DateTimeFormatArgs dargs = (DateTimeFormatArgs)cell.DataFormatArgs;
 
-					if (pattern == null || pattern == String.Empty)
+					if(dargs.Format != null || dargs.Format!=String.Empty)
 					{
 						pattern = dargs.Format;
 					}
