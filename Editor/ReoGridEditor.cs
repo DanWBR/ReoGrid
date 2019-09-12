@@ -55,7 +55,7 @@ namespace unvell.ReoGrid.Editor
 	/// <summary>
 	/// Represents Editor of ReoGrid component.
 	/// </summary>
-	public partial class ReoGridEditor : Form
+	public partial class ReoGridEditor : UserControl
 	{
 		#region Constructor
 
@@ -1085,7 +1085,6 @@ namespace unvell.ReoGrid.Editor
 			// File
 			this.fileToolStripMenuItem.Text = LangResource.Menu_File;
 			this.newToolStripMenuItem.Text = LangResource.Menu_File_New;
-			this.newWindowToolStripMenuItem.Text = LangResource.Menu_File_New_Window;
 			this.openToolStripMenuItem.Text = LangResource.Menu_File_Open;
 			this.saveToolStripMenuItem.Text = LangResource.Menu_File_Save;
 			this.saveAsToolStripMenuItem.Text = LangResource.Menu_File_Save_As;
@@ -1097,7 +1096,6 @@ namespace unvell.ReoGrid.Editor
 			this.printPreviewToolStripMenuItem.Text = LangResource.Menu_File_Print_Preview;
 			this.printSettingsToolStripMenuItem.Text = LangResource.Menu_File_Print_Settings;
 			this.printToolStripMenuItem.Text = LangResource.Menu_File_Print;
-			this.exitToolStripMenuItem.Text = LangResource.Menu_File_Exit;
 
 			// Edit
 			this.editToolStripMenuItem.Text = LangResource.Menu_Edit;
@@ -1777,18 +1775,6 @@ namespace unvell.ReoGrid.Editor
 			UpdateSelectionForwardDirection();
 
 			grid.Focus();
-		}
-
-		protected override void OnClosing(CancelEventArgs e)
-		{
-			base.OnClosing(e);
-
-#if DEBUG
-			// Uncomment out the code below to allow autosave.
-			// Only RGF(ReoGrid Format, *.rgf) is supported.
-
-			// this.CurrentWorksheet.Save("..\\..\\autosave.rgf");
-#endif // DEBUG
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2531,20 +2517,6 @@ namespace unvell.ReoGrid.Editor
 		}
 #endif // DEBUG
 
-		protected override void OnShown(EventArgs e)
-		{
-			base.OnShown(e);
-		}
-
-		protected override void OnMove(EventArgs e)
-		{
-			base.OnMove(e);
-
-#if DEBUG
-			ResetDebugFormLocation();
-#endif // DEBUG
-		}
-
 #if DEBUG
 		private void ResetDebugFormLocation()
 		{
@@ -2647,10 +2619,6 @@ namespace unvell.ReoGrid.Editor
 		#endregion // Editing
 
 		#region Window
-		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Close();
-		}
 
 		private void newWindowToolStripMenuItem_Click(object sender, EventArgs e)
 		{

@@ -31,7 +31,7 @@ namespace unvell.ReoGrid.Editor
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ReoGridEditor());
+			//Application.Run(new ReoGridEditor());
 		}
 	}
 }
