@@ -25,7 +25,7 @@ using System.Text;
 using System.Diagnostics;
 #endif // DEBUG
 
-#if WINFORM || WPF || ETO
+#if WINFORM || WPF
 //using CellArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.ReoGridCell>;
 //using HBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridHBorder>;
 //using VBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridVBorder>;

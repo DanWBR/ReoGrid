@@ -27,13 +27,6 @@ using RGBrushes = System.Drawing.Brushes;
 using PlatformGraphics = System.Drawing.Graphics;
 using WFRect = System.Drawing.Rectangle;
 
-#elif ETO
-using RGPen = Eto.Drawing.Pen;
-using RGPens = Eto.Drawing.Pens;
-using RGBrushes = Eto.Drawing.Brushes;
-using PlatformGraphics = Eto.Drawing.Graphics;
-using WFRect = Eto.Drawing.Rectangle;
-
 #elif WPF
 using RGPen = System.Windows.Media.Pen;
 using RGBrushes = System.Windows.Media.Brushes;
@@ -48,7 +41,7 @@ using RGPen = CoreGraphics.CGContext;
 
 #endif // WPF
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;
@@ -62,7 +55,7 @@ namespace unvell.Common
 {
 	internal static class GraphicsToolkit
 	{
-#region Calculation
+		#region Calculation
 		public static bool PointInRect(Rectangle rect, Point p)
 		{
 			return rect.Left <= p.X && rect.Top <= p.Y
@@ -134,18 +127,16 @@ namespace unvell.Common
 
 			return new Point(rect.X + ww + x, rect.Y + hh - y);
 		}
-#endregion // Calculation
+		#endregion // Calculation
 
-#region Drawing
+		#region Drawing
 		public enum TriangleDirection { Left, Up, Right, Down, }
 
 		public static void FillTriangle(PlatformGraphics g, RGFloat size, Point loc, TriangleDirection dir = TriangleDirection.Down)
 		{
 
 #if WINFORM
-			var p = System.Drawing.Pens.Black;         
-#elif ETO
-			var p = Eto.Drawing.Pens.Black;
+			var p = System.Drawing.Pens.Black;
 #elif WPF
 			var p = new System.Windows.Media.Pen(RGBrushes.Black, 1);
 #elif ANDROID

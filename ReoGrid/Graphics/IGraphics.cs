@@ -19,7 +19,6 @@
 #pragma warning disable 1591
 
 #if WINFORM
-
 using RGFloat = System.Single;
 
 using RGPen = System.Drawing.Pen;
@@ -31,28 +30,14 @@ using RGImage = System.Drawing.Image;
 using PlatformGraphics = System.Drawing.Graphics;
 using RGTransform = System.Drawing.Drawing2D.Matrix;
 
-#elif ETO
-
+#elif ANDROID
 using RGFloat = System.Single;
-
-using RGPen = Eto.Drawing.Pen;
-using RGBrush = Eto.Drawing.Brush;
-
-using RGPath = Eto.Drawing.GraphicsPath;
-using RGImage = Eto.Drawing.Image;
-
-using PlatformGraphics = Eto.Drawing.Graphics;
-using RGTransform = Eto.Drawing.IMatrix;
-
-#elif SKIASHARP
-
-using RGFloat = System.Single;
-using PlatformGraphics = SkiaSharp.SKCanvas;
-using RGPen = SkiaSharp.SKPaint;
-using RGBrush = SkiaSharp.SKPaint;
-using RGPath = SkiaSharp.SKPath;
-using RGImage = SkiaSharp.SKPicture;
-using RGTransform = SkiaSharp.SKMatrix;
+using PlatformGraphics = Android.Graphics.Canvas;
+using RGPen = Android.Graphics.Paint;
+using RGBrush = Android.Graphics.Paint;
+using RGPath = Android.Graphics.Path;
+using RGImage = Android.Graphics.Picture;
+using RGTransform = Android.Graphics.Matrix;
 
 #elif WPF
 

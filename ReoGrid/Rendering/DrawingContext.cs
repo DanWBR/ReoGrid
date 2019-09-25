@@ -19,7 +19,7 @@
 using unvell.ReoGrid.Views;
 using unvell.ReoGrid.Graphics;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #elif WPF || iOS
 using RGFloat = System.Double;

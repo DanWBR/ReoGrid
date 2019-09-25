@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;

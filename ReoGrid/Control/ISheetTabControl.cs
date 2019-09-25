@@ -27,12 +27,6 @@ using RGPoint = System.Drawing.Point;
 using RGColor = System.Drawing.Color;
 using RGRect = System.Drawing.Rectangle;
 using RGIntDouble = System.Int32;
-#elif ETO
-using RGFloat = System.Single;
-using RGPoint = Eto.Drawing.Point;
-using RGColor = Eto.Drawing.Color;
-using RGRect = Eto.Drawing.Rectangle;
-using RGIntDouble = System.Int32;
 #elif WPF
 using RGFloat = System.Double;
 using RGPoint = System.Windows.Point;

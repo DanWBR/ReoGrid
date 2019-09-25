@@ -29,14 +29,6 @@ using RGPen = System.Drawing.Pen;
 using RGPenColor = System.Drawing.Color;
 using RGDashStyles = System.Drawing.Drawing2D.DashStyle;
 using PlatformGraphics = System.Drawing.Graphics;
-#elif ETO
-using RGPointF = Eto.Drawing.PointF;
-using RGFloat = System.Single;
-using RGColors = Eto.Drawing.Color;
-using RGPen = Eto.Drawing.Pen;
-using RGPenColor = Eto.Drawing.Color;
-using RGDashStyles = Eto.Drawing.DashStyles;
-using PlatformGraphics = Eto.Drawing.Graphics;
 #elif WPF
 using RGPointF = System.Windows.Point;
 using RGFloat = System.Double;

@@ -671,17 +671,14 @@ namespace unvell.ReoGrid
 									img.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
 									img.EndInit();
 									((CellTypes.ImageCell)cell.body).Image = img;
-# elif WINFORM
+#else // WINFORM
 									var img = System.Drawing.Image.FromStream(ms);
-									((CellTypes.ImageCell)cell.body).Image = img;
-# elif ETO
-									var img = new Eto.Drawing.Bitmap(ms);
 									((CellTypes.ImageCell)cell.body).Image = img;
 #endif // WINFORM | WPF
 
-                                }
+								}
 
-                                cellValue = null;
+								cellValue = null;
 							}
 						}
 					}
@@ -1366,13 +1363,11 @@ namespace unvell.ReoGrid
 												 }
 												 catch (NotSupportedException) { }
 												 enc.Save(ms);
-#elif WINFORM
+#else // WINFORM
 												 imageBody.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-#elif ETO
-												 //imageBody.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 
 #endif // WINFORM | WPF
-                                                 xmlCell.data = "image/png," + Convert.ToBase64String(ms.ToArray());
+												 xmlCell.data = "image/png," + Convert.ToBase64String(ms.ToArray());
 											 }
 										 }
 

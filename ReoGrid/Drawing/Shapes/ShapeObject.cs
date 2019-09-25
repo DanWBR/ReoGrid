@@ -20,7 +20,7 @@
 
 using System;
 
-#if WINFORM || ETO
+#if WINFORM
 using RGFloat = System.Single;
 #else
 using RGFloat = System.Double;
@@ -46,7 +46,14 @@ namespace unvell.ReoGrid.Drawing.Shapes
 		{
 			get
 			{
+				if (this.richText != null)
+				{
+					return this.richText.ToPlainText();
+				}
+				else
+				{
 					return this.text;
+				}
 			}
 			set
 			{
@@ -55,23 +62,25 @@ namespace unvell.ReoGrid.Drawing.Shapes
 					this.text = value;
 					this.Invalidate();
 				}
+
+				this.richText = null;
 			}
 		}
 
-		//private RichText richText;
+		private RichText richText;
 
-		///// <summary>
-		///// Get or set rich format text.
-		///// </summary>
-		//public RichText RichText
-		//{
-		//	get { return this.richText; }
-		//	set
-		//	{
-		//		this.richText = value;
-		//		this.Invalidate();
-		//	}
-		//}
+		/// <summary>
+		/// Get or set rich format text.
+		/// </summary>
+		public RichText RichText
+		{
+			get { return this.richText; }
+			set
+			{
+				this.richText = value;
+				this.Invalidate();
+			}
+		}
 		#endregion // Text
 
 		#region Style Attributes
@@ -132,10 +141,20 @@ namespace unvell.ReoGrid.Drawing.Shapes
 		/// <param name="dc">Instance of cross-platform drawing context.</param>
 		protected virtual void OnPaintText(DrawingContext dc)
 		{
+			if (this.richText != null)
+			{
+				//var rect = new Rectangle(this.ClientBounds.X, 0, this.ClientBounds.Width, this.Height);
+				this.richText.Draw(dc.Graphics, this.ClientBounds);
+			}
+			else
+			{
+
 			if (!string.IsNullOrEmpty(this.text))
 			{
 				dc.Graphics.DrawText(this.text, this.FontName, this.FontSize, this.ForeColor, this.TextBounds,
 					 ReoGridHorAlign.Center, ReoGridVerAlign.Middle);
+			}
+
 			}
 		}
 		#endregion // Paint
@@ -144,10 +163,10 @@ namespace unvell.ReoGrid.Drawing.Shapes
 		{
 			base.OnBoundsChanged(oldRect);
 
-			//if (this.richText != null)
-			//{
-			//	this.richText.Size = this.Bounds.Size;
-			//}
+			if (this.richText != null)
+			{
+				this.richText.Size = this.Bounds.Size;
+			}
 		}
 	}
 

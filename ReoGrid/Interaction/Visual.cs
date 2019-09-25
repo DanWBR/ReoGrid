@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 using unvell.ReoGrid.Graphics;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #else
 using RGFloat = System.Double;

@@ -16,19 +16,22 @@
  * 
  ****************************************************************************/
 
-#if SKIASHARP
+#if ANDROID
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Android.Graphics;
 using unvell.ReoGrid.Drawing.Text;
 using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Rendering;
-using SkiaSharp;
 
 namespace unvell.ReoGrid.AndroidOS
 {
-	class AndroidRenderer : SkiaSharpGraphics, IRenderer
+	class AndroidRenderer : AndroidGraphics, IRenderer
 	{
-		private SKTypeface headerTypeface = null;
+		private Typeface headerTypeface = null;
 
 		internal AndroidRenderer()
 		{
@@ -240,4 +243,4 @@ namespace unvell.ReoGrid.AndroidOS
 	}
 }
 
-#endif // SKIASHARP 
+#endif // ANDROID 

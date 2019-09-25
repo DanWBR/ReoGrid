@@ -24,7 +24,7 @@ using System.Text;
 using System.Diagnostics;
 #endif // DEBUG
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;
@@ -322,7 +322,7 @@ namespace unvell.ReoGrid
 			}
 #endif // FORMULA
 
-#if RICHTEXT
+#if DRAWING
 			if (cell.Data is Drawing.RichText)
 			{
 				var rt = (Drawing.RichText)cell.Data;

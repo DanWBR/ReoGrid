@@ -33,9 +33,8 @@ using unvell.ReoGrid.Interaction;
 using unvell.ReoGrid.Print;
 #endif // PRINT
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
-using unvell.ReoGrid.EtoRenderer;
 #elif WPF
 using RGFloat = System.Double;
 #elif iOS
@@ -43,7 +42,7 @@ using RGFloat = System.Double;
 
 #endif // WPF
 
-#if WINFORM || WPF || ETO
+#if WINFORM || WPF
 using ReoGridControl = unvell.ReoGrid.ReoGridControl;
 #elif ANDROID
 using ReoGridControl = unvell.ReoGrid.ReoGridView;
@@ -648,7 +647,7 @@ namespace unvell.ReoGrid
 			{
 				if (this.sheetTab != null)
 				{
-					this.sheetTab.UpdateTab(index, worksheet.Name, worksheet.NameBackColor.ToEto(), worksheet.NameTextColor.ToEto());
+					this.sheetTab.UpdateTab(index, worksheet.Name, worksheet.NameBackColor, worksheet.NameTextColor);
 				}
 
 				if (this.WorksheetNameChanged != null)
@@ -666,7 +665,7 @@ namespace unvell.ReoGrid
 			{
 				if (this.sheetTab != null)
 				{
-					this.sheetTab.UpdateTab(index, worksheet.Name, worksheet.NameBackColor.ToEto(), worksheet.NameTextColor.ToEto());
+					this.sheetTab.UpdateTab(index, worksheet.Name, worksheet.NameBackColor, worksheet.NameTextColor);
 				}
 
 				if (this.WorksheetNameBackColorChanged != null)
@@ -684,7 +683,7 @@ namespace unvell.ReoGrid
 			{
 				if (this.sheetTab != null)
 				{
-					this.sheetTab.UpdateTab(index, worksheet.Name, worksheet.NameBackColor.ToEto(), worksheet.NameTextColor.ToEto());
+					this.sheetTab.UpdateTab(index, worksheet.Name, worksheet.NameBackColor, worksheet.NameTextColor);
 				}
 
 				if (this.WorksheetNameTextColorChanged != null)

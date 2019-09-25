@@ -35,12 +35,6 @@ using RGPointF = System.Drawing.PointF;
 using IntOrDouble = System.Int32;
 //using ReoGridControl = unvell.ReoGrid.ReoGridControl;
 
-#elif ETO
-using RGFloat = System.Single;
-using RGPointF = Eto.Drawing.PointF;
-using RGPoint = Eto.Drawing.Point;
-using IntOrDouble = System.Int32;
-
 #elif WPF
 using RGFloat = System.Double;
 using RGPoint = System.Windows.Point;
@@ -65,7 +59,6 @@ using ReoGridControl = unvell.ReoGrid.ReoGridView;
 #if WINFORM
 using Cursor = System.Windows.Forms.Cursor;
 //using Cursors = System.Windows.Forms.Cursor;
-//using Cursors = System.Windows.Forms.Cursor;
 #elif WPF
 using Cursor = System.Windows.Input.Cursor;
 //using Cursors = System.Windows.Input.Cursors;
@@ -73,18 +66,39 @@ using Cursor = System.Windows.Input.Cursor;
 
 using unvell.ReoGrid.Main;
 using unvell.ReoGrid.Rendering;
-using Eto.Forms;
-using MouseButtons = unvell.ReoGrid.Interaction.MouseButtons;
 
 namespace unvell.ReoGrid
 {
 
+#if WINFORM || WPF
 	partial class ReoGridControl
+#elif ANDROID || iOS
+	partial class ReoGridView
+#endif // ANDROID || iOS
 	{
-		
-#region Initialize
+		private IRenderer renderer;
+
+		#region Initialize
 		private void InitControl()
 		{
+#if WINFORM || WPF
+			// initialize cursors
+			// normal grid selector
+			this.builtInCellsSelectionCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.grid_select);
+			this.internalCurrentCursor = builtInCellsSelectionCursor;
+
+			// cell picking
+			this.defaultPickRangeCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.pick_range);
+
+			// full-row and full-col selector
+			this.builtInFullColSelectCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.full_col_select);
+			this.builtInFullRowSelectCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.full_row_select);
+
+			this.builtInEntireSheetSelectCursor = this.builtInCellsSelectionCursor;
+
+			this.builtInCrossCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.cross);
+#endif // WINFORM || WPF
+
 			this.controlStyle = ControlAppearanceStyle.CreateDefaultControlStyle();
 		}
 
@@ -93,8 +107,7 @@ namespace unvell.ReoGrid
 			// create workbook
 			this.workbook = new Workbook(adapter);
 
-#region Workbook Event Attach
-
+			#region Workbook Event Attach
 			this.workbook.WorksheetCreated += (s, e) =>
 			{
 				this.WorksheetCreated?.Invoke(this, e);
@@ -172,7 +185,7 @@ namespace unvell.ReoGrid
 
 			this.workbook.ExceptionHappened += workbook_ErrorHappened;
 
-#endregion // Workbook Event Attach
+			#endregion // Workbook Event Attach
 
 #if EX_SCRIPT
 			this.workbook.SRMInitialized += (s, e) =>
@@ -248,10 +261,9 @@ namespace unvell.ReoGrid
 			};
 		}
 
-#endregion // Initialize
+		#endregion // Initialize
 
-#region Memory Workbook
-
+		#region Memory Workbook
 		/// <summary>
 		/// Create an instance of ReoGrid workbook in memory. <br/>
 		/// The memory workbook is the non-GUI version of ReoGrid control, which can do almost all operations, 
@@ -267,13 +279,13 @@ namespace unvell.ReoGrid
 
 			return workbook;
 		}
-#endregion // Memory Workbook
+		#endregion // Memory Workbook
 
-#region Workbook & Worksheet
+		#region Workbook & Worksheet
 
 		private Workbook workbook;
 
-#region Save & Load
+		#region Save & Load
 		/// <summary>
 		/// Save workbook into file
 		/// </summary>
@@ -381,7 +393,7 @@ namespace unvell.ReoGrid
 				this.CurrentWorksheet = this.workbook.worksheets[0];
 			}
 		}
-#endregion // Save & Load
+		#endregion // Save & Load
 
 		/// <summary>
 		/// Event raised when workbook loaded from stream or file.
@@ -393,7 +405,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		public event EventHandler WorkbookSaved;
 
-#region Worksheet Management
+		#region Worksheet Management
 
 		private Worksheet currentWorksheet;
 
@@ -644,7 +656,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		public event EventHandler<WorksheetEventArgs> WorksheetNameTextColorChanged;
 
-#endregion // Worksheet Management
+		#endregion // Worksheet Management
 
 		/// <summary>
 		/// Determine whether or not this workbook is read-only (Reserved v0.8.8)
@@ -684,9 +696,9 @@ namespace unvell.ReoGrid
 			}
 		}
 
-#endregion // Workbook & Worksheet
+		#endregion // Workbook & Worksheet
 
-#region Actions
+		#region Actions
 
 		internal ActionManager actionManager = new ActionManager();
 
@@ -1022,9 +1034,9 @@ namespace unvell.ReoGrid
 		/// </summary>
 		public event EventHandler<WorkbookActionEventArgs> Redid;
 
-#endregion // Actions
+		#endregion // Actions
 
-#region Settings
+		#region Settings
 
 		/// <summary>
 		/// Set specified workbook settings
@@ -1077,9 +1089,9 @@ namespace unvell.ReoGrid
 		/// Event raised when settings is changed
 		/// </summary>
 		public event EventHandler SettingsChanged;
-#endregion // Settings
+		#endregion // Settings
 
-#region Script
+		#region Script
 
 		/// <summary>
 		/// Get or set script content
@@ -1119,9 +1131,9 @@ namespace unvell.ReoGrid
 		}
 #endif
 
-#endregion // Script
+		#endregion // Script
 
-#region Internal Exceptions
+		#region Internal Exceptions
 		/// <summary>
 		/// Event raised when exception has been happened during internal operations.
 		/// Usually the internal operations are raised by hot-keys pressed by end-user.
@@ -1149,9 +1161,9 @@ namespace unvell.ReoGrid
 				this.workbook.NotifyExceptionHappen(sheet, ex);
 			}
 		}
-#endregion // Internal Exceptions
+		#endregion // Internal Exceptions
 
-#region Cursors
+		#region Cursors
 #if WINFORM || WPF
 		private Cursor builtInCellsSelectionCursor = null;
 		private Cursor builtInFullColSelectCursor = null;
@@ -1203,9 +1215,9 @@ namespace unvell.ReoGrid
 			}
 		}
 #endif // WINFORM || WPF
-#endregion Cursors
+		#endregion Cursors
 
-#region Pick Range
+		#region Pick Range
 #if WINFORM || WPF
 		/// <summary>
 		/// Start to pick a range from current worksheet.
@@ -1251,9 +1263,9 @@ namespace unvell.ReoGrid
 				this.customCellsSelectionCursor : this.builtInCellsSelectionCursor);
 		}
 #endif // WINFORM || WPF
-#endregion // Pick Range
+		#endregion // Pick Range
 
-#region Appearance
+		#region Appearance
 
 		/// <summary>
 		/// Retrieve control instance of workbook.
@@ -1279,21 +1291,18 @@ namespace unvell.ReoGrid
 
 				this.adapter.Invalidate();
 
-#if WINFORM 
+#if WINFORM
 				sheetTab.BackColor = value[ControlAppearanceColors.SheetTabBackground];
 				this.BackColor = value[ControlAppearanceColors.GridBackground];
-#elif ETO 
-				//sheetTab.BackColor = value[ControlAppearanceColors.SheetTabBackground];
-				//this.BackColor = value[ControlAppearanceColors.GridBackground];
 #elif WPF
 				sheetTab.Background = new System.Windows.Media.SolidColorBrush(value[ControlAppearanceColors.SheetTabBackground]);
 #endif // WINFORM & WPF
 
-            }
+			}
 		}
-#endregion // App
+		#endregion // App
 
-#region Mouse
+		#region Mouse
 		private void OnWorksheetMouseDown(RGPointF location, MouseButtons buttons)
 		{
 			var sheet = this.currentWorksheet;
@@ -1313,38 +1322,44 @@ namespace unvell.ReoGrid
 
 				if (sheet.ViewportController != null)
 				{
-					sheet.ViewportController.OnMouseDown(new Graphics.Point(location.X, location.Y), buttons);
+					sheet.ViewportController.OnMouseDown(location, buttons);
 				}
 			}
 		}
 
-		private void OnWorksheetMouseMove(RGPoint location, MouseButtons buttons)
+		private void OnWorksheetMouseMove(RGPointF location, MouseButtons buttons)
 		{
 			var sheet = this.currentWorksheet;
 
 			if (sheet != null && sheet.ViewportController != null)
 			{
-				sheet.ViewportController.OnMouseMove(new Graphics.Point(location.X, location.Y), buttons);
+				sheet.ViewportController.OnMouseMove(location, buttons);
 			}
 		}
 
-		private void OnWorksheetMouseUp(RGPoint location, MouseButtons buttons)
+		private void OnWorksheetMouseUp(RGPointF location, MouseButtons buttons)
 		{
 			var sheet = this.currentWorksheet;
 
 			if (sheet != null && sheet.ViewportController != null)
 			{
-				sheet.ViewportController.OnMouseUp(new Graphics.Point(location.X, location.Y), buttons);
+				sheet.ViewportController.OnMouseUp(location, buttons);
 			}
 		}
-        #endregion // Mouse
+		#endregion // Mouse
 
-        /// <summary>
-        /// Overrides mouse-leave event
-        /// </summary>
-        /// <param name="e">Argument of mouse-leave</param>
-        protected override void OnMouseLeave(MouseEventArgs e)
-        {
+#if WINFORM || WPF
+#if WINFORM
+		/// <summary>
+		/// Overrides mouse-leave event
+		/// </summary>
+		/// <param name="e">Argument of mouse-leave</param>
+		protected override void OnMouseLeave(EventArgs e)
+		{
+#elif WPF
+		protected override void OnMouseLeave(System.Windows.Input.MouseEventArgs e)
+		{
+#endif // WPF
 			base.OnMouseLeave(e);
 
 			if (this.currentWorksheet != null)
@@ -1353,6 +1368,7 @@ namespace unvell.ReoGrid
 				this.currentWorksheet.HoverPos = CellPosition.Empty;
 			}
 		}
+#endif // WINFORM || WPF
 
 #if PRINT
 		/// <summary>
@@ -1365,12 +1381,12 @@ namespace unvell.ReoGrid
 		}
 #endif // PRINT
 
-        #region SheetTabControl
+		#region SheetTabControl
 
-        /// <summary>
-        /// Show or hide the built-in sheet tab control.
-        /// </summary>
-        public bool SheetTabVisible
+		/// <summary>
+		/// Show or hide the built-in sheet tab control.
+		/// </summary>
+		public bool SheetTabVisible
 		{
 			get { return (this.HasSettings(WorkbookSettings.View_ShowSheetTabControl)); }
 			set {
@@ -1402,9 +1418,9 @@ namespace unvell.ReoGrid
 			get { return this.sheetTab.NewButtonVisible; }
 			set { this.sheetTab.NewButtonVisible = value; }
 		}
-#endregion // SheetTabControl
+		#endregion // SheetTabControl
 
-#region Scroll
+		#region Scroll
 
 		/// <summary>
 		/// Scroll current active worksheet.
@@ -1465,6 +1481,6 @@ namespace unvell.ReoGrid
 			}
 		}
 
-#endregion Scroll
+		#endregion Scroll
 	}
 }

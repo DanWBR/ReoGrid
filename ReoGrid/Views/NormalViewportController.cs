@@ -25,7 +25,7 @@ using unvell.ReoGrid.Data;
 using System.Diagnostics;
 #endif
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 using RGIntDouble = System.Int32;
 #elif WPF || iOS
@@ -65,7 +65,8 @@ namespace unvell.ReoGrid.Views
 
 		private SpaceView rightBottomSpace;
 
-		public NormalViewportController(Worksheet sheet) : base(sheet)
+		public NormalViewportController(Worksheet sheet)
+			: base(sheet)
 		{
 			sheet.ViewportController = this;
 
@@ -83,9 +84,7 @@ namespace unvell.ReoGrid.Views
 
 			this.FocusView = rightBottomViewport;
 			this.mainViewport = rightBottomViewport;
-
-        }
-
+		}
 		#endregion // Constructor
 
 		#region Visibility Management
@@ -990,7 +989,7 @@ namespace unvell.ReoGrid.Views
 			scrollHorValue += x;
 			scrollVerValue += y;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 			this.worksheet.controlAdapter.ScrollBarHorizontalValue = (int)Math.Round(scrollHorValue);
 			this.worksheet.controlAdapter.ScrollBarVerticalValue = (int)Math.Round(scrollVerValue);
 #elif WPF
@@ -1087,7 +1086,7 @@ namespace unvell.ReoGrid.Views
 			int maxHorizontal = Math.Max(0, (int)(Math.Floor(width + this.mainViewport.Left))) + 1;
 			int maxVertical = Math.Max(0, (int)(Math.Floor(height + this.mainViewport.Top))) + 1;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 			int offHor = maxHorizontal - this.scrollHorMax;
 			int offVer = maxVertical - this.scrollVerMax;
 #elif WPF

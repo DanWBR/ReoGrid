@@ -2319,7 +2319,7 @@ namespace unvell.ReoGrid.Editor
             this.toolbarToolStripMenuItem.CheckOnClick = true;
             this.toolbarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolbarToolStripMenuItem.Name = "toolbarToolStripMenuItem";
-            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.toolbarToolStripMenuItem.Text = "&Toolbar";
             // 
             // formulaBarToolStripMenuItem
@@ -2328,7 +2328,7 @@ namespace unvell.ReoGrid.Editor
             this.formulaBarToolStripMenuItem.CheckOnClick = true;
             this.formulaBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.formulaBarToolStripMenuItem.Name = "formulaBarToolStripMenuItem";
-            this.formulaBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.formulaBarToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.formulaBarToolStripMenuItem.Text = "Formula Bar";
             // 
             // statusBarToolStripMenuItem
@@ -2337,7 +2337,7 @@ namespace unvell.ReoGrid.Editor
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.statusBarToolStripMenuItem.Text = "Status Bar";
             // 
             // visibleToolStripMenuItem
@@ -2636,19 +2636,19 @@ namespace unvell.ReoGrid.Editor
             this.filterToolStripMenuItem.Image = global::unvell.ReoGrid.Editor.Properties.Resources.Filter2HS;
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.filterToolStripMenuItem.Text = "Filter";
             // 
             // clearFilterToolStripMenuItem
             // 
             this.clearFilterToolStripMenuItem.Name = "clearFilterToolStripMenuItem";
-            this.clearFilterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearFilterToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.clearFilterToolStripMenuItem.Text = "Clear Filter";
             // 
             // toolStripMenuItem34
             // 
             this.toolStripMenuItem34.Name = "toolStripMenuItem34";
-            this.toolStripMenuItem34.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem34.Size = new System.Drawing.Size(137, 6);
             // 
             // groupToolStripMenuItem
             // 
@@ -2656,19 +2656,19 @@ namespace unvell.ReoGrid.Editor
             this.groupRowsToolStripMenuItem,
             this.groupColumnsToolStripMenuItem});
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.groupToolStripMenuItem.Text = "Group";
             // 
             // groupRowsToolStripMenuItem
             // 
             this.groupRowsToolStripMenuItem.Name = "groupRowsToolStripMenuItem";
-            this.groupRowsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.groupRowsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.groupRowsToolStripMenuItem.Text = "Rows";
             // 
             // groupColumnsToolStripMenuItem
             // 
             this.groupColumnsToolStripMenuItem.Name = "groupColumnsToolStripMenuItem";
-            this.groupColumnsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.groupColumnsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.groupColumnsToolStripMenuItem.Text = "Columns";
             // 
             // ungroupToolStripMenuItem
@@ -2680,42 +2680,42 @@ namespace unvell.ReoGrid.Editor
             this.ungroupAllRowsToolStripMenuItem1,
             this.ungroupAllColumnsToolStripMenuItem1});
             this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
-            this.ungroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ungroupToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.ungroupToolStripMenuItem.Text = "Ungroup";
             // 
             // ungroupRowsToolStripMenuItem
             // 
             this.ungroupRowsToolStripMenuItem.Name = "ungroupRowsToolStripMenuItem";
-            this.ungroupRowsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ungroupRowsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.ungroupRowsToolStripMenuItem.Text = "Selection Rows";
             // 
             // ungroupColumnsToolStripMenuItem
             // 
             this.ungroupColumnsToolStripMenuItem.Name = "ungroupColumnsToolStripMenuItem";
-            this.ungroupColumnsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ungroupColumnsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.ungroupColumnsToolStripMenuItem.Text = "Selection Columns";
             // 
             // toolStripMenuItem22
             // 
             this.toolStripMenuItem22.Name = "toolStripMenuItem22";
-            this.toolStripMenuItem22.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem22.Size = new System.Drawing.Size(170, 6);
             // 
             // ungroupAllRowsToolStripMenuItem1
             // 
             this.ungroupAllRowsToolStripMenuItem1.Name = "ungroupAllRowsToolStripMenuItem1";
-            this.ungroupAllRowsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ungroupAllRowsToolStripMenuItem1.Size = new System.Drawing.Size(173, 22);
             this.ungroupAllRowsToolStripMenuItem1.Text = "All Rows";
             // 
             // ungroupAllColumnsToolStripMenuItem1
             // 
             this.ungroupAllColumnsToolStripMenuItem1.Name = "ungroupAllColumnsToolStripMenuItem1";
-            this.ungroupAllColumnsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ungroupAllColumnsToolStripMenuItem1.Size = new System.Drawing.Size(173, 22);
             this.ungroupAllColumnsToolStripMenuItem1.Text = "All Columns";
             // 
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(137, 6);
             // 
             // insertToolStripMenuItem
             // 
@@ -2724,7 +2724,7 @@ namespace unvell.ReoGrid.Editor
             this.toolStripMenuItem40,
             this.rectangleToolStripMenuItem});
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.insertToolStripMenuItem.Text = "Insert";
             // 
             // chartToolStripMenuItem
@@ -2747,14 +2747,14 @@ namespace unvell.ReoGrid.Editor
             // resizeToolStripMenuItem
             // 
             this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.resizeToolStripMenuItem.Text = "Resize...";
             // 
             // sheetReadonlyToolStripMenuItem
             // 
             this.sheetReadonlyToolStripMenuItem.CheckOnClick = true;
             this.sheetReadonlyToolStripMenuItem.Name = "sheetReadonlyToolStripMenuItem";
-            this.sheetReadonlyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sheetReadonlyToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.sheetReadonlyToolStripMenuItem.Text = "Read-only";
             // 
             // formulaToolStripMenuItem
@@ -2918,19 +2918,19 @@ namespace unvell.ReoGrid.Editor
             this.scriptEditorToolStripMenuItem.Image = global::unvell.ReoGrid.Editor.Properties.Resources.VSProject_script;
             this.scriptEditorToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.scriptEditorToolStripMenuItem.Name = "scriptEditorToolStripMenuItem";
-            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.scriptEditorToolStripMenuItem.Text = "Script &Editor...";
             // 
             // toolStripMenuItem16
             // 
             this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-            this.toolStripMenuItem16.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(151, 6);
             // 
             // runFunctionToolStripMenuItem
             // 
             this.runFunctionToolStripMenuItem.Image = global::unvell.ReoGrid.Editor.Properties.Resources.FunctionHS;
             this.runFunctionToolStripMenuItem.Name = "runFunctionToolStripMenuItem";
-            this.runFunctionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.runFunctionToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.runFunctionToolStripMenuItem.Text = "&Run Function...";
             // 
             // toolsToolStripMenuItem

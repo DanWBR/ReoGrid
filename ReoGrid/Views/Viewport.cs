@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 using RGIntDouble = System.Int32;
 

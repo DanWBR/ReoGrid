@@ -16,7 +16,7 @@
  * 
  ****************************************************************************/
 
-#if SKIASHARP
+#if ANDROID
 
 using System;
 
@@ -864,4 +864,4 @@ namespace unvell.ReoGrid
 
 }
 
-#endif // SKIASHARP
+#endif // ANDROID

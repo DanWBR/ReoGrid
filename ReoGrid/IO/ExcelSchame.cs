@@ -1132,7 +1132,7 @@ namespace unvell.ReoGrid.IO.OpenXML.Schema
 		[XmlElement("r")]
 		public List<Run> runs;
 
-#if RICHTEXT
+#if DRAWING
 		[XmlIgnore]
 		internal ReoGrid.Drawing.RichText _rt;
 #endif // DRAWING

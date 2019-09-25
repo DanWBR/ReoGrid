@@ -20,7 +20,7 @@
 
 using System;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #else
 using RGFloat = System.Double;
@@ -50,8 +50,6 @@ namespace unvell.ReoGrid.Drawing.Shapes
 
 #if WINFORM
 		protected System.Drawing.Drawing2D.GraphicsPath Path = new System.Drawing.Drawing2D.GraphicsPath();
-#elif ETO
-		protected Eto.Drawing.GraphicsPath Path = new Eto.Drawing.GraphicsPath();
 #elif WPF
 		protected System.Windows.Media.PathGeometry Path = new System.Windows.Media.PathGeometry();
 #elif ANDROID
@@ -82,9 +80,9 @@ namespace unvell.ReoGrid.Drawing.Shapes
 		}
 
 	}
-#endregion // Path
+	#endregion // Path
 
-#region Rounded Rectangle
+	#region Rounded Rectangle
 	/// <summary>
 	/// Represents a rounded rectangle shape.
 	/// </summary>
@@ -159,15 +157,15 @@ namespace unvell.ReoGrid.Drawing.Shapes
 			}
 		}
 	}
-#endregion // Rounded Rectangle
+	#endregion // Rounded Rectangle
 
-#region Pie
+	#region Pie
 	/// <summary>
 	/// Represents a pie shape 
 	/// </summary>
 	public class PieShape : PathShape
 	{
-#region Attributes
+		#region Attributes
 		private RGFloat startAngle = 0;
 
 		/// <summary>
@@ -203,7 +201,7 @@ namespace unvell.ReoGrid.Drawing.Shapes
 				}
 			}
 		}
-#endregion // Attributes
+		#endregion // Attributes
 
 		protected override void UpdatePath()
 		{
@@ -237,7 +235,7 @@ namespace unvell.ReoGrid.Drawing.Shapes
 #endif // WINFORM
 		}
 	}
-#endregion // Pie
+	#endregion // Pie
 
 }
 

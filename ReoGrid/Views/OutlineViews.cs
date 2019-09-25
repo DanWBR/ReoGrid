@@ -25,7 +25,7 @@ using System.Linq;
 using System.Diagnostics;
 #endif
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;

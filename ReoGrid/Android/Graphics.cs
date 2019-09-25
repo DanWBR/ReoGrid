@@ -16,18 +16,22 @@
  * 
  ****************************************************************************/
 
-#if SKIASHARP
+#if ANDROID
 
+//using Android.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+//using unvell.ReoGrid.Graphics;
 
-using Paint = SkiaSharp.SKPaint;
-using Picture = SkiaSharp.SKPicture;
-using Rect = SkiaSharp.SKRect;
-using RectF = SkiaSharp.SKRect;
-using Path = SkiaSharp.SKPath;
-using Matrix = SkiaSharp.SKMatrix;
-using Typeface = SkiaSharp.SKTypeface;
+using Paint = Android.Graphics.Paint;
+using Picture = Android.Graphics.Picture;
+using Rect = Android.Graphics.Rect;
+using RectF = Android.Graphics.RectF;
+using Path = Android.Graphics.Path;
+using Matrix = Android.Graphics.Matrix;
+using Typeface = Android.Graphics.Typeface;
 
 using IGraphics = unvell.ReoGrid.Graphics.IGraphics;
 using Point = unvell.ReoGrid.Graphics.Point;
@@ -37,15 +41,14 @@ using Rectangle = unvell.ReoGrid.Graphics.Rectangle;
 using LineStyles = unvell.ReoGrid.Graphics.LineStyles;
 using HatchStyles = unvell.ReoGrid.Graphics.HatchStyles;
 
-using PlatformGraphics = SkiaSharp.SKCanvas;
-using SkiaSharp;
-using unvell.ReoGrid.Graphics;
+using PlatformGraphics = Android.Graphics.Canvas;
+using Android.Graphics;
 
 namespace unvell.ReoGrid.AndroidOS
 {
-	internal class SkiaSharpGraphics : IGraphics
+	internal class AndroidGraphics : IGraphics
 	{
-		protected SKCanvas canvas;
+		protected Android.Graphics.Canvas canvas;
 
 		public bool IsAntialias
 		{
@@ -76,7 +79,7 @@ namespace unvell.ReoGrid.AndroidOS
 
 		public void DrawImage(Picture image, Rectangle rect)
 		{
-			this.canvas.DrawPicture(image, rect.Left, rect.Top);
+			this.canvas.DrawPicture(image, (Android.Graphics.RectF)rect);
     }
 
 		public void DrawImage(Picture image, float x, float y, float width, float height)
@@ -113,13 +116,13 @@ namespace unvell.ReoGrid.AndroidOS
 		{
 			using (var p = new Paint())
 			{
-				p.Color = SKColor.Parse(color.ToStringHex());
+				p.Color = color;
 				p.StrokeWidth = width;
 
 				switch (style)
 				{
 					case LineStyles.Dot:
-						p.PathEffect = SKPathEffect.CreateDash(new float[] { 1, 1 }, 1);
+						p.SetPathEffect(new DashPathEffect(new float[] { 1, 1 }, 1));
 						break;
 				}
 
@@ -134,15 +137,15 @@ namespace unvell.ReoGrid.AndroidOS
 
 		public void DrawPath(SolidColor color, Path graphicsPath)
 		{
-            canvas.DrawPath(graphicsPath, new Paint() { Color = SKColor.Parse(color.ToStringHex()), IsStroke = true });
+			// TODO
 		}
 
 		public void FillPath(IColor color, Path graphicsPath)
 		{
-            canvas.DrawPath(graphicsPath, new Paint() { Color = SKColor.Parse(color.ToSolidColor().ToStringHex()), IsStroke = false });
-        }
+			// TODO
+		}	
 
-        public void DrawText(string text, string fontName, float size, SolidColor color, Rectangle rect)
+		public void DrawText(string text, string fontName, float size, SolidColor color, Rectangle rect)
 		{
 			this.DrawText(text, fontName, size, color, rect, ReoGridHorAlign.General, ReoGridVerAlign.General);
 		}
@@ -151,20 +154,20 @@ namespace unvell.ReoGrid.AndroidOS
 		{
 			using (var p = new Paint())
 			{
-                using (var font = Typeface.CreateDefault())
-                {
-                    this.DrawText(text, p, font, size, rect, halign, valign);
-                }
+				using (var font = Typeface.Create(fontName, Android.Graphics.TypefaceStyle.Normal))
+				{
+					this.DrawText(text, p, font, size, rect, halign, valign);
+				}
 			}
 		}
 
 		internal void DrawText(string text, Paint p, Typeface font, float size, Rectangle rect, ReoGridHorAlign halign, ReoGridVerAlign valign)
 		{
-			p.Typeface = font;
+			p.SetTypeface(font);
 			p.TextSize = size;
 
 			var measuredRect = new Rect();
-			p.MeasureText(text, ref measuredRect);
+			p.GetTextBounds(text, 0, text.Length, measuredRect);
 
 			float x = rect.Left, y = rect.Top;
 
@@ -176,22 +179,22 @@ namespace unvell.ReoGrid.AndroidOS
 					break;
 
 				case ReoGridHorAlign.Center:
-					x = rect.Left + (rect.Width - measuredRect.Width) / 2;
+					x = rect.Left + (rect.Width - measuredRect.Width()) / 2;
 					break;
 
 				case ReoGridHorAlign.Right:
-					x = rect.Right - measuredRect.Width;
+					x = rect.Right - measuredRect.Width();
 					break;
 			}
 
 			switch (valign)
 			{
 				case ReoGridVerAlign.Top:
-					y = rect.Top + measuredRect.Height;
+					y = rect.Top + measuredRect.Height();
 					break;
 
 				case ReoGridVerAlign.Middle:
-					y = rect.Bottom - (rect.Height - measuredRect.Height) / 2;
+					y = rect.Bottom - (rect.Height - measuredRect.Height()) / 2;
 					break;
 
 				case ReoGridVerAlign.General:
@@ -247,7 +250,7 @@ namespace unvell.ReoGrid.AndroidOS
 		{
 			using (var p = new Paint())
 			{
-				p.Color = SKColor.Parse(color.ToStringHex());
+				p.Color = color;
 				p.StrokeWidth = width;
 
 				this.DrawRectangle(p, rect);
@@ -258,7 +261,7 @@ namespace unvell.ReoGrid.AndroidOS
 		{
 			using (var p = new Paint())
 			{
-				p.Color = SKColor.Parse(color.ToStringHex());
+				p.Color = color;
 
 				this.DrawRectangle(p, x, y, width, height);
 			}
@@ -271,7 +274,7 @@ namespace unvell.ReoGrid.AndroidOS
 
 		public void DrawRectangle(Paint p, float x, float y, float width, float height)
 		{
-			p.Style = SKPaintStyle.Stroke;
+			p.SetStyle(Paint.Style.Stroke);
 
 			this.canvas.DrawRect(x, y, x + width, y + height, p);
 		}
@@ -289,7 +292,7 @@ namespace unvell.ReoGrid.AndroidOS
 
 				using (var p = new Paint())
 				{
-					p.Color = SKColor.Parse(solidColor.ToStringHex());
+					p.Color = solidColor;
 
 					this.FillRectangle(p, x, y, width, height);
 				}
@@ -298,7 +301,7 @@ namespace unvell.ReoGrid.AndroidOS
 
 		public void FillRectangle(Paint p, float x, float y, float width, float height)
 		{
-			p.Style = SKPaintStyle.Fill;
+			p.SetStyle(Paint.Style.Fill);
 			this.canvas.DrawRect(x, y, x + width, y + height, p);
 		}
 
@@ -314,20 +317,20 @@ namespace unvell.ReoGrid.AndroidOS
 
 		public void FillRectangleLinear(SolidColor startColor, SolidColor endColor, float angle, Rectangle rect)
 		{
-			//using (var p = new Paint())
-			//{
-			//	p.Shader = SKShader.CreateLinearGradient(rect.Top, rect.Bottom,
-			//		startColor, endColor, SKShaderTileMode.Clamp);
+			using (var p = new Paint())
+			{
+				p.SetShader(new LinearGradient(rect.Left, rect.Top, rect.Left, rect.Bottom,
+					startColor, endColor, Shader.TileMode.Mirror));
 
-			//	this.canvas.DrawRect(Rect.Create(rect.X, rect.Y, rect.Width, rect.Height), p);
-			//}
+				this.canvas.DrawRect((RectF)rect, p);
+			}
 		}
 
 
 		public Matrix PopTransform()
 		{
 			this.canvas.Restore();
-			return this.canvas.TotalMatrix;
+			return this.canvas.Matrix;
 		}
 
 		private Stack<RectF> clipStack = new Stack<RectF>();
@@ -335,16 +338,16 @@ namespace unvell.ReoGrid.AndroidOS
 		public void PushClip(Rectangle clip)
 		{
 			Rect oldClip = new Rect();
-			this.canvas.ClipRect(oldClip);
-			clipStack.Push(RectF.Create(oldClip.Left,oldClip.Top,oldClip.Width,oldClip.Height));
-			this.canvas.ClipRect(RectF.Create(clip.Left, clip.Top, clip.Width, clip.Height), SKClipOperation.Intersect);
+			this.canvas.GetClipBounds(oldClip);
+			clipStack.Push(new RectF(oldClip));
+			this.canvas.ClipRect((RectF)clip, Region.Op.Intersect);
 		}
 
 		public void PopClip()
 		{
 			RectF oldClip = this.clipStack.Pop();
 			//this.canvas.Restore();
-			this.canvas.ClipRect(RectF.Create(oldClip.Left, oldClip.Top, oldClip.Width, oldClip.Height), SKClipOperation.Difference);
+			this.canvas.ClipRect(oldClip, Region.Op.Replace);
 		}
 
 		public void PushTransform()
@@ -355,23 +358,23 @@ namespace unvell.ReoGrid.AndroidOS
 		public void PushTransform(Matrix t)
 		{
 			this.canvas.Save();
-			this.canvas.SetMatrix(t);
+			this.canvas.Matrix = t;
 		}
 
 		public void Reset()
 		{
-			this.canvas.ResetMatrix();
+			this.canvas.Matrix.Reset();
 			this.clipStack.Clear();
 		}
 
 		public void ResetTransform()
 		{
-			this.canvas.ResetMatrix();
+			this.canvas.Matrix.Reset();
 		}
 
 		public void RotateTransform(float angle)
 		{
-			this.canvas.RotateDegrees(angle);
+			this.canvas.Rotate(angle);
 		}
 
 		public void ScaleTransform(float sx, float sy)
@@ -383,27 +386,7 @@ namespace unvell.ReoGrid.AndroidOS
 		{
 			this.canvas.Translate(x, y);
 		}
-
-        public void DrawAndFillRectangle(Rectangle rect, SolidColor lineColor, IColor fillColor)
-        {
-           // TODO
-        }
-
-        public void DrawAndFillRectangle(Rectangle rect, SolidColor lineColor, IColor fillColor, float weight, LineStyles lineStyle)
-        {
-            // TODO
-        }
-
-        public void DrawPolygon(SolidColor color, float lineWidth, LineStyles lineStyle, params Point[] points)
-        {
-            // TODO
-        }
-
-        public void FillPolygon(IColor color, params Point[] points)
-        {
-            // TODO
-        }
-    }
+	}
 }
 
-#endif // SKIASHARP
+#endif // ANDROID

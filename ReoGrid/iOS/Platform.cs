@@ -9,16 +9,15 @@
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
  * PURPOSE.
  *
- * Author: Jing <lujing at unvell.com>
- *
  * Copyright (c) 2012-2016 Jing <lujing at unvell.com>
  * Copyright (c) 2012-2016 unvell.com, all rights reserved.
  * 
  ****************************************************************************/
 
-#if SKIASHARP
+#if iOS
 
-using SkiaSharp;
+using CoreGraphics;
+
 using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Interaction;
 
@@ -26,7 +25,7 @@ namespace unvell.ReoGrid
 {
 	partial class ReoGridCell
 	{
-		internal SKTypeface renderFont;
+		internal CoreGraphics.CGFont renderFont;
 	}
 }
 
@@ -36,13 +35,13 @@ namespace unvell.ReoGrid.Rendering
 	{
 		internal static float GetDPI()
 		{
-			return Eto.Forms.Screen.PrimaryScreen.DPI;
+			return 72.0f;
 		}
 
 		internal static bool IsKeyDown(KeyCode key)
 		{
-            // TODO
-            return false;
+			// Not Supported
+			return false;
 		}
 	}
 
@@ -56,4 +55,4 @@ namespace unvell.ReoGrid.Rendering
 	}
 }
 
-#endif // SKIASHARP
+#endif // ANDROID

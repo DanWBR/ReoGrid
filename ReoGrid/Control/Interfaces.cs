@@ -34,17 +34,6 @@ using RGSizeF = System.Drawing.SizeF;
 using RGRect = System.Drawing.Rectangle;
 using RGRectF = System.Drawing.RectangleF;
 
-#elif ETO
-using RGFloat = System.Single;
-using RGIntDouble = System.Int32;
-
-using RGPoint = Eto.Drawing.Point;
-using RGPointF = Eto.Drawing.PointF;
-using RGSize = Eto.Drawing.Size;
-using RGSizeF = Eto.Drawing.SizeF;
-using RGRect = Eto.Drawing.Rectangle;
-using RGRectF = Eto.Drawing.RectangleF;
-
 #elif WPF
 using RGFloat = System.Double;
 using RGIntDouble = System.Double;

@@ -36,15 +36,13 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;ETO</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;WINFORM;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,7 +53,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;FORMULA;LANG_JP;OUTLINE;DRAWING;ETO</DefineConstants>
+    <DefineConstants>TRACE;FORMULA;WINFORM;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,7 +115,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Extension|AnyCPU' ">
     <OutputPath>bin\Extension\</OutputPath>
-    <DefineConstants>TRACE;EX;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;ETO</DefineConstants>
+    <DefineConstants>TRACE;EX;WINFORM;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;</DefineConstants>
     <DocumentationFile>bin\Extension\unvell.ReoGrid.XML</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -169,15 +167,16 @@
     <Reference Include="Antlr3.Runtime" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' ">
       <HintPath>..\Ref\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Eto, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.dll</HintPath>
+    <Reference Include="Mono.Android" Condition=" '$(Configuration)|$(Platform)' == 'DebugAndroid|AnyCPU' ">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v4.0.3\Mono.Android.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFDebug|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFMinimum|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtensionPro|AnyCPU' " />
+    <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFDebug|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFMinimum|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
@@ -203,10 +202,6 @@
     <Reference Include="System.Drawing" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
     <Reference Include="System.Drawing" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtensionPro|AnyCPU' " />
     <Reference Include="System.Printing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Workflow.ComponentModel" />
     <Reference Include="System.Xml.Linq">
@@ -248,6 +243,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Android\Graphics.cs" />
+    <Compile Include="Android\Renderer.cs" />
+    <Compile Include="Android\ReoGridView.cs" />
+    <Compile Include="Android\Platform.cs" />
     <Compile Include="Chart\AreaLine.cs" />
     <Compile Include="Chart\Axis.cs" />
     <Compile Include="Chart\Bar.cs" />
@@ -306,11 +305,6 @@
     <Compile Include="Drawing\Shapes\SmartShaps\BlockArcShape.cs" />
     <Compile Include="Drawing\Style.cs" />
     <Compile Include="Drawing\Text.cs" />
-    <Compile Include="Eto\Extensions.cs" />
-    <Compile Include="Eto\Graphics.cs" />
-    <Compile Include="Eto\Platform.cs" />
-    <Compile Include="Eto\SheetTabControl.cs" />
-    <Compile Include="Eto\EtoControl.cs" />
     <Compile Include="Formula\FunctionNames.cs" />
     <Compile Include="Formula\Refactor.cs" />
     <Compile Include="Graphics\IBrush.cs" />
@@ -324,6 +318,10 @@
     <Compile Include="Interaction\CursorStyle.cs" />
     <Compile Include="Interaction\ToggleStatus.cs" />
     <Compile Include="Interaction\Visual.cs" />
+    <Compile Include="iOS\Graphics.cs" />
+    <Compile Include="iOS\Platform.cs" />
+    <Compile Include="iOS\Renderer.cs" />
+    <Compile Include="iOS\ReoGridView.cs" />
     <Compile Include="Print\GDIPrint.cs" />
     <Compile Include="Print\PDFPrint.cs" />
     <Compile Include="Print\PrintInterface.cs" />
@@ -338,11 +336,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SkiaSharp\Graphics.cs" />
-    <Compile Include="SkiaSharp\Platform.cs" />
-    <Compile Include="SkiaSharp\Renderer.cs" />
-    <Compile Include="SkiaSharp\ReoGridView.cs" />
-    <Compile Include="Test\RichTextTestForm.cs" />
+    <Compile Include="Test\RichTextTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Test\RichTextTestForm.Designer.cs">
       <DependentUpon>RichTextTestForm.cs</DependentUpon>
     </Compile>
@@ -351,7 +347,9 @@
     <Compile Include="Utility\MeasureToolkit.cs" />
     <Compile Include="Utility\PrinterUtility.cs" />
     <Compile Include="Utility\StyleUtility.cs" />
-    <Compile Include="WinForm\AboutForm.cs" />
+    <Compile Include="WinForm\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
@@ -365,7 +363,9 @@
     <Compile Include="Common\TextFormatHelper.cs" />
     <Compile Include="Common\Toolkit.cs" />
     <Compile Include="Common\Win32.cs" />
-    <Compile Include="Control\ControlShare.cs" />
+    <Compile Include="Control\ControlShare.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Core\Border.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\Clipboard.cs" />
@@ -410,32 +410,49 @@
     <Compile Include="Views\CellsViewport.cs" />
     <Compile Include="WinForm\Graphics.cs" />
     <Compile Include="Views\NormalViewportController.cs" />
-    <Compile Include="WinForm\FormulaParserForm.cs" />
+    <Compile Include="WinForm\FormulaParserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\FormulaParserForm.designer.cs">
       <DependentUpon>FormulaParserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\Platform.cs" />
-    <Compile Include="WinForm\RenameSheetDialog.cs" />
+    <Compile Include="WinForm\RenameSheetDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\RenameSheetDialog.Designer.cs">
       <DependentUpon>RenameSheetDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\SheetTabControl.cs" />
+    <Compile Include="WinForm\SheetTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utility\XMLHelper.cs" />
     <Compile Include="WinForm\Designer\EditorServiceContext.cs" />
-    <Compile Include="WinForm\Designer\WorkbookEditorForm.cs" />
+    <Compile Include="WinForm\Designer\WorkbookEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\Designer\WorkbookEditorForm.Designer.cs">
       <DependentUpon>WorkbookEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\FilterGUI.cs" />
+    <Compile Include="WinForm\FilterGUI.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EventArgs.cs" />
     <Compile Include="IO\ExcelReader.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="IO\FileFormat.cs" />
     <Compile Include="GenericExtends.cs" />
     <Compile Include="IO\HTMLExporter.cs" />
-    <Compile Include="ClipboardMonitor.cs" />
+    <Compile Include="ClipboardMonitor.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinForm\Designer\WorkbookEditor.cs" />
+    <Compile Include="WPF\FilterGUI.cs" />
+    <Compile Include="WPF\Platform.cs" />
+    <Compile Include="WPF\Renderer.cs" />
+    <Compile Include="WPF\SheetTabControl.cs" />
+    <Compile Include="WPF\Utility.cs" />
     <Compile Include="Zip\CRC32.cs" />
     <Compile Include="Zip\Deflate.cs" />
     <Compile Include="Zip\Events.cs" />
@@ -476,7 +493,6 @@
       <DependentUpon>RenameSheetDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -486,14 +502,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WinForm\DebugForm.cs" />
+    <Compile Include="WinForm\DebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\DebugForm.Designer.cs">
       <DependentUpon>DebugForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Rendering\BorderPainter.cs" />
     <Compile Include="Rendering\DrawingContext.cs" />
     <Compile Include="WinForm\Designer\IntegrateDesigner.cs" />
-    <Compile Include="WinForm\WinFormControl.cs" />
+    <Compile Include="WPF\WPFControl.cs" />
+    <Compile Include="WinForm\WinFormControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Worksheet.cs" />
     <Compile Include="ExtendTrigger.cs" />
     <Compile Include="Utility\RGUtility.cs" />

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-#if WINFORM || ANDROID || ETO
+#if WINFORM || ANDROID
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;
@@ -52,26 +52,24 @@ namespace unvell.ReoGrid.Graphics
 		public RGFloat Height { get; set; }
 
 		public static readonly Size Zero = new Size(0, 0);
-        private float v1;
-        private float v2;
 
-        /// <summary>
-        /// Create size with specified width and height value. 
-        /// </summary>
-        /// <param name="width">Width of size.</param>
-        /// <param name="height">Height of size.</param>
-        public Size(RGFloat width, RGFloat height) : this()
+		/// <summary>
+		/// Create size with specified width and height value. 
+		/// </summary>
+		/// <param name="width">Width of size.</param>
+		/// <param name="height">Height of size.</param>
+		public Size(RGFloat width, RGFloat height) : this()
 		{
 			this.Width = width;
 			this.Height = height;
 		}
 
-        /// <summary>
-        /// Check another object to see whether or not two objects are same.
-        /// </summary>
-        /// <param name="obj">Another object to be compared.</param>
-        /// <returns>True if specified object is size, and its width and height are same with this object.</returns>
-        public override bool Equals(object obj)
+		/// <summary>
+		/// Check another object to see whether or not two objects are same.
+		/// </summary>
+		/// <param name="obj">Another object to be compared.</param>
+		/// <returns>True if specified object is size, and its width and height are same with this object.</returns>
+		public override bool Equals(object obj)
 		{
 			if (!(obj is Size)) return false;
 
