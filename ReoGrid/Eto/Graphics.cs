@@ -198,7 +198,7 @@ namespace unvell.ReoGrid.EtoRenderer
         public void FillRectangleLinear(SolidColor startColor, SolidColor endColor, RGFloat angle, Rectangle rect)
         {
             using (Eto.Drawing.LinearGradientBrush lgb =
-                new Eto.Drawing.LinearGradientBrush(new WFRectF(rect.X, rect.Y, rect.Width, rect.Height), startColor.ToEto(), endColor.ToEto(), angle))
+                new Eto.Drawing.LinearGradientBrush(startColor.ToEto(), endColor.ToEto(), new WFPointF(rect.X, rect.Y), new WFPointF(rect.X, rect.Bottom)))
             {
                 this.g.PixelOffsetMode = Eto.Drawing.PixelOffsetMode.Half;
                 this.g.FillRectangle(lgb, rect.ToEto());
@@ -315,6 +315,34 @@ namespace unvell.ReoGrid.EtoRenderer
         //	}
         //}
 
+        public void DrawText(Font font, Rectangle rect, SolidBrush brush, string text, ReoGridHorAlign halign, ReoGridVerAlign valign)
+        {
+
+            var tsize = g.MeasureString(font, text);
+
+            RGFloat dx, dy;
+
+            if (font != null)
+            {
+                switch (halign)
+                {
+                    default: dx = 0; break;
+                    case ReoGridHorAlign.Center: dx = rect.Width / 2 - tsize.Width / 2; break;
+                    case ReoGridHorAlign.Right: dx = rect.Width - tsize.Width; break;
+                }
+
+                switch (valign)
+                {
+                    default: dy = 0; break;
+                    case ReoGridVerAlign.Middle: dy = rect.Height / 2 - tsize.Height / 2; break;
+                    case ReoGridVerAlign.Bottom: dy = rect.Height - tsize.Height; break;
+                }
+
+                g.DrawText(font, brush, rect.X + dx, rect.Y + dy, text);
+
+            }
+        }
+
         public void DrawText(string text, string fontName, RGFloat size, SolidColor color, Rectangle rect,
             ReoGridHorAlign halign, ReoGridVerAlign valign)
         {
@@ -325,23 +353,27 @@ namespace unvell.ReoGrid.EtoRenderer
 
             var font = this.resourceManager.GetFont(fontName, size, WFFontStyle.None);
 
+            var tsize = g.MeasureString(font, text);
+
+            RGFloat dx, dy;
+
             if (font != null)
             {
-                //switch (halign)
-                //{
-                //    default: sf.Alignment = StringAlignment.Near; break;
-                //    case ReoGridHorAlign.Center: sf.Alignment = StringAlignment.Center; break;
-                //    case ReoGridHorAlign.Right: sf.Alignment = StringAlignment.Far; break;
-                //}
+                switch (halign)
+                {
+                    default: dx = 0; break;
+                    case ReoGridHorAlign.Center: dx = rect.Width / 2 - tsize.Width / 2; break;
+                    case ReoGridHorAlign.Right: dx = rect.Width - tsize.Width; break;
+                }
 
-                //switch (valign)
-                //{
-                //    default: sf.LineAlignment = StringAlignment.Near; break;
-                //    case ReoGridVerAlign.Middle: sf.LineAlignment = StringAlignment.Center; break;
-                //    case ReoGridVerAlign.Bottom: sf.LineAlignment = StringAlignment.Far; break;
-                //}
+                switch (valign)
+                {
+                    default: dy = 0; break;
+                    case ReoGridVerAlign.Middle: dy = rect.Height / 2 - tsize.Height / 2; break;
+                    case ReoGridVerAlign.Bottom: dy = rect.Height - tsize.Height; break;
+                }
 
-                g.DrawText(font, color.ToEto(), rect.X, rect.Y, text);
+                g.DrawText(font, color.ToEto(), rect.X + dx, rect.Y + dy, text);
 
             }
         }
@@ -487,7 +519,7 @@ namespace unvell.ReoGrid.EtoRenderer
         internal static readonly Eto.Drawing.Font HeaderFont = new Eto.Drawing.Font(
             Eto.Drawing.SystemFonts.Default().FamilyName, 8f, Eto.Drawing.FontStyle.None);
 
-        internal EtoRenderer(Eto.Drawing.Graphics g): base(g)
+        internal EtoRenderer(Eto.Drawing.Graphics g) : base(g)
         {
             this.cachedGraphics = g;
         }
@@ -640,35 +672,25 @@ namespace unvell.ReoGrid.EtoRenderer
             }
             #endregion // Determine text bounds
 
-            //#region Set sf wrap
-            //if (cell.InnerStyle.TextWrapMode == TextWrapMode.NoWrap)
-            //{
-            //    sf.FormatFlags |= Eto.Drawing.StringFormatFlags.NoWrap;
-            //}
-            //else
-            //{
-            //    sf.FormatFlags &= ~Eto.Drawing.StringFormatFlags.NoWrap;
-            //}
-            //#endregion // Set sf wrap
-
             var g = base.PlatformGraphics;
+
+            var tsize = g.MeasureString(scaledHeaderFont, cell.DisplayText);
+
+            RGFloat dx, dy;
 
             #region Rotate text
             if (cell.InnerStyle.RotationAngle != 0)
             {
-#if DEBUG1
-					g.DrawRectangle(Pens.Red, (Eto.Drawing.Rectangle)textBounds);
-#endif // DEBUG
 
                 this.PushTransform();
 
                 this.TranslateTransform(textBounds.OriginX, textBounds.OriginY);
                 this.RotateTransform(-cell.InnerStyle.RotationAngle);
 
-                //sf.LineAlignment = StringAlignment.Center;
-                //sf.Alignment = StringAlignment.Center;
+                dx = textBounds.Width / 2 - tsize.Width / 2;
+                dy = textBounds.Height / 2 - tsize.Height / 2;
 
-                g.DrawText(scaledFont, ((SolidBrush)b).Color, 0, 0, cell.DisplayText);
+                g.DrawText(scaledFont, ((SolidBrush)b).Color, textBounds.X, textBounds.Y, cell.DisplayText);
 
                 this.PopTransform();
             }
@@ -680,36 +702,35 @@ namespace unvell.ReoGrid.EtoRenderer
                 {
                     default:
                     case ReoGridRenderHorAlign.Left:
-                        //sf.Alignment = Eto.Drawing.StringAlignment.Near;
+                        dx = 0;
                         break;
 
                     case ReoGridRenderHorAlign.Center:
-                        //sf.Alignment = Eto.Drawing.StringAlignment.Center;
+                        dx = textBounds.Width / 2 - tsize.Width / 2;
                         break;
 
                     case ReoGridRenderHorAlign.Right:
-                        //sf.Alignment = Eto.Drawing.StringAlignment.Far;
+                        dx = textBounds.Width - tsize.Width;
                         break;
                 }
 
                 switch (cell.InnerStyle.VAlign)
                 {
                     case ReoGridVerAlign.Top:
-                        //sf.LineAlignment = Eto.Drawing.StringAlignment.Near;
+                        dy = 0;
                         break;
-
                     default:
                     case ReoGridVerAlign.Middle:
-                        //sf.LineAlignment = Eto.Drawing.StringAlignment.Center;
+                        dy = textBounds.Height / 2 - tsize.Height / 2;
                         break;
 
                     case ReoGridVerAlign.Bottom:
-                        //sf.LineAlignment = Eto.Drawing.StringAlignment.Far;
+                        dy = textBounds.Height - tsize.Height;
                         break;
                 }
                 #endregion // Align StringFormat
 
-                g.DrawText(scaledFont, ((SolidBrush)b).Color, textBounds.X, textBounds.Y, cell.DisplayText);
+                g.DrawText(scaledFont, ((SolidBrush)b).Color, textBounds.X+dx, textBounds.Y+dy, cell.DisplayText);
 
             }
 
@@ -855,7 +876,7 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public void DrawHeaderText(string text, RGBrush brush, Rectangle rect)
         {
-            base.PlatformGraphics.DrawText(scaledHeaderFont, ((SolidBrush)brush), rect.X, rect.Y, text);
+            base.DrawText(scaledHeaderFont, rect, (SolidBrush)brush, text, ReoGridHorAlign.Center, ReoGridVerAlign.Middle);
         }
 
         #endregion // Header

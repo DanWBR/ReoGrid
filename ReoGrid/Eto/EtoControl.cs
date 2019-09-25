@@ -837,6 +837,7 @@ namespace unvell.ReoGrid
             internal bool TextWrap { get; set; }
             internal Size InitialSize { get; set; }
             internal ReoGridVerAlign VAlign { get; set; }
+
             private Eto.Drawing.Graphics graphics;
 
             internal InputTextBox(ReoGridControl owner)

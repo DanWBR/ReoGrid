@@ -79,34 +79,12 @@ using MouseButtons = unvell.ReoGrid.Interaction.MouseButtons;
 namespace unvell.ReoGrid
 {
 
-#if WINFORM || WPF || ETO
 	partial class ReoGridControl
-#elif ANDROID || iOS
-	partial class ReoGridView
-#endif
 	{
 		
 #region Initialize
 		private void InitControl()
 		{
-#if WINFORM || WPF
-			// initialize cursors
-			// normal grid selector
-			this.builtInCellsSelectionCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.grid_select);
-			this.internalCurrentCursor = builtInCellsSelectionCursor;
-
-			// cell picking
-			this.defaultPickRangeCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.pick_range);
-
-			// full-row and full-col selector
-			this.builtInFullColSelectCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.full_col_select);
-			this.builtInFullRowSelectCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.full_row_select);
-
-			this.builtInEntireSheetSelectCursor = this.builtInCellsSelectionCursor;
-
-			this.builtInCrossCursor = LoadCursorFromResource(unvell.ReoGrid.Properties.Resources.cross);
-#endif // WINFORM || WPF
-
 			this.controlStyle = ControlAppearanceStyle.CreateDefaultControlStyle();
 		}
 

@@ -156,7 +156,7 @@ namespace unvell.ReoGrid.Views
 				{
 					Rectangle rect = new Rectangle(x, 0, width, bounds.Height);
 
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 					g.FillRectangleLinear(controlStyle.GetColHeadStartColor(false, isSelected, isSelected && isFullColSelected, false),
 						controlStyle.GetColHeadEndColor(false, isSelected, isSelected && isFullColSelected, false), 90f, rect);
 #elif ANDROID
