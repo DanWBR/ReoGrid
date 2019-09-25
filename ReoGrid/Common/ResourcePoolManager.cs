@@ -28,7 +28,7 @@ using WFFont = System.Drawing.Font;
 using WFFontStyle = System.Drawing.FontStyle;
 using WFGraphics = System.Drawing.Graphics;
 
-#if WINFORM
+#elif WINFORM
 
 using RGFloat = System.Single;
 
@@ -40,6 +40,25 @@ using RGSolidBrush = System.Drawing.SolidBrush;
 
 using HatchBrush = System.Drawing.Drawing2D.HatchBrush;
 using HatchStyle = System.Drawing.Drawing2D.HatchStyle;
+
+#elif ETO
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+
+using WFFont = Eto.Drawing.Font;
+using WFFontStyle = Eto.Drawing.FontStyle;
+using WFGraphics = Eto.Drawing.Graphics;
+
+using RGFloat = System.Single;
+
+using RGDashStyle = Eto.Drawing.DashStyle;
+using RGDashStyles = Eto.Drawing.DashStyles;
+
+using RGPen = Eto.Drawing.Pen;
+using RGSolidBrush = Eto.Drawing.SolidBrush;
 
 #elif WPF
 
@@ -54,21 +73,24 @@ using RGDashStyles = System.Windows.Media.DashStyles;
 #endif // WPF
 
 using unvell.ReoGrid.Graphics;
+using unvell.ReoGrid.EtoRenderer;
 
 namespace unvell.Common
 {
-	internal sealed class ResourcePoolManager : IDisposable
-	{
-		//private static readonly ResourcePoolManager instance = new ResourcePoolManager();
-		//public static ResourcePoolManager Instance { get { return instance; } }
+    internal sealed class ResourcePoolManager : IDisposable
+    {
+        //private static readonly ResourcePoolManager instance = new ResourcePoolManager();
+        //public static ResourcePoolManager Instance { get { return instance; } }
 
-		internal ResourcePoolManager()
-		{
-			Logger.Log("resource pool", "create resource pool...");
-		}
+        internal ResourcePoolManager()
+        {
+            Logger.Log("resource pool", "create resource pool...");
+        }
 
-#region Brush
+        #region Brush
+
 #if WINFORM || WPF
+
 		private Dictionary<SolidColor, RGSolidBrush> cachedBrushes = new Dictionary<SolidColor, RGSolidBrush>();
 
 		public RGSolidBrush GetBrush(SolidColor color)
@@ -99,6 +121,7 @@ namespace unvell.Common
 #endif // WINFORM || WPF
 
 #if WINFORM
+
 		private Dictionary<HatchStyleBrushInfo, HatchBrush> hatchBrushes = new Dictionary<HatchStyleBrushInfo, HatchBrush>();
 
 		public HatchBrush GetHatchBrush(HatchStyle style, SolidColor foreColor, SolidColor backColor)
@@ -171,78 +194,85 @@ namespace unvell.Common
 			}
 		}
 #endif // WINFORM
-#endregion Brush
 
-#region Pen
-		private Dictionary<SolidColor, List<RGPen>> cachedPens = new Dictionary<SolidColor, List<RGPen>>();
-		public RGPen GetPen(SolidColor color)
-		{
-			return GetPen(color, 1, RGDashStyles.Solid);
-		}
-		public RGPen GetPen(SolidColor color, RGFloat weight, RGDashStyle style)
-		{
-			if (color.A == 0) return null;
+        #endregion Brush
 
-			RGPen pen;
-			List<RGPen> penlist;
+        #region Pen
 
-			lock (cachedPens)
-			{
-				if (!cachedPens.TryGetValue(color, out penlist))
-				{
-					penlist = cachedPens[color] = new List<RGPen>();
+        private Dictionary<SolidColor, List<RGPen>> cachedPens = new Dictionary<SolidColor, List<RGPen>>();
+        public RGPen GetPen(SolidColor color)
+        {
+            return GetPen(color, 1, RGDashStyles.Solid);
+        }
+        public RGPen GetPen(SolidColor color, RGFloat weight, RGDashStyle style)
+        {
+            if (color.A == 0) return null;
+
+            RGPen pen = null;
+            List<RGPen> penlist;
+
+            lock (cachedPens)
+            {
+                if (!cachedPens.TryGetValue(color, out penlist))
+                {
+                    penlist = cachedPens[color] = new List<RGPen>();
 #if WINFORM
 					penlist.Add(pen = new RGPen(color, weight));
 #elif WPF
 				penlist.Add(pen = new RGPen(new RGSolidBrush(color), weight));
+#elif ETO
+                    penlist.Add(pen = new RGPen(new RGSolidBrush(color.ToEto()), weight));
 #endif // WPF
 
-					pen.DashStyle = style;
+                    pen.DashStyle = style;
 
-					if ((cachedPens.Count % 10) == 0)
-					{
-						Logger.Log("resource pool", "wf pen count: " + cachedPens.Count);
-					}
-				}
-				else
-				{
-					lock (penlist)
-					{
+                    if ((cachedPens.Count % 10) == 0)
+                    {
+                        Logger.Log("resource pool", "wf pen count: " + cachedPens.Count);
+                    }
+                }
+                else
+                {
+                    lock (penlist)
+                    {
 #if WINFORM
 						pen = penlist.FirstOrDefault(p => p.Width == weight && p.DashStyle == style);
 #elif WPF
 						pen = penlist.FirstOrDefault(p => p.Thickness == weight && p.DashStyle == style);
 #endif // WPF
-					}
+                    }
 
-					if (pen == null)
-					{
+                    if (pen == null)
+                    {
 #if WINFORM
 						penlist.Add(pen = new RGPen(color, weight));
 #elif WPF
 					penlist.Add(pen = new RGPen(new RGSolidBrush(color), weight));
 #endif // WPF
-						pen.DashStyle = style;
+                        pen.DashStyle = style;
 
-						if ((cachedPens.Count % 10) == 0)
-						{
-							Logger.Log("resource pool", "pen count: " + cachedPens.Count);
-						}
-					}
-				}
-			}
+                        if ((cachedPens.Count % 10) == 0)
+                        {
+                            Logger.Log("resource pool", "pen count: " + cachedPens.Count);
+                        }
+                    }
+                }
+            }
 
-			return pen;
-		}
-#endregion // Pen
+            return pen;
+        }
+        #endregion // Pen
 
-#region Font
+        #region Font
 
-		private Dictionary<string, List<WFFont>> fonts = new Dictionary<string, List<WFFont>>();
+        private Dictionary<string, List<WFFont>> fonts = new Dictionary<string, List<WFFont>>();
 
 #if WINFORM
 		public WFFont GetFont(string familyName, float emSize, WFFontStyle wfs)
 		{
+#elif ETO
+        public WFFont GetFont(string familyName, float emSize, WFFontStyle wfs)
+        {
 
 #elif WPF
 		public WFFont GetFont(string familyName, double emSizeD, WFFontStyle wfs)
@@ -251,129 +281,106 @@ namespace unvell.Common
 #endif // WPF
 
 #if DEBUG
-			Stopwatch sw = Stopwatch.StartNew();
+            Stopwatch sw = Stopwatch.StartNew();
 #endif // DEBUG
 
-			if (string.IsNullOrEmpty(familyName))
-			{
-				familyName = System.Drawing.SystemFonts.DefaultFont.FontFamily.Name;
-			}
+            if (string.IsNullOrEmpty(familyName))
+            {
+                familyName = Eto.Drawing.SystemFonts.Default().Family.Name;
+            }
 
-			WFFont font = null;
-			List<WFFont> fontGroup = null;
-			System.Drawing.FontFamily family = null;
+            WFFont font = null;
+            List<WFFont> fontGroup = null;
+            Eto.Drawing.FontFamily family = null;
 
-			lock (this.fonts)
-			{
-				if (this.fonts.TryGetValue(familyName, out fontGroup))
-				{
-					if (fontGroup.Count > 0)
-					{
-						family = fontGroup[0].FontFamily;
-					}
+            lock (this.fonts)
+            {
+                if (this.fonts.TryGetValue(familyName, out fontGroup))
+                {
+                    if (fontGroup.Count > 0)
+                    {
+                        family = fontGroup[0].Family;
+                    }
 
-					lock (fontGroup)
-					{
-						font = fontGroup.FirstOrDefault(f => f.Size == emSize && f.Style == wfs);
-					}
-				}
-			}
+                    lock (fontGroup)
+                    {
+                        font = fontGroup.FirstOrDefault(f => f.Size == emSize && f.FontStyle == wfs);
+                    }
+                }
+            }
 
-			if (font != null) return font;
+            if (font != null) return font;
 
-			if (family == null)
-			{
-				try
-				{
-					family = new System.Drawing.FontFamily(familyName);
-				}
-				catch (ArgumentException ex)
-				{
-					//throw new FontNotFoundException(ex.ParamName);
-					family = System.Drawing.SystemFonts.DefaultFont.FontFamily;
-					Logger.Log("resource pool", "font family error: " + familyName + ": " + ex.Message);
-				}
+            if (family == null)
+            {
+                try
+                {
+                    family = new Eto.Drawing.FontFamily(familyName);
+                }
+                catch (ArgumentException ex)
+                {
+                    //throw new FontNotFoundException(ex.ParamName);
+                    family = Eto.Drawing.SystemFonts.Default().Family;
+                    Logger.Log("resource pool", "font family error: " + familyName + ": " + ex.Message);
+                }
 
-				if (!family.IsStyleAvailable(wfs))
-				{
-					try
-					{
-						wfs = FindFirstAvailableFontStyle(family);
-					}
-					catch
-					{
-						return System.Drawing.SystemFonts.DefaultFont;
-					}
-				}
-			}
+                return Eto.Drawing.SystemFonts.Default();
 
-			lock (this.fonts)
-			{
-				if (fonts.TryGetValue(family.Name, out fontGroup))
-				{
-					lock (fontGroup)
-					{
-						font = fontGroup.FirstOrDefault(f => f.Size == emSize && f.Style == wfs);
-					}
-				}
-			}
+            }
 
-			if (font == null)
-			{
-				font = new WFFont(family, emSize, wfs);
+            lock (this.fonts)
+            {
+                if (fonts.TryGetValue(family.Name, out fontGroup))
+                {
+                    lock (fontGroup)
+                    {
+                        font = fontGroup.FirstOrDefault(f => f.Size == emSize && f.FontStyle == wfs);
+                    }
+                }
+            }
 
-				if (fontGroup == null)
-				{
-					lock (this.fonts)
-					{
-						fonts.Add(family.Name, fontGroup = new List<WFFont> { font });
-					}
-					Logger.Log("resource pool", "font resource group added. font groups: " + fonts.Count);
-				}
-				else
-				{
-					lock (fontGroup)
-					{
-						fontGroup.Add(font);
-					}
-					Logger.Log("resource pool", "font resource added. fonts: " + fontGroup.Count);
-				}
+            if (font == null)
+            {
+                font = new WFFont(family, emSize, wfs);
 
-			}
+                if (fontGroup == null)
+                {
+                    lock (this.fonts)
+                    {
+                        fonts.Add(family.Name, fontGroup = new List<WFFont> { font });
+                    }
+                    Logger.Log("resource pool", "font resource group added. font groups: " + fonts.Count);
+                }
+                else
+                {
+                    lock (fontGroup)
+                    {
+                        fontGroup.Add(font);
+                    }
+                    Logger.Log("resource pool", "font resource added. fonts: " + fontGroup.Count);
+                }
+
+            }
 
 #if DEBUG
-			sw.Stop();
-			long ms = sw.ElapsedMilliseconds;
-			if (ms > 10)
-			{
-				Debug.WriteLine("resource pool: font scan: " + sw.ElapsedMilliseconds + " ms.");
-			}
+            sw.Stop();
+            long ms = sw.ElapsedMilliseconds;
+            if (ms > 10)
+            {
+                Debug.WriteLine("resource pool: font scan: " + sw.ElapsedMilliseconds + " ms.");
+            }
 #endif // DEBUG
-			return font;
-		}
+            return font;
+        }
 
-		private static WFFontStyle FindFirstAvailableFontStyle(System.Drawing.FontFamily ff)
-		{
-			if (ff.IsStyleAvailable(WFFontStyle.Regular))
-				return WFFontStyle.Regular;
-			else if (ff.IsStyleAvailable(WFFontStyle.Bold))
-				return WFFontStyle.Bold;
-			else if (ff.IsStyleAvailable(WFFontStyle.Italic))
-				return WFFontStyle.Italic;
-			else if (ff.IsStyleAvailable(WFFontStyle.Strikeout))
-				return WFFontStyle.Strikeout;
-			else if (ff.IsStyleAvailable(WFFontStyle.Underline))
-				return WFFontStyle.Underline;
-			else
-			{
-				Logger.Log("resource pool", "no available font style found: " + ff.Name);
-				throw new NoAvailableFontStyleException();
-			}
-		}
+        private static WFFontStyle FindFirstAvailableFontStyle(Eto.Drawing.FontFamily ff)
+        {
+            return WFFontStyle.None;
+        }
 
-		internal class NoAvailableFontStyleException : Exception
-		{
-		}
+        internal class NoAvailableFontStyleException : Exception
+        {
+        }
 
 #if WPF
 
@@ -421,9 +428,9 @@ namespace unvell.Common
 		}
 #endif // WPF
 
-#endregion // Font
+        #endregion // Font
 
-#region Image
+        #region Image
 #if WINFORM && IMAGE_POOL
 		private Dictionary<Guid, ImageResource> images 
 			= new Dictionary<Guid, ImageResource>();
@@ -482,58 +489,43 @@ namespace unvell.Common
 			return res;
 		}
 #endif
-#endregion
+        #endregion
 
-#region Graphics
+        #region Graphics
 
-		private static System.Drawing.Bitmap bitmapForCachedGDIGraphics;
-		private static WFGraphics cachedGDIGraphics;
-		public static WFGraphics CachedGDIGraphics
-		{
-			get
-			{
-				if (cachedGDIGraphics == null)
-				{
-					bitmapForCachedGDIGraphics = new System.Drawing.Bitmap(1, 1);
-					cachedGDIGraphics = WFGraphics.FromImage(bitmapForCachedGDIGraphics);
-				}
+        public WFGraphics CachedGDIGraphics { get; set; }
 
-				return cachedGDIGraphics;
-			}
-		}
+        #endregion // Graphics
 
-#endregion // Graphics
+        #region FormattedText
 
-#region FormattedText
+        #endregion // FormattedText
 
-#endregion // FormattedText
+        internal void ReleaseAllResources()
+        {
+            Logger.Log("resource pool", "release all resources...");
 
-		internal void ReleaseAllResources()
-		{
-			Logger.Log("resource pool", "release all resources...");
-
-			int count = 
-				cachedPens.Count +
+            int count = cachedPens.Count
 
 #if WINFORM
-				hatchBrushes.Count + fonts.Values.Sum(f => f.Count) +
+				hatchBrushes.Count + fonts.Values.Sum(f => f.Count) + cachedBrushes.Count
 #endif
-				/*images.Count +*/ cachedBrushes.Count
+
 #if WPF
-				+ typefaces.Sum(t=>t.Value.Count)
+				+ typefaces.Sum(t=>t.Value.Count) + cachedBrushes.Count
 #endif
-				;
+                ;
 
-			// pens
-			foreach (var plist in cachedPens.Values)
-			{
-#if WINFORM
+            // pens
+            foreach (var plist in cachedPens.Values)
+            {
+#if WINFORM || ETO
 				foreach (var p in plist) p.Dispose();
 #endif // WINFORM
-				plist.Clear();
-			}
+                plist.Clear();
+            }
 
-			cachedPens.Clear();
+            cachedPens.Clear();
 
 #if WINFORM
 			// fonts
@@ -560,29 +552,48 @@ namespace unvell.Common
 			{
 				sb.Dispose();
 			}
+
+            cachedBrushes.Clear();
+
+#elif ETO
+            // fonts
+            foreach (var fl in fonts.Values)
+			{
+				foreach (var f in fl)
+				{
+					f.Family.Dispose();
+					f.Dispose();
+				}
+				fl.Clear();
+			}
+
+			fonts.Clear();
+
 #elif WPF
 			foreach (var list in typefaces)
 			{
 				list.Value.Clear();
 			}
+
+            cachedBrushes.Clear();
+
 #endif // WPF
 
-			cachedBrushes.Clear();
 
 #if WINFORM
 
 			//if (cachedGDIGraphics != null) cachedGDIGraphics.Dispose();
 			//if (bitmapForCachedGDIGraphics != null) bitmapForCachedGDIGraphics.Dispose();
+
 #endif // WINFORM
 
-			Logger.Log("resource pool", count + " objects released.");
-		}
+            Logger.Log("resource pool", count + " objects released.");
+        }
 
-		public void Dispose()
-		{
-			ReleaseAllResources();
-		}
-	}
+        public void Dispose()
+        {
+            ReleaseAllResources();
+        }
+    }
 }
 
-#endif // WINFORM || WPF

@@ -30,7 +30,7 @@ using unvell.ReoGrid.Formula;
 
 using unvell.ReoGrid.Utility;
 
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 //using CellArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.ReoGridCell>;
 //using HBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridHBorder>;
 //using VBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridVBorder>;

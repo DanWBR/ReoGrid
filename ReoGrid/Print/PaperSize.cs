@@ -29,6 +29,9 @@ using unvell.ReoGrid.Utility;
 #if WINFORM
 using RGFloat = System.Single;
 using RGSizeF = System.Drawing.SizeF;
+#elif ETO
+using RGFloat = System.Single;
+using RGSizeF = Eto.Drawing.SizeF;
 #elif WPF
 using RGFloat = System.Double;
 using RGSizeF = System.Windows.Size;

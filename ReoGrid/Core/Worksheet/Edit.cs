@@ -9,7 +9,7 @@ using unvell.ReoScript;
 using unvell.ReoGrid.Script;
 #endif // EX_SCRIPT;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;
@@ -157,7 +157,7 @@ namespace unvell.ReoGrid
 				{
 					editText = (string)cell.InnerData;
 				}
-#if DRAWING
+#if RICHTEXT
 				else if (cell.InnerData is Drawing.RichText)
 				{
 					editText = ((Drawing.RichText)cell.InnerData).ToString();

@@ -44,7 +44,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;ETO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,7 +55,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;FORMULA;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
+    <DefineConstants>TRACE;FORMULA;LANG_JP;OUTLINE;DRAWING;ETO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,7 +117,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Extension|AnyCPU' ">
     <OutputPath>bin\Extension\</OutputPath>
-    <DefineConstants>TRACE;EX;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
+    <DefineConstants>TRACE;EX;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;ETO</DefineConstants>
     <DocumentationFile>bin\Extension\unvell.ReoGrid.XML</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -250,10 +250,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Android\Graphics.cs" />
-    <Compile Include="Android\Renderer.cs" />
-    <Compile Include="Android\ReoGridView.cs" />
-    <Compile Include="Android\Platform.cs" />
     <Compile Include="Chart\AreaLine.cs" />
     <Compile Include="Chart\Axis.cs" />
     <Compile Include="Chart\Bar.cs" />
@@ -312,6 +308,11 @@
     <Compile Include="Drawing\Shapes\SmartShaps\BlockArcShape.cs" />
     <Compile Include="Drawing\Style.cs" />
     <Compile Include="Drawing\Text.cs" />
+    <Compile Include="Eto\Extensions.cs" />
+    <Compile Include="Eto\Graphics.cs" />
+    <Compile Include="Eto\Platform.cs" />
+    <Compile Include="Eto\SheetTabControl.cs" />
+    <Compile Include="Eto\EtoControl.cs" />
     <Compile Include="Formula\FunctionNames.cs" />
     <Compile Include="Formula\Refactor.cs" />
     <Compile Include="Graphics\IBrush.cs" />
@@ -325,10 +326,6 @@
     <Compile Include="Interaction\CursorStyle.cs" />
     <Compile Include="Interaction\ToggleStatus.cs" />
     <Compile Include="Interaction\Visual.cs" />
-    <Compile Include="iOS\Graphics.cs" />
-    <Compile Include="iOS\Platform.cs" />
-    <Compile Include="iOS\Renderer.cs" />
-    <Compile Include="iOS\ReoGridView.cs" />
     <Compile Include="Print\GDIPrint.cs" />
     <Compile Include="Print\PDFPrint.cs" />
     <Compile Include="Print\PrintInterface.cs" />
@@ -441,11 +438,6 @@
     <Compile Include="ClipboardMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinForm\Designer\WorkbookEditor.cs" />
-    <Compile Include="WPF\FilterGUI.cs" />
-    <Compile Include="WPF\Platform.cs" />
-    <Compile Include="WPF\Renderer.cs" />
-    <Compile Include="WPF\SheetTabControl.cs" />
-    <Compile Include="WPF\Utility.cs" />
     <Compile Include="Zip\CRC32.cs" />
     <Compile Include="Zip\Deflate.cs" />
     <Compile Include="Zip\Events.cs" />
@@ -503,7 +495,6 @@
     <Compile Include="Rendering\BorderPainter.cs" />
     <Compile Include="Rendering\DrawingContext.cs" />
     <Compile Include="WinForm\Designer\IntegrateDesigner.cs" />
-    <Compile Include="WPF\WPFControl.cs" />
     <Compile Include="WinForm\WinFormControl.cs" />
     <Compile Include="Worksheet.cs" />
     <Compile Include="ExtendTrigger.cs" />

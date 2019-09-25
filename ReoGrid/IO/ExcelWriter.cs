@@ -776,7 +776,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 			return id;
 		}
 
-#if DRAWING
+#if RICHTEXT
 		private static int AddSharedString(Document doc, Drawing.RichText rt)
 		{
 			if (doc.SharedStrings == null)
@@ -1237,7 +1237,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 							{
 								cell.value = new ElementText(Convert.ToString(data, EnglishCulture));
 							}
-#if DRAWING
+#if RICHTEXT
 							else if (data is Drawing.RichText)
 							{
 								int sharedStrId = AddSharedString(doc, (Drawing.RichText)data);

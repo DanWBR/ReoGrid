@@ -26,6 +26,8 @@ using WFPaperSize = System.Drawing.Printing.PaperSize;
 using WFPageSettings = System.Drawing.Printing.PageSettings;
 #elif WPF
 using RGFloat = System.Double;
+#elif ETO
+using RGFloat = System.Single;
 #endif // WPF
 
 namespace unvell.ReoGrid.Print

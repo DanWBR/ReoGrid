@@ -25,7 +25,7 @@ using unvell.ReoGrid.Data;
 using System.Diagnostics;
 #endif
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 using RGIntDouble = System.Int32;
 #elif WPF || iOS
@@ -1086,7 +1086,7 @@ namespace unvell.ReoGrid.Views
 			int maxHorizontal = Math.Max(0, (int)(Math.Floor(width + this.mainViewport.Left))) + 1;
 			int maxVertical = Math.Max(0, (int)(Math.Floor(height + this.mainViewport.Top))) + 1;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 			int offHor = maxHorizontal - this.scrollHorMax;
 			int offVer = maxVertical - this.scrollVerMax;
 #elif WPF

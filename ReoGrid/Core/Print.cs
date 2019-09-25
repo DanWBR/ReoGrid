@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-#if WINFORM
+#if WINFORM || ETO
 using RGFloat = System.Single;
 
 #elif WPF

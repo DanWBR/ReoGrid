@@ -18,7 +18,7 @@
 
 using unvell.ReoGrid.Graphics;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 using unvell.ReoGrid.Interaction;
 using System;
@@ -30,6 +30,11 @@ using RGFloat = System.Double;
 using RGPen = System.Drawing.Pen;
 using RGBrush = System.Drawing.Brush;
 using RGFont = System.Drawing.Font;
+
+#elif ETO
+using RGPen = Eto.Drawing.Pen;
+using RGBrush = Eto.Drawing.Brush;
+using RGFont = Eto.Drawing.Font;
 
 #elif WPF
 using RGPen = System.Windows.Media.Pen;

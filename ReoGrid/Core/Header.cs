@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-#if WINFORM
+#if WINFORM || ETO
 using RGFloat = System.Single;
 using RGIntDouble = System.Int32;
 #else
@@ -779,8 +779,8 @@ namespace unvell.ReoGrid
 						this.UpdateCellFont(cell);
 					}
 
-#if DRAWING
-					var rt = cell.Data as Drawing.RichText;
+#if RICHTEXT
+                    var rt = cell.Data as Drawing.RichText;
 
 					if (rt != null)
 					{
@@ -801,12 +801,12 @@ namespace unvell.ReoGrid
 							maxHeight = textHeight;
 						}
 
-#if DRAWING
+#if RICHTEXT
 					}
 #endif // DRAWING
 
-				}
-			}
+                }
+            }
 
 			if (maxHeight > 0)
 			{
@@ -861,7 +861,7 @@ namespace unvell.ReoGrid
 						this.UpdateCellFont(cell);
 					}
 
-#if DRAWING
+#if RICHTEXT
 					var rt = cell.Data as Drawing.RichText;
 
 					if (rt != null)
@@ -884,7 +884,7 @@ namespace unvell.ReoGrid
 							maxWidth = textWidth;
 						}
 
-#if DRAWING
+#if RICHTEXT
 					}
 #endif // DRAWING
 				}

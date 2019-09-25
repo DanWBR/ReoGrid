@@ -23,7 +23,7 @@ using System.Text;
 using unvell.ReoGrid.Core;
 using unvell.ReoGrid.Graphics;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 #elif WPF
 using RGFloat = System.Double;

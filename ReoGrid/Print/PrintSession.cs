@@ -27,6 +27,8 @@ using System.Diagnostics;
 
 #if WINFORM
 using PlatformGraphics = System.Drawing.Graphics;
+#elif ETO
+using PlatformGraphics = Eto.Drawing.Graphics;
 #elif WPF
 using PlatformGraphics = System.Windows.Media.DrawingContext;
 #endif // WPF
@@ -93,7 +95,7 @@ namespace unvell.ReoGrid.Print
 
 		private ViewportController printViewportController;
 
-		#region NextWorksheet
+#region NextWorksheet
 		internal void NextWorksheet()
 		{
 			this.CurrentWorksheetIndex++;
@@ -147,9 +149,9 @@ namespace unvell.ReoGrid.Print
 #endif // WINFORM
 
 		}
-		#endregion // NextWorksheet
+#endregion // NextWorksheet
 
-		#region NextPage
+#region NextPage
 		internal bool hasMorePages = false;
 
 		internal void NextPage(PlatformGraphics pg)
@@ -301,7 +303,7 @@ namespace unvell.ReoGrid.Print
 				this.hasMorePages = this.CurrentWorksheet != null;
 			}
 		}
-		#endregion // NextPage
+#endregion // NextPage
 	}
 
 	internal class PrintSessionWorksheetCollection : ICollection<Worksheet>

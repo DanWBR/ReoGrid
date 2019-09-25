@@ -27,7 +27,7 @@ using unvell.ReoScript;
 using unvell.ReoGrid.Script;
 #endif // EX_SCRIPT
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 #else
 using RGFloat = System.Double;
@@ -745,7 +745,7 @@ namespace unvell.ReoGrid.Views
 		{
 			var g = dc.Graphics;
 
-#if FORMULA && DRAWING
+#if FORMULA && RICHTEXT
 			var rt = cell.Data as Drawing.RichText;
 
 			if (rt != null)

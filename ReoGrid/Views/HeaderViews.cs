@@ -18,7 +18,7 @@
 
 using System;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 #elif WPF || iOS
 using RGFloat = System.Double;

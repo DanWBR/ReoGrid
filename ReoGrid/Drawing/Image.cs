@@ -11,6 +11,8 @@ using unvell.ReoGrid.Rendering;
 
 #if WINFORM
 using RGImage = System.Drawing.Image;
+#elif ETO
+using RGImage = Eto.Drawing.Image;
 #elif WPF
 using RGImage = System.Windows.Media.ImageSource;
 #elif ANDROID

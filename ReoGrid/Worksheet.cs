@@ -41,14 +41,14 @@ using unvell.ReoScript;
 using unvell.ReoGrid.Script;
 #endif // EX_SCRIPT
 
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 //using CellArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.ReoGridCell>;
 using CellArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Cell>;
 #elif ANDROID || iOS
 using CellArray = unvell.ReoGrid.Data.ReoGridCellArray;
 #endif // ANDROID
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 #elif WPF || iOS
 using RGFloat = System.Double;

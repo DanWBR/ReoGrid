@@ -22,7 +22,7 @@ using unvell.ReoGrid.Core;
 using unvell.ReoGrid.Events;
 using unvell.ReoGrid.Graphics;
 
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 //using HBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridHBorder>;
 //using VBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridVBorder>;
 using HBorderArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Core.ReoGridHBorder>;

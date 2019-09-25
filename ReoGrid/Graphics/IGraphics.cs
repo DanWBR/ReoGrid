@@ -18,20 +18,34 @@
 
 #pragma warning disable 1591
 
-//#if WINFORM
-//using RGFloat = System.Single;
+#if WINFORM
 
-//using RGPen = System.Drawing.Pen;
-//using RGBrush = System.Drawing.Brush;
+using RGFloat = System.Single;
 
-//using RGPath = System.Drawing.Drawing2D.GraphicsPath;
-//using RGImage = System.Drawing.Image;
+using RGPen = System.Drawing.Pen;
+using RGBrush = System.Drawing.Brush;
 
-//using PlatformGraphics = System.Drawing.Graphics;
-//using RGTransform = System.Drawing.Drawing2D.Matrix;
+using RGPath = System.Drawing.Drawing2D.GraphicsPath;
+using RGImage = System.Drawing.Image;
 
-//#elif SKIASHARP
-#if SKIASHARP
+using PlatformGraphics = System.Drawing.Graphics;
+using RGTransform = System.Drawing.Drawing2D.Matrix;
+
+#elif ETO
+
+using RGFloat = System.Single;
+
+using RGPen = Eto.Drawing.Pen;
+using RGBrush = Eto.Drawing.Brush;
+
+using RGPath = Eto.Drawing.GraphicsPath;
+using RGImage = Eto.Drawing.Image;
+
+using PlatformGraphics = Eto.Drawing.Graphics;
+using RGTransform = Eto.Drawing.IMatrix;
+
+#elif SKIASHARP
+
 using RGFloat = System.Single;
 using PlatformGraphics = SkiaSharp.SKCanvas;
 using RGPen = SkiaSharp.SKPaint;

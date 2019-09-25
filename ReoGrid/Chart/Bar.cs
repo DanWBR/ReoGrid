@@ -21,7 +21,7 @@
 using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Rendering;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
 #else
 using RGFloat = System.Double;
