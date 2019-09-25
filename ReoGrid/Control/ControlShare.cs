@@ -37,7 +37,8 @@ using IntOrDouble = System.Int32;
 
 #elif ETO
 using RGFloat = System.Single;
-using RGPointF = System.Drawing.PointF;
+using RGPointF = Eto.Drawing.PointF;
+using RGPoint = Eto.Drawing.Point;
 using IntOrDouble = System.Int32;
 
 #elif WPF
@@ -64,6 +65,7 @@ using ReoGridControl = unvell.ReoGrid.ReoGridView;
 #if WINFORM
 using Cursor = System.Windows.Forms.Cursor;
 //using Cursors = System.Windows.Forms.Cursor;
+//using Cursors = System.Windows.Forms.Cursor;
 #elif WPF
 using Cursor = System.Windows.Input.Cursor;
 //using Cursors = System.Windows.Input.Cursors;
@@ -71,6 +73,8 @@ using Cursor = System.Windows.Input.Cursor;
 
 using unvell.ReoGrid.Main;
 using unvell.ReoGrid.Rendering;
+using Eto.Forms;
+using MouseButtons = unvell.ReoGrid.Interaction.MouseButtons;
 
 namespace unvell.ReoGrid
 {
@@ -79,10 +83,9 @@ namespace unvell.ReoGrid
 	partial class ReoGridControl
 #elif ANDROID || iOS
 	partial class ReoGridView
-#endif // ANDROID || iOS
+#endif
 	{
-		private IRenderer renderer;
-
+		
 #region Initialize
 		private void InitControl()
 		{
@@ -1296,14 +1299,17 @@ namespace unvell.ReoGrid
 
 				this.adapter.Invalidate();
 
-#if WINFORM
+#if WINFORM 
 				sheetTab.BackColor = value[ControlAppearanceColors.SheetTabBackground];
 				this.BackColor = value[ControlAppearanceColors.GridBackground];
+#elif ETO 
+				//sheetTab.BackColor = value[ControlAppearanceColors.SheetTabBackground];
+				//this.BackColor = value[ControlAppearanceColors.GridBackground];
 #elif WPF
 				sheetTab.Background = new System.Windows.Media.SolidColorBrush(value[ControlAppearanceColors.SheetTabBackground]);
 #endif // WINFORM & WPF
 
-			}
+            }
 		}
 #endregion // App
 
@@ -1327,33 +1333,33 @@ namespace unvell.ReoGrid
 
 				if (sheet.ViewportController != null)
 				{
-					sheet.ViewportController.OnMouseDown(location, buttons);
+					sheet.ViewportController.OnMouseDown(new Graphics.Point(location.X, location.Y), buttons);
 				}
 			}
 		}
 
-		private void OnWorksheetMouseMove(RGPointF location, MouseButtons buttons)
+		private void OnWorksheetMouseMove(RGPoint location, MouseButtons buttons)
 		{
 			var sheet = this.currentWorksheet;
 
 			if (sheet != null && sheet.ViewportController != null)
 			{
-				sheet.ViewportController.OnMouseMove(location, buttons);
+				sheet.ViewportController.OnMouseMove(new Graphics.Point(location.X, location.Y), buttons);
 			}
 		}
 
-		private void OnWorksheetMouseUp(RGPointF location, MouseButtons buttons)
+		private void OnWorksheetMouseUp(RGPoint location, MouseButtons buttons)
 		{
 			var sheet = this.currentWorksheet;
 
 			if (sheet != null && sheet.ViewportController != null)
 			{
-				sheet.ViewportController.OnMouseUp(location, buttons);
+				sheet.ViewportController.OnMouseUp(new Graphics.Point(location.X, location.Y), buttons);
 			}
 		}
-#endregion // Mouse
+        #endregion // Mouse
 
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 #if WINFORM
 		/// <summary>
 		/// Overrides mouse-leave event
@@ -1361,6 +1367,13 @@ namespace unvell.ReoGrid
 		/// <param name="e">Argument of mouse-leave</param>
 		protected override void OnMouseLeave(EventArgs e)
 		{
+#elif ETO
+        /// <summary>
+        /// Overrides mouse-leave event
+        /// </summary>
+        /// <param name="e">Argument of mouse-leave</param>
+        protected override void OnMouseLeave(MouseEventArgs e)
+        {
 #elif WPF
 		protected override void OnMouseLeave(System.Windows.Input.MouseEventArgs e)
 		{
@@ -1386,12 +1399,12 @@ namespace unvell.ReoGrid
 		}
 #endif // PRINT
 
-#region SheetTabControl
+        #region SheetTabControl
 
-		/// <summary>
-		/// Show or hide the built-in sheet tab control.
-		/// </summary>
-		public bool SheetTabVisible
+        /// <summary>
+        /// Show or hide the built-in sheet tab control.
+        /// </summary>
+        public bool SheetTabVisible
 		{
 			get { return (this.HasSettings(WorkbookSettings.View_ShowSheetTabControl)); }
 			set {
