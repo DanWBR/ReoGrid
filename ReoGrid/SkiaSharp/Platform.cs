@@ -18,13 +18,7 @@
 
 #if SKIASHARP
 
-using Android.Graphics;
-using Android.Util;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SkiaSharp;
 using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Interaction;
 
@@ -32,7 +26,7 @@ namespace unvell.ReoGrid
 {
 	partial class ReoGridCell
 	{
-		internal Typeface renderFont;
+		internal SKTypeface renderFont;
 	}
 }
 
@@ -42,15 +36,13 @@ namespace unvell.ReoGrid.Rendering
 	{
 		internal static float GetDPI()
 		{
-			DisplayMetrics metrics = new DisplayMetrics();
-			//getResources().getDisplayMetrics();
-			return metrics.Xdpi;
+			return Eto.Forms.Screen.PrimaryScreen.DPI;
 		}
 
 		internal static bool IsKeyDown(KeyCode key)
 		{
-			// TODO
-			return false;
+            // TODO
+            return false;
 		}
 	}
 

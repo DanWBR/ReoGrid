@@ -44,7 +44,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;WINFORM;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,7 +55,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;FORMULA;WINFORM;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
+    <DefineConstants>TRACE;FORMULA;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,7 +117,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Extension|AnyCPU' ">
     <OutputPath>bin\Extension\</OutputPath>
-    <DefineConstants>TRACE;EX;WINFORM;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
+    <DefineConstants>TRACE;EX;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;SKIASHARP</DefineConstants>
     <DocumentationFile>bin\Extension\unvell.ReoGrid.XML</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -347,9 +347,7 @@
     <Compile Include="SkiaSharp\Platform.cs" />
     <Compile Include="SkiaSharp\Renderer.cs" />
     <Compile Include="SkiaSharp\ReoGridView.cs" />
-    <Compile Include="Test\RichTextTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Test\RichTextTestForm.cs" />
     <Compile Include="Test\RichTextTestForm.Designer.cs">
       <DependentUpon>RichTextTestForm.cs</DependentUpon>
     </Compile>
@@ -358,9 +356,7 @@
     <Compile Include="Utility\MeasureToolkit.cs" />
     <Compile Include="Utility\PrinterUtility.cs" />
     <Compile Include="Utility\StyleUtility.cs" />
-    <Compile Include="WinForm\AboutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="WinForm\AboutForm.cs" />
     <Compile Include="WinForm\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
@@ -374,9 +370,7 @@
     <Compile Include="Common\TextFormatHelper.cs" />
     <Compile Include="Common\Toolkit.cs" />
     <Compile Include="Common\Win32.cs" />
-    <Compile Include="Control\ControlShare.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Control\ControlShare.cs" />
     <Compile Include="Core\Border.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\Clipboard.cs" />
@@ -421,42 +415,30 @@
     <Compile Include="Views\CellsViewport.cs" />
     <Compile Include="WinForm\Graphics.cs" />
     <Compile Include="Views\NormalViewportController.cs" />
-    <Compile Include="WinForm\FormulaParserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="WinForm\FormulaParserForm.cs" />
     <Compile Include="WinForm\FormulaParserForm.designer.cs">
       <DependentUpon>FormulaParserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\Platform.cs" />
-    <Compile Include="WinForm\RenameSheetDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="WinForm\RenameSheetDialog.cs" />
     <Compile Include="WinForm\RenameSheetDialog.Designer.cs">
       <DependentUpon>RenameSheetDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\SheetTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="WinForm\SheetTabControl.cs" />
     <Compile Include="Utility\XMLHelper.cs" />
     <Compile Include="WinForm\Designer\EditorServiceContext.cs" />
-    <Compile Include="WinForm\Designer\WorkbookEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="WinForm\Designer\WorkbookEditorForm.cs" />
     <Compile Include="WinForm\Designer\WorkbookEditorForm.Designer.cs">
       <DependentUpon>WorkbookEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\FilterGUI.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="WinForm\FilterGUI.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="IO\ExcelReader.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="IO\FileFormat.cs" />
     <Compile Include="GenericExtends.cs" />
     <Compile Include="IO\HTMLExporter.cs" />
-    <Compile Include="ClipboardMonitor.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ClipboardMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinForm\Designer\WorkbookEditor.cs" />
     <Compile Include="WPF\FilterGUI.cs" />
@@ -514,9 +496,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WinForm\DebugForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="WinForm\DebugForm.cs" />
     <Compile Include="WinForm\DebugForm.Designer.cs">
       <DependentUpon>DebugForm.cs</DependentUpon>
     </Compile>
@@ -524,9 +504,7 @@
     <Compile Include="Rendering\DrawingContext.cs" />
     <Compile Include="WinForm\Designer\IntegrateDesigner.cs" />
     <Compile Include="WPF\WPFControl.cs" />
-    <Compile Include="WinForm\WinFormControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="WinForm\WinFormControl.cs" />
     <Compile Include="Worksheet.cs" />
     <Compile Include="ExtendTrigger.cs" />
     <Compile Include="Utility\RGUtility.cs" />
