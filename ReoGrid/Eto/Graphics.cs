@@ -57,13 +57,7 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public PlatformGraphics PlatformGraphics { get { return this.g; } set { this.g = value; } }
 
-        public EtoGraphics()
-        {
-
-        }
-
         public EtoGraphics(PlatformGraphics g)
-            : this()
         {
             this.g = g;
         }
@@ -393,7 +387,7 @@ namespace unvell.ReoGrid.EtoRenderer
         /// </summary>
         public void PushTransform()
         {
-            this.PushTransform(Matrix.Create());
+            this.g.SaveTransform();
         }
 
         /// <summary>
@@ -401,11 +395,8 @@ namespace unvell.ReoGrid.EtoRenderer
         /// </summary>
         public void PushTransform(IMatrix m)
         {
-            var t = Matrix.Create(this.g.CurrentTransform.Elements);
-
-            this.transformStack.Push(t);
-
-            this.g.MultiplyTransform(Matrix.Create(t.Elements));
+            PushTransform();
+            this.g.MultiplyTransform(m);
         }
 
         /// <summary>
@@ -413,9 +404,8 @@ namespace unvell.ReoGrid.EtoRenderer
         /// </summary>
         public IMatrix PopTransform()
         {
-            IMatrix m = this.transformStack.Pop();
-            this.g.MultiplyTransform(m);
-            return m;
+            this.g.RestoreTransform();
+            return this.g.CurrentTransform;
         }
 
         /// <summary>
@@ -497,9 +487,9 @@ namespace unvell.ReoGrid.EtoRenderer
         internal static readonly Eto.Drawing.Font HeaderFont = new Eto.Drawing.Font(
             Eto.Drawing.SystemFonts.Default().FamilyName, 8f, Eto.Drawing.FontStyle.None);
 
-        internal EtoRenderer(Eto.Drawing.Graphics cg)
+        internal EtoRenderer(Eto.Drawing.Graphics g): base(g)
         {
-            this.cachedGraphics = cg;
+            this.cachedGraphics = g;
         }
 
         public void DrawRunningFocusRect(RGFloat x, RGFloat y, RGFloat w, RGFloat h, SolidColor color, int runnerOffset)
@@ -881,9 +871,9 @@ namespace unvell.ReoGrid.EtoRenderer
                 leadHeadPath.CloseFigure();
 
                 using (Eto.Drawing.LinearGradientBrush lgb
-                    = new Eto.Drawing.LinearGradientBrush(bounds.ToEto(), startColor.ToEto(), endColor.ToEto(), 90f))
+                    = new Eto.Drawing.LinearGradientBrush(startColor.ToEto(), endColor.ToEto(), new WFPointF(bounds.X, bounds.Y), new WFPointF(bounds.Right, bounds.Bottom)))
                 {
-                    base.PlatformGraphics.FillPath(lgb, leadHeadPath);
+                    PlatformGraphics.FillPath(lgb, leadHeadPath);
                 }
             }
         }

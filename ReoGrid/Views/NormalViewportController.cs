@@ -65,8 +65,7 @@ namespace unvell.ReoGrid.Views
 
 		private SpaceView rightBottomSpace;
 
-		public NormalViewportController(Worksheet sheet)
-			: base(sheet)
+		public NormalViewportController(Worksheet sheet) : base(sheet)
 		{
 			sheet.ViewportController = this;
 
@@ -84,7 +83,9 @@ namespace unvell.ReoGrid.Views
 
 			this.FocusView = rightBottomViewport;
 			this.mainViewport = rightBottomViewport;
-		}
+
+        }
+
 		#endregion // Constructor
 
 		#region Visibility Management
@@ -989,7 +990,7 @@ namespace unvell.ReoGrid.Views
 			scrollHorValue += x;
 			scrollVerValue += y;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 			this.worksheet.controlAdapter.ScrollBarHorizontalValue = (int)Math.Round(scrollHorValue);
 			this.worksheet.controlAdapter.ScrollBarVerticalValue = (int)Math.Round(scrollVerValue);
 #elif WPF

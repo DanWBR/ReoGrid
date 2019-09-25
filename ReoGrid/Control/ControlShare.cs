@@ -116,6 +116,7 @@ namespace unvell.ReoGrid
 			this.workbook = new Workbook(adapter);
 
 #region Workbook Event Attach
+
 			this.workbook.WorksheetCreated += (s, e) =>
 			{
 				this.WorksheetCreated?.Invoke(this, e);
@@ -272,6 +273,7 @@ namespace unvell.ReoGrid
 #endregion // Initialize
 
 #region Memory Workbook
+
 		/// <summary>
 		/// Create an instance of ReoGrid workbook in memory. <br/>
 		/// The memory workbook is the non-GUI version of ReoGrid control, which can do almost all operations, 
@@ -1359,25 +1361,12 @@ namespace unvell.ReoGrid
 		}
         #endregion // Mouse
 
-#if WINFORM || WPF || ETO
-#if WINFORM
-		/// <summary>
-		/// Overrides mouse-leave event
-		/// </summary>
-		/// <param name="e">Argument of mouse-leave</param>
-		protected override void OnMouseLeave(EventArgs e)
-		{
-#elif ETO
         /// <summary>
         /// Overrides mouse-leave event
         /// </summary>
         /// <param name="e">Argument of mouse-leave</param>
         protected override void OnMouseLeave(MouseEventArgs e)
         {
-#elif WPF
-		protected override void OnMouseLeave(System.Windows.Input.MouseEventArgs e)
-		{
-#endif // WPF
 			base.OnMouseLeave(e);
 
 			if (this.currentWorksheet != null)
@@ -1386,7 +1375,6 @@ namespace unvell.ReoGrid
 				this.currentWorksheet.HoverPos = CellPosition.Empty;
 			}
 		}
-#endif // WINFORM || WPF
 
 #if PRINT
 		/// <summary>

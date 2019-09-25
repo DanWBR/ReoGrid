@@ -54,14 +54,17 @@ namespace unvell.ReoGrid
 
         private EtoControlAdapter adapter;
 
-        public Drawable InnerControl;
+        public Scrollable ScrollableParent;
 
         //private Graphics canvasGraphics;
         /// <summary>
         /// Create component instance.
         /// </summary>
-        public ReoGridControl()
+        public ReoGridControl(Scrollable parent)
         {
+
+            ScrollableParent = parent;
+
             SuspendLayout();
 
             #region Sheet tabs
@@ -195,7 +198,7 @@ namespace unvell.ReoGrid
             this.editTextbox = new InputTextBox(this) { Visible = false, TextWrap = true };
             this.adapter.editTextbox = this.editTextbox;
 
-            this.InitWorkbook(null);
+            this.InitWorkbook(adapter);
 
         }
 
@@ -245,7 +248,7 @@ namespace unvell.ReoGrid
             public EtoControlAdapter(ReoGridControl control)
             {
                 this.control = control;
-                this.ScrollableParent = (Scrollable)control.Parent;
+                this.ScrollableParent = control.ScrollableParent;
             }
 
             #region Scroll
@@ -582,7 +585,7 @@ namespace unvell.ReoGrid
         {
             this.Focus();
 
-            this.OnWorksheetMouseDown(e.Location, (unvell.ReoGrid.Interaction.MouseButtons)e.Buttons);
+            this.OnWorksheetMouseDown(e.Location, e.Buttons.ToMouseButtons());
 
             //this.Capture = true;
         }
@@ -593,7 +596,7 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of mouse moving event.</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            this.OnWorksheetMouseMove((Point)e.Location, (unvell.ReoGrid.Interaction.MouseButtons)e.Buttons);
+            this.OnWorksheetMouseMove((Point)e.Location, e.Buttons.ToMouseButtons());
         }
 
         /// <summary>
@@ -602,7 +605,7 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of mouse release event.</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            this.OnWorksheetMouseUp((Point)e.Location, (unvell.ReoGrid.Interaction.MouseButtons)e.Buttons);
+            this.OnWorksheetMouseUp((Point)e.Location, e.Buttons.ToMouseButtons());
 
             //this.Capture = false;
         }
@@ -613,7 +616,7 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of mouse wheel event.</param>
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)e.Delta.Height, (unvell.ReoGrid.Interaction.MouseButtons)e.Buttons);
+            this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)e.Delta.Height, e.Buttons.ToMouseButtons());
         }
 
         /// <summary>
@@ -622,7 +625,7 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of mouse double click event.</param>
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
-            this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(e.Location.X, e.Location.Y), (unvell.ReoGrid.Interaction.MouseButtons)e.Buttons);
+            this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(e.Location.X, e.Location.Y), e.Buttons.ToMouseButtons());
         }
 
         //protected override void OnDragOver(DragEventArgs drgevent)
@@ -1071,7 +1074,7 @@ namespace unvell.ReoGrid
         {
             var sheet = this.currentWorksheet;
 
-            if (Renderer == null) Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
+            Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
 
             if (sheet != null && sheet.ViewportController != null)
             {

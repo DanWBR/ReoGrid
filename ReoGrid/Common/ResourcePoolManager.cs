@@ -246,6 +246,8 @@ namespace unvell.Common
                     {
 #if WINFORM
 						penlist.Add(pen = new RGPen(color, weight));
+#elif ETO
+						penlist.Add(pen = new RGPen(color.ToEto(), weight));
 #elif WPF
 					penlist.Add(pen = new RGPen(new RGSolidBrush(color), weight));
 #endif // WPF
@@ -261,9 +263,9 @@ namespace unvell.Common
 
             return pen;
         }
-        #endregion // Pen
+#endregion // Pen
 
-        #region Font
+#region Font
 
         private Dictionary<string, List<WFFont>> fonts = new Dictionary<string, List<WFFont>>();
 
@@ -428,9 +430,9 @@ namespace unvell.Common
 		}
 #endif // WPF
 
-        #endregion // Font
+#endregion // Font
 
-        #region Image
+#region Image
 #if WINFORM && IMAGE_POOL
 		private Dictionary<Guid, ImageResource> images 
 			= new Dictionary<Guid, ImageResource>();
@@ -489,17 +491,17 @@ namespace unvell.Common
 			return res;
 		}
 #endif
-        #endregion
+#endregion
 
-        #region Graphics
+#region Graphics
 
         public WFGraphics CachedGDIGraphics { get; set; }
 
-        #endregion // Graphics
+#endregion // Graphics
 
-        #region FormattedText
+#region FormattedText
 
-        #endregion // FormattedText
+#endregion // FormattedText
 
         internal void ReleaseAllResources()
         {
