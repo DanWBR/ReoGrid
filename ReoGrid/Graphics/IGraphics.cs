@@ -18,26 +18,27 @@
 
 #pragma warning disable 1591
 
-#if WINFORM
+//#if WINFORM
+//using RGFloat = System.Single;
+
+//using RGPen = System.Drawing.Pen;
+//using RGBrush = System.Drawing.Brush;
+
+//using RGPath = System.Drawing.Drawing2D.GraphicsPath;
+//using RGImage = System.Drawing.Image;
+
+//using PlatformGraphics = System.Drawing.Graphics;
+//using RGTransform = System.Drawing.Drawing2D.Matrix;
+
+//#elif SKIASHARP
+#if SKIASHARP
 using RGFloat = System.Single;
-
-using RGPen = System.Drawing.Pen;
-using RGBrush = System.Drawing.Brush;
-
-using RGPath = System.Drawing.Drawing2D.GraphicsPath;
-using RGImage = System.Drawing.Image;
-
-using PlatformGraphics = System.Drawing.Graphics;
-using RGTransform = System.Drawing.Drawing2D.Matrix;
-
-#elif ANDROID
-using RGFloat = System.Single;
-using PlatformGraphics = Android.Graphics.Canvas;
-using RGPen = Android.Graphics.Paint;
-using RGBrush = Android.Graphics.Paint;
-using RGPath = Android.Graphics.Path;
-using RGImage = Android.Graphics.Picture;
-using RGTransform = Android.Graphics.Matrix;
+using PlatformGraphics = SkiaSharp.SKCanvas;
+using RGPen = SkiaSharp.SKPaint;
+using RGBrush = SkiaSharp.SKPaint;
+using RGPath = SkiaSharp.SKPath;
+using RGImage = SkiaSharp.SKPicture;
+using RGTransform = SkiaSharp.SKMatrix;
 
 #elif WPF
 

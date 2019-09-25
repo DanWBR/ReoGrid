@@ -2963,7 +2963,7 @@ namespace unvell.ReoGrid.Editor
 			sheet.FloatingObjects.Add(rectObj);
 		}
 
-		#endif // DEBUG
+#endif // DEBUG
 
-	}
+    }
 }
