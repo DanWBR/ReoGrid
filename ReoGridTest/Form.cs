@@ -39,8 +39,8 @@ namespace ReoGridTest
 
             container.Rows.Add(new TableRow { ScaleHeight = false, Cells = { rgcontrol.bottomPanel } });
 
-            rgcontrol.Width = 3000;
-            rgcontrol.Height = 1500;
+            rgcontrol.Width = 5000;
+            rgcontrol.Height = 3000;
 
             scrollable.Content = rgcontrol;
 

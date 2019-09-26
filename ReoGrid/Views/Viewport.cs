@@ -377,9 +377,11 @@ namespace unvell.ReoGrid.Views
 		public virtual Point ViewStart { get { return viewStart; } set { viewStart = value; } }
 		public virtual RGFloat ViewTop { get { return viewStart.Y; } set { viewStart.Y = value; } }
 		public virtual RGFloat ViewLeft { get { return viewStart.X; } set { viewStart.X = value; } }
-		//public virtual RGFloat ViewRight { get { return viewStart.X  + bounds.Width / this.scaleFactor; } }
-		//public virtual RGFloat ViewBottom { get { return viewStart.Y + bounds.Height / this.scaleFactor; } }
-		public virtual Rectangle ViewBounds
+
+        //public virtual RGFloat ViewRight { get { return viewStart.X  + bounds.Width / this.scaleFactor; } }
+        //public virtual RGFloat ViewBottom { get { return viewStart.Y + bounds.Height / this.scaleFactor; } }
+
+        public virtual Rectangle ViewBounds
 		{
 			get
 			{
@@ -453,14 +455,6 @@ namespace unvell.ReoGrid.Views
 				g.PopClip();
 			}
 			
-#if VP_DEBUG && WINFORM
-				dc.Graphics.PlatformGraphics.DrawString(string.Format("VR {0},{1}-{2},{3} VS X{4},Y{5}\nSD {6}", this.visibleRegion.startRow,
-					this.visibleRegion.startCol, this.visibleRegion.endRow, this.visibleRegion.endCol, this.ViewLeft, this.ViewTop,
-					this.ScrollableDirections.ToString()),
-					System.Drawing.SystemFonts.DialogFont, System.Drawing.Brushes.Blue, this.Left + 1, this.Top + 
-					((this is CellsViewport) ? 30 : this.Height / 2));
-#endif // VP_DEBUG && WINFORM
-
 #if DEBUG
 			sw.Stop();
 			if (sw.ElapsedMilliseconds > 20)

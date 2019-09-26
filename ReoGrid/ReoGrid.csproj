@@ -173,12 +173,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFMinimum|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtensionPro|AnyCPU' " />
-    <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFMinimum|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
@@ -243,9 +241,6 @@
     <Reference Include="WindowsBase" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
     <Reference Include="WindowsBase" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
     <Reference Include="WindowsBase" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtensionPro|AnyCPU' " />
-    <Reference Include="Xamarin.iOS" Condition=" '$(Configuration)|$(Platform)' == 'DebugiOS|AnyCPU' ">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Xamarin.iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chart\AreaLine.cs" />
@@ -309,6 +304,8 @@
     <Compile Include="Eto\Extensions.cs" />
     <Compile Include="Eto\Graphics.cs" />
     <Compile Include="Eto\Platform.cs" />
+    <Compile Include="Eto\RenameSheetDialog.cs" />
+    <Compile Include="Eto\RenameSheetDialog.Designer.cs" />
     <Compile Include="Eto\SheetTabControl.cs" />
     <Compile Include="Eto\EtoControl.cs" />
     <Compile Include="Formula\FunctionNames.cs" />
@@ -451,6 +448,7 @@
     <Compile Include="Zip\ZipOutputStream.cs" />
     <Compile Include="Zip\ZipSegmentedStream.cs" />
     <Compile Include="Zip\Zlib.cs" />
+    <EmbeddedResource Include="Eto\RenameSheetDialog.resx" />
     <EmbeddedResource Include="Test\RichTextTestForm.resx">
       <DependentUpon>RichTextTestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -516,10 +514,10 @@
     <None Include="Resources\eye_16xLG.png.dat" />
     <Content Include="Resources\full_col_select.cur" />
     <Content Include="Resources\full_row_select.cur" />
-    <None Include="Resources\NewBuildDefinition_8952.png.dat" />
-    <None Include="Resources\NewBuildDefinition_8952_inactive.png.dat" />
     <Content Include="Resources\grid_select.cur" />
     <None Include="Resources\icon_list.png.dat" />
+    <EmbeddedResource Include="Resources\icons8-add_row.png" />
+    <EmbeddedResource Include="Resources\icons8-add_row_focused.png" />
     <Content Include="Resources\pick_range.cur" />
   </ItemGroup>
   <ItemGroup>

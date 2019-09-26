@@ -787,7 +787,7 @@ namespace unvell.ReoGrid.Views
 			//if (this.mainViewport.Width < 0) this.mainViewport.Width = 0;
 			//if (this.mainViewport.Height < 0) this.mainViewport.Height = 0;
 
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 			this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange = this.scrollHorLarge = (int)Math.Round(this.view.Width);
 			this.worksheet.controlAdapter.ScrollBarVerticalLargeChange = this.scrollVerLarge = (int)Math.Round(this.view.Height);
 #elif WPF
@@ -913,19 +913,9 @@ namespace unvell.ReoGrid.Views
 				{
 					IViewport viewpart = v as IViewport;
 
-#if WIN32_SCROLL
-						bool scrolled = false;
-						Rectangle scrolledRect = Rectangle.Empty;
-#endif
-
 					if (viewpart.ScrollableDirections == dir)
 					{
-
-#if WIN32_SCROLL
-							viewpart.Scroll(left, top);
-#else
 						viewpart.Scroll(x, y);
-#endif
 					}
 					else
 					{
@@ -933,22 +923,14 @@ namespace unvell.ReoGrid.Views
 							&& (dir & ScrollDirection.Horizontal) == ScrollDirection.Horizontal
 							&& x != 0)
 						{
-#if WIN32_SCROLL
-								viewpart.Scroll(x, 0);
-#else
 							viewpart.Scroll(x, 0);
-#endif
 						}
 
 						if ((viewpart.ScrollableDirections & ScrollDirection.Vertical) == ScrollDirection.Vertical
 						 && (dir & ScrollDirection.Vertical) == ScrollDirection.Vertical
 						 && y != 0)
 						{
-#if WIN32_SCROLL
-								viewpart.Scroll(0, y);
-#else
 							viewpart.Scroll(0, y);
-#endif
 						}
 					}
 				}
@@ -959,44 +941,13 @@ namespace unvell.ReoGrid.Views
 
 			this.view.UpdateView();
 
-#if WIN32_SCROLL
-				var	updateRect = bounds;
-
-				if (left > 0)
-				{
-					updateRect.X = updateRect.Right - left;
-					updateRect.Width = left;
-				}
-				else if (left < 0)
-				{
-					updateRect.Width = -left;
-				}
-
-				if (top > 0)
-				{
-					updateRect.Y = updateRect.Bottom - top;
-					updateRect.Height = top;
-				}
-				else if (top < 0)
-				{
-					updateRect.Height = -top;
-				}
-
-				grid.Invalidate(updateRect);
-#else
 			worksheet.RequestInvalidate();
-#endif
 
 			scrollHorValue += x;
 			scrollVerValue += y;
 
-#if WINFORM || ANDROID || ETO
 			this.worksheet.controlAdapter.ScrollBarHorizontalValue = (int)Math.Round(scrollHorValue);
 			this.worksheet.controlAdapter.ScrollBarVerticalValue = (int)Math.Round(scrollVerValue);
-#elif WPF
-			this.worksheet.ControlAdapter.ScrollBarHorizontalValue = scrollHorValue;
-			this.worksheet.ControlAdapter.ScrollBarVerticalValue = scrollVerValue;
-#endif // WPF
 
 			if (x != 0 || y != 0)
 			{

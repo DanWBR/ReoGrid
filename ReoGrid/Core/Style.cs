@@ -822,7 +822,17 @@ namespace unvell.ReoGrid
 
             if (ir == null) ir = this.controlAdapter.Renderer;
 
-            ir.UpdateCellRenderFont(cell, reason);
+            if (ir == null)
+            {
+                var newig = EtoRenderer.EtoRenderer.Create();
+                newig.UpdateCellRenderFont(cell, reason);
+                newig.Dispose();
+            }
+            else
+            {
+                ir.UpdateCellRenderFont(cell, reason);
+            }
+
 
             cell.FontDirty = false;
 

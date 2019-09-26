@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace unvell.ReoGrid.EtoRenderer
 {
@@ -44,6 +40,12 @@ namespace unvell.ReoGrid.EtoRenderer
             return value;
         }
 
+        public static unvell.ReoGrid.Graphics.Rectangle ToRectangle(this Eto.Drawing.Rectangle rect)
+        {
+            var value = new Graphics.Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
+            return value;
+        }
+
         public static Eto.Drawing.Color ToEto(this unvell.ReoGrid.Graphics.SolidColor color)
         {
             var value =  new Eto.Drawing.Color(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f, color.A / 255.0f);
@@ -52,7 +54,7 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public static unvell.ReoGrid.Graphics.SolidColor  ToSolidColor(this Eto.Drawing.Color color)
         {
-            var value =  new Graphics.SolidColor((int)(color.R * 255), (int)(color.G * 255), (int)(color.B * 255), (int)(color.A * 255));
+            var value =  new Graphics.SolidColor((int)(color.A * 255), (int)(color.R * 255), (int)(color.G * 255), (int)(color.B * 255));
             return value;
         }
 

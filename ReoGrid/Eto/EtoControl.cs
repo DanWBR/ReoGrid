@@ -58,6 +58,8 @@ namespace unvell.ReoGrid
 
         public PixelLayout PixelLayoutParent;
 
+        private Point prevscroll = new Point();
+
         //private Graphics canvasGraphics;
         /// <summary>
         /// Create component instance.
@@ -75,8 +77,29 @@ namespace unvell.ReoGrid
 
             this.sheetTab = new SheetTabControl(this)
             {
-                Height = 26,
+                Height = 30,
                 Position = SheetTabControlPosition.Bottom
+            };
+
+            this.ScrollableParent.MouseWheel += (sender, e) =>
+            {
+                this.OnMouseWheel(e);
+            };
+
+            this.ScrollableParent.Scroll += (sender, e) =>
+            {
+                float dx, dy;
+                dx = e.ScrollPosition.X - prevscroll.X;
+                dy = e.ScrollPosition.Y - prevscroll.Y;
+                if (Math.Abs(dx) > 0 || Math.Abs(dy) > 0)
+                {
+                    var sheet = this.currentWorksheet;
+                    if (sheet != null && sheet.ViewportController != null)
+                    {
+                        ((NormalViewportController)sheet.ViewportController).ScrollViews(ScrollDirection.Both, dx, dy);
+                    }
+                    prevscroll = e.ScrollPosition;
+                }
             };
 
             this.sheetTab.MouseMove += (s, e) => this.Cursor = Cursors.Default;
@@ -117,7 +140,7 @@ namespace unvell.ReoGrid
 
             this.sheetTab.TabMouseDown += (s, e) =>
             {
-                if (e.MouseButtons == unvell.ReoGrid.Interaction.MouseButtons.Right)
+                if (e.MouseButtons == Interaction.MouseButtons.Right)
                 {
                     if (this.sheetContextMenu == null)
                     {
@@ -153,30 +176,30 @@ namespace unvell.ReoGrid
                             var renameSheetMenu = new ButtonMenuItem { Text = LanguageResource.Menu_RenameSheet };
                             renameSheetMenu.Click += (ss, ee) =>
                             {
-                                //var index = this.sheetTab.SelectedIndex;
-                                //if (index >= 0 && index < this.workbook.worksheets.Count)
-                                //{
-                                //    var sheet = this.workbook.worksheets[this.sheetTab.SelectedIndex];
-                                //    if (sheet != null)
-                                //    {
-                                //        using (var rsd = new unvell.ReoGrid.EtoRenderer.RenameSheetDialog())
-                                //        {
-                                //            var rect = this.sheetTab.GetItemBounds(this.sheetTab.SelectedIndex);
+                                var index = this.sheetTab.SelectedIndex;
+                                if (index >= 0 && index < this.workbook.worksheets.Count)
+                                {
+                                    var sheet = this.workbook.worksheets[this.sheetTab.SelectedIndex];
+                                    if (sheet != null)
+                                    {
+                                        using (var rsd = new unvell.ReoGrid.EtoControls.RenameSheetDialog())
+                                        {
+                                            var rect = this.sheetTab.GetItemBounds(this.sheetTab.SelectedIndex);
 
-                                //            var p = this.sheetTab.PointToScreen(rect.Location);
-                                //            p.X -= (rsd.Width - rect.Width) / 2;
-                                //            p.Y -= rsd.Height + 5;
+                                            var p = (Point)this.sheetTab.PointToScreen(rect.Location);
+                                            p.X -= (rsd.Width - rect.Width) / 2;
+                                            p.Y -= rsd.Height + 5;
 
-                                //            rsd.Location = p;
-                                //            rsd.SheetName = sheet.Name;
+                                            rsd.Location = p;
+                                            rsd.SheetName = sheet.Name;
 
-                                //            if (rsd.ShowDialog() == DialogResult.OK)
-                                //            {
-                                //                sheet.Name = rsd.SheetName;
-                                //            }
-                                //        }
-                                //    }
-                                //}
+                                            if (rsd.ShowModal())
+                                            {
+                                                sheet.Name = rsd.SheetName;
+                                            }
+                                        }
+                                    }
+                                }
                             };
 
                             this.sheetContextMenu.Items.Add(insertSheetMenu);
@@ -230,24 +253,18 @@ namespace unvell.ReoGrid
         /// </summary>
         /// <param name="disposing">True to release both managed and unmanaged resources;
         /// False to release only unmanaged resources.</param>
-        //protected override void Dispose(bool disposing)
-        //{
-        //    var gdiRenderer = (GDIRenderer)renderer;
+        protected override void Dispose(bool disposing)
+        {
+            if (Renderer != null)
+            {
+                Renderer.Dispose();
+            }
 
-        //    if (gdiRenderer != null)
-        //    {
-        //        gdiRenderer.Dispose();
-        //    }
+            base.Dispose(disposing);
 
-        //    base.Dispose(disposing);
+            this.workbook.Dispose();
 
-        //    this.workbook.Dispose();
-
-        //    if (builtInCellsSelectionCursor != null) builtInCellsSelectionCursor.Dispose();
-        //    if (defaultPickRangeCursor != null) defaultPickRangeCursor.Dispose();
-        //    if (builtInFullColSelectCursor != null) builtInFullColSelectCursor.Dispose();
-        //    if (builtInFullRowSelectCursor != null) builtInFullRowSelectCursor.Dispose();
-        //}
+        }
 
         #endregion // Constructor
 
@@ -267,17 +284,9 @@ namespace unvell.ReoGrid
             }
 
             #region Scroll
-            public int ScrollBarHorizontalMaximum
-            {
-                get { return 1000; }
-                set { }
-            }
+            public int ScrollBarHorizontalMaximum { get { return control.Bounds.Width; } set { } }
 
-            public int ScrollBarHorizontalMinimum
-            {
-                get { return 0; }
-                set { }
-            }
+            public int ScrollBarHorizontalMinimum { get; set; }
 
             public int ScrollBarHorizontalValue
             {
@@ -285,23 +294,11 @@ namespace unvell.ReoGrid
                 set { ScrollableParent.ScrollPosition = new Point(value, ScrollableParent.ScrollPosition.Y); }
             }
 
-            public int ScrollBarHorizontalLargeChange
-            {
-                get { return 50; }
-                set { }
-            }
+            public int ScrollBarHorizontalLargeChange { get; set; }
 
-            public int ScrollBarVerticalMaximum
-            {
-                get { return 1000; }
-                set { }
-            }
+            public int ScrollBarVerticalMaximum { get { return control.Bounds.Height; } set { } }
 
-            public int ScrollBarVerticalMinimum
-            {
-                get { return 0; }
-                set { }
-            }
+            public int ScrollBarVerticalMinimum { get; set; }
 
             public int ScrollBarVerticalValue
             {
@@ -309,11 +306,7 @@ namespace unvell.ReoGrid
                 set { ScrollableParent.ScrollPosition = new Point(ScrollableParent.ScrollPosition.X, value); }
             }
 
-            public int ScrollBarVerticalLargeChange
-            {
-                get { return 50; }
-                set { }
-            }
+            public int ScrollBarVerticalLargeChange { get; set; }
 
             #endregion
 
@@ -356,9 +349,23 @@ namespace unvell.ReoGrid
                 switch (cursor)
                 {
                     default:
-                    case CursorStyle.PlatformDefault: this.control.Cursor = Cursors.Default; break;
-                    case CursorStyle.Selection: this.control.Cursor = Cursors.IBeam; break;
-                    case CursorStyle.Hand: this.control.Cursor = Cursors.Pointer; break;
+                    case CursorStyle.PlatformDefault:
+                        this.control.Cursor = Cursors.Default;
+                        break;
+                    case CursorStyle.Selection:
+                        this.control.Cursor = Cursors.Arrow;
+                        break;
+                    case CursorStyle.Hand:
+                        this.control.Cursor = Cursors.Pointer;
+                        break;
+                    case CursorStyle.ResizeHorizontal:
+                    case CursorStyle.ChangeColumnWidth:
+                        control.Cursor = Cursors.VerticalSplit;
+                        break;
+                    case CursorStyle.ResizeVertical:
+                    case CursorStyle.ChangeRowHeight:
+                        control.Cursor = Cursors.HorizontalSplit;
+                        break;
                 }
             }
 
@@ -505,13 +512,34 @@ namespace unvell.ReoGrid
 
             public Rectangle GetContainerBounds()
             {
-                int width = this.control.Bounds.Width;
-                int height = this.control.Bounds.Height;
+                if (Application.Instance.Platform.IsWpf)
+                {
+                    return this.control.ScrollableParent.Bounds.ToRectangle();
+                }
+                else
+                {
+                    int width = this.ScrollableParent.ClientSize.Width;
+                    int height = this.ScrollableParent.ClientSize.Height;
 
-                if (width < 0) width = 0;
-                if (height < 0) height = 0;
+                    int left = this.ScrollableParent.ScrollPosition.X;
+                    int top = this.ScrollableParent.ScrollPosition.Y;
 
-                return new Rectangle(0, 0, width, height);
+                    if (width < 0) width = 0;
+                    if (height < 0) height = 0;
+
+                    return new Rectangle(left, top, width, height);
+                }
+                //    int width = this.ScrollableParent.Size.Width;
+                //    int height = this.ScrollableParent.Size.Height;
+
+                //    int left = this.ScrollableParent.ScrollPosition.X;
+                //    int top = this.ScrollableParent.ScrollPosition.Y;
+
+                //    if (width < 0) width = 0;
+                //    if (height < 0) height = 0;
+
+                //    return new Rectangle(left, top, width, height);
+                //}
             }
 
             public IRenderer Renderer { get { return this.control.Renderer; } }
@@ -589,6 +617,7 @@ namespace unvell.ReoGrid
             }
 
             #endregion // IControlAdapter Members
+
         }
 
         #endregion // Adapter
@@ -632,7 +661,8 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of mouse wheel event.</param>
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)e.Delta.Height, e.Buttons.ToMouseButtons());
+            base.OnMouseWheel(e);
+            //this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)e.Delta.Height, e.Buttons.ToMouseButtons());
         }
 
         protected bool doubleclicked = false;
@@ -679,45 +709,6 @@ namespace unvell.ReoGrid
         }
 
         #endregion // Keyboard
-
-        #region Scroll
-
-        //      private Panel rightPanel;
-        //      private Panel horizontalScrollbarPanel;
-        //      private Eto.Forms.hScrollBar = null;
-        //private VScrollBar vScrollBar = null;
-
-        //      private class ScrollBarCorner : Control
-        //      {
-        //          public ScrollBarCorner()
-        //          {
-        //              Size = new Size(20, 20);
-        //          }
-
-        //          protected override void OnMouseMove(MouseEventArgs e)
-        //          {
-        //              base.OnMouseMove(e);
-
-        //              Cursor = Cursors.Default;
-        //          }
-        //      }
-
-        //      private void OnHorScroll(object sender, ScrollEventArgs e)
-        //      {
-        //          if (this.currentWorksheet.ViewportController is IScrollableViewportController)
-        //          {
-        //              ((IScrollableViewportController)this.currentWorksheet.ViewportController).HorizontalScroll(e.NewValue);
-        //          }
-        //      }
-        //      private void OnVerScroll(object sender, ScrollEventArgs e)
-        //      {
-        //          if (this.currentWorksheet.ViewportController is IScrollableViewportController)
-        //          {
-        //              ((IScrollableViewportController)this.currentWorksheet.ViewportController).VerticalScroll(e.NewValue);
-        //          }
-        //      }
-
-        #endregion // Scroll
 
         #region Sheet Tab
 
@@ -969,17 +960,24 @@ namespace unvell.ReoGrid
         {
             var sheet = this.currentWorksheet;
 
-            Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
+            if (Renderer == null)
+            {
+                Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
+            }
+            else {
+                Renderer.PlatformGraphics = e.Graphics;
+            }
 
             if (sheet != null && sheet.ViewportController != null)
             {
                 CellDrawingContext dc = new CellDrawingContext(this.currentWorksheet, DrawMode.View, Renderer);
 
+                sheet.UpdateViewportControllBounds();
                 sheet.ViewportController.Draw(dc);
 
             }
 
-            Renderer = null;
+            //Renderer = null;
 
         }
 

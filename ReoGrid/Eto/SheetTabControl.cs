@@ -56,33 +56,21 @@ namespace unvell.ReoGrid.EtoRenderer
         public SheetTabControl(ReoGridControl grid)
         {
             this.grid = grid;
-
             this.Font = SystemFonts.Default();
-            //this.SelectedBackColor = SystemColors.WindowBackground;
-            //this.SelectedTextColor = Colors.DimGray;
-            //this.BorderColor = SystemColors.ControlText;
             this.NewButtonVisible = true;
-
-            using (var ms = new System.IO.MemoryStream(unvell.ReoGrid.Properties.Resources.NewBuildDefinition_8952_png))
-            {
-                this.newButtonImage = new Bitmap(ms);
-            }
-
-            using (var ms = new System.IO.MemoryStream(unvell.ReoGrid.Properties.Resources.NewBuildDefinition_8952_inactive_png))
-            {
-                this.newButtonDisableImage = new Bitmap(ms);
-            }
+            this.newButtonImage = Bitmap.FromResource("unvell.ReoGrid.Resources.icons8-add_row_focused.png").WithSize(16, 16);
+            this.newButtonDisableImage = Bitmap.FromResource("unvell.ReoGrid.Resources.icons8-add_row.png").WithSize(16, 16);
         }
 
-        //protected override void DestroyHandle()
-        //{
-        //	if (g != null)
-        //	{
-        //		this.g.Dispose();
-        //	}
+        protected override void Dispose(bool disposing)
+        {
+            if (g != null)
+            {
+                this.g.Dispose();
+            }
 
-        //	base.DestroyHandle();
-        //}
+            base.Dispose(disposing);
+        }
 
         private List<SheetTabItem> tabs = new List<SheetTabItem>(3);
 
@@ -101,7 +89,7 @@ namespace unvell.ReoGrid.EtoRenderer
         /// </summary>
         //[Description("Show shadows beside of every tabs")]
         //[DefaultValue(false)]
-        public bool Shadow { get; set; }
+        public bool Shadow { get; set; } = true;
 
         ///// <summary>
         ///// Get or set the border color
@@ -146,7 +134,7 @@ namespace unvell.ReoGrid.EtoRenderer
         /// Determine whether or not allow to move tab by dragging mouse
         /// </summary>
         [Description("Determine whether or not allow to move tab by dragging mouse")]
-        public bool AllowDragToMove { get; set; }
+        public bool AllowDragToMove { get; set; } = false;
 
         private const int leftPadding = 30, rightPadding = 28;
         private int maxWidth = 0;
@@ -176,6 +164,8 @@ namespace unvell.ReoGrid.EtoRenderer
         {
 
             g = e.Graphics;
+
+            g.SaveTransform();
 
             int hh = (int)Math.Round(Height / 2f);
 
@@ -368,16 +358,15 @@ namespace unvell.ReoGrid.EtoRenderer
             #endregion // Selected item
 
             g.ResetClip();
-            try
-            {
-                g.RestoreTransform();
-            }
-            catch { }
+            //try
+            //{
+            g.RestoreTransform();
+            //}
+            //catch { }
 
             if (this.NewButtonVisible)
             {
-                g.DrawImage(addButtonHover ? newButtonImage : newButtonDisableImage,
-                    new Rectangle(this.Bounds.Width - 28, (this.Bounds.Height - 16) / 2, 16, 16));
+                g.DrawImage(addButtonHover ? newButtonImage : newButtonDisableImage, this.Bounds.Width - 28, (this.Bounds.Height - 16) / 2);
             }
 
             for (int i = 4; i < this.Bounds.Height - 4; i += 4)
@@ -485,7 +474,7 @@ namespace unvell.ReoGrid.EtoRenderer
                         var arg = new SheetTabMouseEventArgs
                         {
                             Location = (Point)e.Location,
-                            MouseButtons = (unvell.ReoGrid.Interaction.MouseButtons)e.Buttons,
+                            MouseButtons = e.Buttons.ToMouseButtons(),
                             Handled = false,
                         };
 
@@ -496,9 +485,11 @@ namespace unvell.ReoGrid.EtoRenderer
 
                     if (!processed)
                     {
-                        movingStartIndex = index;
-                        movingHoverIndex = -1;
-                        //Capture = true;
+                        if (AllowDragToMove)
+                        {
+                            movingStartIndex = index;
+                            movingHoverIndex = -1;
+                        }
                     }
                 }
             }
@@ -612,18 +603,20 @@ namespace unvell.ReoGrid.EtoRenderer
             this.leftScrollPressed = false;
             this.rightScrollPressed = false;
             this.splitterPressed = false;
-            //this.Capture = false;
 
             if (this.timer != null)
             {
                 this.timer.Enabled = false;
             }
 
-            if (this.movingStartIndex >= 0 && this.movingStartIndex < this.tabs.Count
-                && this.movingHoverIndex != this.movingStartIndex
-                && this.movingHoverIndex >= 0 && this.movingHoverIndex <= this.tabs.Count)
+            if (AllowDragToMove)
             {
-                MoveItem(this.movingStartIndex, this.movingHoverIndex);
+                if (this.movingStartIndex >= 0 && this.movingStartIndex < this.tabs.Count
+                    && this.movingHoverIndex != this.movingStartIndex
+                    && this.movingHoverIndex >= 0 && this.movingHoverIndex <= this.tabs.Count)
+                {
+                    MoveItem(this.movingStartIndex, this.movingHoverIndex);
+                }
             }
 
             this.movingStartIndex = -1;
@@ -786,8 +779,23 @@ namespace unvell.ReoGrid.EtoRenderer
             this.tabs.Insert(index, new SheetTabItem
             {
                 Title = title,
-                Bounds = new Rectangle(x, 0, 50, this.Bounds.Height),
+                Bounds = new Rectangle(x, 0, 75, this.Bounds.Height),
             });
+
+            if (index < this.tabs.Count - 1)
+            {
+                var tab = this.tabs[index];
+
+                int width = tab.Width;
+
+                for (int i = index + 1; i < this.tabs.Count; i++)
+                {
+                    this.tabs[i].Left += width;
+                }
+
+                this.maxWidth += width;
+
+            }
 
             UpdateTab(index, title, Colors.Transparent, SystemColors.ControlText);
         }
@@ -827,7 +835,10 @@ namespace unvell.ReoGrid.EtoRenderer
 
             int width = tab.Width;
 
-            if (g != null) width = (int)Math.Round(g.MeasureString(Font, title).Width + 11);
+            using (var newg = new Eto.Drawing.Graphics(new Eto.Drawing.Bitmap(1, 1, PixelFormat.Format24bppRgb)))
+            {
+                width = (int)Math.Round(newg.MeasureString(Font, title).Width + 20);
+            }
 
             int diff = (width - tab.Width);
             tab.Width = width;
