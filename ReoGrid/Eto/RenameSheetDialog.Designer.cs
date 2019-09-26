@@ -92,7 +92,7 @@ namespace unvell.ReoGrid.EtoControls
 			// 
 			// RenameSheetDialog
 			// 
-			this.ClientSize = new Size(350, 50);
+			this.ClientSize = new Size(413, 75);
 
 			this.Maximizable = false;
 			this.Minimizable = false;			

@@ -972,7 +972,10 @@ namespace unvell.ReoGrid
             {
                 CellDrawingContext dc = new CellDrawingContext(this.currentWorksheet, DrawMode.View, Renderer);
 
-                sheet.UpdateViewportControllBounds();
+                if (Application.Instance.Platform.IsWinForms)
+                {
+                    sheet.UpdateViewportControllBounds();
+                }
                 sheet.ViewportController.Draw(dc);
 
             }

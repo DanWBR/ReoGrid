@@ -797,6 +797,8 @@ namespace unvell.ReoGrid.EtoRenderer
 
             }
 
+            this.Invalidate();
+
             UpdateTab(index, title, Colors.Transparent, SystemColors.ControlText);
         }
 
@@ -819,6 +821,9 @@ namespace unvell.ReoGrid.EtoRenderer
             }
 
             this.maxWidth -= width;
+
+            this.Invalidate();
+
         }
 
         public void UpdateTab(int index, string title, Color backgroundColor, Color textColor)

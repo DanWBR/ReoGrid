@@ -302,6 +302,8 @@
     <Compile Include="Drawing\Style.cs" />
     <Compile Include="Drawing\Text.cs" />
     <Compile Include="Eto\Extensions.cs" />
+    <Compile Include="Eto\FormulaParserForm.cs" />
+    <Compile Include="Eto\FormulaParserForm.designer.cs" />
     <Compile Include="Eto\Graphics.cs" />
     <Compile Include="Eto\Platform.cs" />
     <Compile Include="Eto\RenameSheetDialog.cs" />
@@ -448,7 +450,9 @@
     <Compile Include="Zip\ZipOutputStream.cs" />
     <Compile Include="Zip\ZipSegmentedStream.cs" />
     <Compile Include="Zip\Zlib.cs" />
-    <EmbeddedResource Include="Eto\RenameSheetDialog.resx" />
+    <EmbeddedResource Include="Eto\FormulaParserForm.resx">
+      <DependentUpon>FormulaParserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Test\RichTextTestForm.resx">
       <DependentUpon>RichTextTestForm.cs</DependentUpon>
     </EmbeddedResource>

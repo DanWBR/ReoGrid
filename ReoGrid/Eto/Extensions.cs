@@ -5,6 +5,11 @@ namespace unvell.ReoGrid.EtoRenderer
     public static class Extensions
     {
 
+        public static void Add(this Eto.Forms.PixelLayout layout, Eto.Forms.Control control)
+        {
+            layout.Add(control, (Eto.Drawing.Point)control.Tag);
+        }
+
         public static unvell.ReoGrid.Interaction.KeyCode ToKeyCode(this Eto.Forms.Keys keys)
         {
             try {
