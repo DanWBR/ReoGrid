@@ -56,14 +56,18 @@ namespace unvell.ReoGrid
 
         public Scrollable ScrollableParent;
 
+        public PixelLayout PixelLayoutParent;
+
         //private Graphics canvasGraphics;
         /// <summary>
         /// Create component instance.
         /// </summary>
-        public ReoGridControl(Scrollable parent)
+        public ReoGridControl(Scrollable parent, PixelLayout pixparent)
         {
 
             ScrollableParent = parent;
+
+            PixelLayoutParent = pixparent;
 
             SuspendLayout();
 
@@ -71,7 +75,6 @@ namespace unvell.ReoGrid
 
             this.sheetTab = new SheetTabControl(this)
             {
-                Width = 400,
                 Height = 26,
                 Position = SheetTabControlPosition.Bottom
             };
@@ -80,15 +83,16 @@ namespace unvell.ReoGrid
 
             this.sheetTab.SplitterMoving += (s, e) =>
             {
-                //var p = this.bottomPanel.PointFromScreen(Eto.Forms.Mouse.Position);
-                //int newWidth = (int)p.X - (int)this.sheetTab.Bounds.Left;
 
-                //if (newWidth < 50)
-                //{
-                //    newWidth = 50;
-                //}
+                var p = this.bottomPanel.PointFromScreen(Eto.Forms.Mouse.Position);
+                int newWidth = (int)p.X - (int)this.sheetTab.Bounds.Left;
 
-                this.sheetTab.Width = 50;
+                if (newWidth < 50)
+                {
+                    newWidth = 50;
+                }
+
+                this.sheetTab.Width = newWidth;
             };
 
             this.sheetTab.SheetListClick += (s, e) =>
@@ -186,8 +190,19 @@ namespace unvell.ReoGrid
                 }
             };
 
-
             #endregion // Sheet tabs
+
+            #region Bottom Panel
+
+            this.bottomPanel = new Panel
+            {
+                Height = 30,
+                BackgroundColor = SystemColors.Control,
+            };
+
+            this.bottomPanel.Content = this.sheetTab;
+
+            #endregion // Bottom Panel
 
             this.InitControl();
 
@@ -369,13 +384,15 @@ namespace unvell.ReoGrid
                     (int)Math.Round(bounds.Width), (int)Math.Round(bounds.Height));
 
                 editTextbox.SuspendLayout();
+                editTextbox.Size = new Size(rect.Size);
+                control.PixelLayoutParent.Move(editTextbox, rect.Location);
                 editTextbox.TextWrap = cell.IsMergedCell || cell.InnerStyle.TextWrapMode != TextWrapMode.NoWrap;
                 editTextbox.InitialSize = rect.Size;
                 editTextbox.VAlign = cell.InnerStyle.VAlign;
                 editTextbox.Font = cell.RenderFont;
-                //editTextbox.ForeColor = cell.InnerStyle.TextColor;
-                //editTextbox.BackColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
-                //    ? cell.InnerStyle.BackColor : this.control.ControlStyle[ControlAppearanceColors.GridBackground];
+                editTextbox.TextColor = cell.InnerStyle.TextColor.ToEto();
+                editTextbox.BackgroundColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
+                    ? cell.InnerStyle.BackColor.ToEto() : this.control.ControlStyle[ControlAppearanceColors.GridBackground].ToEto();
                 editTextbox.ResumeLayout();
                 editTextbox.Visible = true;
                 editTextbox.Focus();
@@ -384,6 +401,7 @@ namespace unvell.ReoGrid
             public void HideEditControl()
             {
                 editTextbox.Visible = false;
+                control.doubleclicked = false;
             }
 
             public void SetEditControlText(string text)
@@ -583,11 +601,11 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of mouse pressing event.</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            this.Focus();
-
-            this.OnWorksheetMouseDown(e.Location, e.Buttons.ToMouseButtons());
-
-            //this.Capture = true;
+            if (!doubleclicked)
+            {
+                this.Focus();
+                this.OnWorksheetMouseDown(e.Location, e.Buttons.ToMouseButtons());
+            }
         }
 
         /// <summary>
@@ -606,8 +624,6 @@ namespace unvell.ReoGrid
         protected override void OnMouseUp(MouseEventArgs e)
         {
             this.OnWorksheetMouseUp((Point)e.Location, e.Buttons.ToMouseButtons());
-
-            //this.Capture = false;
         }
 
         /// <summary>
@@ -619,12 +635,15 @@ namespace unvell.ReoGrid
             this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)e.Delta.Height, e.Buttons.ToMouseButtons());
         }
 
+        protected bool doubleclicked = false;
+
         /// <summary>
         /// Overrides mouse-double-click events.
         /// </summary>
         /// <param name="e">Argument of mouse double click event.</param>
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
+            doubleclicked = true;
             this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(e.Location.X, e.Location.Y), e.Buttons.ToMouseButtons());
         }
 
@@ -644,7 +663,7 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of key-down event</param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (!this.currentWorksheet.OnKeyDown((KeyCode)e.KeyData))
+            if (!this.currentWorksheet.OnKeyDown(e.KeyData.ToKeyCode()))
             {
                 base.OnKeyDown(e);
             }
@@ -656,7 +675,7 @@ namespace unvell.ReoGrid
         /// <param name="e">Argument of key-up event</param>
         protected override void OnKeyUp(KeyEventArgs e)
         {
-            this.currentWorksheet.OnKeyUp((KeyCode)e.KeyData);
+            this.currentWorksheet.OnKeyUp(e.KeyData.ToKeyCode());
         }
 
         #endregion // Keyboard
@@ -703,6 +722,7 @@ namespace unvell.ReoGrid
         #region Sheet Tab
 
         private SheetTabControl sheetTab;
+        public Panel bottomPanel;
         private ContextMenu sheetListMenu;
         private ContextMenu sheetContextMenu;
 
@@ -713,7 +733,7 @@ namespace unvell.ReoGrid
 
         void sheetMenuItem_Click(object sender, EventArgs e)
         {
-            var sheet = ((ToolItem)sender).Tag as Worksheet;
+            var sheet = ((MenuItem)sender).Tag as Worksheet;
 
             if (sheet != null)
             {
@@ -723,70 +743,28 @@ namespace unvell.ReoGrid
 
         private void ShowSheetTabControl()
         {
-            //if (!this.bottomPanel.Visible)
-            //{
-            //    this.bottomPanel.Visible = true;
-            //}
-
-            this.sheetTab.Visible = true;
+            this.bottomPanel.Visible = true;
         }
 
         private void HideSheetTabControl()
         {
-            this.sheetTab.Visible = false;
-
-            //if (!this.hScrollBar.Visible)
-            //{
-            //	this.bottomPanel.Visible = false;
-            //}
+            this.bottomPanel.Visible = false;
         }
 
         private void ShowHorScrollBar()
         {
-            //if (!this.hScrollBar.Visible)
-            //{
-            //	if (this.sheetTab.Visible)
-            //	{
-            //		this.sheetTab.Dock = DockStyle.Left;
-            //	}
-
-            //	if (!this.bottomPanel.Visible)
-            //	{
-            //		this.bottomPanel.Visible = true;
-            //	}
-
-            //	this.hScrollBar.Visible = true;
-            //}
         }
 
         private void HideHorScrollBar()
         {
-            //if (this.hScrollBar.Visible)
-            //{
-            //	this.hScrollBar.Visible = false;
-
-            //	if (this.sheetTab.Visible)
-            //	{
-            //		this.sheetTab.Dock = DockStyle.Fill;
-            //	}
-            //	else
-            //	{
-            //		this.bottomPanel.Visible = false;
-            //	}
-            //}
         }
 
         private void ShowVerScrollBar()
         {
-            //if (!this.vScrollBar.Visible)
-            //{
-            //	this.vScrollBar.Visible = true;
-            //}
         }
 
         private void HideVerScrollBar()
         {
-            //this.vScrollBar.Visible = false;
         }
 
         #endregion // Sheet Tab
@@ -831,14 +809,12 @@ namespace unvell.ReoGrid
         #region Edit Control
 
         #region InputTextBox
-        private class InputTextBox : Eto.Forms.TextBox
+        public class InputTextBox : Eto.Forms.TextBox
         {
             private ReoGridControl owner;
             internal bool TextWrap { get; set; }
             internal Size InitialSize { get; set; }
             internal ReoGridVerAlign VAlign { get; set; }
-
-            private Eto.Drawing.Graphics graphics;
 
             internal InputTextBox(ReoGridControl owner)
                 : base()
@@ -882,17 +858,16 @@ namespace unvell.ReoGrid
 
                     if (!isProcessed)
                     {
-                        //if (!Toolkit.IsKeyDown(Win32.VKey.VK_CONTROL) && e.Key == Keys.Enter)
-                        //{
-                        //    ProcessSelectionMoveKey(e, sheet, () => sheet.MoveSelectionForward());
-                        //}
+                        if (e.Key == Keys.Enter || e.Key == Keys.Tab)
+                        {
+                            ProcessSelectionMoveKey(e, sheet, () => sheet.MoveSelectionForward());
+                        }
                     }
                 }
             }
 
             private void ProcessSelectionMoveKey(KeyEventArgs e, Worksheet sheet, Action moveAction)
             {
-                //e.SuppressKeyPress = true;
                 sheet.EndEdit(Text);
                 moveAction();
             }
@@ -942,94 +917,13 @@ namespace unvell.ReoGrid
 
             private void CheckAndUpdateWidth()
             {
-                int fieldWidth = 0;
-
-                if (TextWrap)
-                {
-                    fieldWidth = InitialSize.Width;
-                }
-                else
-                {
-                    fieldWidth = 9999999; // todo: avoid unsafe magic number
-                }
-
-                Size size = Size.Round(graphics.MeasureString(Font, Text));
-
-                if (TextWrap)
-                {
-                    this.SuspendLayout();
-
-                    if (Height < size.Height)
-                    {
-                        int offset = size.Height - Height + 1;
-
-                        Height += offset;
-
-                        if (Height < Font.LineHeight)
-                        {
-                            offset = (int)Font.LineHeight - Height;
-                        }
-
-                        Height += offset;
-
-                        switch (VAlign)
-                        {
-                            case ReoGridVerAlign.Top:
-                                break;
-                            default:
-                            case ReoGridVerAlign.Middle:
-                                this.Location.Offset(0, -offset / 2);
-                                break;
-                            case ReoGridVerAlign.Bottom:
-                                this.Location.Offset(0, -offset);
-                                break;
-                        }
-                    }
-
-                    this.ResumeLayout();
-                }
-                else
-                {
-                    this.SuspendLayout();
-
-                    if (Width < size.Width + 5)
-                    {
-                        int widthOffset = size.Width + 5 - Width;
-
-                        switch (this.TextAlignment)
-                        {
-                            default:
-                            case TextAlignment.Left:
-                                break;
-                            case TextAlignment.Right:
-                                Location.Offset(-widthOffset, 0);
-                                break;
-                        }
-
-                        Width += widthOffset;
-                    }
-
-                    if (Height < size.Height + 1)
-                    {
-                        int offset = size.Height - 1 - Height;
-                        Location.Offset(0, -offset / 2);
-                        Height = size.Height + 1;
-                    }
-
-                    this.ResumeLayout();
-                }
+                // NOT USED
             }
 
-            protected override void Dispose(bool disposing)
-            {
-                if (graphics != null) graphics.Dispose();
-
-                base.Dispose(disposing);
-            }
         }
         #endregion // InputTextBox
 
-        private InputTextBox editTextbox;
+        public InputTextBox editTextbox;
 
         #endregion // Edit Control
 
@@ -1084,6 +978,8 @@ namespace unvell.ReoGrid
                 sheet.ViewportController.Draw(dc);
 
             }
+
+            Renderer = null;
 
         }
 

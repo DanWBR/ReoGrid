@@ -75,6 +75,7 @@ using unvell.ReoGrid.Main;
 using unvell.ReoGrid.Rendering;
 using Eto.Forms;
 using MouseButtons = unvell.ReoGrid.Interaction.MouseButtons;
+using unvell.ReoGrid.EtoRenderer;
 
 namespace unvell.ReoGrid
 {
@@ -1283,8 +1284,8 @@ namespace unvell.ReoGrid
 				sheetTab.BackColor = value[ControlAppearanceColors.SheetTabBackground];
 				this.BackColor = value[ControlAppearanceColors.GridBackground];
 #elif ETO 
-				//sheetTab.BackColor = value[ControlAppearanceColors.SheetTabBackground];
-				//this.BackColor = value[ControlAppearanceColors.GridBackground];
+				sheetTab.BackgroundColor = value[ControlAppearanceColors.SheetTabBackground].ToEto();
+				this.BackgroundColor = value[ControlAppearanceColors.GridBackground].ToEto();
 #elif WPF
 				sheetTab.Background = new System.Windows.Media.SolidColorBrush(value[ControlAppearanceColors.SheetTabBackground]);
 #endif // WINFORM & WPF

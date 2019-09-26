@@ -61,6 +61,7 @@ using RGKeys = System.Windows.Forms.Keys;
 using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Interaction;
 using unvell.ReoGrid.Main;
+using unvell.ReoGrid.EtoRenderer;
 
 namespace unvell.ReoGrid
 {
@@ -206,7 +207,7 @@ namespace unvell.ReoGrid
 			set { this.nameBackColor = value; this.OnNameBackColorChanged(); }
 		}
 
-		private SolidColor nameTextColor = SolidColor.Transparent;
+		private SolidColor nameTextColor = Eto.Drawing.SystemColors.ControlText.ToSolidColor();
 
 		/// <summary>
 		/// Get or set the text color for worksheet name.

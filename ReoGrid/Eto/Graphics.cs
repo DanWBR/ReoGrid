@@ -51,7 +51,8 @@ namespace unvell.ReoGrid.EtoRenderer
 
     internal class EtoGraphics : IGraphics
     {
-        protected ResourcePoolManager resourceManager = new ResourcePoolManager();
+
+        protected static ResourcePoolManager resourceManager = new ResourcePoolManager();
 
         private Eto.Drawing.Graphics g = null;
 
@@ -65,7 +66,7 @@ namespace unvell.ReoGrid.EtoRenderer
         #region Line
         public void DrawLine(RGFloat x1, RGFloat y1, RGFloat x2, RGFloat y2, SolidColor color)
         {
-            if (color.A > 0) this.g.DrawLine(this.resourceManager.GetPen(color), x1, y1, x2, y2);
+            if (color.A > 0) this.g.DrawLine(EtoRenderer.resourceManager.GetPen(color), x1, y1, x2, y2);
         }
         public void DrawLine(Point startPoint, Point endPoint, SolidColor color)
         {
@@ -75,7 +76,7 @@ namespace unvell.ReoGrid.EtoRenderer
         {
             if (color.A > 0)
             {
-                var p = this.resourceManager.GetPen(color, width, ToGDILineStyle(style));
+                var p = EtoRenderer.resourceManager.GetPen(color, width, ToGDILineStyle(style));
 
                 if (p != null)
                 {
@@ -87,7 +88,7 @@ namespace unvell.ReoGrid.EtoRenderer
         {
             if (color.A > 0)
             {
-                var p = this.resourceManager.GetPen(color, width, ToGDILineStyle(style));
+                var p = EtoRenderer.resourceManager.GetPen(color, width, ToGDILineStyle(style));
                 if (p != null)
                 {
                     this.g.DrawLine(p.Color, startPoint.ToEto(), endPoint.ToEto());
@@ -99,7 +100,7 @@ namespace unvell.ReoGrid.EtoRenderer
         public void DrawLines(Point[] points, int start, int length, SolidColor color, RGFloat width, LineStyles style)
         {
             if (color.A < 0) return;
-            var p = this.resourceManager.GetPen(color, width, ToGDILineStyle(style));
+            var p = EtoRenderer.resourceManager.GetPen(color, width, ToGDILineStyle(style));
             if (p == null) return;
 
             WFPointF[] pt = new WFPointF[length];
@@ -136,17 +137,17 @@ namespace unvell.ReoGrid.EtoRenderer
         #region Rectangle
         public void DrawRectangle(Rectangle rect, SolidColor color)
         {
-            if (color.A > 0) this.g.DrawRectangle(this.resourceManager.GetPen(color), rect.X, rect.Y, rect.Width, rect.Height);
+            if (color.A > 0) this.g.DrawRectangle(EtoRenderer.resourceManager.GetPen(color), rect.X, rect.Y, rect.Width, rect.Height);
         }
         public void DrawRectangle(RGFloat x, RGFloat y, RGFloat width, RGFloat height, SolidColor color)
         {
-            if (color.A > 0) this.g.DrawRectangle(this.resourceManager.GetPen(color), x, y, width, height);
+            if (color.A > 0) this.g.DrawRectangle(EtoRenderer.resourceManager.GetPen(color), x, y, width, height);
         }
         public void DrawRectangle(Pen p, Rectangle rect) { this.g.DrawRectangle(p, rect.X, rect.Y, rect.Width, rect.Height); }
         public void DrawRectangle(Pen p, RGFloat x, RGFloat y, RGFloat width, RGFloat height) { this.g.DrawRectangle(p, x, y, width, height); }
         public void DrawRectangle(Rectangle rect, SolidColor color, RGFloat width, LineStyles lineStyle)
         {
-            var p = this.resourceManager.GetPen(color, width, ToGDILineStyle(lineStyle));
+            var p = EtoRenderer.resourceManager.GetPen(color, width, ToGDILineStyle(lineStyle));
             this.g.DrawRectangle(p, rect.X, rect.Y, rect.Width, rect.Height);
         }
 
@@ -224,7 +225,7 @@ namespace unvell.ReoGrid.EtoRenderer
         {
             if (!color.IsTransparent)
             {
-                g.DrawEllipse(this.resourceManager.GetPen(color), x, y, width, height);
+                g.DrawEllipse(EtoRenderer.resourceManager.GetPen(color), x, y, width, height);
             }
         }
         public void DrawEllipse(Pen pen, Rectangle rect) { this.g.DrawEllipse(pen.Color, rect.ToEto()); }
@@ -287,7 +288,7 @@ namespace unvell.ReoGrid.EtoRenderer
         {
             if (!color.IsTransparent)
             {
-                var p = this.resourceManager.GetPen(color.ToSolidColor());
+                var p = EtoRenderer.resourceManager.GetPen(color.ToSolidColor());
                 if (p != null) g.DrawPath(p, graphicsPath);
             }
         }
@@ -351,7 +352,7 @@ namespace unvell.ReoGrid.EtoRenderer
                 return;
             }
 
-            var font = this.resourceManager.GetFont(fontName, size, WFFontStyle.None);
+            var font = EtoRenderer.resourceManager.GetFont(fontName, size, WFFontStyle.None);
 
             var tsize = g.MeasureString(font, text);
 
@@ -524,6 +525,11 @@ namespace unvell.ReoGrid.EtoRenderer
             this.cachedGraphics = g;
         }
 
+        public static EtoRenderer Create()
+        {
+            return new EtoRenderer(new Eto.Drawing.Graphics(new Eto.Drawing.Bitmap(10, 10, Eto.Drawing.PixelFormat.Format24bppRgb)));
+        }
+
         public void DrawRunningFocusRect(RGFloat x, RGFloat y, RGFloat w, RGFloat h, SolidColor color, int runnerOffset)
         {
             using (var p = new Pen(color.ToEto()))
@@ -662,11 +668,10 @@ namespace unvell.ReoGrid.EtoRenderer
                     textBounds = cell.TextBounds;
                     scaledFont = cell.RenderFont;
                     break;
-
                 case DrawMode.Preview:
                 case DrawMode.Print:
                     textBounds = cell.PrintTextBounds;
-                    scaledFont = this.resourceManager.GetFont(cell.RenderFont.FamilyName,
+                    scaledFont = EtoRenderer.resourceManager.GetFont(cell.RenderFont.FamilyName,
                         cell.InnerStyle.FontSize * scale, cell.RenderFont.Typeface.FontStyle);
                     break;
             }
@@ -758,7 +763,7 @@ namespace unvell.ReoGrid.EtoRenderer
                 || renderFont.FamilyName != style.FontName
                 || renderFont.Size != fontSize)
             {
-                cell.RenderFont = this.resourceManager.GetFont(style.FontName, fontSize,
+                cell.RenderFont = EtoRenderer.resourceManager.GetFont(style.FontName, fontSize,
                     (Eto.Drawing.FontStyle)fontStyle);
             }
         }
@@ -840,7 +845,7 @@ namespace unvell.ReoGrid.EtoRenderer
 
                 case DrawMode.Preview:
                 case DrawMode.Print:
-                    scaledFont = this.resourceManager.GetFont(cell.RenderFont.FamilyName,
+                    scaledFont = EtoRenderer.resourceManager.GetFont(cell.RenderFont.FamilyName,
                         style.FontSize * scale, cell.RenderFont.Typeface.FontStyle);
                     g = this.PlatformGraphics;
                     System.Diagnostics.Debug.Assert(g != null);
@@ -871,7 +876,7 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public void BeginDrawHeaderText(RGFloat scale)
         {
-            scaledHeaderFont = this.resourceManager.GetFont(HeaderFont.FamilyName, HeaderFont.Size * scale, FontStyle.None);
+            scaledHeaderFont = EtoRenderer.resourceManager.GetFont(HeaderFont.FamilyName, HeaderFont.Size * scale, FontStyle.None);
         }
 
         public void DrawHeaderText(string text, RGBrush brush, Rectangle rect)
@@ -901,7 +906,7 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public RGPen GetPen(SolidColor color)
         {
-            return this.resourceManager.GetPen(color);
+            return EtoRenderer.resourceManager.GetPen(color);
         }
 
         public void ReleasePen(RGPen pen)
@@ -915,12 +920,12 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public Eto.Drawing.Font GetFont(string name, RGFloat size, FontStyles style)
         {
-            return this.resourceManager.GetFont(name, size, PlatformUtility.ToWFFontStyle(style));
+            return EtoRenderer.resourceManager.GetFont(name, size, PlatformUtility.ToWFFontStyle(style));
         }
 
         public ResourcePoolManager ResourcePoolManager
         {
-            get { return this.resourceManager; }
+            get { return EtoRenderer.resourceManager; }
         }
 
         public void Dispose()

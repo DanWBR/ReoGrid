@@ -9,6 +9,16 @@ namespace unvell.ReoGrid.EtoRenderer
     public static class Extensions
     {
 
+        public static unvell.ReoGrid.Interaction.KeyCode ToKeyCode(this Eto.Forms.Keys keys)
+        {
+            try {
+                var kc = (unvell.ReoGrid.Interaction.KeyCode)Enum.Parse(Type.GetType("unvell.ReoGrid.Interaction.KeyCode"), keys.ToString());
+                return kc;
+            } catch {
+                return Interaction.KeyCode.None;
+            }
+        }
+
         public static unvell.ReoGrid.Interaction.MouseButtons ToMouseButtons(this Eto.Forms.MouseButtons buttons)
         {
             switch (buttons)

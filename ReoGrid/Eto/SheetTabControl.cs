@@ -58,9 +58,9 @@ namespace unvell.ReoGrid.EtoRenderer
             this.grid = grid;
 
             this.Font = SystemFonts.Default();
-            //this.SelectedBackColor = SystemColors.Window;
-            //this.SelectedTextColor = Color.DimGray;
-            //this.BorderColor = SystemColors.ControlDark;
+            //this.SelectedBackColor = SystemColors.WindowBackground;
+            //this.SelectedTextColor = Colors.DimGray;
+            //this.BorderColor = SystemColors.ControlText;
             this.NewButtonVisible = true;
 
             using (var ms = new System.IO.MemoryStream(unvell.ReoGrid.Properties.Resources.NewBuildDefinition_8952_png))
@@ -72,8 +72,6 @@ namespace unvell.ReoGrid.EtoRenderer
             {
                 this.newButtonDisableImage = new Bitmap(ms);
             }
-
-            //this.g = Eto.Drawing.Graphics(this.Handle);
         }
 
         //protected override void DestroyHandle()
@@ -230,24 +228,16 @@ namespace unvell.ReoGrid.EtoRenderer
 
                 if (i != selectedIndex)
                 {
-                    if (tab.BackgroundColor.A > 0)
+                    using (var bb = new SolidBrush(tab.BackgroundColor))
                     {
-                        using (var bb = new SolidBrush(tab.BackgroundColor))
-                        {
-                            g.FillRectangle(bb, rect);
-                        }
+                        g.FillRectangle(bb, rect);
                     }
 
-                    if (tab.ForegroundColor.A > 0)
+                    var tsize = g.MeasureString(Font, tab.Title);
+
+                    using (var fb = new SolidBrush(tab.ForegroundColor))
                     {
-                        using (var fb = new SolidBrush(tab.ForegroundColor))
-                        {
-                            g.DrawText(this.Font, fb, rect.X, rect.Y, tab.Title);
-                        }
-                    }
-                    else
-                    {
-                        g.DrawText(this.Font, defaultTextBrush, rect.X, rect.Y, tab.Title);
+                        g.DrawText(this.Font, fb, rect.X + rect.Width / 2 - tsize.Width / 2, rect.Y + rect.Height / 2 - tsize.Height / 2, tab.Title);
                     }
 
                     if (i > 0)
@@ -256,7 +246,7 @@ namespace unvell.ReoGrid.EtoRenderer
                     }
                 }
 
-                if (rect.Left > maxWidth) break;
+                if (rect.Left > this.Width) break;
             }
 
             #endregion
@@ -365,24 +355,24 @@ namespace unvell.ReoGrid.EtoRenderer
                         g.DrawLine(borderPen, rect.Right + 1, rect.Top + 2, rect.Right + 1, rect.Bottom - 1);
                     }
 
-                    if (tab.ForegroundColor.A > 0)
+                    var tsize = g.MeasureString(Font, tab.Title);
+
+                    using (var fb = new SolidBrush(tab.ForegroundColor))
                     {
-                        using (var fb = new SolidBrush(tab.ForegroundColor))
-                        {
-                            g.DrawText(Font, fb, rect.X, rect.Y, tab.Title);
-                        }
+                        g.DrawText(this.Font, fb, rect.X + rect.Width / 2 - tsize.Width / 2, rect.Y + rect.Height / 2 - tsize.Height / 2, tab.Title);
                     }
-                    else
-                    {
-                        g.DrawText(Font, selectedTextBrush, rect.X, rect.Y, tab.Title);
-                    }
+
                 }
             }
 
             #endregion // Selected item
 
             g.ResetClip();
-            g.RestoreTransform();
+            try
+            {
+                g.RestoreTransform();
+            }
+            catch { }
 
             if (this.NewButtonVisible)
             {
@@ -796,10 +786,10 @@ namespace unvell.ReoGrid.EtoRenderer
             this.tabs.Insert(index, new SheetTabItem
             {
                 Title = title,
-                Bounds = new Rectangle(x, 0, 0, this.Bounds.Height),
+                Bounds = new Rectangle(x, 0, 50, this.Bounds.Height),
             });
 
-            UpdateTab(index, title, Colors.Transparent, Colors.Transparent);
+            UpdateTab(index, title, Colors.Transparent, SystemColors.ControlText);
         }
 
         public void RemoveTab(int index)
@@ -836,7 +826,7 @@ namespace unvell.ReoGrid.EtoRenderer
             tab.ForegroundColor = textColor;
 
             int width = tab.Width;
-            
+
             if (g != null) width = (int)Math.Round(g.MeasureString(Font, title).Width + 11);
 
             int diff = (width - tab.Width);

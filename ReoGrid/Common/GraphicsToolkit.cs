@@ -171,6 +171,8 @@ namespace unvell.Common
 					{
 #if WINFORM || WPF
 						g.DrawLine(p, new Point(loc.X + x, y), new Point(loc.X + size - x - 1, y));
+#elif ETO
+						g.DrawLine(p, new Eto.Drawing.PointF(loc.X + x, y), new Eto.Drawing.PointF(loc.X + size - x - 1, y));
 #elif ANDROID
 						g.DrawLine(loc.X + x, y, loc.X + size - x - 1, y, p);
 #endif
@@ -185,6 +187,8 @@ namespace unvell.Common
 					{
 #if WINFORM || WPF
 						g.DrawLine(p, new Point(loc.X + x, y), new Point(loc.X + size - x, y));
+#elif ETO
+						g.DrawLine(p, new Eto.Drawing.PointF(loc.X + x, y), new Eto.Drawing.PointF(loc.X + size - x, y));
 #elif ANDROID
 						g.DrawLine(loc.X + x, y, loc.X + size - x, y, p);
 #endif
@@ -198,10 +202,12 @@ namespace unvell.Common
 					{
 #if WINFORM || WPF
 						g.DrawLine(p, new Point(x, loc.Y + y), new Point(x, loc.Y + size - y - 1));
+#elif ETO
+                        g.DrawLine(p, new Eto.Drawing.PointF(x, loc.Y + y), new Eto.Drawing.PointF(x, loc.Y + size - y - 1));
 #elif ANDROID
 						g.DrawLine(x, loc.Y + y, x, loc.Y + size - y - 1, p);
 #endif
-						x--;
+                        x--;
 					}
 					break;
 
@@ -211,10 +217,12 @@ namespace unvell.Common
 					{
 #if WINFORM || WPF
 						g.DrawLine(p, new Point(x, loc.Y + y), new Point(x, loc.Y + size - y - 1));
+#elif ETO
+                        g.DrawLine(p, new Eto.Drawing.PointF(x, loc.Y + y), new Eto.Drawing.PointF(x, loc.Y + size - y - 1));
 #elif ANDROID
 						g.DrawLine(x, loc.Y + y, x, loc.Y + size - y - 1, p);
 #endif
-						x++;
+                        x++;
 					}
 					break;
 

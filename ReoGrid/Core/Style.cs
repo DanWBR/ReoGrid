@@ -897,15 +897,23 @@ namespace unvell.ReoGrid
 
             oldSize = cell.TextBounds.Size;
 
-            #region Plain Text Measure Size
-            size = ig.MeasureCellText(cell, drawMode, scaleFactor);
+
+            if (ig.PlatformGraphics.IsDisposed)
+            {
+                var newig = EtoRenderer.EtoRenderer.Create();
+                size = newig.MeasureCellText(cell, drawMode, scaleFactor);
+                newig.Dispose();
+            }
+            else
+            {
+                size = ig.MeasureCellText(cell, drawMode, scaleFactor);
+            }
 
             if (size.Width <= 0 || size.Height <= 0) return;
 
             // TODO: need fix: get incorrect size if CJK fonts
             size.Width += 2;
             size.Height += 1;
-            #endregion // Plain Text Measure Size
 
             Rectangle cellBounds = cell.Bounds;
 

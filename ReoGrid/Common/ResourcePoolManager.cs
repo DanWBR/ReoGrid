@@ -206,7 +206,7 @@ namespace unvell.Common
         }
         public RGPen GetPen(SolidColor color, RGFloat weight, RGDashStyle style)
         {
-            if (color.A == 0) return null;
+            if (color.A == 0) return new RGPen(Eto.Drawing.SystemColors.ControlText, weight);
 
             RGPen pen = null;
             List<RGPen> penlist;
@@ -237,7 +237,7 @@ namespace unvell.Common
                     {
 #if WINFORM
 						pen = penlist.FirstOrDefault(p => p.Width == weight && p.DashStyle == style);
-#elif WPF
+#elif WPF || ETO
 						pen = penlist.FirstOrDefault(p => p.Thickness == weight && p.DashStyle == style);
 #endif // WPF
                     }
