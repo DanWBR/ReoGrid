@@ -575,7 +575,7 @@ namespace unvell.ReoGrid
 			stop.Stop();
 			if (stop.ElapsedMilliseconds > 25)
 			{
-				Debug.WriteLine("select range takes " + stop.ElapsedMilliseconds + " ms.");
+				Console.WriteLine("select range takes " + stop.ElapsedMilliseconds + " ms.");
 			}
 #endif
 

@@ -54,7 +54,7 @@ namespace unvell.ReoGrid
 
         private EtoControlAdapter adapter;
 
-        public Scrollable ScrollableParent;
+        //public Scrollable ScrollableParent;
 
         public PixelLayout PixelLayoutParent;
 
@@ -64,10 +64,10 @@ namespace unvell.ReoGrid
         /// <summary>
         /// Create component instance.
         /// </summary>
-        public ReoGridControl(Scrollable parent, PixelLayout pixparent)
+        public ReoGridControl(PixelLayout pixparent)
         {
 
-            ScrollableParent = parent;
+            //ScrollableParent = parent;
 
             PixelLayoutParent = pixparent;
 
@@ -81,26 +81,40 @@ namespace unvell.ReoGrid
                 Position = SheetTabControlPosition.Bottom
             };
 
-            this.ScrollableParent.MouseWheel += (sender, e) =>
-            {
-                this.OnMouseWheel(e);
-            };
+            //this.ScrollableParent.MouseWheel += (sender, e) =>
+            //{
+            //    this.OnMouseWheel(e);
+            //};
 
-            this.ScrollableParent.Scroll += (sender, e) =>
-            {
-                float dx, dy;
-                dx = e.ScrollPosition.X - prevscroll.X;
-                dy = e.ScrollPosition.Y - prevscroll.Y;
-                if (Math.Abs(dx) > 0 || Math.Abs(dy) > 0)
-                {
-                    var sheet = this.currentWorksheet;
-                    if (sheet != null && sheet.ViewportController != null)
-                    {
-                        ((NormalViewportController)sheet.ViewportController).ScrollViews(ScrollDirection.Both, dx, dy);
-                    }
-                    prevscroll = e.ScrollPosition;
-                }
-            };
+            //this.ScrollableParent.Scroll += (sender, e) =>
+            //{
+            //    if (!Application.Instance.Platform.IsMac)
+            //    {
+            //        float dx, dy;
+            //        dx = e.ScrollPosition.X - prevscroll.X;
+            //        dy = e.ScrollPosition.Y - prevscroll.Y;
+            //        if (Math.Abs(dx) > 0 || Math.Abs(dy) > 0)
+            //        {
+            //            var sheet = this.currentWorksheet;
+            //            if (sheet != null && sheet.ViewportController != null)
+            //            {
+            //                if (dx > 0 && dy == 0)
+            //                {
+            //                    ((NormalViewportController)sheet.ViewportController).ScrollViews(ScrollDirection.Horizontal, dx, dy);
+            //                }
+            //                else if (dx == 0 && dy > 0)
+            //                {
+            //                    ((NormalViewportController)sheet.ViewportController).ScrollViews(ScrollDirection.Vertical, dx, dy);
+            //                }
+            //                else
+            //                {
+            //                    ((NormalViewportController)sheet.ViewportController).ScrollViews(ScrollDirection.Both, dx, dy);
+            //                }
+            //            }
+            //            prevscroll = e.ScrollPosition;
+            //        }
+            //    }
+            //};
 
             this.sheetTab.MouseMove += (s, e) => this.Cursor = Cursors.Default;
 
@@ -275,12 +289,12 @@ namespace unvell.ReoGrid
             private readonly ReoGridControl control;
             internal InputTextBox editTextbox;
 
-            private Scrollable ScrollableParent;
+            //private Scrollable ScrollableParent;
 
             public EtoControlAdapter(ReoGridControl control)
             {
                 this.control = control;
-                this.ScrollableParent = control.ScrollableParent;
+                //this.ScrollableParent = control.ScrollableParent;
             }
 
             #region Scroll
@@ -290,8 +304,11 @@ namespace unvell.ReoGrid
 
             public int ScrollBarHorizontalValue
             {
-                get { return ScrollableParent.ScrollPosition.X; }
-                set { ScrollableParent.ScrollPosition = new Point(value, ScrollableParent.ScrollPosition.Y); }
+                get { return 0; }//ScrollableParent.ScrollPosition.X; }
+                set
+                {
+                    //ScrollableParent.ScrollPosition = new Point(value, ScrollableParent.ScrollPosition.Y);
+                }
             }
 
             public int ScrollBarHorizontalLargeChange { get; set; }
@@ -302,8 +319,11 @@ namespace unvell.ReoGrid
 
             public int ScrollBarVerticalValue
             {
-                get { return ScrollableParent.ScrollPosition.Y; }
-                set { ScrollableParent.ScrollPosition = new Point(ScrollableParent.ScrollPosition.X, value); }
+                get { return 0; } // ScrollableParent.ScrollPosition.Y; }
+                set
+                {
+                    //ScrollableParent.ScrollPosition = new Point(ScrollableParent.ScrollPosition.X, value);
+                }
             }
 
             public int ScrollBarVerticalLargeChange { get; set; }
@@ -397,9 +417,9 @@ namespace unvell.ReoGrid
                 editTextbox.InitialSize = rect.Size;
                 editTextbox.VAlign = cell.InnerStyle.VAlign;
                 editTextbox.Font = cell.RenderFont;
-                editTextbox.TextColor = cell.InnerStyle.TextColor.ToEto();
-                editTextbox.BackgroundColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
-                    ? cell.InnerStyle.BackColor.ToEto() : this.control.ControlStyle[ControlAppearanceColors.GridBackground].ToEto();
+                //editTextbox.TextColor = SystemColors.ControlText;
+                //editTextbox.BackgroundColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
+                //    ? cell.InnerStyle.BackColor.ToEto() : this.control.ControlStyle[ControlAppearanceColors.GridBackground].ToEto();
                 editTextbox.ResumeLayout();
                 editTextbox.Visible = true;
                 editTextbox.Focus();
@@ -512,25 +532,10 @@ namespace unvell.ReoGrid
 
             public Rectangle GetContainerBounds()
             {
-                if (Application.Instance.Platform.IsWpf)
-                {
-                    return this.control.ScrollableParent.Bounds.ToRectangle();
-                }
-                else
-                {
-                    int width = this.ScrollableParent.ClientSize.Width;
-                    int height = this.ScrollableParent.ClientSize.Height;
-
-                    int left = this.ScrollableParent.ScrollPosition.X;
-                    int top = this.ScrollableParent.ScrollPosition.Y;
-
-                    if (width < 0) width = 0;
-                    if (height < 0) height = 0;
-
-                    return new Rectangle(left, top, width, height);
-                }
-                //    int width = this.ScrollableParent.Size.Width;
-                //    int height = this.ScrollableParent.Size.Height;
+                //if (Application.Instance.Platform.IsWinForms)
+                //{
+                //    int width = this.ScrollableParent.ClientSize.Width;
+                //    int height = this.ScrollableParent.ClientSize.Height;
 
                 //    int left = this.ScrollableParent.ScrollPosition.X;
                 //    int top = this.ScrollableParent.ScrollPosition.Y;
@@ -539,6 +544,10 @@ namespace unvell.ReoGrid
                 //    if (height < 0) height = 0;
 
                 //    return new Rectangle(left, top, width, height);
+                //}
+                //else
+                //{
+                return this.control.Bounds.ToRectangle();
                 //}
             }
 
@@ -662,7 +671,21 @@ namespace unvell.ReoGrid
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            //this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)e.Delta.Height, e.Buttons.ToMouseButtons());
+#if DEBUG
+            Console.WriteLine(String.Format("OnMouseWheel: {0}", e.Delta));
+#endif
+            if (Application.Instance.Platform.IsWinForms)
+            {
+                this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)(e.Delta.Width * 20), (int)(e.Delta.Height * 20), e.Buttons.ToMouseButtons());
+            }
+            else if (Application.Instance.Platform.IsWpf)
+            {
+                this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)(e.Delta.Width * 40), (int)(e.Delta.Height * 40), e.Buttons.ToMouseButtons());
+            }
+            else if (Application.Instance.Platform.IsMac)
+            {
+                this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)(e.Delta.Width * 10), (int)(e.Delta.Height * 10), e.Buttons.ToMouseButtons());
+            }
         }
 
         protected bool doubleclicked = false;
@@ -952,6 +975,8 @@ namespace unvell.ReoGrid
 
         private EtoRenderer.EtoRenderer Renderer;
 
+        private int paintcalls = 0;
+
         /// <summary>
         /// Overrides repaint process method
         /// </summary>
@@ -959,19 +984,26 @@ namespace unvell.ReoGrid
         protected override void OnPaint(PaintEventArgs e)
         {
             var sheet = this.currentWorksheet;
-
+#if DEBUG
+            var starttime = DateTime.Now;
+            paintcalls += 1;
+            Console.WriteLine(String.Format("OnPaint() called {0} times", paintcalls));
+#endif
             if (Renderer == null)
             {
                 Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
+#if DEBUG
+                Console.WriteLine(String.Format("Created New Renderer"));
+#endif
             }
-            else {
+            else
+            {
                 Renderer.PlatformGraphics = e.Graphics;
             }
 
             if (sheet != null && sheet.ViewportController != null)
             {
                 CellDrawingContext dc = new CellDrawingContext(this.currentWorksheet, DrawMode.View, Renderer);
-
                 if (Application.Instance.Platform.IsWinForms)
                 {
                     sheet.UpdateViewportControllBounds();
@@ -981,6 +1013,10 @@ namespace unvell.ReoGrid
             }
 
             //Renderer = null;
+
+#if DEBUG
+            Console.WriteLine(String.Format("Total Rendering Time: {0} ms", (DateTime.Now - starttime).TotalMilliseconds));
+#endif
 
         }
 

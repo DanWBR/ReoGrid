@@ -14,7 +14,7 @@ namespace ReoGridTest
         static void Main(string[] args)
         {
 
-            var platform = new Eto.Wpf.Platform();
+            var platform = new Eto.Mac.Platform();
 
             new Application(platform).Run(new TestForm());
 

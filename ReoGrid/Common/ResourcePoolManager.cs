@@ -369,7 +369,7 @@ namespace unvell.Common
             long ms = sw.ElapsedMilliseconds;
             if (ms > 10)
             {
-                Debug.WriteLine("resource pool: font scan: " + sw.ElapsedMilliseconds + " ms.");
+                Console.WriteLine("resource pool: font scan: " + sw.ElapsedMilliseconds + " ms.");
             }
 #endif // DEBUG
             return font;

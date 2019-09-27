@@ -389,7 +389,7 @@ namespace unvell.ReoGrid
 			else
 			{
 				Logger.Log("rgdebug", string.Format("[{0},{1}] {2}, expect {3} but {4}", r, c, msg, expect, but));
-				Debug.WriteLine("rgdebug: " + string.Format("[{0},{1}] {2}, expect {3} but {4}", r, c, msg, expect, but));
+				Console.WriteLine("rgdebug: " + string.Format("[{0},{1}] {2}, expect {3} but {4}", r, c, msg, expect, but));
 			}
 		}
 	}

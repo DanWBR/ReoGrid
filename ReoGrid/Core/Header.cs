@@ -415,7 +415,7 @@ namespace unvell.ReoGrid
 
 			if (watch.ElapsedMilliseconds > 5)
 			{
-				Debug.WriteLine(string.Format("columns width change takes {0} ms.", watch.ElapsedMilliseconds));
+				Console.WriteLine(string.Format("columns width change takes {0} ms.", watch.ElapsedMilliseconds));
 			}
 #endif
 		}
@@ -621,7 +621,7 @@ namespace unvell.ReoGrid
 
 			if (ms > 10)
 			{
-				Debug.WriteLine(string.Format("row height changed: {0} ms.", ms));
+				Console.WriteLine(string.Format("row height changed: {0} ms.", ms));
 			}
 #endif // DEBUG
 		}
@@ -1396,7 +1396,7 @@ namespace unvell.ReoGrid
 
 #if DEBUG
 			watch.Stop();
-			Debug.WriteLine("insert rows: " + watch.ElapsedMilliseconds + " ms.");
+			Console.WriteLine("insert rows: " + watch.ElapsedMilliseconds + " ms.");
 #endif
 		}
 
@@ -1685,7 +1685,7 @@ namespace unvell.ReoGrid
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 15)
 			{
-				Debug.WriteLine("insert cols: " + ms + " ms.");
+				Console.WriteLine("insert cols: " + ms + " ms.");
 			}
 #endif
 		}
@@ -2180,7 +2180,7 @@ namespace unvell.ReoGrid
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 20)
 			{
-				Debug.WriteLine("delete rows takes " + ms + " ms.");
+				Console.WriteLine("delete rows takes " + ms + " ms.");
 			}
 #endif
 
@@ -2676,7 +2676,7 @@ namespace unvell.ReoGrid
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 20)
 			{
-				Debug.WriteLine("deleting columns takes " + ms + " ms.");
+				Console.WriteLine("deleting columns takes " + ms + " ms.");
 			}
 #endif
 

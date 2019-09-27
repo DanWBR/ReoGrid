@@ -324,14 +324,19 @@ namespace unvell.ReoGrid.Events
 		public int Clicks { get; private set; }
 
 		/// <summary>
-		/// Delta value (only used in mouse wheel event)
+		/// DeltaX value (only used in mouse wheel event)
 		/// </summary>
-		public int Delta { get; set; }
+		public int DeltaX { get; set; }
 
-		/// <summary>
-		/// Get or set whether to capture mouse from current event
-		/// </summary>
-		public bool Capture { get; set; }
+        /// <summary>
+        /// DeltaY value (only used in mouse wheel event)
+        /// </summary>
+        public int DeltaY { get; set; }
+
+        /// <summary>
+        /// Get or set whether to capture mouse from current event
+        /// </summary>
+        public bool Capture { get; set; }
 
 		/// <summary>
 		/// Get or set the cursor style during mouse over

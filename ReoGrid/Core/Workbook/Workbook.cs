@@ -96,7 +96,7 @@ namespace unvell.ReoGrid
 
 #if DEBUG
 			Stopwatch sw = Stopwatch.StartNew();
-			Debug.WriteLine("start creating workbook...");
+			Console.WriteLine("start creating workbook...");
 #endif // DEBUG
 
 			if (adapter != null)
@@ -112,7 +112,7 @@ namespace unvell.ReoGrid
 #if DEBUG
 			sw.Stop();
 			long ms = sw.ElapsedMilliseconds;
-			Debug.WriteLine("creating workbook done: " + ms + " ms.");
+			Console.WriteLine("creating workbook done: " + ms + " ms.");
 #endif
 		}
 

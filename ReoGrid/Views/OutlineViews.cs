@@ -459,7 +459,7 @@ namespace unvell.ReoGrid.Views
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 10)
 			{
-				Debug.WriteLine("draw row outlines takes " + ms + " ms.");
+				Console.WriteLine("draw row outlines takes " + ms + " ms.");
 			}
 #endif
 
@@ -610,7 +610,7 @@ namespace unvell.ReoGrid.Views
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 10)
 			{
-				Debug.WriteLine("draw column outlines takes " + ms + " ms.");
+				Console.WriteLine("draw column outlines takes " + ms + " ms.");
 			}
 #endif
 		}

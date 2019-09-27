@@ -716,7 +716,7 @@ namespace unvell.ReoGrid
 
 			if (ms > 10)
 			{
-				Debug.WriteLine("Auto split page takes " + ms + " ms.");
+				Console.WriteLine("Auto split page takes " + ms + " ms.");
 			}
 #endif
 		}
@@ -920,7 +920,7 @@ namespace unvell.ReoGrid
 #if DEBUG
 			this._Debug_Validate_PrintPageBreaks();
 
-			Debug.WriteLine("Print scale set to " + this.printSettings.PageScaling + "f.");
+			Console.WriteLine("Print scale set to " + this.printSettings.PageScaling + "f.");
 #endif
 		}
 	

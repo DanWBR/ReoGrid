@@ -1012,13 +1012,13 @@ namespace unvell.ReoGrid.IO.OpenXML
             sw.Stop();
             Logger.Log("excel format", "end iterating. cells: {0}, {1} ms.", cellCount, sw.ElapsedMilliseconds);
 
-            Debug.WriteLine(string.Format("Row  Height  : {0} ms.", swRowHeight.ElapsedMilliseconds));
-            Debug.WriteLine(string.Format("Row  Style   : {0} ms.", swRowStyle.ElapsedMilliseconds));
-            Debug.WriteLine(string.Format("Cell Style   : {0} ms.", swStyle.ElapsedMilliseconds));
-            Debug.WriteLine(string.Format("Cell Border  : {0} ms.", swBorder.ElapsedMilliseconds));
-            Debug.WriteLine(string.Format("Cell Value   : {0} ms.", swValue.ElapsedMilliseconds));
-            Debug.WriteLine(string.Format("Cell Formula : {0} ms.", swFormula.ElapsedMilliseconds));
-            Debug.WriteLine(string.Format("Drawing      : {0} ms.", swDrawing.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Row  Height  : {0} ms.", swRowHeight.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Row  Style   : {0} ms.", swRowStyle.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Cell Style   : {0} ms.", swStyle.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Cell Border  : {0} ms.", swBorder.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Cell Value   : {0} ms.", swValue.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Cell Formula : {0} ms.", swFormula.ElapsedMilliseconds));
+            Console.WriteLine(string.Format("Drawing      : {0} ms.", swDrawing.ElapsedMilliseconds));
 
 #if WINFORM
 			rgSheet._Debug_Validate_All();

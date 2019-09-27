@@ -384,7 +384,7 @@ namespace unvell.ReoGrid.Views
 
 			if (ms > 10)
 			{
-				Debug.WriteLine("update new visible region text takes " + ms + " ms.");
+				Console.WriteLine("update new visible region text takes " + ms + " ms.");
 			}
 #endif // DEBUG
 		}
@@ -552,14 +552,14 @@ namespace unvell.ReoGrid.Views
 			// we need check for whether the algorithm above has any mistake.
 			if (region.Rows > 200 || region.Cols > 200)
 			{
-				Debug.WriteLine(string.Format("unusual visible region detected: [row: {0} - {1}, col: {2} - {3}]: {4} ms.",
+				Console.WriteLine(string.Format("unusual visible region detected: [row: {0} - {1}, col: {2} - {3}]: {4} ms.",
 					region.startRow, region.endRow, region.startCol, region.endCol,
 					watch.ElapsedMilliseconds));
 			}
 
 			if (watch.ElapsedMilliseconds > 15)
 			{
-				Debug.WriteLine("update visible region takes " + watch.ElapsedMilliseconds + " ms.");
+				Console.WriteLine("update visible region takes " + watch.ElapsedMilliseconds + " ms.");
 			}
 #endif
 
@@ -790,12 +790,16 @@ namespace unvell.ReoGrid.Views
 #if WINFORM || ANDROID || ETO
 			this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange = this.scrollHorLarge = (int)Math.Round(this.view.Width);
 			this.worksheet.controlAdapter.ScrollBarVerticalLargeChange = this.scrollVerLarge = (int)Math.Round(this.view.Height);
+#if DEBUG
+            Console.WriteLine(String.Format("Set ScrollBarHorizontalLargeChange to {0}", this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange));
+            Console.WriteLine(String.Format("Set ScrollBarVerticalLargeChange to {0}", this.worksheet.controlAdapter.ScrollBarVerticalLargeChange));
+#endif
 #elif WPF
 			this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange = this.scrollHorLarge = this.view.Width;
 			this.worksheet.controlAdapter.ScrollBarVerticalLargeChange = this.scrollVerLarge = this.view.Height;
 #endif // WPF
 
-			this.UpdateVisibleRegion();
+            this.UpdateVisibleRegion();
 			this.UpdateScrollBarSize();
 
 			// synchronize scale factor
@@ -816,7 +820,7 @@ namespace unvell.ReoGrid.Views
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 0)
 			{
-				Debug.WriteLine("update viewport bounds done: " + ms + " ms.");
+				Console.WriteLine("update viewport bounds done: " + ms + " ms.");
 			}
 #endif
 		}

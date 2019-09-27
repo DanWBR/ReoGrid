@@ -243,7 +243,7 @@ namespace unvell.ReoGrid.Print
 			ig.PlatformGraphics = pg;
 
 #if DEBUG
-			Debug.WriteLine(string.Format("print page {0,3},{1,3} - {2,3},{3,3}", row, col, endRow, endCol));
+			Console.WriteLine(string.Format("print page {0,3},{1,3} - {2,3},{3,3}", row, col, endRow, endCol));
 #endif // DEBUG
 
 			GridRegion gr = new GridRegion(row, col, endRow, endCol);

@@ -37,6 +37,7 @@ using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Rendering;
 using unvell.ReoGrid.Interaction;
 using unvell.ReoGrid.Main;
+using System;
 
 namespace unvell.ReoGrid.Views
 {
@@ -459,7 +460,7 @@ namespace unvell.ReoGrid.Views
 			sw.Stop();
 			if (sw.ElapsedMilliseconds > 20)
 			{
-				Debug.WriteLine("draw viewport takes " + sw.ElapsedMilliseconds + " ms. visible region: rows: " + visibleRegion.Rows + ", cols: " + visibleRegion.Cols);
+				Console.WriteLine("draw viewport takes " + sw.ElapsedMilliseconds + " ms. visible region: rows: " + visibleRegion.Rows + ", cols: " + visibleRegion.Cols);
 			}
 #endif // Debug
 

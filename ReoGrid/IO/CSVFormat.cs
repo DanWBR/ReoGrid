@@ -126,7 +126,7 @@ namespace unvell.ReoGrid.IO
 
 #if DEBUG
 			sw.Stop();
-			System.Diagnostics.Debug.WriteLine("load csv file: " + sw.ElapsedMilliseconds + " ms, rows: " + row);
+			Console.WriteLine("load csv file: " + sw.ElapsedMilliseconds + " ms, rows: " + row);
 #endif
 		}
 	}

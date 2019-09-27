@@ -530,6 +530,11 @@ namespace unvell.ReoGrid.EtoRenderer
             return new EtoRenderer(new Eto.Drawing.Graphics(new Eto.Drawing.Bitmap(10, 10, Eto.Drawing.PixelFormat.Format24bppRgb)));
         }
 
+        public static Eto.Drawing.Graphics CreateGraphics()
+        {
+            return new Eto.Drawing.Graphics(new Eto.Drawing.Bitmap(10, 10, Eto.Drawing.PixelFormat.Format24bppRgb));
+        }
+
         public void DrawRunningFocusRect(RGFloat x, RGFloat y, RGFloat w, RGFloat h, SolidColor color, int runnerOffset)
         {
             using (var p = new Pen(color.ToEto()))
@@ -852,7 +857,16 @@ namespace unvell.ReoGrid.EtoRenderer
                     break;
             }
 
-            SizeF size = g.MeasureString(scaledFont, cell.DisplayText);
+            SizeF size;
+            if (g.IsDisposed)
+            {
+                using (var newg = CreateGraphics())
+                size = newg.MeasureString(scaledFont, cell.DisplayText);
+            }
+            else
+            {
+                size = g.MeasureString(scaledFont, cell.DisplayText);
+            }
             size.Height++;
 
             if (style.RotationAngle != 0)
@@ -930,23 +944,16 @@ namespace unvell.ReoGrid.EtoRenderer
 
         public void Dispose()
         {
+#if DEBUG
+            var starttime = DateTime.Now;
+#endif
+
+
             if (this.cappedLinePen != null)
             {
                 this.cappedLinePen.Dispose();
                 this.cappedLinePen = null;
             }
-
-            //if (this.cappedStartArrowCap != null)
-            //{
-            //    this.cappedStartArrowCap.Dispose();
-            //    this.cappedStartArrowCap = null;
-            //}
-
-            //if (this.cappedEndArrowCap != null)
-            //{
-            //    this.cappedEndArrowCap.Dispose();
-            //    this.cappedEndArrowCap = null;
-            //}
 
             if (this.linePen != null)
             {
@@ -959,17 +966,10 @@ namespace unvell.ReoGrid.EtoRenderer
                 this.cachedGraphics = null;
             }
 
-            //if (this.sf != null)
-            //{
-            //    this.sf.Dispose();
-            //    this.sf = null;
-            //}
+#if DEBUG
+            Console.WriteLine(String.Format("Renderer Dispose Time: {0} ms", (DateTime.Now - starttime).TotalMilliseconds));
+#endif
 
-            //if (this.headerSf != null)
-            //{
-            //    this.headerSf.Dispose();
-            //    this.headerSf = null;
-            //}
         }
     }
     #endregion // GDIRenderer

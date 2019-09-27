@@ -1,5 +1,6 @@
 ﻿using Eto.Forms;
 using Eto.Drawing;
+using System;
 
 namespace ReoGridTest
 {
@@ -14,35 +15,37 @@ namespace ReoGridTest
         void Init()
         {
 
-            var scrollable = new Scrollable();
-
             var pixlayout = new PixelLayout();
 
-            var container = new TableLayout();
+            var container = new DynamicLayout();
 
-            var rgcontrol = new unvell.ReoGrid.ReoGridControl(scrollable, pixlayout);
+            container.BeginVertical();
+            
+            pixlayout.SizeChanged += (sender, e) => {
+                Console.WriteLine("PixelLayout Size Changed");
+                container.Size = new Size(pixlayout.Width, pixlayout.Height);
+            };
+
+            unvell.ReoGrid.ReoGridControl rgcontrol;
+
+            rgcontrol = new unvell.ReoGrid.ReoGridControl(pixlayout);
+            container.Add(rgcontrol, true, true);
+
+            rgcontrol.NewWorksheet();
+            rgcontrol.NewWorksheet();
+            rgcontrol.NewWorksheet();
+            rgcontrol.NewWorksheet();
+            rgcontrol.NewWorksheet();
 
             pixlayout.Add(container, 0, 0);
             pixlayout.Add(rgcontrol.editTextbox, 0, 0);
 
-            pixlayout.SizeChanged += (sender, e) => {
-                container.Size = new Size(pixlayout.Width, pixlayout.Height);
-            };
+            container.Add(rgcontrol.bottomPanel);
 
-            rgcontrol.NewWorksheet();
-            rgcontrol.NewWorksheet();
-            rgcontrol.NewWorksheet();
-            rgcontrol.NewWorksheet();
-            rgcontrol.NewWorksheet();
-
-            container.Rows.Add(new TableRow { ScaleHeight = true, Cells = { scrollable } });
-
-            container.Rows.Add(new TableRow { ScaleHeight = false, Cells = { rgcontrol.bottomPanel } });
+            container.EndVertical();
 
             rgcontrol.Width = 5000;
-            rgcontrol.Height = 3000;
-
-            scrollable.Content = rgcontrol;
+            rgcontrol.Height = 2000;
 
             Title = "ReoGrid Eto Demo";
 

@@ -153,7 +153,7 @@ namespace unvell.ReoGrid
 			long ems = sw.ElapsedMilliseconds;
 			if (ems > 10)
 			{
-				Debug.WriteLine("init srm takes " + ems + " ms.");
+				Console.WriteLine("init srm takes " + ems + " ms.");
 			}
 #endif
 		}

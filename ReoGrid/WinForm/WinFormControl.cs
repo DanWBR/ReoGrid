@@ -1399,7 +1399,7 @@ namespace unvell.ReoGrid
 				long ms = watch.ElapsedMilliseconds;
 				if (ms > 30)
 				{
-					Debug.WriteLine(string.Format("draw workbook: {0} ms. clip: {1}", watch.ElapsedMilliseconds, e.ClipRectangle));
+					Console.WriteLine(string.Format("draw workbook: {0} ms. clip: {1}", watch.ElapsedMilliseconds, e.ClipRectangle));
 				}
 #endif // DEBUG
 			}

@@ -831,7 +831,7 @@ namespace unvell.ReoGrid
 
 #if DEBUG
 			stop.Stop();
-			Debug.WriteLine("rgf loaded: " + stop.ElapsedMilliseconds + " ms.");
+			Console.WriteLine("rgf loaded: " + stop.ElapsedMilliseconds + " ms.");
 #endif // DEBUG
 
 		}

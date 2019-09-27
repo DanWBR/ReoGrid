@@ -102,7 +102,7 @@ namespace unvell.ReoGrid
 			long ms = sw.ElapsedMilliseconds;
 			if (ms > 15)
 			{
-				Debug.WriteLine("updating viewport controller takes " + sw.ElapsedMilliseconds + " ms.");
+				Console.WriteLine("updating viewport controller takes " + sw.ElapsedMilliseconds + " ms.");
 			}
 #endif // DEBUG
 		}

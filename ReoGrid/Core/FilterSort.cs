@@ -328,7 +328,7 @@ namespace unvell.ReoGrid
 
 				if (sw.ElapsedMilliseconds > 10)
 				{
-					Debug.WriteLine(string.Format("sort column by {0} on [{1}-{2}]: {3} ms", columnIndex,
+					Console.WriteLine(string.Format("sort column by {0} on [{1}-{2}]: {3} ms", columnIndex,
 						range.Col, range.EndCol, sw.ElapsedMilliseconds));
 				}
 #endif // DEBUG

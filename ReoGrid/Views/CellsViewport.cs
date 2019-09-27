@@ -342,7 +342,7 @@ namespace unvell.ReoGrid.Views
 			sw.Stop();
 			if (sw.ElapsedMilliseconds > 1000)
 			{
-				Debug.WriteLine($"draw border ({sw.ElapsedMilliseconds} ms.)");
+				Console.WriteLine($"draw border ({sw.ElapsedMilliseconds} ms.)");
 			}
 #endif // DEBUG
 
@@ -2037,7 +2037,7 @@ namespace unvell.ReoGrid.Views
 				long ms = sw.ElapsedMilliseconds;
 				if (ms > 1)
 				{
-					Debug.WriteLine("finding row index takes " + ms + " ms.");
+					Console.WriteLine("finding row index takes " + ms + " ms.");
 				}
 			}
 #endif
