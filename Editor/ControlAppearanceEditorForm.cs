@@ -17,11 +17,12 @@
  ****************************************************************************/
 
 using System;
-using System.Drawing;
+using Eto.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+using Eto.Forms;
 using unvell.ReoGrid.Editor.LangRes;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid;
 
 namespace unvell.ReoGrid.Editor
 {
@@ -32,11 +33,11 @@ namespace unvell.ReoGrid.Editor
 			InitializeComponent();
 
 			lstColors.Items.AddRange(Enum.GetNames(typeof(
-				ControlAppearanceColors)).ToList().ConvertAll<object>(s => s).ToArray());
+				ControlAppearanceColors)).ToList().ConvertAll<ListItem>(s => new ListItem { Text = s }).ToArray());
 
 			lstColors.SelectedIndex = 0;
 
-			colorPickerControl.ColorSelected += colorPickerControl_ColorPicked;
+			colorPickerControl. += colorPickerControl_ColorPicked;
 			lstColors.SelectedIndexChanged += lstColors_SelectedIndexChanged;
 			numSelectionWidth.ValueChanged += NumSelectionWidth_ValueChanged;
 

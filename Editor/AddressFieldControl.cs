@@ -17,23 +17,19 @@
  ****************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using Eto.Drawing;
+using Eto.Forms;
 
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid;
 using unvell.Common;
-using unvell.ReoGrid.Events;
 
 namespace unvell.ReoGrid.Editor
 {
-	public partial class AddressFieldControl : Control
+	public partial class AddressFieldControl : TableLayout
 	{
 		private TextBox addressBox;
-		private DropdownListBoxWindow dropdown;
+		private DropDown dropdown;
 		private PushdownArrowControl arrowControl;
 
 		public TextBox AddressBox
@@ -57,7 +53,7 @@ namespace unvell.ReoGrid.Editor
 				{
 					this.workbook.CurrentWorksheetChanged -= workbook_CurrentWorksheetChanged;
 
-					workbook.Disposed -= grid_Disposed;
+					//workbook.Disposed -= grid_Disposed;
 				}
 
 				this.worksheet = null;
@@ -67,7 +63,7 @@ namespace unvell.ReoGrid.Editor
 				{
 					this.workbook.CurrentWorksheetChanged += workbook_CurrentWorksheetChanged;
 			
-					workbook.Disposed += grid_Disposed;
+					//workbook.Disposed += grid_Disposed;
 
 					RefreshCurrentAddress();
 				}
@@ -95,24 +91,20 @@ namespace unvell.ReoGrid.Editor
 
 		public AddressFieldControl()
 		{
-			InitializeComponent();
 
 			SuspendLayout();
 
-			BackColor = SystemColors.Window;
+			BackgroundColor = SystemColors.WindowBackground;
 
 			addressBox = new TextBox()
 			{
-				BorderStyle = System.Windows.Forms.BorderStyle.None,
-				//Font = new Font(Font.FontFamily, 9),
-				TextAlign = HorizontalAlignment.Center,
-				Location = new Point(0, 0),
+				TextAlignment = TextAlignment.Center,
 			};
 
-			arrowControl = new PushdownArrowControl() { Dock = DockStyle.Right, Width = 20 };
+			arrowControl = new PushdownArrowControl() { Width = 20 };
 
-			Controls.Add(addressBox);
-			Controls.Add(arrowControl);
+			this.Rows.Add(new TableRow { Cells = { addressBox, arrowControl } });
+            this.Rows[0].Cells[0].ScaleWidth = true;
 
 			addressBox.GotFocus += addressBox_GotFocus;
 			addressBox.LostFocus += addressBox_LostFocus;
@@ -121,14 +113,6 @@ namespace unvell.ReoGrid.Editor
 			arrowControl.MouseDown += arrowControl_MouseDown;
 
 			ResumeLayout();
-		}
-
-		protected override void OnResize(EventArgs e)
-		{
-			base.OnResize(e);
-
-			addressBox.Width = ClientRectangle.Width - arrowControl.Width - ClientRectangle.Left;
-			addressBox.Top = ClientRectangle.Top + (ClientRectangle.Height - addressBox.Height) / 2;
 		}
 
 		void grid_SelectionRangeChanging(object sender, RangeEventArgs e)
@@ -187,34 +171,13 @@ namespace unvell.ReoGrid.Editor
 		void addressBox_GotFocus(object sender, EventArgs e)
 		{
 			focused = true;
-			addressBox.TextAlign = HorizontalAlignment.Left;
-			addressBox.SelectionStart = 0;
-			addressBox.SelectionLength = addressBox.Text.Length;
+			addressBox.TextAlignment = TextAlignment.Left;
+			addressBox.Selection = new Range<int>(0, addressBox.Text.Length);
 			focused = false;
 		}
 
 		void addressBox_LostFocus(object sender, EventArgs e)
 		{
-			if (dropdown != null)
-			{
-				// find next focus control 
-				// (is there any better method to do this than WindowFromPoint?)
-				try
-				{
-					IntPtr hwnd = unvell.Common.Win32Lib.Win32.WindowFromPoint(Cursor.Position);
-
-					if (hwnd != IntPtr.Zero)
-					{
-						Control ctrl = Control.FromHandle(hwnd);
-						if (ctrl == dropdown.ListBox || ctrl == dropdown)
-						{
-							return;
-						}
-					}
-				}
-				catch { }
-			}
-
 			if (!focused)
 			{
 				EndEditAddress();
@@ -223,7 +186,7 @@ namespace unvell.ReoGrid.Editor
 
 		void txtAddress_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter)
+			if (e.Key == Keys.Enter)
 			{
 				string id = addressBox.Text;
 
@@ -262,11 +225,11 @@ namespace unvell.ReoGrid.Editor
 					}
 				}
 			}
-			else if (e.KeyCode == Keys.Down)
+			else if (e.Key == Keys.Down)
 			{
 				PushDown();
 			}
-			else if (e.KeyCode == Keys.Escape)
+			else if (e.Key == Keys.Escape)
 			{
 				workbook.Focus();
 			}
@@ -296,8 +259,7 @@ namespace unvell.ReoGrid.Editor
 		{
 			if (!focused)
 			{
-				addressBox.TextAlign = HorizontalAlignment.Center;
-				PullUp();
+				addressBox.TextAlignment = TextAlignment.Center;
 			}
 		}
 
@@ -305,28 +267,25 @@ namespace unvell.ReoGrid.Editor
 		{
 			if (dropdown == null)
 			{
-				dropdown = new DropdownListBoxWindow(null);
-				dropdown.ItemSelected += ListBox_ItemSelected;
+				dropdown = new DropDown();
+				dropdown.SelectedIndexChanged += ListBox_ItemSelected;
 			}
 
-			dropdown.ListBox.Items.Clear();
+			dropdown.Items.Clear();
 			foreach (var name in this.worksheet.GetAllNamedRanges())
 			{
-				dropdown.ListBox.Items.Add(name);
+				dropdown.Items.Add(name);
 			}
 
 			dropdown.Width = this.Width;
 			dropdown.Height = 200;
-			dropdown.AutoClose = false;
-			dropdown.Show(this, 0, Height - 1);
-			dropdown.Capture = true;
 
 			StartEditAddress();
 		}
 
 		void ListBox_ItemSelected(object sender, EventArgs e)
 		{
-			GotoNamedRange(Convert.ToString(dropdown.ListBox.SelectedItem));
+			GotoNamedRange(Convert.ToString(dropdown.SelectedValue.ToString()));
 		}
 
 		public void GotoNamedRange(string name)
@@ -348,14 +307,13 @@ namespace unvell.ReoGrid.Editor
 		{
 			if (dropdown != null)
 			{
-				dropdown.AutoClose = true;
 				dropdown.Visible = false;
 			}
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Escape)
+			if (e.Key == Keys.Escape)
 			{
 				EndEditAddress();
 			}
@@ -364,58 +322,12 @@ namespace unvell.ReoGrid.Editor
 		}
 	}
 
-	internal class PushdownArrowControl : Control
+	internal class PushdownArrowControl : Drawable
 	{
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			GraphicsToolkit.FillTriangle(e.Graphics, 7, new Point(ClientRectangle.Right - 10,
-				ClientRectangle.Top + ClientRectangle.Height / 2 - 1));
+			GraphicsToolkit.FillTriangle(e.Graphics, 7, new Point(Bounds.Right - 10, Bounds.Top + Bounds.Height / 2 - 1));
 		}
-	}
-
-	internal class DropdownListBoxWindow : ToolStripDropDown
-	{
-		private ListBox listbox;
-		private ToolStripControlHost controlHost;
-
-		internal DropdownListBoxWindow(ToolStripItem ownerItem)
-			: base()
-		{
-			listbox = new ListBox()
-			{
-				Dock = DockStyle.Fill,
-				BorderStyle = System.Windows.Forms.BorderStyle.None,
-			};
-			
-			BackColor = listbox.BackColor;
-			AutoSize = false;
-			TabStop = true;
-			Items.Add(controlHost = new ToolStripControlHost(listbox));
-			controlHost.Margin = controlHost.Padding = new Padding(0);
-			controlHost.AutoSize = false;
-			AutoClose = false;
-
-			base.OwnerItem = ownerItem;
-
-			listbox.MouseMove += (sender, e) =>
-			{
-				int index = listbox.IndexFromPoint(e.Location);
-				if (index != -1) listbox.SelectedIndex = index;
-			};
-
-			listbox.MouseDown += (s, e) => this.ItemSelected?.Invoke(this, null);
-		}
-
-		public event EventHandler ItemSelected;
-
-		internal ListBox ListBox { get { return listbox; } }
-
-		protected override void OnResize(EventArgs e)
-		{
-			base.OnResize(e);
-			if (controlHost != null) controlHost.Size = new Size(ClientRectangle.Width - 2, ClientRectangle.Height - 2);
-		}
-
 	}
 
 }

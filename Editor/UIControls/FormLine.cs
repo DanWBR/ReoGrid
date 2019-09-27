@@ -19,26 +19,25 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+using Eto.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+using Eto.Forms;
 
 namespace unvell.UIControls
 {
 	/// <summary>
 	/// Line with text label control
 	/// </summary>
-	public class FormLine : Control
+	public class FormLine : Label
 	{
 		/// <summary>
 		/// Create control
 		/// </summary>
 		public FormLine()
 		{
-			SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-			BackColor = Color.Transparent;
+			BackgroundColor = Colors.Transparent;
 		}
 
 		private bool show3DLine = true;
@@ -92,50 +91,5 @@ namespace unvell.UIControls
 			set { textPadding = value; Invalidate(); }
 		}
 
-		/// <summary>
-		/// Repaint control.
-		/// </summary>
-		/// <param name="e">Paint event argument.</param>
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			int x = ClientRectangle.Left;
-			int x2 = ClientRectangle.Right - 1;
-
-			int c = ClientRectangle.Height / 2;
-
-			Graphics g = e.Graphics;
-
-			Rectangle textRect = Rectangle.Empty;
-
-			if (!string.IsNullOrEmpty(Text))
-			{
-				using (StringFormat sf = new StringFormat(StringFormat.GenericTypographic))
-				{
-					sf.Alignment = StringAlignment.Center;
-					sf.LineAlignment = StringAlignment.Center;
-
-					SizeF textSize = g.MeasureString(Text, Font, ClientRectangle.Width, sf);
-					textRect = new Rectangle(x, 0, (int)textSize.Width + TextPadding, ClientRectangle.Height - 1);
-
-					using (Brush b = new SolidBrush(ForeColor))
-					{
-						g.DrawString(Text, Font, b, textRect, sf);
-					}
-				}
-			}
-
-			using (Pen p = new Pen(LineColor))
-			{
-				g.DrawLine(p, x + textRect.Width, c, x2, c);
-			}
-
-			if (show3DLine)
-			{
-				using (Pen p = new Pen(ControlPaint.LightLight(LineColor)))
-				{
-					g.DrawLine(p, x + textRect.Width, c + 1, x2, c + 1);
-				}
-			}
-		}
 	}
 }

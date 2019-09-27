@@ -78,6 +78,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -90,12 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressFieldControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="AddressFieldControl.Designer.cs">
-      <DependentUpon>AddressFieldControl.cs</DependentUpon>
-    </Compile>
+    <Compile Include="AddressFieldControl.cs" />
     <Compile Include="Common\GraphicsToolkit.cs" />
     <Compile Include="DefineNamedRangeDialog.cs">
       <SubType>Form</SubType>
@@ -204,63 +202,13 @@
     <Compile Include="RunFunctionForm.Designer.cs">
       <DependentUpon>RunFunctionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlAppearanceEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ControlAppearanceEditorForm.cs" />
     <Compile Include="ControlAppearanceEditorForm.Designer.cs">
       <DependentUpon>ControlAppearanceEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIControls\ColorControls\ColorComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\ColorControls\ColorPickerControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\ColorControls\ColorPickerPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\ColorControls\ColorPickerToolStripItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\ColorControls\ColorPickerWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\ColoredListBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\FillPatternComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\FlatTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\FontControls\FontDropDownControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\FontControls\FontListBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\FontControls\FontSettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UIControls\FontControls\FontSettingsControl.designer.cs">
-      <DependentUpon>FontSettingsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UIControls\FontControls\FontToolStripDropDown.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\FormLine.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\LineControls\LineStyleControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\LineControls\LineWeightControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UIControls\TextRotateControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="UIControls\FormLine.cs" />
+    <Compile Include="UIControls\LineControls\LineStyleControl.cs" />
+    <Compile Include="UIControls\LineControls\LineWeightControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DefineNamedRangeDialog.resx">
@@ -320,13 +268,6 @@
     <EmbeddedResource Include="RunFunctionForm.resx">
       <DependentUpon>RunFunctionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlAppearanceEditorForm.resx">
-      <DependentUpon>ControlAppearanceEditorForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UIControls\FontControls\FontSettingsControl.resx">
-      <DependentUpon>FontSettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -335,131 +276,131 @@
       <LastGenOutput>LangResource.pt-BR1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Resources\bottom_line_solid.png" />
+    <EmbeddedResource Include="Resources\bottom_line_solid.png" />
     <None Include="script\default.reo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\center_line_solid.png" />
+    <EmbeddedResource Include="Resources\center_line_solid.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Filter2HS.png" />
+    <EmbeddedResource Include="Resources\Filter2HS.png" />
     <Content Include="favicon.ico" />
-    <Content Include="Resources\FilterAlphabetically_5567_32.bmp" />
-    <None Include="Resources\LandscapeHH.bmp" />
-    <None Include="Resources\PortraitHH.bmp" />
-    <Content Include="Resources\textwrap.png" />
-    <None Include="Resources\trash.cur" />
-    <None Include="Resources\VSProject_script.bmp" />
-    <None Include="Resources\underlinee.png" />
-    <None Include="Resources\top_line_dot.png" />
-    <None Include="Resources\top_line_dash.png" />
-    <None Include="Resources\top_line_bold.png" />
-    <None Include="Resources\top_bottom_dot.png" />
-    <None Include="Resources\top_bottom_dash.png" />
-    <None Include="Resources\top_bottom_bold.png" />
-    <None Include="Resources\toolbar_get_info.png" />
-    <None Include="Resources\style_brush.png" />
-    <None Include="Resources\strikethrough.png" />
-    <None Include="Resources\slash_right_dot.png" />
-    <None Include="Resources\slash_right_dash.png" />
-    <None Include="Resources\slash_right_blod.png" />
-    <None Include="Resources\slash_left_dot.png" />
-    <None Include="Resources\slash_left_dash.png" />
-    <None Include="Resources\slash_left_blod.png" />
-    <None Include="Resources\ShowGridlines2HS.png" />
-    <None Include="Resources\saveHS.png" />
-    <None Include="Resources\right_top_solid.png" />
-    <None Include="Resources\right_top_dot.png" />
-    <None Include="Resources\right_top_bold.png" />
-    <None Include="Resources\right_line_dot.png" />
-    <None Include="Resources\right_line_dash.png" />
-    <None Include="Resources\right_line_bold.png" />
-    <None Include="Resources\right_bottom_solid.png" />
-    <None Include="Resources\right_bottom_dot.png" />
-    <None Include="Resources\right_bottom_bold.png" />
-    <None Include="Resources\RepeatHS.png" />
-    <None Include="Resources\RadialChartHS.png" />
-    <None Include="Resources\PropertiesHS.png" />
-    <None Include="Resources\PrintPreviewHS.png" />
-    <None Include="Resources\PasteHS.png" />
-    <None Include="Resources\PageWidthHS.png" />
-    <None Include="Resources\outline_solid.png" />
-    <None Include="Resources\outline_dot.png" />
-    <None Include="Resources\outline_dash.png" />
-    <None Include="Resources\outline_bold.png" />
-    <None Include="Resources\openHS.png" />
-    <None Include="Resources\none_border.png" />
-    <None Include="Resources\NewDocumentHS.png" />
-    <None Include="Resources\middle_line_dot.png" />
-    <None Include="Resources\middle_line_dash.png" />
-    <None Include="Resources\middle_line_bold.png" />
-    <None Include="Resources\left_top_solid.png" />
-    <None Include="Resources\left_top_dot.png" />
-    <None Include="Resources\left_top_bold.png" />
-    <None Include="Resources\left_right_solid.png" />
-    <None Include="Resources\left_right_dot.png" />
-    <None Include="Resources\left_right_dash.png" />
-    <None Include="Resources\left_right_blod.png" />
-    <None Include="Resources\left_line_dot.png" />
-    <None Include="Resources\left_line_dash.png" />
-    <None Include="Resources\left_line_bold.png" />
-    <None Include="Resources\left_bottom_solid.png" />
-    <None Include="Resources\left_bottom_dot.png" />
-    <None Include="Resources\left_bottom_dash.png" />
-    <None Include="Resources\left_bottom_bold.png" />
-    <None Include="Resources\italic.png" />
-    <None Include="Resources\inside_solid.png" />
-    <None Include="Resources\inside_dot.png" />
-    <None Include="Resources\inside_dash.png" />
-    <None Include="Resources\inside_bold.png" />
-    <None Include="Resources\FunctionHS.png" />
-    <None Include="Resources\FontDialogHS.png" />
-    <None Include="Resources\font_smaller.png" />
-    <None Include="Resources\font_larger.png" />
-    <None Include="Resources\Edit_UndoHS.png" />
-    <None Include="Resources\Edit_RedoHS.png" />
-    <None Include="Resources\CutHS.png" />
-    <None Include="Resources\CopyHS.png" />
-    <None Include="Resources\ColorHS.png" />
-    <None Include="Resources\center_line_dot.png" />
-    <None Include="Resources\center_line_dash.png" />
-    <None Include="Resources\center_line_bold.png" />
-    <None Include="Resources\cell_unmerge.png" />
-    <None Include="Resources\cell_merge_bak.png" />
-    <None Include="Resources\cell_merge.png" />
-    <None Include="Resources\bounds_solid.png" />
-    <None Include="Resources\bounds_dot.png" />
-    <None Include="Resources\bounds_dash.png" />
-    <None Include="Resources\bounds_bold.png" />
-    <None Include="Resources\bottom_line_dot.png" />
-    <None Include="Resources\bottom_line_dash.png" />
-    <None Include="Resources\bottom_line_bold.png" />
-    <None Include="Resources\bold.png" />
-    <None Include="Resources\all_solid.png" />
-    <None Include="Resources\all_dot.png" />
-    <None Include="Resources\all_design_32.png" />
-    <None Include="Resources\all_design.png" />
-    <None Include="Resources\all_dash.png" />
-    <None Include="Resources\all_bold.png" />
-    <None Include="Resources\AlignTableCellMiddleRightHS.png" />
-    <None Include="Resources\AlignTableCellMiddleLeftJustHS.PNG" />
-    <None Include="Resources\AlignTableCellMiddleCenterHS.png" />
-    <None Include="Resources\AlignLayoutTop.png" />
-    <None Include="Resources\AlignLayoutMiddle.png" />
-    <None Include="Resources\AlignLayoutBottom.png" />
-    <Content Include="Resources\full_col_select.cur" />
-    <Content Include="Resources\full_row_select.cur" />
-    <Content Include="Resources\pick_range.cur" />
-    <None Include="Resources\top_line_solid.png" />
-    <None Include="Resources\top_bottom_solid.png" />
-    <None Include="Resources\slash_right_solid.png" />
-    <None Include="Resources\slash_left_solid.png" />
-    <None Include="Resources\right_line_solid.png" />
-    <None Include="Resources\outline_solid_32.png" />
-    <None Include="Resources\none_border_32.png" />
-    <None Include="Resources\middle_line_solid.png" />
-    <None Include="Resources\left_line_solid.png" />
-    <None Include="Resources\inside_solid_32.png" />
+    <EmbeddedResource Include="Resources\FilterAlphabetically_5567_32.bmp" />
+    <EmbeddedResource Include="Resources\LandscapeHH.bmp" />
+    <EmbeddedResource Include="Resources\PortraitHH.bmp" />
+    <EmbeddedResource Include="Resources\textwrap.png" />
+    <EmbeddedResource Include="Resources\trash.cur" />
+    <EmbeddedResource Include="Resources\VSProject_script.bmp" />
+    <EmbeddedResource Include="Resources\underlinee.png" />
+    <EmbeddedResource Include="Resources\top_line_dot.png" />
+    <EmbeddedResource Include="Resources\top_line_dash.png" />
+    <EmbeddedResource Include="Resources\top_line_bold.png" />
+    <EmbeddedResource Include="Resources\top_bottom_dot.png" />
+    <EmbeddedResource Include="Resources\top_bottom_dash.png" />
+    <EmbeddedResource Include="Resources\top_bottom_bold.png" />
+    <EmbeddedResource Include="Resources\toolbar_get_info.png" />
+    <EmbeddedResource Include="Resources\style_brush.png" />
+    <EmbeddedResource Include="Resources\strikethrough.png" />
+    <EmbeddedResource Include="Resources\slash_right_dot.png" />
+    <EmbeddedResource Include="Resources\slash_right_dash.png" />
+    <EmbeddedResource Include="Resources\slash_right_blod.png" />
+    <EmbeddedResource Include="Resources\slash_left_dot.png" />
+    <EmbeddedResource Include="Resources\slash_left_dash.png" />
+    <EmbeddedResource Include="Resources\slash_left_blod.png" />
+    <EmbeddedResource Include="Resources\ShowGridlines2HS.png" />
+    <EmbeddedResource Include="Resources\saveHS.png" />
+    <EmbeddedResource Include="Resources\right_top_solid.png" />
+    <EmbeddedResource Include="Resources\right_top_dot.png" />
+    <EmbeddedResource Include="Resources\right_top_bold.png" />
+    <EmbeddedResource Include="Resources\right_line_dot.png" />
+    <EmbeddedResource Include="Resources\right_line_dash.png" />
+    <EmbeddedResource Include="Resources\right_line_bold.png" />
+    <EmbeddedResource Include="Resources\right_bottom_solid.png" />
+    <EmbeddedResource Include="Resources\right_bottom_dot.png" />
+    <EmbeddedResource Include="Resources\right_bottom_bold.png" />
+    <EmbeddedResource Include="Resources\RepeatHS.png" />
+    <EmbeddedResource Include="Resources\RadialChartHS.png" />
+    <EmbeddedResource Include="Resources\PropertiesHS.png" />
+    <EmbeddedResource Include="Resources\PrintPreviewHS.png" />
+    <EmbeddedResource Include="Resources\PasteHS.png" />
+    <EmbeddedResource Include="Resources\PageWidthHS.png" />
+    <EmbeddedResource Include="Resources\outline_solid.png" />
+    <EmbeddedResource Include="Resources\outline_dot.png" />
+    <EmbeddedResource Include="Resources\outline_dash.png" />
+    <EmbeddedResource Include="Resources\outline_bold.png" />
+    <EmbeddedResource Include="Resources\openHS.png" />
+    <EmbeddedResource Include="Resources\none_border.png" />
+    <EmbeddedResource Include="Resources\NewDocumentHS.png" />
+    <EmbeddedResource Include="Resources\middle_line_dot.png" />
+    <EmbeddedResource Include="Resources\middle_line_dash.png" />
+    <EmbeddedResource Include="Resources\middle_line_bold.png" />
+    <EmbeddedResource Include="Resources\left_top_solid.png" />
+    <EmbeddedResource Include="Resources\left_top_dot.png" />
+    <EmbeddedResource Include="Resources\left_top_bold.png" />
+    <EmbeddedResource Include="Resources\left_right_solid.png" />
+    <EmbeddedResource Include="Resources\left_right_dot.png" />
+    <EmbeddedResource Include="Resources\left_right_dash.png" />
+    <EmbeddedResource Include="Resources\left_right_blod.png" />
+    <EmbeddedResource Include="Resources\left_line_dot.png" />
+    <EmbeddedResource Include="Resources\left_line_dash.png" />
+    <EmbeddedResource Include="Resources\left_line_bold.png" />
+    <EmbeddedResource Include="Resources\left_bottom_solid.png" />
+    <EmbeddedResource Include="Resources\left_bottom_dot.png" />
+    <EmbeddedResource Include="Resources\left_bottom_dash.png" />
+    <EmbeddedResource Include="Resources\left_bottom_bold.png" />
+    <EmbeddedResource Include="Resources\italic.png" />
+    <EmbeddedResource Include="Resources\inside_solid.png" />
+    <EmbeddedResource Include="Resources\inside_dot.png" />
+    <EmbeddedResource Include="Resources\inside_dash.png" />
+    <EmbeddedResource Include="Resources\inside_bold.png" />
+    <EmbeddedResource Include="Resources\FunctionHS.png" />
+    <EmbeddedResource Include="Resources\FontDialogHS.png" />
+    <EmbeddedResource Include="Resources\font_smaller.png" />
+    <EmbeddedResource Include="Resources\font_larger.png" />
+    <EmbeddedResource Include="Resources\Edit_UndoHS.png" />
+    <EmbeddedResource Include="Resources\Edit_RedoHS.png" />
+    <EmbeddedResource Include="Resources\CutHS.png" />
+    <EmbeddedResource Include="Resources\CopyHS.png" />
+    <EmbeddedResource Include="Resources\ColorHS.png" />
+    <EmbeddedResource Include="Resources\center_line_dot.png" />
+    <EmbeddedResource Include="Resources\center_line_dash.png" />
+    <EmbeddedResource Include="Resources\center_line_bold.png" />
+    <EmbeddedResource Include="Resources\cell_unmerge.png" />
+    <EmbeddedResource Include="Resources\cell_merge_bak.png" />
+    <EmbeddedResource Include="Resources\cell_merge.png" />
+    <EmbeddedResource Include="Resources\bounds_solid.png" />
+    <EmbeddedResource Include="Resources\bounds_dot.png" />
+    <EmbeddedResource Include="Resources\bounds_dash.png" />
+    <EmbeddedResource Include="Resources\bounds_bold.png" />
+    <EmbeddedResource Include="Resources\bottom_line_dot.png" />
+    <EmbeddedResource Include="Resources\bottom_line_dash.png" />
+    <EmbeddedResource Include="Resources\bottom_line_bold.png" />
+    <EmbeddedResource Include="Resources\bold.png" />
+    <EmbeddedResource Include="Resources\all_solid.png" />
+    <EmbeddedResource Include="Resources\all_dot.png" />
+    <EmbeddedResource Include="Resources\all_design_32.png" />
+    <EmbeddedResource Include="Resources\all_design.png" />
+    <EmbeddedResource Include="Resources\all_dash.png" />
+    <EmbeddedResource Include="Resources\all_bold.png" />
+    <EmbeddedResource Include="Resources\AlignTableCellMiddleRightHS.png" />
+    <EmbeddedResource Include="Resources\AlignTableCellMiddleLeftJustHS.PNG" />
+    <EmbeddedResource Include="Resources\AlignTableCellMiddleCenterHS.png" />
+    <EmbeddedResource Include="Resources\AlignLayoutTop.png" />
+    <EmbeddedResource Include="Resources\AlignLayoutMiddle.png" />
+    <EmbeddedResource Include="Resources\AlignLayoutBottom.png" />
+    <EmbeddedResource Include="Resources\full_col_select.cur" />
+    <EmbeddedResource Include="Resources\full_row_select.cur" />
+    <EmbeddedResource Include="Resources\pick_range.cur" />
+    <EmbeddedResource Include="Resources\top_line_solid.png" />
+    <EmbeddedResource Include="Resources\top_bottom_solid.png" />
+    <EmbeddedResource Include="Resources\slash_right_solid.png" />
+    <EmbeddedResource Include="Resources\slash_left_solid.png" />
+    <EmbeddedResource Include="Resources\right_line_solid.png" />
+    <EmbeddedResource Include="Resources\outline_solid_32.png" />
+    <EmbeddedResource Include="Resources\none_border_32.png" />
+    <EmbeddedResource Include="Resources\middle_line_solid.png" />
+    <EmbeddedResource Include="Resources\left_line_solid.png" />
+    <EmbeddedResource Include="Resources\inside_solid_32.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
