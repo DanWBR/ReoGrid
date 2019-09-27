@@ -654,15 +654,6 @@ namespace unvell.ReoGrid.Editor
 			{
 				try
 				{
-					Process.Start(LangResource.HP_Homepage);
-				}
-				catch { }
-			};
-
-			documentationToolStripMenuItem.Click += (s, e) =>
-			{
-				try
-				{
 					Process.Start(LangResource.HP_Homepage_Document);
 				}
 				catch { }
@@ -1079,11 +1070,10 @@ namespace unvell.ReoGrid.Editor
 
 		#region Language
 
-		void SetupUILanguage()
+		public void SetupUILanguage()
 		{
 			#region Menu
 			// File
-			this.fileToolStripMenuItem.Text = LangResource.Menu_File;
 			this.newToolStripMenuItem.Text = LangResource.Menu_File_New;
 			this.openToolStripMenuItem.Text = LangResource.Menu_File_Open;
 			this.saveToolStripMenuItem.Text = LangResource.Menu_File_Save;
@@ -1098,7 +1088,6 @@ namespace unvell.ReoGrid.Editor
 			this.printToolStripMenuItem.Text = LangResource.Menu_File_Print;
 
 			// Edit
-			this.editToolStripMenuItem.Text = LangResource.Menu_Edit;
 			this.undoToolStripMenuItem.Text = LangResource.Menu_Undo;
 			this.redoToolStripMenuItem.Text = LangResource.Menu_Redo;
 			this.repeatLastActionToolStripMenuItem.Text = LangResource.Menu_Edit_Repeat_Last_Action;
@@ -1135,7 +1124,6 @@ namespace unvell.ReoGrid.Editor
 			this.selectAllToolStripMenuItem.Text = LangResource.Menu_Edit_Select_All;
 
 			// View
-			this.viewToolStripMenuItem.Text = LangResource.Menu_View;
 			this.componentsToolStripMenuItem.Text = LangResource.Menu_View_Components;
 			this.toolbarToolStripMenuItem.Text = LangResource.Menu_View_Components_Toolbar;
 			this.formulaBarToolStripMenuItem.Text = LangResource.Menu_View_Components_FormulaBar;
@@ -1165,14 +1153,12 @@ namespace unvell.ReoGrid.Editor
 			this.unfreezeToolStripMenuItem.Text = LangResource.Menu_View_Unfreeze;
 
 			// Cells
-			this.cellsToolStripMenuItem.Text = LangResource.Menu_Cells;
 			this.mergeCellsToolStripMenuItem.Text = LangResource.Menu_Cells_Merge_Cells;
 			this.unmergeCellsToolStripMenuItem.Text = LangResource.Menu_Cells_Unmerge_Cells;
 			this.changeCellsTypeToolStripMenuItem.Text = LangResource.Menu_Change_Cells_Type;
 			this.formatCellsToolStripMenuItem.Text = LangResource.Menu_Format_Cells;
 
 			// Sheet
-			this.sheetToolStripMenuItem.Text = LangResource.Menu_Sheet;
 			this.filterToolStripMenuItem.Text = LangResource.Menu_Sheet_Filter;
 			this.clearFilterToolStripMenuItem.Text = LangResource.Menu_Sheet_Clear_Filter;
 			this.groupToolStripMenuItem.Text = LangResource.Menu_Sheet_Group;
@@ -1188,7 +1174,6 @@ namespace unvell.ReoGrid.Editor
 			this.sheetReadonlyToolStripMenuItem.Text = LangResource.Menu_Edit_Readonly;
 
 			// Formula
-			this.formulaToolStripMenuItem.Text = LangResource.Menu_Formula;
 			this.autoFunctionToolStripMenuItem.Text = LangResource.Menu_Formula_Auto_Function;
 			this.defineNamedRangeToolStripMenuItem.Text = LangResource.Menu_Formula_Define_Name;
 			this.nameManagerToolStripMenuItem.Text = LangResource.Menu_Formula_Name_Manager;
@@ -1202,17 +1187,12 @@ namespace unvell.ReoGrid.Editor
 			this.recalculateWorksheetToolStripMenuItem.Text = LangResource.Menu_Formula_Recalculate_Worksheet;
 
 			// Script
-			this.scriptToolStripMenuItem.Text = LangResource.Menu_Script;
 			this.scriptEditorToolStripMenuItem.Text = LangResource.Menu_Script_Script_Editor;
 			this.runFunctionToolStripMenuItem.Text = LangResource.Menu_Script_Run_Function;
 
 			// Tools
-			this.toolsToolStripMenuItem.Text = LangResource.Menu_Tools;
 			this.controlStyleToolStripMenuItem.Text = LangResource.Menu_Tools_Control_Appearance;
-			this.helpToolStripMenuItem.Text = LangResource.Menu_Help;
-			this.homepageToolStripMenuItem.Text = LangResource.Menu_Help_Homepage;
-			this.documentationToolStripMenuItem.Text = LangResource.Menu_Help_Documents;
-			this.aboutToolStripMenuItem.Text = LangResource.Menu_Help_About;
+			this.homepageToolStripMenuItem.Text = LangResource.Menu_Help_Documents;
 
 			// Column Context Menu
 			this.colCutToolStripMenuItem.Text = LangResource.Menu_Cut;
@@ -1265,49 +1245,6 @@ namespace unvell.ReoGrid.Editor
 			this.resetAllPageBreaksToolStripMenuItem1.Text = LangResource.Menu_Reset_All_Page_Breaks;
 
 			#endregion // Menu
-		}
-
-		System.Globalization.CultureInfo cultureEN_US;
-		System.Globalization.CultureInfo cultureJP_JP;
-		System.Globalization.CultureInfo cultureZH_CN;
-
-		public void ChangeLanguageToEnglish()
-		{
-			if (cultureEN_US == null) cultureEN_US = new System.Globalization.CultureInfo("en-US");
-			System.Threading.Thread.CurrentThread.CurrentUICulture = cultureEN_US;
-
-			SetupUILanguage();
-		}
-
-		public void ChangeLanguageToJapanese()
-		{
-			if (cultureJP_JP == null) cultureJP_JP = new System.Globalization.CultureInfo("ja-JP");
-			System.Threading.Thread.CurrentThread.CurrentUICulture = cultureJP_JP;
-
-			SetupUILanguage();
-		}
-
-		public void ChangeLanguageToChinese()
-		{
-			if (cultureZH_CN == null) cultureZH_CN = new System.Globalization.CultureInfo("zh-CN");
-			System.Threading.Thread.CurrentThread.CurrentUICulture = cultureZH_CN;
-
-			SetupUILanguage();
-		}
-
-		private void englishenUSToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			ChangeLanguageToEnglish();
-		}
-
-		private void japanesejpJPToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			ChangeLanguageToJapanese();
-		}
-
-		private void simplifiedChinesezhCNToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			ChangeLanguageToChinese();
 		}
 
 		#endregion // Langauge
@@ -2963,7 +2900,13 @@ namespace unvell.ReoGrid.Editor
 			sheet.FloatingObjects.Add(rectObj);
 		}
 
-		#endif // DEBUG
+        private void AboutToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
 
-	}
+        }
+
+
+#endif // DEBUG
+
+    }
 }
