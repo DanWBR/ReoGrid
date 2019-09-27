@@ -16,12 +16,11 @@
  * 
  ****************************************************************************/
 
+using Eto.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 
 namespace unvell.Common
 {
@@ -135,13 +134,13 @@ namespace unvell.Common
 			Rectangle bodyRect = rect;
 			bodyRect.Inflate(-1, -1);
 			bodyRect.Offset(1, 1);
-			g.FillRectangle(Brushes.LightGray, bodyRect);
+			g.FillRectangle(Brushes.LightGrey, bodyRect);
 
 			// shadow
-			g.DrawLines(isPressed ? Pens.White : Pens.DimGray, new Point[] {
-				new Point(rect.Left+1,rect.Bottom-1),
-				new Point(rect.Right-1,rect.Bottom-1),
-				new Point(rect.Right-1,rect.Top+1),
+			g.DrawLines(isPressed ? Colors.White : Colors.DimGray, new PointF[] {
+				new PointF(rect.Left+1,rect.Bottom-1),
+				new PointF(rect.Right-1,rect.Bottom-1),
+				new PointF(rect.Right-1,rect.Top+1),
 			});
 		}
 		public static Color ConvertWebColor(string code)
@@ -174,7 +173,7 @@ namespace unvell.Common
 					Convert.ToInt32(code.Substring(4, 2), 16));
 			}
 			else
-				return Color.Empty;
+				return Colors.Transparent;
 		}
 
 		#endregion

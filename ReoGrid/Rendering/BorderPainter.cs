@@ -20,6 +20,7 @@ using System;
 
 using Common;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 
 #if WINFORM
 using RGPointF = System.Drawing.PointF;
@@ -32,9 +33,9 @@ using PlatformGraphics = System.Drawing.Graphics;
 #elif ETO
 using RGPointF = Eto.Drawing.PointF;
 using RGFloat = System.Single;
-using RGColors = Eto.Drawing.Color;
+using RGColors = Eto.Drawing.Colors;
 using RGPen = Eto.Drawing.Pen;
-using RGPenColor = Eto.Drawing.Color;
+using RGPenColor = Eto.Drawing.Colors;
 using RGDashStyles = Eto.Drawing.DashStyles;
 using PlatformGraphics = Eto.Drawing.Graphics;
 #elif WPF
@@ -66,7 +67,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 	/// <summary>
 	/// Draw borders at the specified location.
 	/// </summary>
-#if WINFORM
+#if WINFORM || ETO
 	public 
 #endif // WINFORM
 	sealed class BorderPainter : IDisposable
@@ -89,7 +90,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			}
 		}
 
-#if WINFORM || WPF || ANDROID
+#if WINFORM || WPF || ANDROID || ETO
 		private readonly RGPen[] pens = new RGPen[14];
 
 		private BorderPainter()
@@ -98,7 +99,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			RGPen p;
 
 			// Solid
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 1);
 #elif ANDROID
 			p = new RGPen();
@@ -108,7 +109,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.Solid] = p;
 
 			// Dahsed
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 1);
 			p.DashStyle = RGDashStyles.Dash;
 #elif ANDROID
@@ -119,7 +120,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.Dashed] = p;
 
 			// Dotted
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 1);
 			p.DashStyle = RGDashStyles.Dot;
 #elif ANDROID
@@ -130,7 +131,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.Dotted] = p;
 
 			// DoubleLine
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 3);
 #if WINFORM
 			p.CompoundArray = new float[] { 0f, 0.2f, 0.8f, 1f };
@@ -143,7 +144,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.DoubleLine] = p;
 
 			// Dashed2
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 1);
 #if WINFORM
 			p.DashPattern = new float[] { 2f, 2f };
@@ -156,7 +157,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.Dashed2] = p;
 
 			// DashDot
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 1);
 #if WINFORM
 			p.DashPattern = new float[] { 10f, 3f, 3f, 3f };
@@ -171,7 +172,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.DashDot] = p;
 
 			// DashDotDot
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 1);
 #if WINFORM
 			p.DashPattern = new float[] { 10f, 3f, 3f, 3f, 3f, 3f };
@@ -187,7 +188,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.DashDotDot] = p;
 
 			// BoldDashDot
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 2);
 			p.DashStyle = RGDashStyles.DashDot;
 #elif ANDROID
@@ -198,7 +199,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.BoldDashDot] = p;
 
 			// BoldDashDotDot
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 2);
 			p.DashStyle = RGDashStyles.DashDotDot;
 #elif ANDROID
@@ -209,7 +210,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.BoldDashDotDot] = p;
 
 			// BoldDotted
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 2);
 			p.DashStyle = RGDashStyles.Dot;
 #elif ANDROID
@@ -220,7 +221,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.BoldDotted] = p;
 
 			// BoldDashed
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 2);
 			p.DashStyle = RGDashStyles.Dash;
 #elif ANDROID
@@ -231,7 +232,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.BoldDashed] = p;
 
 			// BoldSolid
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 2);
 #elif ANDROID
 			p = new RGPen();
@@ -241,7 +242,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			pens[(byte)BorderLineStyle.BoldSolid] = p;
 
 			// BoldSolidStrong
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 			p = new RGPen(RGPenColor.Black, 3);
 #elif ANDROID
 			p = new RGPen();
@@ -290,17 +291,17 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 		{
 			if (style == BorderLineStyle.None) return;
 
-#if WINFORM || WPF || ANDROID
+#if WINFORM || WPF || ANDROID || ETO
 
 
-#if WINFORM
+#if WINFORM || ETO
 				RGPen p = pens[(byte)style];
 
 			lock (p)
 			{
-				p.Color = color;
-				p.StartCap = System.Drawing.Drawing2D.LineCap.Square;
-				p.EndCap = System.Drawing.Drawing2D.LineCap.Square;
+				p.Color = color.ToEto();
+				p.LineCap = Eto.Drawing.PenLineCap.Square;
+                p.LineJoin = Eto.Drawing.PenLineJoin.Miter;
 				g.DrawLine(p, new RGPointF(x, y), new RGPointF(x2, y2));
 			}
 #elif WPF
@@ -333,7 +334,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 			{
 				lock (bgPen)
 				{
-#if WINFORM || WPF
+#if WINFORM || WPF || ETO
 					g.DrawLine(bgPen, new RGPointF(x, y), new RGPointF(x2, y2));
 #elif ANDROID
 					g.DrawLine(x, y, x2, y2, bgPen);
@@ -370,7 +371,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 		/// </summary>
 		public void Dispose()
 		{
-#if WINFORM || ANDROID
+#if WINFORM || ANDROID || ETO
 			for (int i = 1; i < pens.Length; i++)
 			{
 				pens[i].Dispose();
