@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Windows.Forms;
 #endif // WINFORM
 
-namespace unvell.Common.Win32Lib
+namespace Common.Win32Lib
 {
 	public static class Win32
 	{

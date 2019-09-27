@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	internal static class GenericExtends
 	{
@@ -88,14 +88,14 @@ namespace unvell.ReoGrid
 			return (pos & target) > 0;
 		}
 
-		internal static bool Has(this unvell.ReoGrid.Views.ViewTypes pos, 
-			unvell.ReoGrid.Views.ViewTypes target)
+		internal static bool Has(this DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views.ViewTypes pos, 
+			DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views.ViewTypes target)
 		{
 			return (pos & target) == target;
 		}
 
-		internal static bool HasAny(this unvell.ReoGrid.Views.ViewTypes pos,
-			unvell.ReoGrid.Views.ViewTypes target)
+		internal static bool HasAny(this DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views.ViewTypes pos,
+			DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views.ViewTypes target)
 		{
 			return (pos & target) > 0;
 		}

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	/// <summary>
 	/// Obsoleted control settings, changed to WorkbookSettings and WorksheetSettings

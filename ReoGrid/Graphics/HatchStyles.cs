@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	/// <summary>
 	/// Specifies the hatch style patterns. 

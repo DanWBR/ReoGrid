@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	/// <summary>
 	/// Represents the sheet rename dialog

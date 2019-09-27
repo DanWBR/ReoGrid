@@ -27,11 +27,11 @@ using RGFloat = System.Double;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid.Data
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data
 {
 	#region Auot Filter
 	/// <summary>
@@ -212,7 +212,7 @@ namespace unvell.ReoGrid.Data
 		#endregion
 
 		#region AutoColumnFilterBody
-		public class AutoColumnFilterBody : unvell.ReoGrid.CellTypes.IHeaderBody
+		public class AutoColumnFilterBody : DWSIM.CrossPlatform.UI.Controls.ReoGrid.CellTypes.IHeaderBody
 		{
 			internal AutoColumnFilter autoFilter;
 
@@ -255,12 +255,12 @@ namespace unvell.ReoGrid.Data
 
 					g.FillRectangleLinear(color1, color2, 90f, bounds);
 
-					g.DrawRectangle(bounds, unvell.ReoGrid.Rendering.StaticResources.SystemColor_ControlDark);
+					g.DrawRectangle(bounds, DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.StaticResources.SystemColor_ControlDark);
 
-					unvell.Common.GraphicsToolkit.FillTriangle(dc.Graphics.PlatformGraphics, 
+					Common.GraphicsToolkit.FillTriangle(dc.Graphics.PlatformGraphics, 
 						Math.Min(7 * dc.Worksheet.renderScaleFactor, 7.0f),
 						new Point(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2), 
-						unvell.Common.GraphicsToolkit.TriangleDirection.Down);
+						Common.GraphicsToolkit.TriangleDirection.Down);
 				}
 			}
 
@@ -560,7 +560,7 @@ namespace unvell.ReoGrid.Data
 			if (this.columnFilterUIFlag == AutoColumnFilterUI.DropdownButtonAndPanel)
 			{
 #if WINFORM
-				unvell.ReoGrid.WinForm.ColumnFilterContextMenu.ShowFilterPanel(headerBody, (System.Drawing.Point)point);
+				DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.ColumnFilterContextMenu.ShowFilterPanel(headerBody, (System.Drawing.Point)point);
 #elif WPF
 				var ctx = new System.Windows.Controls.ContextMenu();
 				ctx.Items.Add(new System.Windows.Controls.MenuItem() { Header = "Item" });

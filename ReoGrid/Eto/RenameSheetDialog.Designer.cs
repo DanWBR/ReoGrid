@@ -22,7 +22,7 @@ using Eto.Forms;
 using Eto;
 using Eto.Drawing;
 
-namespace unvell.ReoGrid.EtoControls
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoControls
 {
 	partial class RenameSheetDialog
 	{

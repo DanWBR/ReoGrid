@@ -17,9 +17,9 @@
  ****************************************************************************/
 
 using System;
-using unvell.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	/// <summary>
 	/// Color interface

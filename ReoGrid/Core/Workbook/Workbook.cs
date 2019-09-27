@@ -23,19 +23,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using unvell.Common;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.IO;
-using unvell.ReoGrid.Main;
-using unvell.ReoGrid.Interaction;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
 #if PRINT
-using unvell.ReoGrid.Print;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print;
 #endif // PRINT
 
 #if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
-using unvell.ReoGrid.EtoRenderer;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 #elif WPF
 using RGFloat = System.Double;
 #elif iOS
@@ -44,16 +44,16 @@ using RGFloat = System.Double;
 #endif // WPF
 
 #if WINFORM || WPF || ETO
-using ReoGridControl = unvell.ReoGrid.ReoGridControl;
+using ReoGridControl = DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridControl;
 #elif ANDROID
-using ReoGridControl = unvell.ReoGrid.ReoGridView;
+using ReoGridControl = DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridView;
 
 #elif iOS
-using ReoGridControl = unvell.ReoGrid.ReoGridView;
+using ReoGridControl = DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridView;
 
 #endif // ANDROID
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	internal partial class Workbook : IWorkbook
 #if (WINFORM || WPF) && PRINT

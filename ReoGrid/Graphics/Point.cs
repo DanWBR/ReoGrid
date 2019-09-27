@@ -27,7 +27,7 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	/// <summary>
 	/// Represents point information that includes the x-coordinate value and y-coordinate value.
@@ -125,36 +125,36 @@ namespace unvell.ReoGrid.Graphics
 		#region Platform Associated
 #if WINFORM
 		/// <summary>
-		/// Convert System.Drawing.Point to unvell.ReoGrid.Graphics.Point.
+		/// Convert System.Drawing.Point to DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point.
 		/// </summary>
-		/// <param name="p">Point of unvell.ReoGrid.Graphics.Point.</param>
+		/// <param name="p">Point of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point.</param>
 		/// <returns>Point of System.Drawing.Point.</returns>
 		public static implicit operator Point(System.Drawing.Point p)
 		{
 			return new Point(p.X, p.Y);
 		}
 		/// <summary>
-		/// Convert System.Drawing.PointF to unvell.ReoGrid.Graphics.Point.
+		/// Convert System.Drawing.PointF to DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point.
 		/// </summary>
-		/// <param name="p">Point of unvell.ReoGrid.Graphics.Point.</param>
+		/// <param name="p">Point of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point.</param>
 		/// <returns>Point of System.Drawing.PointF.</returns>
 		public static implicit operator Point(System.Drawing.PointF p)
 		{
 			return new Point(p.X, p.Y);
 		}
 		/// <summary>
-		/// Convert unvell.ReoGrid.Graphics.Point to System.Drawing.Point.
+		/// Convert DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point to System.Drawing.Point.
 		/// </summary>
-		/// <param name="p">Point of unvell.ReoGrid.Graphics.Point.</param>
+		/// <param name="p">Point of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point.</param>
 		/// <returns>Point of System.Drawing.Point.</returns>
 		public static explicit operator System.Drawing.Point(Point p)
 		{
 			return new System.Drawing.Point((int)Math.Round(p.X), (int)Math.Round(p.Y));
 		}
 		/// <summary>
-		/// Convert unvell.ReoGrid.Graphics.Point to System.Drawing.Point.
+		/// Convert DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point to System.Drawing.Point.
 		/// </summary>
-		/// <param name="p">Point of unvell.ReoGrid.Graphics.Point.</param>
+		/// <param name="p">Point of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point.</param>
 		/// <returns>Point of System.Drawing.PointF.</returns>
 		public static implicit operator System.Drawing.PointF(Point p)
 		{

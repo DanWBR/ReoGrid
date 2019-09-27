@@ -22,10 +22,10 @@ using System.Linq;
 using System.Text;
 
 #if OUTLINE
-using unvell.ReoGrid.Outline;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Outline;
 #endif // OUTLINE
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

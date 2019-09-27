@@ -1,6 +1,6 @@
 ﻿#if DEBUG && WINFORM
 
-namespace unvell.ReoGrid.Test
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Test
 {
 	partial class RichTextTestForm
 	{

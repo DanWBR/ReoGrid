@@ -27,11 +27,11 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Drawing.Shapes;
-using unvell.ReoGrid.Drawing;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Shapes;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	/// <summary>
 	/// Repersents pie chart component.

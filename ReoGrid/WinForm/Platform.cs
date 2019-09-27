@@ -21,12 +21,12 @@
 using System.Drawing;
 using WFFontStyle = System.Drawing.FontStyle;
 
-using unvell.Common;
-using unvell.ReoGrid.Drawing.Text;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Interaction;
+using Common
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	class GDIFont : BaseFont
 	{
@@ -34,7 +34,7 @@ namespace unvell.ReoGrid.WinForm
 	}
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Cell
 	{
@@ -47,7 +47,7 @@ namespace unvell.ReoGrid
 	}
 }
 
-namespace unvell.ReoGrid.Rendering
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 {
 	#region PlatformUtility
 	partial class PlatformUtility
@@ -58,7 +58,7 @@ namespace unvell.ReoGrid.Rendering
 		{
 			if (dpi == 0)
 			{
-				dpi = unvell.Common.ResourcePoolManager.CachedGDIGraphics.DpiX;
+				dpi = unvell.common.ResourcePoolManager.CachedGDIGraphics.DpiX;
 			}
 
 			return dpi;

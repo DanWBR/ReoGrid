@@ -23,14 +23,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Drawing
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing
 {
 	/// <summary>
 	/// Represents the floating objects drawing context.
 	/// </summary>
-	public class FloatingDrawingContext : unvell.ReoGrid.Rendering.DrawingContext
+	public class FloatingDrawingContext : DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.DrawingContext
 	{
 		/// <summary>
 		/// Get the current drawing object.

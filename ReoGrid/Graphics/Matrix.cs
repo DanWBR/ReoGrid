@@ -29,7 +29,7 @@ using RGFloat = System.Double;
 using RGFloat = System.Double;
 #endif // WPF
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	#region Matrix
 

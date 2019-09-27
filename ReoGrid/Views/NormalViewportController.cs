@@ -19,7 +19,7 @@
 using System;
 using System.Linq;
 
-using unvell.ReoGrid.Data;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data;
 
 #if DEBUG
 using System.Diagnostics;
@@ -33,11 +33,11 @@ using RGFloat = System.Double;
 using RGIntDouble = System.Double;
 #endif
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid.Views
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
 	/// <summary>
 	/// Standard view controller for normal scene of control

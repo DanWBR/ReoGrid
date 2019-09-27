@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace unvell.ReoGrid.Formula
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
 	#region Parser
 	/// <summary>

@@ -31,11 +31,11 @@ using RGFloat = System.Double;
 
 #endif // WPF
 
-using unvell.ReoGrid.Drawing;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 using System.Collections;
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	/// <summary>
 	/// Data point styles for line plot view.

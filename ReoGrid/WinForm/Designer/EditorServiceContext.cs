@@ -27,7 +27,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace unvell.ReoGrid.WinForm.Designer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.Designer
 {
 	// Provides an implementation of IWindowsFormsEditorService and ITypeDescriptorContext.
 	// Also provides a static method to invoke a UITypeEditor given a designer, an object

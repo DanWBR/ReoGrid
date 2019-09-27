@@ -11,7 +11,7 @@ using RGFloat = System.Double;
 using RGFloat = System.Double;
 #endif // WPF
 
-namespace unvell.ReoGrid.Utility
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 {
 	internal static class MeasureToolkit
 	{

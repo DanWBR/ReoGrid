@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	[Obsolete("use LineStyles instead")]
   public enum LineStyle : byte

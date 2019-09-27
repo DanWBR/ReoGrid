@@ -56,9 +56,9 @@ using RGFloat = System.Double;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.Common
+namespace Common
 {
 	internal static class GraphicsToolkit
 	{

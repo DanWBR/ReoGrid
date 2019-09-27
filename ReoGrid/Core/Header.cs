@@ -28,20 +28,20 @@ using RGFloat = System.Double;
 using RGIntDouble = System.Double;
 #endif // WINFORM
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.CellTypes;
-using unvell.ReoGrid.Actions;
-using unvell.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.CellTypes;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Actions;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 using System.Collections;
 
 #if OUTLINE
-using unvell.ReoGrid.Outline;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Outline;
 #endif // OUTLINE
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.Core
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core
 {
 	#region HeaderOperationsHelper
 
@@ -153,7 +153,7 @@ namespace unvell.ReoGrid.Core
 	#endregion // HeaderOperationsHelper
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

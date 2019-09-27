@@ -18,21 +18,21 @@
 
 using System;
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if WINFORM || WPF || ETO
-//using HBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridHBorder>;
-//using VBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridVBorder>;
-using HBorderArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Core.ReoGridHBorder>;
-using VBorderArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Core.ReoGridVBorder>;
+//using HBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.JaggedTreeArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridHBorder>;
+//using VBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.JaggedTreeArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridVBorder>;
+using HBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.Index4DArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridHBorder>;
+using VBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.Index4DArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridVBorder>;
 #elif ANDROID || iOS
-using HBorderArray = unvell.ReoGrid.Data.ReoGridHBorderArray;
-using VBorderArray = unvell.ReoGrid.Data.ReoGridVBorderArray;
+using HBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.ReoGridHBorderArray;
+using VBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.ReoGridVBorderArray;
 #endif // ANDROID
 
-namespace unvell.ReoGrid.Core
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core
 {
 	[Serializable]
 	internal class ReoGridHBorder : BaseBorder
@@ -106,7 +106,7 @@ namespace unvell.ReoGrid.Core
 	}
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

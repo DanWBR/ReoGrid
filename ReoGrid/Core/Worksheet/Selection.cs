@@ -27,11 +27,11 @@ using System.Diagnostics;
 using unvell.ReoScript;
 #endif // EX_SCRIPT
 
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{
@@ -412,7 +412,7 @@ namespace unvell.ReoGrid
 			}
 
 #if WINFORM || WPF
-			if (!Common.Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_SHIFT))
+			if (!Common.Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_SHIFT))
 			{
 #endif // WINFORM || WPF
 			var viewport = this.viewportController.View.GetViewByPoint(location) as IRangeSelectableView;
@@ -547,7 +547,7 @@ namespace unvell.ReoGrid
 			{
 				#region Check and select the whole merged region
 				//#if DEBUG
-				//				if (!Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_CONTROL))
+				//				if (!Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_CONTROL))
 				//				{
 				//#endif
 				//

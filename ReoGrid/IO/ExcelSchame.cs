@@ -20,11 +20,11 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #pragma warning disable 1591
 
-namespace unvell.ReoGrid.IO.OpenXML.Schema
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML.Schema
 {
 	#region Namespaces Definitions
 	internal class OpenXMLNamespaces

@@ -8,8 +8,8 @@
     <ProjectGuid>{8B62357A-ABBC-4DB0-8633-F1D6A6C1EA53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>unvell.ReoGrid</RootNamespace>
-    <AssemblyName>unvell.ReoGrid</AssemblyName>
+    <RootNamespace>DWSIM.CrossPlatform.UI.Controls.ReoGrid</RootNamespace>
+    <AssemblyName>DWSIM.CrossPlatform.UI.Controls.ReoGrid</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -59,7 +59,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Release\unvell.ReoGrid.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\DWSIM.CrossPlatform.UI.Controls.ReoGrid.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Minimum|AnyCPU' ">
@@ -72,7 +72,7 @@
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Minimum\unvell.ReoGrid.XML</DocumentationFile>
+    <DocumentationFile>bin\Minimum\DWSIM.CrossPlatform.UI.Controls.ReoGrid.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -95,7 +95,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU'">
     <OutputPath>bin\WPFRelease\</OutputPath>
     <DefineConstants>TRACE;WPF;FORMULA;LANG_JP;OUTLINE;DRAWING;PRINT</DefineConstants>
-    <DocumentationFile>bin\WPFRelease\unvell.ReoGrid.XML</DocumentationFile>
+    <DocumentationFile>bin\WPFRelease\DWSIM.CrossPlatform.UI.Controls.ReoGrid.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -111,14 +111,14 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\WPFMinimum\unvell.ReoGrid.XML</DocumentationFile>
+    <DocumentationFile>bin\WPFMinimum\DWSIM.CrossPlatform.UI.Controls.ReoGrid.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Extension|AnyCPU' ">
     <OutputPath>bin\Extension\</OutputPath>
     <DefineConstants>TRACE;EX;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;ETO</DefineConstants>
-    <DocumentationFile>bin\Extension\unvell.ReoGrid.XML</DocumentationFile>
+    <DocumentationFile>bin\Extension\DWSIM.CrossPlatform.UI.Controls.ReoGrid.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -129,7 +129,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' ">
     <OutputPath>bin\WPFExtension\</OutputPath>
     <DefineConstants>TRACE;EX;WPF;FORMULA;EX_SCRIPT;LANG_JP;OUTLINE;DRAWING;PRINT</DefineConstants>
-    <DocumentationFile>bin\WPFExtension\unvell.ReoGrid.XML</DocumentationFile>
+    <DocumentationFile>bin\WPFExtension\DWSIM.CrossPlatform.UI.Controls.ReoGrid.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -173,11 +173,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
     <Reference Include="PresentationCore" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtensionPro|AnyCPU' " />
-    <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFRelease|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFReleasePro|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' " />
     <Reference Include="PresentationFramework" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtensionPro|AnyCPU' " />

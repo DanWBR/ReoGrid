@@ -22,8 +22,8 @@ using System;
 using System.Text;
 using System.Windows.Forms;
 
-using unvell.ReoGrid;
-using unvell.ReoGrid.Formula;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula;
 
 namespace FormulaParserTest
 {

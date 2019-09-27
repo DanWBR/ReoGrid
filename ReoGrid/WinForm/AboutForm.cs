@@ -28,7 +28,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	/// <summary>
 	/// About dialog form of ReoGrid
@@ -45,7 +45,7 @@ namespace unvell.ReoGrid.WinForm
 			lnkHP.Click += (s, e) => Process.Start(lnkHP.Text);
 			labVersion.Text = "version " + ProductVersion.ToString();
 
-			textBox2.Text = unvell.ReoGrid.Properties.Resources.EULA_EN;
+			textBox2.Text = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Properties.Resources.EULA_EN;
 		}
 	}
 }

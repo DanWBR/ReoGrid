@@ -72,10 +72,10 @@ using RGDashStyles = System.Windows.Media.DashStyles;
 
 #endif // WPF
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.EtoRenderer;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 
-namespace unvell.Common
+namespace Common
 {
     internal sealed class ResourcePoolManager : IDisposable
     {

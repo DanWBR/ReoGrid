@@ -28,11 +28,11 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using unvell.ReoGrid.Print;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	/// <summary>
 	/// Represents a print session. Print session can be created by single worksheet or a workbook.

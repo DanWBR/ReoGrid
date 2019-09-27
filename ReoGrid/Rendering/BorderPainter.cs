@@ -18,8 +18,8 @@
 
 using System;
 
-using unvell.Common;
-using unvell.ReoGrid.Graphics;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if WINFORM
 using RGPointF = System.Drawing.PointF;
@@ -61,7 +61,7 @@ using RGPen = CoreGraphics.CGContext;
 
 #endif // ANDROID
 
-namespace unvell.ReoGrid.Rendering
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 {
 	/// <summary>
 	/// Draw borders at the specified location.

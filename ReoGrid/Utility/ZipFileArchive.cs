@@ -28,7 +28,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace unvell.ReoGrid.Utility
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 {
 	internal interface IZipArchive
 	{

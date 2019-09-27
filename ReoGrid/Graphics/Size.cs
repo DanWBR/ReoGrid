@@ -29,7 +29,7 @@ using RGFloat = System.Double;
 using RGFloat = System.Double;
 #endif // WPF
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	/// <summary>
 	/// Represents size information that contains width and height value.
@@ -123,36 +123,36 @@ namespace unvell.ReoGrid.Graphics
 		#region Platform Associated
 #if WINFORM
 		/// <summary>
-		/// Convert System.Drawing.Size to unvell.ReoGrid.Graphics.Size.
+		/// Convert System.Drawing.Size to DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size.
 		/// </summary>
 		/// <param name="size">System.Drawing.Size struct</param>
-		/// <returns>unvell.ReoGrid.Graphics.Size struct</returns>
+		/// <returns>DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size struct</returns>
 		public static implicit operator Size(System.Drawing.Size size)
 		{
 			return new Size(size.Width, size.Height);
 		}
 		/// <summary>
-		/// Convert System.Drawing.SizeF to unvell.ReoGrid.Graphics.Size.
+		/// Convert System.Drawing.SizeF to DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size.
 		/// </summary>
 		/// <param name="size">System.Drawing.SizeF struct</param>
-		/// <returns>unvell.ReoGrid.Graphics.Size struct</returns>
+		/// <returns>DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size struct</returns>
 		public static implicit operator Size(System.Drawing.SizeF size)
 		{
 			return new Size(size.Width, size.Height);
 		}
 		/// <summary>
-		/// Convert unvell.ReoGrid.Graphics.Size to System.Drawing.Size.
+		/// Convert DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size to System.Drawing.Size.
 		/// </summary>
-		/// <param name="size">unvell.ReoGrid.Graphics.Size struct</param>
+		/// <param name="size">DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size struct</param>
 		/// <returns>System.Drawing.Size struct</returns>
 		public static explicit operator System.Drawing.Size(Size size)
 		{
 			return new System.Drawing.Size((int)Math.Round(size.Width), (int)Math.Round(size.Height));
 		}
 		/// <summary>
-		/// Convert unvell.ReoGrid.Graphics.Size to System.Drawing.SizeF.
+		/// Convert DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size to System.Drawing.SizeF.
 		/// </summary>
-		/// <param name="size">unvell.ReoGrid.Graphics.Size struct</param>
+		/// <param name="size">DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Size struct</param>
 		/// <returns>System.Drawing.SizeF struct</returns>
 		public static implicit operator System.Drawing.SizeF(Size size)
 		{

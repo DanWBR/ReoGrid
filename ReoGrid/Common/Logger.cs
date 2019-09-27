@@ -28,7 +28,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-namespace unvell.Common
+namespace Common
 {
 	/// <summary>
 	/// Log level

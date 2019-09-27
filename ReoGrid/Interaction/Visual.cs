@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
@@ -26,7 +26,7 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-namespace unvell.ReoGrid.Interaction
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction
 {
 	/// <summary>
 	/// Represents an user-interactive object in ReoGrid cross-platform views system.

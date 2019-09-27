@@ -26,9 +26,9 @@ namespace ReoGridTest
                 container.Size = new Size(pixlayout.Width, pixlayout.Height);
             };
 
-            unvell.ReoGrid.ReoGridControl rgcontrol;
+            DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridControl rgcontrol;
 
-            rgcontrol = new unvell.ReoGrid.ReoGridControl(pixlayout);
+            rgcontrol = new DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridControl(pixlayout);
             container.Add(rgcontrol, true, true);
 
             rgcontrol.NewWorksheet();

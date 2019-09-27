@@ -16,14 +16,14 @@
  * 
  ****************************************************************************/
 
-namespace unvell.ReoGrid.Main
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main
 {
-	[System.Obsolete("use unvell.ReoGrid.Interaction.CursorStyle instead")]
+	[System.Obsolete("use DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction.CursorStyle instead")]
 	public enum RGCursor : byte
 	{ }
 }
 
-namespace unvell.ReoGrid.Interaction
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction
 {
 	/// <summary>
 	/// Cursor style 

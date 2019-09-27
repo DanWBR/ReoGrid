@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace unvell.ReoGrid.Test
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Test
 {
 	public partial class RichTextTestForm : Form
 	{

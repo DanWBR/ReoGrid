@@ -18,10 +18,10 @@
 
 using System;
 
-using unvell.ReoGrid.IO;
-using unvell.ReoGrid.Actions;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Actions;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if WINFORM
 using RGFloat = System.Single;
@@ -68,10 +68,10 @@ using RGIntDouble = System.Double;
 
 #endif
 
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Main
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main
 {
 
 
@@ -128,7 +128,7 @@ namespace unvell.ReoGrid.Main
 
 	internal interface IActionControl
 	{
-		//unvell.Common.ActionManager ActionManager { get; }
+		//unvell.common.ActionManager ActionManager { get; }
 		void DoAction(Worksheet sheet, BaseWorksheetAction action);
 		void Undo();
 		void Redo();

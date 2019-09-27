@@ -18,9 +18,9 @@
 
 #if COMMENT
 
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Views
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
 	internal class CommentViewport : Viewport
 	{

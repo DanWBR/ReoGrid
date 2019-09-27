@@ -24,10 +24,10 @@ using System.Linq;
 using System.Text;
 
 #if ANDROID || iOS
-using unvell.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
 #endif // ANDROID
 
-namespace unvell.ReoGrid.Data
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data
 {
 	#region Triangle Tree Array
 	[Serializable]

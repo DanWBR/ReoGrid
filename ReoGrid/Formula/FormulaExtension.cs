@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Formula
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
 	/// <summary>
 	/// Represents the interface of external formula extension
@@ -37,7 +37,7 @@ namespace unvell.ReoGrid.Formula
 		/// </summary>
 		/// <example>
 		/// // Example function to make latters uppercase
-		/// unvell.ReoGrid.Formula.FormulaExtension.CustomFunctions["upper"] =
+		/// DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula.FormulaExtension.CustomFunctions["upper"] =
 		///   (args) => {
 		///   
 		///     if (args.Length == 0) 

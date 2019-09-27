@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using unvell.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
 
 #if EX_SCRIPT
 using unvell.ReoScript;
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif // EX_SCRIPT;
 
 #if WINFORM || ANDROID || ETO
@@ -17,13 +17,13 @@ using RGFloat = System.Double;
 using RGFloat = System.Double;
 #endif // WPF
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Actions;
-using unvell.ReoGrid.DataFormat;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Actions;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

@@ -39,14 +39,14 @@ using RGFloat = System.Double;
 using RGImage = System.Windows.Media.ImageSource;
 #endif // WINFORM
 
-using unvell.Common;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Interaction;
-using unvell.ReoGrid.Main;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid.CellTypes
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.CellTypes
 {
 	#region Cell Types Manager
 
@@ -2699,14 +2699,14 @@ namespace unvell.ReoGrid.CellTypes
 		//	}
 		//	else if (e.KeyCode == Keys.Up)
 		//	{
-		//		ValueAdd(Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_SHIFT) ? 10 :
-		//			(Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_CONTROL) ? 100 : 1));
+		//		ValueAdd(Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_SHIFT) ? 10 :
+		//			(Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_CONTROL) ? 100 : 1));
 		//		e.SuppressKeyPress = true;
 		//	}
 		//	else if (e.KeyCode == Keys.Down)
 		//	{
-		//		ValueSub(Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_SHIFT) ? 10 :
-		//			(Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_CONTROL) ? 100 : 1));
+		//		ValueSub(Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_SHIFT) ? 10 :
+		//			(Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_CONTROL) ? 100 : 1));
 		//		e.SuppressKeyPress = true;
 		//	}
 		//	else if (e.KeyCode == Keys.PageUp)
@@ -2720,17 +2720,17 @@ namespace unvell.ReoGrid.CellTypes
 		//		e.SuppressKeyPress = true;
 		//	}
 		//	else if (e.KeyCode == Keys.V
-		//		&& Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_CONTROL))
+		//		&& Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_CONTROL))
 		//	{
 		//		textbox.Paste();
 		//	}
 		//	else if (e.KeyCode == Keys.C
-		//		&& Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_CONTROL))
+		//		&& Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_CONTROL))
 		//	{
 		//		textbox.Copy();
 		//	}
 		//	else if (e.KeyCode == Keys.X
-		//		&& Toolkit.IsKeyDown(unvell.Common.Win32Lib.Win32.VKey.VK_CONTROL))
+		//		&& Toolkit.IsKeyDown(unvell.common.Win32Lib.Win32.VKey.VK_CONTROL))
 		//	{
 		//		textbox.Cut();
 		//	}

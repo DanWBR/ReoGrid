@@ -23,9 +23,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 
-namespace unvell.ReoGrid.Formula
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
 	class Evaluator
 	{

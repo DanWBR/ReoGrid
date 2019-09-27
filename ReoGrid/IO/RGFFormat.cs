@@ -26,21 +26,21 @@ using System.Xml.Serialization;
 using System.Threading;
 using System.Globalization;
 
-using unvell.Common;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.IO;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.XML;
-using unvell.ReoGrid.DataFormat;
-using unvell.ReoGrid.Core;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.XML;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
 #if OUTLINE
-using unvell.ReoGrid.Outline;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Outline;
 #endif // OUTLINE
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{
@@ -252,7 +252,7 @@ namespace unvell.ReoGrid
 					}
 					else
 					{
-						this.printSettings.PaperName = unvell.ReoGrid.Print.PaperSize.Custom.ToString();
+						this.printSettings.PaperName = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print.PaperSize.Custom.ToString();
 					}
 
 					if (!string.IsNullOrEmpty(ps.paperWidth))
@@ -387,7 +387,7 @@ namespace unvell.ReoGrid
 				{
 					Type type = null;
 
-					if (unvell.ReoGrid.CellTypes.CellTypesManager.CellTypes.TryGetValue(xmlCol.defaultCellBody, out type))
+					if (DWSIM.CrossPlatform.UI.Controls.ReoGrid.CellTypes.CellTypesManager.CellTypes.TryGetValue(xmlCol.defaultCellBody, out type))
 					{
 						colhead.DefaultCellBody = type;
 					}

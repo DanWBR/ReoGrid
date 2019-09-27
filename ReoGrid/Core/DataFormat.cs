@@ -20,10 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.DataFormat;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{
@@ -121,7 +121,7 @@ namespace unvell.ReoGrid
 
 			DataFormatterManager.Instance.FormatCell(cell);
 
-			unvell.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
+			DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
 			UpdateCellTextBounds(cell);
 
 #if FORMULA
@@ -213,7 +213,7 @@ namespace unvell.ReoGrid
 							DataFormatterManager.Instance.FormatCell(cell);
 
 							// update cell render alignemnt (Number aligned to right might be restored to left)
-							unvell.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
+							DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
 
 							// update text bounds
 							UpdateCellTextBounds(cell);
@@ -232,7 +232,7 @@ namespace unvell.ReoGrid
 	}
 }
 
-namespace unvell.ReoGrid.DataFormat
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat
 {
 	using System.Threading;
 	using System.Globalization;

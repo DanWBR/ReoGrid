@@ -24,10 +24,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Data;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	/// <summary>
 	/// Represents the interface of data source used for chart.
@@ -595,7 +595,7 @@ namespace unvell.ReoGrid.Chart
 
 				double val;
 
-				if (unvell.ReoGrid.Utility.CellUtility.TryGetNumberData(data, out val))
+				if (DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.CellUtility.TryGetNumberData(data, out val))
 				{
 					return val;
 				}

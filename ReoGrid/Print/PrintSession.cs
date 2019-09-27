@@ -33,11 +33,11 @@ using PlatformGraphics = Eto.Drawing.Graphics;
 using PlatformGraphics = System.Windows.Media.DrawingContext;
 #endif // WPF
 
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	/// <summary>
 	/// Represents a print session to print worksheets.
@@ -231,7 +231,7 @@ namespace unvell.ReoGrid.Print
 			if (this.DrawingContext.Graphics == null)
 			{
 #if WINFORM
-				this.DrawingContext.Graphics = new unvell.ReoGrid.WinForm.GDIRenderer(pg);
+				this.DrawingContext.Graphics = new DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.GDIRenderer(pg);
 #endif // WINFORM
 			}
 			else

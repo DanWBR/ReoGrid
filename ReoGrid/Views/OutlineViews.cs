@@ -31,13 +31,13 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF
 
-using unvell.ReoGrid.Outline;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Interaction;
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Outline;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid.Views
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
 	class OutlineLeftTopSpace : View
 	{

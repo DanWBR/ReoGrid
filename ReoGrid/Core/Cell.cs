@@ -34,24 +34,25 @@ using RGFloat = System.Double;
 
 #if EX_SCRIPT
 using unvell.ReoScript;
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif // EX_SCRIPT
 
-using unvell.Common;
+using Common;
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.CellTypes;
-using unvell.ReoGrid.DataFormat;
-using unvell.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.CellTypes;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
 
 #if FORMULA
-using unvell.ReoGrid.Formula;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula;
 #endif // FORMULA
 
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using Common;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{
@@ -1062,7 +1063,7 @@ namespace unvell.ReoGrid
 #if DEBUG
 			if ((++_count % 50) == 0)
 			{
-				unvell.Common.Logger.Log("style", "new style created, count: " + _count);
+				Common.Logger.Log("style", "new style created, count: " + _count);
 			}
 #endif // DEBUG
 		}
@@ -1291,7 +1292,7 @@ namespace unvell.ReoGrid
 #endregion // CellElementFlag
 }
 
-namespace unvell.ReoGrid.Utility
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 {
 #region Cell Utility
 	/// <summary>

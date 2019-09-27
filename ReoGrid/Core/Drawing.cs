@@ -23,9 +23,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
-	using unvell.ReoGrid.Drawing;
+	using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
 
 	partial class Worksheet
 	{

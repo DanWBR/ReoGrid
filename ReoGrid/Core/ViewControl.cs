@@ -25,9 +25,9 @@ using System.Text;
 using System.Diagnostics;
 #endif // DEBUG
 
-using unvell.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

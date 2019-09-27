@@ -27,12 +27,12 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF
 
-using unvell.ReoGrid.Drawing;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	/// <summary>
 	/// Represents chart drawing component.

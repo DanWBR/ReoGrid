@@ -21,9 +21,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 #if EX_EVENT_STYLE
 	public class SGStyleTrigger

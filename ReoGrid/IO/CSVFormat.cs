@@ -23,7 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace unvell.ReoGrid.IO
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO
 {
 	internal static class CSVFormat
 	{

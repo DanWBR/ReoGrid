@@ -24,24 +24,24 @@ using Eto.Forms;
 using System.Text;
 using System.Diagnostics;
 
-using unvell.Common;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Interaction;
-using unvell.ReoGrid.Main;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-using DrawMode = unvell.ReoGrid.Rendering.DrawMode;
-using Rectangle = unvell.ReoGrid.Graphics.Rectangle;
+using DrawMode = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.DrawMode;
+using Rectangle = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle;
 
 using Cursor = Eto.Forms.Mouse;
 
 using Point = Eto.Drawing.Point;
 using Size = Eto.Drawing.Size;
 using WFRect = Eto.Drawing.Rectangle;
-using unvell.ReoGrid.EtoRenderer;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
     /// <summary>
     /// ReoGrid - .NET Spreadsheet Component for Windows Form
@@ -196,7 +196,7 @@ namespace unvell.ReoGrid
                                     var sheet = this.workbook.worksheets[this.sheetTab.SelectedIndex];
                                     if (sheet != null)
                                     {
-                                        using (var rsd = new unvell.ReoGrid.EtoControls.RenameSheetDialog())
+                                        using (var rsd = new DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoControls.RenameSheetDialog())
                                         {
                                             var rect = this.sheetTab.GetItemBounds(this.sheetTab.SelectedIndex);
 

@@ -26,10 +26,10 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.Drawing.Shapes
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Shapes
 {
 	
 	#region Path

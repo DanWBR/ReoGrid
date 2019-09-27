@@ -23,7 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace unvell.ReoGrid.IO
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO
 {
 	/// <summary>
 	/// File format flag
@@ -158,12 +158,12 @@ namespace unvell.ReoGrid.IO
 
 		public void Load(IWorkbook workbook, Stream stream, Encoding encoding, object arg)
 		{
-			unvell.ReoGrid.IO.OpenXML.ExcelReader.ReadStream(workbook, stream);
+			DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML.ExcelReader.ReadStream(workbook, stream);
 		}
 
 		public void Save(IWorkbook workbook, Stream stream, Encoding encoding, object arg)
 		{
-			unvell.ReoGrid.IO.OpenXML.ExcelWriter.WriteStream(workbook, stream);
+			DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML.ExcelWriter.WriteStream(workbook, stream);
 		}
 	}
 

@@ -24,7 +24,7 @@ using System.Diagnostics;
 
 #if EX_SCRIPT
 using unvell.ReoScript;
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif // EX_SCRIPT
 
 #if WINFORM || ANDROID || ETO
@@ -33,22 +33,22 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-using unvell.Common;
+using Common;
 
 #if WINFORM || WPF
-using unvell.Common.Win32Lib;
+using unvell.common.Win32Lib;
 #endif // WINFORM || WPF
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Actions;
-using unvell.ReoGrid.Data;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Actions;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid.Views
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
 	interface IRangeSelectableView : IViewport
 	{

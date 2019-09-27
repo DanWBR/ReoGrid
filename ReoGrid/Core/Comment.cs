@@ -24,11 +24,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.Common;
-using unvell.ReoGrid.Drawing;
-using unvell.ReoGrid.Rendering;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Core
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core
 {
 	internal class CellComment : DrawingObject
 	{
@@ -50,9 +50,9 @@ namespace unvell.ReoGrid.Core
 	}
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
-	using unvell.ReoGrid.Core;
+	using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
 
 	partial class Cell
 	{

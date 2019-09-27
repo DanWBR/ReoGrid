@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 using WFFontStyle = Eto.Drawing.FontStyle;
 using PlatformGraphics = Eto.Drawing.Graphics;
@@ -29,24 +29,24 @@ using PlatformGraphics = Eto.Drawing.Graphics;
 using WFPointF = Eto.Drawing.PointF;
 using WFRectF = Eto.Drawing.RectangleF;
 
-using Point = unvell.ReoGrid.Graphics.Point;
-using Rectangle = unvell.ReoGrid.Graphics.Rectangle;
+using Point = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point;
+using Rectangle = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle;
 
 using RGFloat = System.Single;
 
 using RGPen = Eto.Drawing.Pen;
 using RGBrush = Eto.Drawing.Brush;
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.Drawing.Text;
-using unvell.ReoGrid.Rendering;
-using DrawMode = unvell.ReoGrid.Rendering.DrawMode;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DrawMode = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.DrawMode;
 
 using Eto.Drawing;
-using unvell.Common;
+using Common;
 
-namespace unvell.ReoGrid.EtoRenderer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
 {
 
     internal class EtoGraphics : IGraphics

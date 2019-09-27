@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Data
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data
 {
 	/// <summary>
 	/// Represents common data source.

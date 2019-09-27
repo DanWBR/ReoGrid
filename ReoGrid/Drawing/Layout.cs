@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Drawing
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing
 {
 	/*
 	public enum DockingPosition

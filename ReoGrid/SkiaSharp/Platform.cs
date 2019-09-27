@@ -19,10 +19,10 @@
 #if SKIASHARP
 
 using SkiaSharp;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class ReoGridCell
 	{
@@ -30,7 +30,7 @@ namespace unvell.ReoGrid
 	}
 }
 
-namespace unvell.ReoGrid.Rendering
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 {
 	partial class PlatformUtility
 	{

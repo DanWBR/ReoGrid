@@ -26,12 +26,12 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 
-using unvell.Common;
+using Common
 using System.Collections.Generic;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	/// <summary>
 	/// Represents the sheet tab control.
@@ -494,7 +494,7 @@ namespace unvell.ReoGrid.WinForm
 						var arg = new SheetTabMouseEventArgs
 						{
 							Location = e.Location,
-							MouseButtons = (unvell.ReoGrid.Interaction.MouseButtons)e.Button,
+							MouseButtons = (DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction.MouseButtons)e.Button,
 							Handled = false,
 						};
 

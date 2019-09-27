@@ -25,12 +25,12 @@ using System.Text;
 using System.Diagnostics;
 #endif // DEBUG
 
-using unvell.ReoGrid.Data;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Main;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

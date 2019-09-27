@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace unvell.ReoGrid.Utility
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 {
 #if DEBUG
 	public 

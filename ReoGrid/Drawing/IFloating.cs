@@ -29,9 +29,9 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.Drawing
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing
 {
 	/// <summary>
 	/// Represents an floating object above worksheet

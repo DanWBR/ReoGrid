@@ -23,14 +23,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
-	using unvell.ReoGrid.Outline;
+	using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Outline;
 
 	partial class Worksheet
 	{
@@ -661,7 +661,7 @@ namespace unvell.ReoGrid
 	}
 }
 
-namespace unvell.ReoGrid.Outline
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Outline
 {
 	/// <summary>
 	/// Outline Collection for both Row and Column Outline.

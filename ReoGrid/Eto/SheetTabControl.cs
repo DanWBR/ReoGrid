@@ -25,10 +25,10 @@ using System.Linq;
 using Eto.Drawing;
 using System.ComponentModel;
 
-using unvell.Common;
+using Common;
 using System.Collections.Generic;
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 using Eto.Forms;
 using System.Windows.Forms;
 using MouseButtons = Eto.Forms.MouseButtons;
@@ -36,7 +36,7 @@ using MouseEventArgs = Eto.Forms.MouseEventArgs;
 using Cursors = Eto.Forms.Cursors;
 using PaintEventArgs = Eto.Forms.PaintEventArgs;
 
-namespace unvell.ReoGrid.EtoRenderer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
 {
     /// <summary>
     /// Represents the sheet tab control.
@@ -58,8 +58,8 @@ namespace unvell.ReoGrid.EtoRenderer
             this.grid = grid;
             this.Font = SystemFonts.Default();
             this.NewButtonVisible = true;
-            this.newButtonImage = Bitmap.FromResource("unvell.ReoGrid.Resources.icons8-add_row_focused.png").WithSize(16, 16);
-            this.newButtonDisableImage = Bitmap.FromResource("unvell.ReoGrid.Resources.icons8-add_row.png").WithSize(16, 16);
+            this.newButtonImage = Bitmap.FromResource("DWSIM.CrossPlatform.UI.Controls.ReoGrid.Resources.icons8-add_row_focused.png").WithSize(16, 16);
+            this.newButtonDisableImage = Bitmap.FromResource("DWSIM.CrossPlatform.UI.Controls.ReoGrid.Resources.icons8-add_row.png").WithSize(16, 16);
         }
 
         protected override void Dispose(bool disposing)

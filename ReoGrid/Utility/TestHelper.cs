@@ -26,11 +26,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using unvell.Common;
-using unvell.ReoGrid.Graphics;
+using Common
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if DEBUG
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{
@@ -395,7 +395,7 @@ namespace unvell.ReoGrid
 	}
 }
 
-namespace unvell.ReoGrid.Tests
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Tests
 {
 	public enum DumpFlag : int
 	{

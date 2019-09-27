@@ -23,9 +23,9 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-using unvell.Common.Win32Lib;
+using unvell.common.Win32Lib;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	// Must inherit Control, not Component, in order to have Handle
 	// http://stackoverflow.com/questions/621577/clipboard-event-c-sharp/1394225#1394225

@@ -22,16 +22,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.IO.OpenXML.Schema;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML.Schema;
 
-using RGWorkbook = unvell.ReoGrid.IWorkbook;
-using RGWorksheet = unvell.ReoGrid.Worksheet;
-using unvell.ReoGrid.DataFormat;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Graphics;
+using RGWorkbook = DWSIM.CrossPlatform.UI.Controls.ReoGrid.IWorkbook;
+using RGWorksheet = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Worksheet;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.IO.OpenXML
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML
 {
 	#region Writer
 
@@ -920,7 +920,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 		}
 
 		private static void WriteImage(Document doc, Schema.Worksheet sheet, Schema.Drawing drawing,
-			Worksheet rgSheet, unvell.ReoGrid.Drawing.ImageObject image)
+			Worksheet rgSheet, DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.ImageObject image)
 		{
 			if (drawing.twoCellAnchors == null)
 			{
@@ -1156,9 +1156,9 @@ namespace unvell.ReoGrid.IO.OpenXML
 			Row row = null;
 
 			//#if WINFORM || WPF
-			//			const int colPageSize = unvell.ReoGrid.Data.JaggedTreeArray<ReoGridCell>.ColSize;
+			//			const int colPageSize = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.JaggedTreeArray<ReoGridCell>.ColSize;
 			//#elif ANDROID || iOS
-			//			const int colPageSize = unvell.ReoGrid.Data.ReoGridCellArray.ColSize;
+			//			const int colPageSize = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.ReoGridCellArray.ColSize;
 			//#endif // ANDROID
 
 			for (int r = 0; r <= maxRows; r++)
@@ -1735,7 +1735,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 			//IZipFileEntry themeEntry = this.zipArchive.AddFile("xl/theme/theme1.xml");
 			//using (var s = new StreamWriter(themeEntry.CreateStream()))
 			//{
-			//	s.Write(unvell.ReoGrid.Properties.Resources.theme1);
+			//	s.Write(DWSIM.CrossPlatform.UI.Controls.ReoGrid.Properties.Resources.theme1);
 			//}
 			//this.contentType.Overrides.Add(new ContentTypeOverrideItem
 			//{
@@ -1830,7 +1830,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 #endregion // Document
 }
 
-namespace unvell.ReoGrid.IO.OpenXML.Schema
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML.Schema
 {
 #region Workbook
 	partial class Workbook

@@ -18,8 +18,8 @@
 
 #if DRAWING
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
 #if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
@@ -27,7 +27,7 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WINFORM
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	/// <summary>
 	/// Represents a horizontal bar chart.

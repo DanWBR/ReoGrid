@@ -28,11 +28,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using unvell.Common;
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.DataFormat;
+using Common
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	public partial class DebugForm : Form
 	{

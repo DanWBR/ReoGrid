@@ -16,11 +16,11 @@
  * 
  ****************************************************************************/
 
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 using System;
 #elif WPF
 using RGFloat = System.Double;
@@ -52,9 +52,9 @@ using RGBrush = CoreGraphics.CGContext;
 
 #endif // ANDROID
 
-using unvell.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
 
-namespace unvell.ReoGrid.Rendering
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 {
 	// Class define for multiple platform
 	//

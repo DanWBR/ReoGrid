@@ -24,15 +24,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using unvell.Common;
-using unvell.ReoGrid.Formula;
+using Common
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula;
 
 #if EX_SCRIPT
 using unvell.ReoScript;
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif
 
-namespace unvell.ReoGrid.Formula
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
 	static class RSFunctions
 	{
@@ -278,10 +278,10 @@ namespace unvell.ReoGrid.Formula
 	}
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	using Formula;
-	using unvell.Common;
+	using Common
 	using System.ComponentModel;
 
 	#region ReoGrid Formula Provider Adapter Interface
@@ -333,7 +333,7 @@ namespace unvell.ReoGrid
 
 #region Formula Provider Define
 
-namespace unvell.ReoGrid.Formula
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
 	internal interface IFormulaEvaluationProvider<T> where T : ICompiledFormula
 	{
@@ -363,7 +363,7 @@ namespace unvell.ReoGrid.Formula
 
 #region ReoScript Adapter
 #if EX_SCRIPT
-namespace unvell.ReoGrid.Adapter
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Adapter
 {
 	internal sealed class ReoScriptFormulaProvider : IFormulaEvaluationProvider<ICompiledFormula>
 	{
@@ -513,7 +513,7 @@ namespace unvell.ReoGrid.Adapter
 
 #region ExcelCompatible Adapter
 
-namespace unvell.ReoGrid.Adapter
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Adapter
 {
 	#region Excel Formula Provider
 
@@ -522,7 +522,7 @@ namespace unvell.ReoGrid.Adapter
 	#endregion
 }
 
-namespace unvell.ReoGrid.Formula.ExcelProvider
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula.ExcelProvider
 {
 	public sealed class FormulaEvaluator
 	{

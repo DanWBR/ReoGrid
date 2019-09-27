@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	/// <summary>
 	/// Collection of Worksheet 

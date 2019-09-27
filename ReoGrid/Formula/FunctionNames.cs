@@ -18,7 +18,7 @@
 
 #if FORMULA
 
-namespace unvell.ReoGrid.Formula
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
 	/// <summary>
 	/// Constants of all built-in function name.

@@ -23,11 +23,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Drawing;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	internal class ChartTitle : DrawingObject
 	{
@@ -52,7 +52,7 @@ namespace unvell.ReoGrid.Chart
 			var g = dc.Graphics;
 
 			g.DrawText(Chart.Title, this.FontName, this.FontSize,
-				unvell.ReoGrid.Rendering.StaticResources.SystemColor_WindowText, this.ClientBounds,
+				DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.StaticResources.SystemColor_WindowText, this.ClientBounds,
 				ReoGridHorAlign.Center, ReoGridVerAlign.Middle);
 		}
 	}

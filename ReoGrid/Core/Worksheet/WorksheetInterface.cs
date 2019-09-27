@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	public interface IPrintableContainer
 	{

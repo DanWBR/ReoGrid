@@ -24,9 +24,9 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using unvell.Common;
+using Common;
 
-namespace unvell.ReoGrid.Utility
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 {
 	internal static class XMLHelper
 	{

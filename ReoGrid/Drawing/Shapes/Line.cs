@@ -24,10 +24,10 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF
 
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.Drawing.Shapes
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Shapes
 {
 	/// <summary>
 	/// Represents straight line connection.

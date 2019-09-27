@@ -13,7 +13,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace unvell.ReoGrid.WinForm.Designer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.Designer
 {
 	internal class ReoGridControlDesigner : ControlDesigner
 	{

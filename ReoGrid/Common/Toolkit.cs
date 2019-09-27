@@ -17,14 +17,14 @@
  ****************************************************************************/
 
 #if WINFORM || WPF
-using unvell.Common.Win32Lib;
+using unvell.common.Win32Lib;
 #endif // WINFORM || WPF
 
 using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace unvell.Common
+namespace Common
 {
 	/// <summary>
 	/// Common Toolkit

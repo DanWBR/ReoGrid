@@ -23,10 +23,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
 
-namespace unvell.ReoGrid.Drawing
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing
 {
 	internal interface IDrawingCanvas : IDrawingContainer
 	{

@@ -29,10 +29,10 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Chart
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Chart
 {
 	/// <summary>
 	/// Represents column chart component.

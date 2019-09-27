@@ -28,9 +28,9 @@ using System.Text;
 using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
 
-using unvell.ReoGrid.Print;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print;
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	partial class PrintSession
 	{
@@ -48,7 +48,7 @@ namespace unvell.ReoGrid.Print
 	}
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

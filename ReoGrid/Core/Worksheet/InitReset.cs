@@ -26,21 +26,21 @@ using System.Diagnostics;
 #endif // DEBUG
 
 #if WINFORM || WPF || ETO
-//using CellArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.ReoGridCell>;
-//using HBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridHBorder>;
-//using VBorderArray = unvell.ReoGrid.Data.JaggedTreeArray<unvell.ReoGrid.Core.ReoGridVBorder>;
-using CellArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Cell>;
-using HBorderArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Core.ReoGridHBorder>;
-using VBorderArray = unvell.ReoGrid.Data.Index4DArray<unvell.ReoGrid.Core.ReoGridVBorder>;
+//using CellArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.JaggedTreeArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridCell>;
+//using HBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.JaggedTreeArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridHBorder>;
+//using VBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.JaggedTreeArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridVBorder>;
+using CellArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.Index4DArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Cell>;
+using HBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.Index4DArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridHBorder>;
+using VBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.Index4DArray<DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core.ReoGridVBorder>;
 #elif ANDROID || iOS
-using CellArray = unvell.ReoGrid.Data.ReoGridCellArray;
-using HBorderArray = unvell.ReoGrid.Data.ReoGridHBorderArray;
-using VBorderArray = unvell.ReoGrid.Data.ReoGridVBorderArray;
+using CellArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.ReoGridCellArray;
+using HBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.ReoGridHBorderArray;
+using VBorderArray = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.ReoGridVBorderArray;
 #endif // ANDROID
 
-using unvell.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

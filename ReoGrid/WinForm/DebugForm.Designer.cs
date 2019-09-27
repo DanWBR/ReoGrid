@@ -18,7 +18,7 @@
 
 #if WINFORM
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	partial class DebugForm
 	{
@@ -64,7 +64,7 @@ namespace unvell.ReoGrid.WinForm
 			this.labBorderDown = new System.Windows.Forms.Label();
 			this.labBorderLeft = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.layout = new unvell.ReoGrid.WinForm.RGCellLayoutGraphControl();
+			this.layout = new DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.RGCellLayoutGraphControl();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();

@@ -24,7 +24,7 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF || iOS
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	/// <summary>
 	/// Represents a rectangle that contains x, y, width and height information.
@@ -330,36 +330,36 @@ namespace unvell.ReoGrid.Graphics
 		#region Platform Associated
 #if WINFORM
 		/// <summary>
-		/// Convert System.Drawing.Rectangle to unvell.ReoGrid.Graphics.Rectangle.
+		/// Convert System.Drawing.Rectangle to DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle.
 		/// </summary>
 		/// <param name="r">Rectangle of System.Drawing.Rectangle.</param>
-		/// <returns>Rectangle of unvell.ReoGrid.Graphics.Rectangle.</returns>
+		/// <returns>Rectangle of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle.</returns>
 		public static implicit operator Rectangle(System.Drawing.Rectangle r)
 		{
 			return new Rectangle(r.X, r.Y, r.Width, r.Height);
 		}
 		/// <summary>
-		/// Convert System.Drawing.RectangleF to unvell.ReoGrid.Graphics.Rectangle.
+		/// Convert System.Drawing.RectangleF to DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle.
 		/// </summary>
 		/// <param name="r">Rectangle of System.Drawing.RectangleF.</param>
-		/// <returns>Rectangle of unvell.ReoGrid.Graphics.Rectangle.</returns>
+		/// <returns>Rectangle of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle.</returns>
 		public static implicit operator Rectangle(System.Drawing.RectangleF r)
 		{
 			return new Rectangle(r.X, r.Y, r.Width, r.Height);
 		}
 		/// <summary>
-		/// Convert unvell.ReoGrid.Graphics.Rectangle to System.Drawing.Rectangle.
+		/// Convert DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle to System.Drawing.Rectangle.
 		/// </summary>
-		/// <param name="r">Rectangle of unvell.ReoGrid.Graphics.Rectangle.</param>
+		/// <param name="r">Rectangle of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle.</param>
 		/// <returns>Rectangle of System.Drawing.Rectangle.</returns>
 		public static explicit operator System.Drawing.Rectangle(Rectangle r)
 		{
 			return new System.Drawing.Rectangle((int)Math.Round(r.X), (int)Math.Round(r.Y), (int)Math.Round(r.Width), (int)Math.Round(r.Height));
 		}
 		/// <summary>
-		/// Convert unvell.ReoGrid.Graphics.Rectangle to System.Drawing.RectangleF.
+		/// Convert DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle to System.Drawing.RectangleF.
 		/// </summary>
-		/// <param name="r">Rectangle of unvell.ReoGrid.Graphics.Rectangle.</param>
+		/// <param name="r">Rectangle of DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle.</param>
 		/// <returns>Rectangle of System.Drawing.RectangleF.</returns>
 		public static implicit operator System.Drawing.RectangleF(Rectangle r)
 		{

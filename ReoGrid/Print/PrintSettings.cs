@@ -30,7 +30,7 @@ using RGFloat = System.Double;
 using RGFloat = System.Single;
 #endif // WPF
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	/// <summary>
 	/// Print settings for spreadsheet.

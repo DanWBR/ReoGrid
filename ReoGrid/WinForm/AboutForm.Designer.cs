@@ -18,7 +18,7 @@
 
 #if WINFORM
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	partial class AboutForm
 	{

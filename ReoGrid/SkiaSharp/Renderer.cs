@@ -19,12 +19,12 @@
 #if SKIASHARP
 
 using System;
-using unvell.ReoGrid.Drawing.Text;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 using SkiaSharp;
 
-namespace unvell.ReoGrid.AndroidOS
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.AndroidOS
 {
 	class AndroidRenderer : SkiaSharpGraphics, IRenderer
 	{

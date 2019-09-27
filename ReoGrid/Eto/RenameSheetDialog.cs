@@ -21,7 +21,7 @@
 using System;
 using Eto.Forms;
 
-namespace unvell.ReoGrid.EtoControls
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoControls
 {
 	/// <summary>
 	/// Represents the sheet rename dialog

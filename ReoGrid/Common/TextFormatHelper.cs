@@ -29,11 +29,11 @@ using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Globalization;
 
-using unvell.ReoGrid;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
 
-namespace unvell.Common
+namespace Common
 {
 	internal class TextFormatHelper
 	{

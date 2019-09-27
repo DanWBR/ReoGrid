@@ -17,10 +17,10 @@
  ****************************************************************************/
 
 using System;
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

@@ -20,10 +20,10 @@ using System;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Actions;
-using unvell.ReoGrid.Main;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Actions;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
 #if WINFORM
 using DataObject = System.Windows.Forms.DataObject;
@@ -35,10 +35,10 @@ using Clipboard = System.Windows.Clipboard;
 
 #if EX_SCRIPT
 using unvell.ReoScript;
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif // EX_SCRIPT
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{

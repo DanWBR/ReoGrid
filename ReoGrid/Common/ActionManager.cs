@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace unvell.Common
+namespace Common
 {
 	internal sealed class ActionManager
 	{

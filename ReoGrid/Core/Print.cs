@@ -31,12 +31,12 @@ using RGFloat = System.Double;
 
 #endif // WPF
 
-using unvell.ReoGrid.Print;
-using unvell.ReoGrid.Data;
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	#region PrintPageOrder
 	/// <summary>
@@ -57,7 +57,7 @@ namespace unvell.ReoGrid.Print
 	#endregion // PrintPageOrder
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	public partial class Worksheet
 	{
@@ -967,7 +967,7 @@ namespace unvell.ReoGrid
 
 			Size size = GetPaperSizeInPixel(dpix, dpiy);
 
-			//RGFloat dpi = unvell.ReoGrid.Rendering.PlatformUtility.GetDPI();
+			//RGFloat dpi = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.PlatformUtility.GetDPI();
 
 			var marginLeft = MeasureToolkit.InchToPixel(this.printSettings.Margins.Left, dpix);
 			var marginRight = MeasureToolkit.InchToPixel(this.printSettings.Margins.Right, dpix);

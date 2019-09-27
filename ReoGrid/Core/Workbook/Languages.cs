@@ -19,7 +19,7 @@
 using System.Globalization;
 using System.Threading;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	#region Multi-Languages
 	/// <summary>

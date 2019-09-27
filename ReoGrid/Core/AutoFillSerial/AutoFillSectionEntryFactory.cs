@@ -1,6 +1,6 @@
-﻿using unvell.ReoGrid.Utility;
+﻿using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
     public static class AutoFillSectionEntryFactory
     {

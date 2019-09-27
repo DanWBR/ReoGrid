@@ -21,9 +21,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using unvell.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
 
-namespace unvell.ReoGrid.Core
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core
 {
 	/// <summary>
 	/// Absolute address interface reference to a cell or range on spreadsheet
@@ -105,7 +105,7 @@ namespace unvell.ReoGrid.Core
 	}
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	#region Cell Position
 

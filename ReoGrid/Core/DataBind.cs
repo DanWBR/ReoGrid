@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.DataBind
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataBind
 {
 	partial class Worksheet
 	{

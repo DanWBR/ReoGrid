@@ -33,14 +33,14 @@ using RGIntDouble = System.Double;
 
 #endif // WPF
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid;
 
-namespace unvell.ReoGrid.Core
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core
 {
     /// <summary>
     /// Cell horizontal alignment for render. (cell-auto-format)
@@ -67,7 +67,7 @@ namespace unvell.ReoGrid.Core
     }
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
     partial class Worksheet
     {
@@ -181,7 +181,7 @@ namespace unvell.ReoGrid
 
                     //if (colHead != null && colHead.InnerStyle != null)
                     //{
-                    //	unvell.ReoGrid.Utility.StyleUtility.CopyStyle(style, colHead.InnerStyle);
+                    //	DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.CopyStyle(style, colHead.InnerStyle);
                     //}
                     if (colHead != null)
                     {
@@ -394,7 +394,7 @@ namespace unvell.ReoGrid
             }
 
             // update render text align when data format changed
-            unvell.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
+            DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
 
             if (!string.IsNullOrEmpty(cell.DisplayText))
             {
@@ -778,9 +778,9 @@ namespace unvell.ReoGrid
             StyleParentKind pKind = StyleParentKind.Own;
 
             WorksheetRangeStyle style = (cell == null) ?
-                unvell.ReoGrid.Utility.StyleUtility.FindCellParentStyle(this, row, col, out pKind) : cell.InnerStyle;
+                DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.FindCellParentStyle(this, row, col, out pKind) : cell.InnerStyle;
 
-            return unvell.ReoGrid.Utility.StyleUtility.GetStyleItem(style, flag);
+            return DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.GetStyleItem(style, flag);
         }
         #endregion
 

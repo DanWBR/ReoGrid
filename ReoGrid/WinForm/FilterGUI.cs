@@ -24,9 +24,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using RGRectF = System.Drawing.RectangleF;
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid.WinForm
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm
 {
 	internal class ColumnFilterContextMenu : System.Windows.Forms.ContextMenuStrip
 	{
@@ -156,14 +156,14 @@ namespace unvell.ReoGrid.WinForm
 			inEventProcess = false;
 		}
 
-		internal static void ShowFilterPanel(unvell.ReoGrid.Data.AutoColumnFilter.AutoColumnFilterBody headerBody, Point point)
+		internal static void ShowFilterPanel(DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data.AutoColumnFilter.AutoColumnFilterBody headerBody, Point point)
 		{
 			if (headerBody.ColumnHeader == null || headerBody.ColumnHeader.Worksheet == null) return;
 
 			var worksheet = headerBody.ColumnHeader.Worksheet;
 			if (worksheet == null) return;
 
-			RGRectF headerRect = unvell.ReoGrid.Views.ColumnHeaderView.GetColHeaderBounds(worksheet, headerBody.ColumnHeader.Index, point);
+			RGRectF headerRect = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views.ColumnHeaderView.GetColHeaderBounds(worksheet, headerBody.ColumnHeader.Index, point);
 			if (headerRect.Width == 0 || headerRect.Height == 0) return;
 
 			RGRectF buttonRect = headerBody.GetColumnFilterButtonRect(headerRect.Size);

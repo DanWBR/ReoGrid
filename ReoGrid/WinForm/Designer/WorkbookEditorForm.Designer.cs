@@ -1,6 +1,6 @@
 ﻿#if WINFORM
 
-namespace unvell.ReoGrid.WinForm.Designer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.Designer
 {
 	partial class WorkbookEditorForm
 	{
@@ -31,7 +31,7 @@ namespace unvell.ReoGrid.WinForm.Designer
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkbookEditorForm));
-			this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
+			this.reoGridControl1 = new DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridControl();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.panel1 = new System.Windows.Forms.Panel();

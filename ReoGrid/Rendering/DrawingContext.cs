@@ -16,8 +16,8 @@
  * 
  ****************************************************************************/
 
-using unvell.ReoGrid.Views;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
 #if WINFORM || ANDROID || ETO
 using RGFloat = System.Single;
@@ -25,7 +25,7 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif
 
-namespace unvell.ReoGrid.Rendering
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 {
 	/// <summary>
 	/// Drawing Mode for render grid control
@@ -160,9 +160,9 @@ namespace unvell.ReoGrid.Rendering
 
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
-	[System.Obsolete("use unvell.ReoGrid.Rendering.CellDrawingContext instead")]
+	[System.Obsolete("use DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering.CellDrawingContext instead")]
 	public sealed class RGDrawingContext
 	{
 	}

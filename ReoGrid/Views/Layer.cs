@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid.Views
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
 	internal abstract class LayerViewport : Viewport
 	{
@@ -81,9 +81,9 @@ namespace unvell.ReoGrid.Views
 
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
-	using unvell.ReoGrid.Views;
+	using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views;
 
 	partial class Worksheet
 	{

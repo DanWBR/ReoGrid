@@ -17,9 +17,9 @@
  ****************************************************************************/
 
 using System;
-using unvell.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	/// <summary>
 	/// Represents a range object refer to spreadsheet

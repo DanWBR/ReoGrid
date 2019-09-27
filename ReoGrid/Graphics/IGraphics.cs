@@ -78,10 +78,10 @@ using RGTransform = CoreGraphics.CGAffineTransform;
 
 #endif // WPF
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
 
-namespace unvell.ReoGrid.Graphics
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics
 {
 	/// <summary>
 	/// Represents abstract cross-platform drawing context.

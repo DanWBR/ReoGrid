@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	public static class RGUtility
 	{

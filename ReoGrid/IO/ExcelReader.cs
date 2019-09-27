@@ -30,18 +30,18 @@ using RGFloat = System.Single;
 using RGFloat = System.Double;
 #endif // WPF
 
-using RGWorkbook = unvell.ReoGrid.IWorkbook;
-using RGWorksheet = unvell.ReoGrid.Worksheet;
+using RGWorkbook = DWSIM.CrossPlatform.UI.Controls.ReoGrid.IWorkbook;
+using RGWorksheet = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Worksheet;
 
-using unvell.Common;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.DataFormat;
-using unvell.ReoGrid.Utility;
-using unvell.ReoGrid.IO.OpenXML.Schema;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Drawing;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.DataFormat;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML.Schema;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing;
 
-namespace unvell.ReoGrid.IO.OpenXML
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.OpenXML
 {
     #region Reader
 
@@ -776,7 +776,7 @@ namespace unvell.ReoGrid.IO.OpenXML
                                     var sharedFormulaInfo = sharedFormulas[sharedIndex];
 
                                     // children
-                                    unvell.ReoGrid.Formula.FormulaRefactor.Reuse(rgSheet, sharedFormulaInfo.pos, new RangePosition(pos));
+                                    DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula.FormulaRefactor.Reuse(rgSheet, sharedFormulaInfo.pos, new RangePosition(pos));
                                 }
                             }
                         }
@@ -2439,7 +2439,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 			if (string.IsNullOrEmpty(r.text.innerText))
 			{
 				// FIXME: need support to read single white space XML text
-				//        https://github.com/unvell/ReoGrid/issues/29
+				//        https://github.com/DWSIM.CrossPlatform.UI.Controls/ReoGrid/issues/29
 				return;
 			}
 

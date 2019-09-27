@@ -29,19 +29,19 @@ using Path = SkiaSharp.SKPath;
 using Matrix = SkiaSharp.SKMatrix;
 using Typeface = SkiaSharp.SKTypeface;
 
-using IGraphics = unvell.ReoGrid.Graphics.IGraphics;
-using Point = unvell.ReoGrid.Graphics.Point;
-using IColor = unvell.ReoGrid.Graphics.IColor;
-using SolidColor = unvell.ReoGrid.Graphics.SolidColor;
-using Rectangle = unvell.ReoGrid.Graphics.Rectangle;
-using LineStyles = unvell.ReoGrid.Graphics.LineStyles;
-using HatchStyles = unvell.ReoGrid.Graphics.HatchStyles;
+using IGraphics = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.IGraphics;
+using Point = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Point;
+using IColor = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.IColor;
+using SolidColor = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.SolidColor;
+using Rectangle = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.Rectangle;
+using LineStyles = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.LineStyles;
+using HatchStyles = DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics.HatchStyles;
 
 using PlatformGraphics = SkiaSharp.SKCanvas;
 using SkiaSharp;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid.AndroidOS
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.AndroidOS
 {
 	internal class SkiaSharpGraphics : IGraphics
 	{

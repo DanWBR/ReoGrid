@@ -18,7 +18,7 @@
 
 using System;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	/// <summary>
 	/// Worksheet Settings

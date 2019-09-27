@@ -22,7 +22,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Cell
 	{

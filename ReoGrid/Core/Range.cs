@@ -22,14 +22,14 @@ using System.Linq;
 using System.Data;
 
 #if EX_SCRIPT
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif // EX_SCRIPT
 
-using unvell.ReoGrid.Core;
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Worksheet
 	{
@@ -651,7 +651,7 @@ namespace unvell.ReoGrid
 		/// <param name="basePos">Base point to scroll views</param>
 		public void ScrollToRange(RangePosition range, CellPosition basePos)
 		{
-			var svc = this.viewportController as unvell.ReoGrid.Views.IScrollableViewportController;
+			var svc = this.viewportController as DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views.IScrollableViewportController;
 
 			if (svc != null)
 			{

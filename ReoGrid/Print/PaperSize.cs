@@ -23,8 +23,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Utility;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 
 #if WINFORM
 using RGFloat = System.Single;
@@ -37,7 +37,7 @@ using RGFloat = System.Double;
 using RGSizeF = System.Windows.Size;
 #endif // WPF
 
-namespace unvell.ReoGrid.Print
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Print
 {
 	/// <summary>
 	/// Manages the paper size list for printing spreadsheet.

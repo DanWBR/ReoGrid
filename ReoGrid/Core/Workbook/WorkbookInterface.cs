@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using unvell.ReoGrid.Events;
-using unvell.ReoGrid.IO;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO;
 
 #if WINFORM || WPF
-using ControlType = unvell.ReoGrid.ReoGridControl;
+using ControlType = DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridControl;
 #elif ANDROID
-using ControlType = unvell.ReoGrid.ReoGridView;
+using ControlType = DWSIM.CrossPlatform.UI.Controls.ReoGrid.ReoGridView;
 #endif // ANDROID
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	/// <summary>
 	/// Represents an interface of workbook instance
@@ -50,7 +50,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		/// <param name="stream">Output stream to write data of workbook.</param>
 		/// <param name="fileFormat">Specifies the file format used to write data of workbook.</param>
-		void Save(System.IO.Stream stream, unvell.ReoGrid.IO.FileFormat fileFormat);
+		void Save(System.IO.Stream stream, DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.FileFormat fileFormat);
 
 		/// <summary>
 		/// Save workbook into stream.
@@ -58,7 +58,7 @@ namespace unvell.ReoGrid
 		/// <param name="stream">Output stream to write data of workbook.</param>
 		/// <param name="fileFormat">Specifies the file format used to write data of workbook.</param>
 		/// <param name="encoding">Encoding used to write plain-text from resource. (Optional)</param>
-		void Save(System.IO.Stream stream, unvell.ReoGrid.IO.FileFormat fileFormat, Encoding encoding);
+		void Save(System.IO.Stream stream, DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.FileFormat fileFormat, Encoding encoding);
 
 		/// <summary>
 		/// Load workbook from file by specified path.
@@ -86,7 +86,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		/// <param name="stream">Input stream to read data of workbook.</param>
 		/// <param name="fileFormat">Specified file format used to read workbook data from stream.</param>
-		void Load(System.IO.Stream stream, unvell.ReoGrid.IO.FileFormat fileFormat);
+		void Load(System.IO.Stream stream, DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.FileFormat fileFormat);
 
 		/// <summary>
 		/// Load workbook from specified stream.
@@ -94,7 +94,7 @@ namespace unvell.ReoGrid
 		/// <param name="stream">Input stream to read data of workbook.</param>
 		/// <param name="fileFormat">Specified file format used to read workbook data from stream.</param>
 		/// <param name="encoding">Encoding used to read plain-text format workbook data from stream. (Optional)</param>
-		void Load(System.IO.Stream stream, unvell.ReoGrid.IO.FileFormat fileFormat, Encoding encoding);
+		void Load(System.IO.Stream stream, DWSIM.CrossPlatform.UI.Controls.ReoGrid.IO.FileFormat fileFormat, Encoding encoding);
 
 		/// <summary>
 		/// Event raised when workbook loaded from stream or file.

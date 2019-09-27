@@ -37,13 +37,13 @@ using RGPen = System.Windows.Media.Pen;
 using RGBrush = System.Windows.Media.SolidColorBrush;
 #endif // WINFORM
 
-using unvell.Common;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Rendering;
-using unvell.ReoGrid.Drawing.Text;
+using Common
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
 using System.Collections;
 
-namespace unvell.ReoGrid.Drawing
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing
 {
 	/// <summary>
 	/// Represents a rich format text object that could be displayed inside cell or drawing objects.
@@ -612,7 +612,7 @@ namespace unvell.ReoGrid.Drawing
 	}
 }
 
-namespace unvell.ReoGrid.Drawing.Text
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text
 {
 	#region Paragraph
 	/// <summary>

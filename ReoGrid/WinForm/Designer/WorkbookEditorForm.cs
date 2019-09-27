@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace unvell.ReoGrid.WinForm.Designer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.Designer
 {
 	/// <summary>
 	/// Workbook editor for design-time of Visual Studio

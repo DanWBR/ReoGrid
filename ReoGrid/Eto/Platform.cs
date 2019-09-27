@@ -21,13 +21,13 @@
 using Eto.Drawing;
 using WFFontStyle = Eto.Drawing.FontStyle;
 
-using unvell.Common;
-using unvell.ReoGrid.Drawing.Text;
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Interaction;
-using unvell.ReoGrid.EtoRenderer;
+using Common;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 
-namespace unvell.ReoGrid.EtoRenderer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
 {
     class EtoFont : BaseFont
     {
@@ -35,7 +35,7 @@ namespace unvell.ReoGrid.EtoRenderer
     }
 }
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
     partial class Cell
     {
@@ -48,7 +48,7 @@ namespace unvell.ReoGrid
     }
 }
 
-namespace unvell.ReoGrid.Rendering
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
 {
     #region PlatformUtility
     partial class PlatformUtility

@@ -29,17 +29,17 @@ using System.Diagnostics;
 #endif // DEBUG
 
 #if FORMULA
-using unvell.ReoGrid.Formula;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula;
 #endif // FORMULA
 
 #if EX_SCRIPT
 using unvell.ReoScript;
-using unvell.ReoGrid.Script;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Script;
 #endif // EX_SCRIPT
 
-using unvell.ReoGrid.Properties;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Properties;
 
-namespace unvell.ReoGrid
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
 	partial class Workbook
 	{

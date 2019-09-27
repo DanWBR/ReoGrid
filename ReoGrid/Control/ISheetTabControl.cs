@@ -50,9 +50,9 @@ using RGPoint = CoreGraphics.CGPoint;
 using RGIntDouble = System.Double;
 #endif
 
-using unvell.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
 
-namespace unvell.ReoGrid.Main
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Main
 {
 	/// <summary>
 	/// Mouse event arguments for sheet tab control.

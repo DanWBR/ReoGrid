@@ -18,11 +18,11 @@
 
 #if DRAWING
 
-using unvell.ReoGrid.Graphics;
-using unvell.ReoGrid.Interaction;
-using unvell.ReoGrid.Rendering;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering;
 
-namespace unvell.ReoGrid.Views
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
 	internal class DrawingViewport : Viewport
 	{

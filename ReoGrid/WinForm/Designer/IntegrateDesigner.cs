@@ -25,7 +25,7 @@ using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms.Design;
 
-namespace unvell.ReoGrid.WinForm.Designer
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.WinForm.Designer
 {
 	internal class ReoGridControlDesigner : ControlDesigner
 	{
@@ -107,10 +107,10 @@ namespace unvell.ReoGrid.WinForm.Designer
 				{
 					//System.Windows.Forms.MessageBox.Show(AppDomain.CurrentDomain.Load();
 
-					//AppDomain.CurrentDomain.Load("D:\\dotnet-projects\\ReoGrid\\EditorLib\\bin\\Debug\\unvell.ReoGridEditor.dll");
+					//AppDomain.CurrentDomain.Load("D:\\dotnet-projects\\ReoGrid\\EditorLib\\bin\\Debug\\DWSIM.CrossPlatform.UI.Controls.ReoGridEditor.dll");
 
-					//editor = AppDomain.CurrentDomain.CreateInstanceAndUnwrap("unvell.ReoGridEditor.dll",
-					//	"unvell.ReoGrid.Editor.ReoGridEditor") as System.Windows.Forms.Form;
+					//editor = AppDomain.CurrentDomain.CreateInstanceAndUnwrap("DWSIM.CrossPlatform.UI.Controls.ReoGridEditor.dll",
+					//	"DWSIM.CrossPlatform.UI.Controls.ReoGrid.Editor.ReoGridEditor") as System.Windows.Forms.Form;
 		
 					if (editor == null)
 					{

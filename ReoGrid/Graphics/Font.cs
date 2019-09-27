@@ -30,7 +30,7 @@ using RGFloat = System.Double;
 
 #endif // WPF
 
-namespace unvell.ReoGrid.Drawing.Text
+namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Drawing.Text
 {
 	[Obsolete("use FontStyles instead")]
 	public enum TextStyle
