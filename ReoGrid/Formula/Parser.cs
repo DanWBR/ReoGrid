@@ -28,7 +28,7 @@ namespace unvell.ReoGrid.Formula
 	/// <summary>
 	/// Excel-compatible formula syntax parser
 	/// </summary>
-	static class Parser
+	public static class Parser
 	{
 		#region Parser API
 		/// <summary>
@@ -626,7 +626,7 @@ namespace unvell.ReoGrid.Formula
 	#region Nodes
 
 	#region STNode
-	class STNode : IEnumerable<STNode>, ICloneable //: IReferenceNode
+	public class STNode : IEnumerable<STNode>, ICloneable //: IReferenceNode
 	{
 		#region Attributes
 		/// <summary>
@@ -939,12 +939,12 @@ namespace unvell.ReoGrid.Formula
 			return new STValueNode(this.Value);
 		}
 	}
-	#endregion ValueNode
+    #endregion ValueNode
 
-	/// <summary>
-	/// Determine the kind of type for node in a tree.
-	/// </summary>
-	enum STNodeType
+    /// <summary>
+    /// Determine the kind of type for node in a tree.
+    /// </summary>
+    public enum STNodeType
 	{
 		NONE,
 

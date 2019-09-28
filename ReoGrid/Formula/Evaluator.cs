@@ -27,7 +27,7 @@ using unvell.ReoGrid.Utility;
 
 namespace unvell.ReoGrid.Formula
 {
-	class Evaluator
+	public class Evaluator
 	{
 		internal static IFunctionNameProvider functionNameProvider = new StandardFunctionNameProvider();
 
@@ -1083,7 +1083,7 @@ namespace unvell.ReoGrid.Formula
 	//#if DEBUG
 	//	public
 	//#endif
-	struct FormulaValue
+	public struct FormulaValue
 	{
 		public FormulaValueType type;
 		public object value;
@@ -1238,7 +1238,7 @@ namespace unvell.ReoGrid.Formula
 	//#if DEBUG
 	//	public
 	//#endif
-	enum FormulaValueType : byte
+	public enum FormulaValueType : byte
 	{
 		Nil,
 		Boolean,

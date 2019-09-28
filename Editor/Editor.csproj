@@ -338,6 +338,8 @@
   <ItemGroup>
     <None Include="Resources\Filter2HS.png" />
     <Content Include="favicon.ico" />
+    <None Include="Resources\arrow_in.png" />
+    <None Include="Resources\arrow_out.png" />
     <Content Include="Resources\FilterAlphabetically_5567_32.bmp" />
     <None Include="Resources\LandscapeHH.bmp" />
     <None Include="Resources\PortraitHH.bmp" />
