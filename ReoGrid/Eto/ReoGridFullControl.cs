@@ -13,14 +13,14 @@ using System.IO;
 
 namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 {
-    public class ReoGridFullControl : DynamicLayout
+    public class ReoGridFullControl : PixelLayout
     {
 
         public ReoGridControl GridControl;
 
         private Worksheet worksheet;
 
-        private string CurrentFilePath, currentTempFilePath;
+        private string CurrentFilePath;
 
         private ComboBox cbNamedRanges;
         private TextBox tbFormula;
@@ -36,37 +36,38 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         public ReoGridFullControl() : base()
         {
 
-            var px = new PixelLayout();
+            var container = new DynamicLayout();
 
             var imgpfx = "DWSIM.CrossPlatform.UI.Controls.ReoGrid.Icons.";
 
-            this.BeginVertical();
+            container.BeginVertical();
 
             this.SizeChanged += (sender, e) =>
             {
                 Console.WriteLine("PixelLayout Size Changed");
-                px.Size = new Size(this.Width, this.Height);
+                container.Size = new Size(this.Width, this.Height);
             };
 
             cbNamedRanges = new ComboBox() { Width = 100, Height = 22 };
             var btnFunction = new Button() { Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png").WithSize(16, 16) };
             tbFormula = new TextBox() { Height = 22 };
 
-            tbFormula.GotFocus += (sender, e) => {
+            tbFormula.GotFocus += (sender, e) =>
+            {
                 backValue = tbFormula.Text;
             };
 
             fontPicker = new FontPicker { Width = 100, Value = SystemFonts.Default() };
 
-            colorPickerBack = new ColorPicker() {Value = SystemColors.ControlBackground };
-            colorPickerFore = new ColorPicker() {Value = SystemColors.ControlText };
+            colorPickerBack = new ColorPicker() { Value = SystemColors.ControlBackground };
+            colorPickerFore = new ColorPicker() { Value = SystemColors.ControlText };
             colorPickerBorder = new ColorPicker() { Value = SystemColors.ControlText };
 
             var lbFont = new Label { Text = "Font", VerticalAlignment = VerticalAlignment.Center };
             var lbFore = new Label { Text = "Text Color", VerticalAlignment = VerticalAlignment.Center };
             var lbBack = new Label { Text = "Background Color", VerticalAlignment = VerticalAlignment.Center };
 
-            btnLeftAlign = new Button() {ToolTip ="Align Left", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleLeftJustHS.PNG").WithSize(16, 16) };
+            btnLeftAlign = new Button() { ToolTip = "Align Left", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleLeftJustHS.PNG").WithSize(16, 16) };
             btnCenterAlign = new Button() { ToolTip = "Align Center", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleCenterHS.png").WithSize(16, 16) };
             btnRightAlign = new Button() { ToolTip = "Align Right", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleRightHS.png").WithSize(16, 16) };
             btnTopAlign = new Button() { ToolTip = "Align Top", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutTop.png").WithSize(16, 16) };
@@ -118,45 +119,54 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             colorPickerBorder.ValueChanged += ColorPickerBorder_ValueChanged;
 
             var functionPanel3 = new TableLayout() { Spacing = new Size(4, 4), Height = 30, Padding = new Padding(5) };
-            functionPanel3.Rows.Add(new TableRow { Cells = { btnNew, btnOpen, btnSave, new Label {Text = " " },
+            functionPanel3.Rows.Add(new TableRow
+            {
+                Cells = { btnNew, btnOpen, btnSave, new Label {Text = " " },
                                                             btnCut, btnCopy, btnPaste, new Label {Text = " " },
                                                             btnUndo, btnRedo, new Label {Text = " " },
                                                             new Label {Text = "Border Style", VerticalAlignment = VerticalAlignment.Center }, cbBorderStyle,
                                                             new Label {Text = "Border Color", VerticalAlignment = VerticalAlignment.Center }, colorPickerBorder, new Label {Text = " " },
-                                                            btnMerge, btnUnMerge, null}, ScaleHeight = true });
+                                                            btnMerge, btnUnMerge, null},
+                ScaleHeight = true
+            });
 
-            this.Add(functionPanel3, true, false);
+            container.Add(functionPanel3, true, false);
 
             var functionPanel2 = new TableLayout() { Spacing = new Size(4, 4), Height = 30, Padding = new Padding(5) };
-            functionPanel2.Rows.Add(new TableRow { Cells = { lbFont, fontPicker, lbFore, colorPickerFore, lbBack, colorPickerBack,
-                btnLeftAlign, btnCenterAlign, btnRightAlign, btnTopAlign, btnMiddleAlign, btnBottomAlign, null }, ScaleHeight = true });
+            functionPanel2.Rows.Add(new TableRow
+            {
+                Cells = { lbFont, fontPicker, lbFore, colorPickerFore, lbBack, colorPickerBack,
+                btnLeftAlign, btnCenterAlign, btnRightAlign, btnTopAlign, btnMiddleAlign, btnBottomAlign, null },
+                ScaleHeight = true
+            });
 
-            this.Add(functionPanel2, true, false);
+            container.Add(functionPanel2, true, false);
 
             var functionPanel = new TableLayout() { Spacing = new Size(4, 4), Height = 30, Padding = new Padding(5) };
             functionPanel.Rows.Add(new TableRow { Cells = { cbNamedRanges, btnFunction, tbFormula }, ScaleHeight = true });
 
-            this.Add(functionPanel, true, false);
+            container.Add(functionPanel, true, false);
 
-            this.EndVertical();
+            container.EndVertical();
 
-            this.BeginVertical();
+            container.BeginVertical();
 
-            GridControl = new ReoGridControl(px);
+            GridControl = new ReoGridControl(this);
 
             GridControl.NewWorksheet();
             GridControl.NewWorksheet();
 
             worksheet = GridControl.CurrentWorksheet;
 
-            px.Add(GridControl, 0, 0);
-            px.Add(GridControl.editTextbox, 0, 0);
+            this.Add(container, 0, 0);
+            this.Add(GridControl.editTextbox, 0, 0);
 
-            this.Add(px, true, true);
+            //this.Add(px, true, true);
 
-            this.Add(GridControl.bottomPanel);
+            container.Add(GridControl, true, true);
+            container.Add(GridControl.bottomPanel, true, false);
 
-            this.EndVertical();
+            container.EndVertical();
 
             GridControl.Width = 5000;
             GridControl.Height = 2000;
@@ -164,7 +174,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             // cell events
 
             GridControl.CurrentWorksheetChanged += workbook_CurrentWorksheetChanged;
-            
+
             this.worksheet.SelectionRangeChanging += grid_SelectionRangeChanging;
             this.worksheet.SelectionRangeChanged += grid_SelectionRangeChanged;
             this.worksheet.FocusPosChanged += grid_FocusPosChanged;
@@ -176,7 +186,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         private void CbBorderStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GridControl.DoAction(new SetRangeBorderAction(this.worksheet.SelectionRange, GetBorderPositionFromIndex(),
-                 new RangeBorderStyle {Style = BorderLineStyle.Solid }));
+                 new RangeBorderStyle { Style = BorderLineStyle.Solid }));
         }
 
         private void BtnUnMerge_Click(object sender, EventArgs e)
@@ -251,7 +261,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             //showGridLinesToolStripMenuItem.Checked = workbook.HasSettings(ReoGridSettings.View_ShowGridLine);
             this.CurrentFilePath = null;
-            this.currentTempFilePath = null;
+            //this.currentTempFilePath = null;
         }
 
         private void ColorPickerBorder_ValueChanged(object sender, EventArgs e)
@@ -265,7 +275,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             //"No Borders", "All Borders", "External Only", "Top Only", "Bottom Only", "Left Only", "Right Only"
             switch (cbBorderStyle.SelectedIndex)
             {
-                default:  case 0: return BorderPositions.None;
+                default: case 0: return BorderPositions.None;
                 case 1: return BorderPositions.All;
                 case 2: return BorderPositions.Outside;
                 case 3: return BorderPositions.Top;
@@ -277,34 +287,55 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         private void ColorPickerFore_ValueChanged(object sender, EventArgs e)
         {
-            GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
+            if (colorPickerFore.Value != Colors.Transparent)
             {
-              Flag = PlainStyleFlag.TextColor,
-              TextColor = colorPickerFore.Value.ToSolidColor()
-            }));
+                GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
+                {
+                    Flag = PlainStyleFlag.TextColor,
+                    TextColor = colorPickerFore.Value.ToSolidColor()
+                }));
+            }
+            else
+            {
+                colorPickerFore.Value = SystemColors.ControlText;
+            }
         }
 
         private void ColorPickerBack_ValueChanged(object sender, EventArgs e)
         {
-            GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
+            if (colorPickerBack.Value != Colors.Transparent)
             {
-                Flag = PlainStyleFlag.BackColor,
-                BackColor = colorPickerBack.Value.ToSolidColor()
-            }));
+                GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
+                {
+                    Flag = PlainStyleFlag.BackColor,
+                    BackColor = colorPickerBack.Value.ToSolidColor()
+                }));
+            }
+            else
+            {
+                colorPickerBack.Value = SystemColors.ControlBackground;
+            }
         }
 
         private void FontPicker_ValueChanged(object sender, EventArgs e)
         {
-            GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
+            if (fontPicker.Value != null)
             {
-                Flag = PlainStyleFlag.FontAll,
-                FontName = fontPicker.Value.FamilyName,
-                FontSize = fontPicker.Value.Size,
-                Bold = fontPicker.Value.Bold,
-                Italic = fontPicker.Value.Italic,
-                Underline = fontPicker.Value.Underline,
-                Strikethrough = fontPicker.Value.Strikethrough
-            }));
+                GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
+                {
+                    Flag = PlainStyleFlag.FontAll,
+                    FontName = fontPicker.Value.FamilyName,
+                    FontSize = fontPicker.Value.Size,
+                    Bold = fontPicker.Value.Bold,
+                    Italic = fontPicker.Value.Italic,
+                    Underline = fontPicker.Value.Underline,
+                    Strikethrough = fontPicker.Value.Strikethrough
+                }));
+            }
+            else
+            {
+                fontPicker.Value = SystemFonts.Default();
+            }
         }
 
         void workbook_CurrentWorksheetChanged(object sender, EventArgs e)
@@ -608,7 +639,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
 
-                sfd.Filters.Add(new FileFilter("Excel Spreadsheet", new []{".xlsx" }));
+                sfd.Filters.Add(new FileFilter("Excel Spreadsheet", new[] { ".xlsx" }));
                 sfd.Filters.Add(new FileFilter("ReoGrid Spreadsheet", new[] { ".rgf" }));
                 sfd.Filters.Add(new FileFilter("Text (Comma-Separated Values)", new[] { ".csv" }));
 
@@ -678,7 +709,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         private void SetCurrentDocumentFile(string filepath)
         {
             this.CurrentFilePath = filepath;
-            this.currentTempFilePath = null;
+            //this.currentTempFilePath = null;
         }
 
         public void LoadFile(string path)
@@ -718,7 +749,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             if (success)
             {
                 this.CurrentFilePath = path;
-                this.currentTempFilePath = null;
+                //this.currentTempFilePath = null;
             }
         }
 

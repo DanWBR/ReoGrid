@@ -39,6 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.dll</HintPath>
     </Reference>
+    <Reference Include="Eto.Gtk2">
+      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.Gtk2.dll</HintPath>
+    </Reference>
     <Reference Include="Eto.WinForms, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.WinForms.dll</HintPath>
@@ -81,4 +84,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)\*" "\\Mac\Home\Desktop\ReoGridTest.app\Contents\MonoBundle\"  /E /Y /F /D</PostBuildEvent>
+  </PropertyGroup>
 </Project>

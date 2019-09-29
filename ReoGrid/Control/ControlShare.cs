@@ -86,9 +86,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 #region Initialize
 		private void InitControl()
 		{
-            //this.controlStyle = ControlAppearanceStyle.CreateDefaultControlStyle();
-            this.controlStyle = new ControlAppearanceStyle(Eto.Drawing.SystemColors.ControlText.ToSolidColor(), 
-                Eto.Drawing.SystemColors.Control.ToSolidColor(), false);
+            this.controlStyle = ControlAppearanceStyle.CreateDefaultControlStyle();
+            //this.controlStyle = new ControlAppearanceStyle(Eto.Drawing.SystemColors.ControlText.ToSolidColor(), 
+             //   Eto.Drawing.SystemColors.Control.ToSolidColor(), false);
         }
 
 		private void InitWorkbook(IControlAdapter adapter)

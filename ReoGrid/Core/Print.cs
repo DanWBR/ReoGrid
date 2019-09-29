@@ -956,7 +956,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
 			session.worksheets.Add(this);
 
-			session.Init();
+			//session.Init();
 
 			return session;
 		}

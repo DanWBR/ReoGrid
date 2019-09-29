@@ -934,7 +934,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 				ps.worksheets.Add(sheet);
 			}
 
-			ps.Init();
+			//ps.Init();
 
 			return ps;
 		}

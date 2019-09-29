@@ -1474,7 +1474,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <summary>
         /// Get or set background color 
         /// </summary>
-        public SolidColor BackColor { get; set; } = Eto.Drawing.Colors.Transparent.ToSolidColor();
+        public SolidColor BackColor { get; set; } = Eto.Drawing.SystemColors.ControlBackground.ToSolidColor();
 
         /// <summary>
         /// Get or set backgrond pattern color.
@@ -1491,17 +1491,17 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <summary>
         /// Get or set text color
         /// </summary>
-        public SolidColor TextColor { get; set; }
+        public SolidColor TextColor { get; set; } = Eto.Drawing.SystemColors.ControlText.ToSolidColor();
 
         /// <summary>
         /// Get or set font name
         /// </summary>
-        public string FontName { get; set; }
+        public string FontName { get; set; } = Eto.Drawing.SystemFonts.Default().FamilyName;
 
         /// <summary>
         /// Get or set font size
         /// </summary>
-        public float FontSize { get; set; }
+        public float FontSize { get; set; } = Eto.Drawing.SystemFonts.Default().Size;
 
         internal Eto.Drawing.FontStyle fontStyles = Eto.Drawing.FontStyle.None;
 

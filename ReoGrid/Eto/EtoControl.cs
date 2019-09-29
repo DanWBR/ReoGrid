@@ -412,7 +412,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
                 editTextbox.SuspendLayout();
                 editTextbox.Size = new Size(rect.Size);
-                control.PixelLayoutParent.Move(editTextbox, rect.Location);
+                var position = rect.Location;
+                position.Offset(0, 102);
+                control.PixelLayoutParent.Move(editTextbox, position);
                 editTextbox.TextWrap = cell.IsMergedCell || cell.InnerStyle.TextWrapMode != TextWrapMode.NoWrap;
                 editTextbox.InitialSize = rect.Size;
                 editTextbox.VAlign = cell.InnerStyle.VAlign;

@@ -47,6 +47,7 @@ using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Actions;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Data;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Interaction;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 
 namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 {
@@ -71,7 +72,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 				return;
 			}
 
-			if (
+            DrawContent(dc);
+
+            if (
 
 				// view mode
 				(sheet.HasSettings(WorksheetSettings.View_ShowGridLine)
@@ -90,8 +93,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 			{
 				DrawGuideLines(dc);
 			}
-
-			DrawContent(dc);
 
 			DrawSelection(dc);
 		}
@@ -603,7 +604,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 		{
 			var render = dc.Renderer;
 
-			int endRow = visibleRegion.endRow + (dc.FullCellClip ? 0 : 1);
+            //var bgcolor = Eto.Drawing.SystemColors.ControlBackground;
+            //var linecolor = Eto.Drawing.Color.FromArgb(bgcolor.Rb, bgcolor.Gb, bgcolor.Bb, 100).ToSolidColor();
+            var linecolor = Eto.Drawing.Colors.LightGrey.ToSolidColor();
+
+            int endRow = visibleRegion.endRow + (dc.FullCellClip ? 0 : 1);
 			int endCol = visibleRegion.endCol + (dc.FullCellClip ? 0 : 1);
 
 			render.BeginDrawLine(1, sheet.controlAdapter.ControlStyle.Colors[ControlAppearanceColors.GridLine]);
@@ -637,17 +642,17 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 						{
 							Cell cell = this.sheet.cells[r, c];
 
-							if (cell != null && cell.InnerStyle.BackColor.A > 0)
-							{
-								break;
-							}
+							//if (cell != null && cell.InnerStyle.BackColor.A > 0)
+							//{
+							//	break;
+							//}
 						}
 
 						c++;
 					}
 
 					x2 = (c == 0 ? x : sheet.cols[c - 1].Right);
-					render.DrawLine(x * this.scaleFactor, scaledY, x2 * this.scaleFactor, scaledY);
+					render.DrawLine(x * this.scaleFactor, scaledY, x2 * this.scaleFactor, scaledY, linecolor);
 				}
 			}
 			#endregion // Horizontal line
@@ -678,17 +683,17 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 						if (c > 0)
 						{
 							Cell cell = this.sheet.cells[r, c];
-							if (cell != null && cell.InnerStyle.BackColor.A > 0)
-							{
-								break;
-							}
+							//if (cell != null && cell.InnerStyle.BackColor.A > 0)
+							//{
+							//	break;
+							//}
 						}
 
 						r++;
 					}
 
 					y2 = r == 0 ? y : sheet.rows[r - 1].Bottom;
-					render.DrawLine(scaledX, y * this.scaleFactor, scaledX, y2 * this.scaleFactor);
+					render.DrawLine(scaledX, y * this.scaleFactor, scaledX, y2 * this.scaleFactor, linecolor);
 				}
 			}
 			#endregion // Vertical line
