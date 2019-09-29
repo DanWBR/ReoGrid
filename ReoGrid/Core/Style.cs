@@ -39,6 +39,7 @@ using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Events;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Graphics;
 using DWSIM.CrossPlatform.UI.Controls.ReoGrid;
+using DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer;
 
 namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Core
 {
@@ -1473,7 +1474,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <summary>
         /// Get or set background color 
         /// </summary>
-        public SolidColor BackColor { get; set; }
+        public SolidColor BackColor { get; set; } = Eto.Drawing.Colors.Transparent.ToSolidColor();
 
         /// <summary>
         /// Get or set backgrond pattern color.

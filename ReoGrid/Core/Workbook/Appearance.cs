@@ -316,7 +316,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 						{ControlAppearanceColors.GridText, SolidColor.Black},
 						{ControlAppearanceColors.GridBackground, SolidColor.White},
 						{ControlAppearanceColors.GridLine, SolidColor.FromArgb(255, 208, 215, 229)},
-						{ControlAppearanceColors.SelectionBorder, ColorUtility.FromAlphaColor(180, StaticResources.SystemColor_Highlight)},
+                        {ControlAppearanceColors.SelectionBorder, ColorUtility.FromAlphaColor(180, StaticResources.SystemColor_Highlight)},
 						{ControlAppearanceColors.SelectionFill, ColorUtility.FromAlphaColor(30, StaticResources.SystemColor_Highlight)},
 						{ControlAppearanceColors.OutlineButtonBorder, SolidColor.Black},
 						{ControlAppearanceColors.OutlinePanelBackground, StaticResources.SystemColor_Control},
