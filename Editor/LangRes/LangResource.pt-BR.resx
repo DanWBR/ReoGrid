@@ -252,6 +252,9 @@
   <data name="Data" xml:space="preserve">
     <value>Data</value>
   </data>
+  <data name="DataLossWarning" xml:space="preserve">
+    <value>Você perderá todos os dados não-salvos. Continuar?</value>
+  </data>
   <data name="Data_Format" xml:space="preserve">
     <value>Data Format</value>
   </data>
@@ -954,5 +957,8 @@
   </data>
   <data name="Vertical_Alignment_Top" xml:space="preserve">
     <value>Top</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Atenção</value>
   </data>
 </root>

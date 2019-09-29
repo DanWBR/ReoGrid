@@ -327,10 +327,6 @@ namespace unvell.ReoGrid.Editor
             this.ungroupAllRowsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ungroupAllColumnsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripSeparator();
-            this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem40 = new System.Windows.Forms.ToolStripSeparator();
-            this.rectangleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sheetReadonlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formula2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -369,7 +365,6 @@ namespace unvell.ReoGrid.Editor
             this.showDebugInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.homepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem28 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.rangeInfoToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -2358,7 +2353,6 @@ namespace unvell.ReoGrid.Editor
             this.groupToolStripMenuItem,
             this.ungroupToolStripMenuItem,
             this.toolStripMenuItem15,
-            this.insertToolStripMenuItem,
             this.resizeToolStripMenuItem,
             this.sheetReadonlyToolStripMenuItem});
             this.planilhaToolStripMenuItem1.Name = "planilhaToolStripMenuItem1";
@@ -2437,30 +2431,6 @@ namespace unvell.ReoGrid.Editor
             // 
             resources.ApplyResources(this.toolStripMenuItem15, "toolStripMenuItem15");
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            // 
-            // insertToolStripMenuItem
-            // 
-            resources.ApplyResources(this.insertToolStripMenuItem, "insertToolStripMenuItem");
-            this.insertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chartToolStripMenuItem,
-            this.toolStripMenuItem40,
-            this.rectangleToolStripMenuItem});
-            this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            // 
-            // chartToolStripMenuItem
-            // 
-            resources.ApplyResources(this.chartToolStripMenuItem, "chartToolStripMenuItem");
-            this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            // 
-            // toolStripMenuItem40
-            // 
-            resources.ApplyResources(this.toolStripMenuItem40, "toolStripMenuItem40");
-            this.toolStripMenuItem40.Name = "toolStripMenuItem40";
-            // 
-            // rectangleToolStripMenuItem
-            // 
-            resources.ApplyResources(this.rectangleToolStripMenuItem, "rectangleToolStripMenuItem");
-            this.rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
             // 
             // resizeToolStripMenuItem
             // 
@@ -2692,19 +2662,13 @@ namespace unvell.ReoGrid.Editor
             resources.ApplyResources(this.ajudaToolStripMenuItem, "ajudaToolStripMenuItem");
             this.ajudaToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.homepageToolStripMenuItem,
-            this.toolStripMenuItem28});
+            this.homepageToolStripMenuItem});
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             // 
             // homepageToolStripMenuItem
             // 
             resources.ApplyResources(this.homepageToolStripMenuItem, "homepageToolStripMenuItem");
             this.homepageToolStripMenuItem.Name = "homepageToolStripMenuItem";
-            // 
-            // toolStripMenuItem28
-            // 
-            resources.ApplyResources(this.toolStripMenuItem28, "toolStripMenuItem28");
-            this.toolStripMenuItem28.Name = "toolStripMenuItem28";
             // 
             // statusStrip1
             // 
@@ -3069,10 +3033,6 @@ namespace unvell.ReoGrid.Editor
         private System.Windows.Forms.ToolStripMenuItem ungroupAllRowsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ungroupAllColumnsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem15;
-        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem40;
-        private System.Windows.Forms.ToolStripMenuItem rectangleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sheetReadonlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formula2ToolStripMenuItem;
@@ -3111,7 +3071,6 @@ namespace unvell.ReoGrid.Editor
         private System.Windows.Forms.ToolStripMenuItem showDebugInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem homepageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem28;
         public System.Windows.Forms.ToolStripMenuItem SpreadsheetTSMI;
         public ReoGridControl grid;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
