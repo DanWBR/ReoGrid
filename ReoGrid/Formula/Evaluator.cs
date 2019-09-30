@@ -27,7 +27,7 @@ using DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility;
 
 namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 {
-	class Evaluator
+	public class Evaluator
 	{
 		internal static IFunctionNameProvider functionNameProvider = new StandardFunctionNameProvider();
 
@@ -1083,7 +1083,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 	//#if DEBUG
 	//	public
 	//#endif
-	struct FormulaValue
+	public struct FormulaValue
 	{
 		public FormulaValueType type;
 		public object value;
@@ -1238,7 +1238,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
 	//#if DEBUG
 	//	public
 	//#endif
-	enum FormulaValueType : byte
+	public enum FormulaValueType : byte
 	{
 		Nil,
 		Boolean,
