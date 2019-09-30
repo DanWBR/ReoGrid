@@ -687,7 +687,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 
 			if (!isProcessed)
 			{
-				var targetView = this.view.GetViewByPoint(location);
+    			var targetView = this.view.GetViewByPoint(location);
 
 				if (targetView != null)
 				{
@@ -736,13 +736,15 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 		{
 			bool isProcessed = false;
 
-			var targetView = this.FocusView != null ? this.FocusView
-				: this.view.GetViewByPoint(location);
+			//var targetView = this.FocusView != null ? this.FocusView : this.view.GetViewByPoint(location);
+            var targetView = this.view.GetViewByPoint(location);
 
-			if (targetView != null)
+            if (targetView != null)
 			{
 				isProcessed = targetView.OnMouseDoubleClick(targetView.PointToView(location), buttons);
 			}
+
+            if (!(targetView is CellsViewport)) ReoGridControl.DoubleClickHandled = false;
 
 			return isProcessed;
 		}

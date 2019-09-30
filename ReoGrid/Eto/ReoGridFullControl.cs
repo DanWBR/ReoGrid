@@ -153,9 +153,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             GridControl = new ReoGridControl(this);
 
-            GridControl.NewWorksheet();
-            GridControl.NewWorksheet();
-
             worksheet = GridControl.CurrentWorksheet;
 
             this.Add(container, 0, 0);

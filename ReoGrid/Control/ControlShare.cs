@@ -1319,6 +1319,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					sheet.ViewportController.OnMouseDown(new Graphics.Point(location.X, location.Y), buttons);
 				}
 			}
+
 		}
 
 		private void OnWorksheetMouseMove(RGPoint location, MouseButtons buttons)
@@ -1327,7 +1328,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
 			if (sheet != null && sheet.ViewportController != null)
 			{
-				sheet.ViewportController.OnMouseMove(new Graphics.Point(location.X, location.Y), buttons);
+                sheet.ViewportController.OnMouseMove(new Graphics.Point(location.X, location.Y), buttons);
 			}
 		}
 

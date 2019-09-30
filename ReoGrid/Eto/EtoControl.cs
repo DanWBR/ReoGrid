@@ -58,7 +58,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         public PixelLayout PixelLayoutParent;
 
-        private Point prevscroll = new Point();
+        public Point LocationOffset;
 
         //private Graphics canvasGraphics;
         /// <summary>
@@ -413,8 +413,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 editTextbox.SuspendLayout();
                 editTextbox.Size = new Size(rect.Size);
                 var position = rect.Location;
-                TableLayout table = (TableLayout)(((DynamicLayout)this.control.Parent).Content);
-                position.Offset(table.Rows[1].Cells[0].Control.Location);
+                position.Offset(control.LocationOffset);
                 control.PixelLayoutParent.Move(editTextbox, position);
                 editTextbox.TextWrap = cell.IsMergedCell || cell.InnerStyle.TextWrapMode != TextWrapMode.NoWrap;
                 editTextbox.InitialSize = rect.Size;
@@ -430,7 +429,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             public void HideEditControl()
             {
                 editTextbox.Visible = false;
-                control.doubleclicked = false;
+                ReoGridControl.DoubleClickHandled = false;
             }
 
             public void SetEditControlText(string text)
@@ -641,7 +640,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of mouse pressing event.</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if (!doubleclicked)
+            if (!DoubleClickHandled)
             {
                 this.Focus();
                 this.OnWorksheetMouseDown(e.Location, e.Buttons.ToMouseButtons());
@@ -654,7 +653,13 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of mouse moving event.</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            this.OnWorksheetMouseMove((Point)e.Location, e.Buttons.ToMouseButtons());
+
+            TableLayout table = (TableLayout)(((DynamicLayout)this.Parent).Content);
+            this.LocationOffset = table.Rows[1].Cells[0].Control.Location;
+
+            var p = e.Location;
+            this.OnWorksheetMouseMove(new Point((int)p.X, (int)p.Y), e.Buttons.ToMouseButtons());
+
         }
 
         /// <summary>
@@ -663,7 +668,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of mouse release event.</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            this.OnWorksheetMouseUp((Point)e.Location, e.Buttons.ToMouseButtons());
+            var p = e.Location;
+            this.OnWorksheetMouseUp(new Point((int)p.X, (int)p.Y), e.Buttons.ToMouseButtons());
         }
 
         /// <summary>
@@ -673,24 +679,24 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-#if DEBUG
-            Console.WriteLine(String.Format("OnMouseWheel: {0}", e.Delta));
-#endif
+
+            var p = e.Location;
+
             if (Application.Instance.Platform.IsWinForms)
             {
-                this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)(e.Delta.Width * 20), (int)(e.Delta.Height * 20), e.Buttons.ToMouseButtons());
+                this.currentWorksheet.OnMouseWheel(new Graphics.Point(p.X, p.Y), (int)(e.Delta.Width * 20), (int)(e.Delta.Height * 20), e.Buttons.ToMouseButtons());
             }
             else if (Application.Instance.Platform.IsWpf)
             {
-                this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)(e.Delta.Width * 40), (int)(e.Delta.Height * 40), e.Buttons.ToMouseButtons());
+                this.currentWorksheet.OnMouseWheel(new Graphics.Point(p.X, p.Y), (int)(e.Delta.Width * 40), (int)(e.Delta.Height * 40), e.Buttons.ToMouseButtons());
             }
             else if (Application.Instance.Platform.IsMac)
             {
-                this.currentWorksheet.OnMouseWheel(new Graphics.Point(e.Location.X, e.Location.Y), (int)(e.Delta.Width * 10), (int)(e.Delta.Height * 10), e.Buttons.ToMouseButtons());
+                this.currentWorksheet.OnMouseWheel(new Graphics.Point(p.X, p.Y), (int)(e.Delta.Width * 10), (int)(e.Delta.Height * 10), e.Buttons.ToMouseButtons());
             }
         }
 
-        protected bool doubleclicked = false;
+        public static bool DoubleClickHandled = false;
 
         /// <summary>
         /// Overrides mouse-double-click events.
@@ -698,8 +704,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of mouse double click event.</param>
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
-            doubleclicked = true;
-            this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(e.Location.X, e.Location.Y), e.Buttons.ToMouseButtons());
+            var p = e.Location;
+            DoubleClickHandled = true;
+            this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(p.X, p.Y), e.Buttons.ToMouseButtons());            
         }
 
         //protected override void OnDragOver(DragEventArgs drgevent)
