@@ -1009,6 +1009,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         protected override void OnPaint(PaintEventArgs e)
         {
             var sheet = this.currentWorksheet;
+
 #if DEBUG
             var starttime = DateTime.Now;
             paintcalls += 1;
@@ -1023,6 +1024,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             }
             else
             {
+                if (!Renderer.PlatformGraphics.IsDisposed) Renderer.PlatformGraphics.Dispose();
                 Renderer.PlatformGraphics = e.Graphics;
             }
 

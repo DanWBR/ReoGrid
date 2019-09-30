@@ -214,6 +214,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             for (int i = 0; i < tabs.Count; i++)
             {
                 var tab = this.tabs[i];
+
+                tab.Bounds = new Rectangle(tab.Left, 0, tab.Width, this.Bounds.Height);
+
                 rect = tab.Bounds;
 
                 if (i != selectedIndex)
@@ -247,6 +250,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             {
                 var tab = this.tabs[this.selectedIndex];
                 rect = tab.Bounds;
+
+                tab.Bounds = new Rectangle(tab.Left, 0, tab.Width, this.Bounds.Height);
 
                 if (rect.Right > this.viewScroll
                     || rect.Left < this.maxWidth - this.viewScroll)
