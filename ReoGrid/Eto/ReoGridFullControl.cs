@@ -161,8 +161,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             this.Add(container, 0, 0);
             this.Add(GridControl.editTextbox, 0, 0);
 
-            //this.Add(px, true, true);
-
             container.Add(GridControl, true, true);
             container.Add(GridControl.bottomPanel, true, false);
 
@@ -186,7 +184,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         private void CbBorderStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GridControl.DoAction(new SetRangeBorderAction(this.worksheet.SelectionRange, GetBorderPositionFromIndex(),
-                 new RangeBorderStyle { Style = BorderLineStyle.Solid }));
+                 new RangeBorderStyle { Color = colorPickerBorder.Value.ToSolidColor(), Style = BorderLineStyle.Solid }));
         }
 
         private void BtnUnMerge_Click(object sender, EventArgs e)
@@ -266,8 +264,15 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         private void ColorPickerBorder_ValueChanged(object sender, EventArgs e)
         {
-            this.GridControl.DoAction(new SetRangeBorderAction(this.worksheet.SelectionRange, GetBorderPositionFromIndex(),
-                 new RangeBorderStyle { Color = colorPickerBorder.Value.ToSolidColor(), Style = BorderLineStyle.Solid }));
+            if (colorPickerBorder.Value != Colors.Transparent)
+            {
+                this.GridControl.DoAction(new SetRangeBorderAction(this.worksheet.SelectionRange, GetBorderPositionFromIndex(),
+                     new RangeBorderStyle { Color = colorPickerBorder.Value.ToSolidColor(), Style = BorderLineStyle.Solid }));
+            }
+            else
+            {
+                colorPickerBorder.Value = SystemColors.ControlText;
+            }
         }
 
         private BorderPositions GetBorderPositionFromIndex()
