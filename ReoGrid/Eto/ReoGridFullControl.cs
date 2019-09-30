@@ -183,6 +183,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         private void CbBorderStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.GridControl.DoAction(new SetRangeBorderAction(this.worksheet.SelectionRange, BorderPositions.All,
+                 new RangeBorderStyle { Color = colorPickerBorder.Value.ToSolidColor(), Style = BorderLineStyle.None }));
             this.GridControl.DoAction(new SetRangeBorderAction(this.worksheet.SelectionRange, GetBorderPositionFromIndex(),
                  new RangeBorderStyle { Color = colorPickerBorder.Value.ToSolidColor(), Style = BorderLineStyle.Solid }));
         }

@@ -413,15 +413,15 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 editTextbox.SuspendLayout();
                 editTextbox.Size = new Size(rect.Size);
                 var position = rect.Location;
-                position.Offset(0, 102);
+                TableLayout table = (TableLayout)(((DynamicLayout)this.control.Parent).Content);
+                position.Offset(table.Rows[1].Cells[0].Control.Location);
                 control.PixelLayoutParent.Move(editTextbox, position);
                 editTextbox.TextWrap = cell.IsMergedCell || cell.InnerStyle.TextWrapMode != TextWrapMode.NoWrap;
                 editTextbox.InitialSize = rect.Size;
                 editTextbox.VAlign = cell.InnerStyle.VAlign;
                 editTextbox.Font = cell.RenderFont;
-                //editTextbox.TextColor = SystemColors.ControlText;
-                //editTextbox.BackgroundColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
-                //    ? cell.InnerStyle.BackColor.ToEto() : this.control.ControlStyle[ControlAppearanceColors.GridBackground].ToEto();
+                editTextbox.BackgroundColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
+                    ? cell.InnerStyle.BackColor.ToEto() : this.control.ControlStyle[ControlAppearanceColors.GridBackground].ToEto();
                 editTextbox.ResumeLayout();
                 editTextbox.Visible = true;
                 editTextbox.Focus();
