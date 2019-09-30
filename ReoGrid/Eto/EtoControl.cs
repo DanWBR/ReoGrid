@@ -1005,6 +1005,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             if (sheet != null && sheet.ViewportController != null)
             {
+                e.Graphics.Clear(SystemColors.ControlBackground);
                 CellDrawingContext dc = new CellDrawingContext(this.currentWorksheet, DrawMode.View, Renderer);
                 if (Application.Instance.Platform.IsWinForms)
                 {

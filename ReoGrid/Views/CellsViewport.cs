@@ -72,8 +72,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 				return;
 			}
 
-            DrawContent(dc);
-
             if (
 
 				// view mode
@@ -94,7 +92,10 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 				DrawGuideLines(dc);
 			}
 
-			DrawSelection(dc);
+
+            DrawContent(dc);
+
+            DrawSelection(dc);
 		}
 		#endregion // DrawView
 

@@ -1474,7 +1474,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <summary>
         /// Get or set background color 
         /// </summary>
-        public SolidColor BackColor { get; set; } = Eto.Drawing.SystemColors.ControlBackground.ToSolidColor();
+        public SolidColor BackColor { get; set; }
 
         /// <summary>
         /// Get or set backgrond pattern color.

@@ -303,7 +303,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         private void ColorPickerBack_ValueChanged(object sender, EventArgs e)
         {
-            if (colorPickerBack.Value != Colors.Transparent)
+            if (colorPickerBack.Value != null)
             {
                 GridControl.DoAction(new SetRangeStyleAction(this.worksheet.SelectionRange, new WorksheetRangeStyle
                 {
@@ -313,7 +313,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             }
             else
             {
-                colorPickerBack.Value = SystemColors.ControlBackground;
+                colorPickerBack.Value = Colors.Transparent;
             }
         }
 

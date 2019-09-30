@@ -269,27 +269,13 @@ namespace Common
 
         private Dictionary<string, List<WFFont>> fonts = new Dictionary<string, List<WFFont>>();
 
-#if WINFORM
-		public WFFont GetFont(string familyName, float emSize, WFFontStyle wfs)
-		{
-#elif ETO
         public WFFont GetFont(string familyName, float emSize, WFFontStyle wfs)
         {
-
-#elif WPF
-		public WFFont GetFont(string familyName, double emSizeD, WFFontStyle wfs)
-		{
-			float emSize = (float)emSizeD;
-#endif // WPF
-
 #if DEBUG
             Stopwatch sw = Stopwatch.StartNew();
 #endif // DEBUG
 
-            if (string.IsNullOrEmpty(familyName))
-            {
-                familyName = Eto.Drawing.SystemFonts.Default().Family.Name;
-            }
+            if (string.IsNullOrEmpty(familyName)) familyName = Eto.Drawing.SystemFonts.Default().Family.Name;
 
             WFFont font = null;
             List<WFFont> fontGroup = null;
@@ -325,9 +311,6 @@ namespace Common
                     family = Eto.Drawing.SystemFonts.Default().Family;
                     Logger.Log("resource pool", "font family error: " + familyName + ": " + ex.Message);
                 }
-
-                return Eto.Drawing.SystemFonts.Default();
-
             }
 
             lock (this.fonts)
