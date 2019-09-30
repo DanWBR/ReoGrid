@@ -49,7 +49,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             };
 
             cbNamedRanges = new ComboBox() { Width = 100, Height = 22 };
-            var btnFunction = new Button() { Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png").WithSize(16, 16) };
+            var btnFunction = new Button() {ImagePosition = ButtonImagePosition.Overlay,  Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png").WithSize(16, 16) };
             tbFormula = new TextBox() { Height = 22 };
 
             tbFormula.GotFocus += (sender, e) =>
@@ -57,7 +57,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 backValue = tbFormula.Text;
             };
 
-            tbFormula.KeyDown += (sender, e) => {
+            tbFormula.KeyDown += (sender, e) =>
+            {
                 if (e.Key == Keys.Enter)
                 {
                     worksheet.Cells[worksheet.selectionRange.StartPos].Formula = tbFormula.Text.TrimStart('=');
@@ -75,26 +76,26 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             var lbFore = new Label { Text = "Text Color", VerticalAlignment = VerticalAlignment.Center };
             var lbBack = new Label { Text = "Background Color", VerticalAlignment = VerticalAlignment.Center };
 
-            btnLeftAlign = new Button() { ToolTip = "Align Left", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleLeftJustHS.PNG").WithSize(16, 16) };
-            btnCenterAlign = new Button() { ToolTip = "Align Center", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleCenterHS.png").WithSize(16, 16) };
-            btnRightAlign = new Button() { ToolTip = "Align Right", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleRightHS.png").WithSize(16, 16) };
-            btnTopAlign = new Button() { ToolTip = "Align Top", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutTop.png").WithSize(16, 16) };
-            btnMiddleAlign = new Button() { ToolTip = "Align Middle", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutMiddle.png").WithSize(16, 16) };
-            btnBottomAlign = new Button() { ToolTip = "Align Bottom", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutBottom.png").WithSize(16, 16) };
+            btnLeftAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Left", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleLeftJustHS.PNG").WithSize(16, 16) };
+            btnCenterAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Center", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleCenterHS.png").WithSize(16, 16) };
+            btnRightAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Right", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleRightHS.png").WithSize(16, 16) };
+            btnTopAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Top", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutTop.png").WithSize(16, 16) };
+            btnMiddleAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Middle", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutMiddle.png").WithSize(16, 16) };
+            btnBottomAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Bottom", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutBottom.png").WithSize(16, 16) };
 
-            btnNew = new Button() { ToolTip = "New Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "NewDocumentHS.png").WithSize(16, 16) };
-            btnOpen = new Button() { ToolTip = "Open Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "openHS.png").WithSize(16, 16) };
-            btnSave = new Button() { ToolTip = "Save Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "saveHS.png").WithSize(16, 16) };
+            btnNew = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "New Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "NewDocumentHS.png").WithSize(16, 16) };
+            btnOpen = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Open Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "openHS.png").WithSize(16, 16) };
+            btnSave = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Save Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "saveHS.png").WithSize(16, 16) };
 
-            btnCut = new Button() { ToolTip = "Cut", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CutHS.png").WithSize(16, 16) };
-            btnCopy = new Button() { ToolTip = "Copy", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CopyHS.png").WithSize(16, 16) };
-            btnPaste = new Button() { ToolTip = "Paste", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "PasteHS.png").WithSize(16, 16) };
+            btnCut = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Cut", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CutHS.png").WithSize(16, 16) };
+            btnCopy = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Copy", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CopyHS.png").WithSize(16, 16) };
+            btnPaste = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Paste", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "PasteHS.png").WithSize(16, 16) };
 
-            btnUndo = new Button() { ToolTip = "Undo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_UndoHS.png").WithSize(16, 16) };
-            btnRedo = new Button() { ToolTip = "Redo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_RedoHS.png").WithSize(16, 16) };
+            btnUndo = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Undo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_UndoHS.png").WithSize(16, 16) };
+            btnRedo = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Redo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_RedoHS.png").WithSize(16, 16) };
 
-            btnMerge = new Button() { ToolTip = "Merge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_merge.png").WithSize(16, 16) };
-            btnUnMerge = new Button() { ToolTip = "Unmerge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_unmerge.png").WithSize(16, 16) };
+            btnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Merge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_merge.png").WithSize(16, 16) };
+            btnUnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Unmerge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_unmerge.png").WithSize(16, 16) };
 
             cbBorderStyle = new DropDown() { Items = { "No Borders", "All Borders", "External Only", "Top Only", "Bottom Only", "Left Only", "Right Only" } };
 
@@ -126,34 +127,80 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             colorPickerFore.ValueChanged += ColorPickerFore_ValueChanged;
             colorPickerBorder.ValueChanged += ColorPickerBorder_ValueChanged;
 
-            var functionPanel3 = new TableLayout() { Spacing = new Size(4, 4), Height = 34, Padding = new Padding(5) };
-            functionPanel3.Rows.Add(new TableRow
+            if (!Application.Instance.Platform.IsGtk)
             {
-                Cells = { btnNew, btnOpen, btnSave, new Label {Text = " " },
-                                                            btnCut, btnCopy, btnPaste, new Label {Text = " " },
-                                                            btnUndo, btnRedo, new Label {Text = " " },
-                                                            new Label {Text = "Border Style", VerticalAlignment = VerticalAlignment.Center }, cbBorderStyle,
-                                                            new Label {Text = "Border Color", VerticalAlignment = VerticalAlignment.Center }, colorPickerBorder, new Label {Text = " " },
-                                                            btnMerge, btnUnMerge, null},
-                ScaleHeight = true
-            });
+                var functionPanel3 = new StackLayout() { VerticalContentAlignment = VerticalAlignment.Center, Orientation = Orientation.Horizontal, Spacing = 5, Padding = new Padding(5) };
+                functionPanel3.Items.Add(new StackLayoutItem(btnNew));
+                functionPanel3.Items.Add(new StackLayoutItem(btnOpen));
+                functionPanel3.Items.Add(new StackLayoutItem(btnSave));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel3.Items.Add(new StackLayoutItem(btnCut));
+                functionPanel3.Items.Add(new StackLayoutItem(btnCopy));
+                functionPanel3.Items.Add(new StackLayoutItem(btnPaste));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel3.Items.Add(new StackLayoutItem(btnUndo));
+                functionPanel3.Items.Add(new StackLayoutItem(btnRedo));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = "Border Style", VerticalAlignment = VerticalAlignment.Center }, VerticalAlignment.Center));
+                functionPanel3.Items.Add(new StackLayoutItem(cbBorderStyle));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = "Border Color", VerticalAlignment = VerticalAlignment.Center }, VerticalAlignment.Center));
+                functionPanel3.Items.Add(new StackLayoutItem(colorPickerBorder));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel3.Items.Add(new StackLayoutItem(btnMerge));
+                functionPanel3.Items.Add(new StackLayoutItem(btnUnMerge));
 
-            container.Add(functionPanel3, true, false);
-
-            var functionPanel2 = new TableLayout() { Spacing = new Size(4, 4), Height = 34, Padding = new Padding(5) };
-            functionPanel2.Rows.Add(new TableRow
+                container.Add(functionPanel3, true, false);
+            }
+            else
             {
-                Cells = { lbFont, fontPicker, lbFore, colorPickerFore, lbBack, colorPickerBack,
-                btnLeftAlign, btnCenterAlign, btnRightAlign, btnTopAlign, btnMiddleAlign, btnBottomAlign, null },
-                ScaleHeight = true
-            });
+                var functionPanel3 = new StackLayout() { VerticalContentAlignment = VerticalAlignment.Center, Orientation = Orientation.Horizontal, Spacing = 5, Padding = new Padding(5) };
+                functionPanel3.Items.Add(new StackLayoutItem(btnNew));
+                functionPanel3.Items.Add(new StackLayoutItem(btnOpen));
+                functionPanel3.Items.Add(new StackLayoutItem(btnSave));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel3.Items.Add(new StackLayoutItem(btnCut));
+                functionPanel3.Items.Add(new StackLayoutItem(btnCopy));
+                functionPanel3.Items.Add(new StackLayoutItem(btnPaste));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel3.Items.Add(new StackLayoutItem(btnUndo));
+                functionPanel3.Items.Add(new StackLayoutItem(btnRedo));
+                functionPanel3.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                container.Add(functionPanel3, true, false);
+
+                var functionPanel4 = new StackLayout() { VerticalContentAlignment = VerticalAlignment.Center, Orientation = Orientation.Horizontal, Spacing = 5, Padding = new Padding(5) };
+                functionPanel4.Items.Add(new StackLayoutItem(new Label { Text = "Border Style", VerticalAlignment = VerticalAlignment.Center }, VerticalAlignment.Center));
+                functionPanel4.Items.Add(new StackLayoutItem(cbBorderStyle));
+                functionPanel4.Items.Add(new StackLayoutItem(new Label { Text = "Border Color", VerticalAlignment = VerticalAlignment.Center }, VerticalAlignment.Center));
+                functionPanel4.Items.Add(new StackLayoutItem(colorPickerBorder));
+                functionPanel4.Items.Add(new StackLayoutItem(new Label { Text = " " }));
+                functionPanel4.Items.Add(new StackLayoutItem(btnMerge));
+                functionPanel4.Items.Add(new StackLayoutItem(btnUnMerge));
+                container.Add(functionPanel4, true, false);
+            }
+
+
+            var functionPanel2 = new StackLayout() { VerticalContentAlignment = VerticalAlignment.Center, Orientation = Orientation.Horizontal, Spacing = 5, Padding = new Padding(5) };
+            functionPanel2.Items.Add(new StackLayoutItem(lbFont, VerticalAlignment.Center));
+            functionPanel2.Items.Add(new StackLayoutItem(fontPicker));
+            functionPanel2.Items.Add(new StackLayoutItem(lbFore, VerticalAlignment.Center));
+            functionPanel2.Items.Add(new StackLayoutItem(colorPickerFore));
+            functionPanel2.Items.Add(new StackLayoutItem(lbBack, VerticalAlignment.Center));
+            functionPanel2.Items.Add(new StackLayoutItem(colorPickerBack));
+            functionPanel2.Items.Add(new StackLayoutItem(btnLeftAlign));
+            functionPanel2.Items.Add(new StackLayoutItem(btnCenterAlign));
+            functionPanel2.Items.Add(new StackLayoutItem(btnRightAlign));
+            functionPanel2.Items.Add(new StackLayoutItem(btnTopAlign));
+            functionPanel2.Items.Add(new StackLayoutItem(btnMiddleAlign));
+            functionPanel2.Items.Add(new StackLayoutItem(btnBottomAlign));
 
             container.Add(functionPanel2, true, false);
 
-            var functionPanel = new TableLayout() { Spacing = new Size(4, 4), Height = 34, Padding = new Padding(5) };
-            functionPanel.Rows.Add(new TableRow { Cells = { cbNamedRanges, btnFunction, tbFormula }, ScaleHeight = true });
+            var functionPanel1 = new StackLayout() { VerticalContentAlignment = VerticalAlignment.Center, Orientation = Orientation.Horizontal, Spacing = 5, Padding = new Padding(5) };
+            functionPanel1.Items.Add(new StackLayoutItem(cbNamedRanges, VerticalAlignment.Center));
+            functionPanel1.Items.Add(new StackLayoutItem(btnFunction));
+            functionPanel1.Items.Add(new StackLayoutItem(tbFormula, true));
 
-            container.Add(functionPanel, true, false);
+            container.Add(functionPanel1, true, false);
 
             container.EndVertical();
 
