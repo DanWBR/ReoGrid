@@ -329,7 +329,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 {
                     default: dx = 0; break;
                     case ReoGridHorAlign.Center: dx = rect.Width / 2 - tsize.Width / 2; break;
-                    case ReoGridHorAlign.Right: dx = rect.Width - tsize.Width; break;
+                    case ReoGridHorAlign.Right: dx = rect.Width - tsize.Width - 2; break;
                 }
 
                 switch (valign)
@@ -364,7 +364,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 {
                     default: dx = 0; break;
                     case ReoGridHorAlign.Center: dx = rect.Width / 2 - tsize.Width / 2; break;
-                    case ReoGridHorAlign.Right: dx = rect.Width - tsize.Width; break;
+                    case ReoGridHorAlign.Right: dx = rect.Width - tsize.Width - 2; break;
                 }
 
                 switch (valign)
@@ -720,7 +720,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                         break;
 
                     case ReoGridRenderHorAlign.Right:
-                        dx = textBounds.Width - tsize.Width;
+                        dx = textBounds.Width - tsize.Width - 2;
                         break;
                 }
 
@@ -740,7 +740,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 }
                 #endregion // Align StringFormat
 
-                g.DrawText(scaledFont, ((SolidBrush)b).Color, textBounds.X+dx, textBounds.Y+dy, cell.DisplayText);
+                g.DrawText(scaledFont, ((SolidBrush)b).Color, textBounds.X + dx, textBounds.Y + dy, cell.DisplayText);
 
             }
 
@@ -861,7 +861,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             if (g.IsDisposed)
             {
                 using (var newg = CreateGraphics())
-                size = newg.MeasureString(scaledFont, cell.DisplayText);
+                    size = newg.MeasureString(scaledFont, cell.DisplayText);
             }
             else
             {

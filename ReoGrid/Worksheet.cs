@@ -1663,22 +1663,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 if (args.IsCancelled) return true;
             }
 
-#if EX_SCRIPT
-            object rs = RaiseScriptEvent("onkeydown", new RSKeyEvent((int)keyData));
-            if (rs != null && !ScriptRunningMachine.GetBoolValue(rs))
-            {
-                return true;
-            }
-#endif
-
             bool isProcessed = false;
 
-            if (
-                // is not in editing
-                !IsEditing
-
-                // must has an valid focus cell
-                && !this.selStart.IsEmpty)
+            if (!IsEditing && !this.selStart.IsEmpty)
             {
                 var cell = cells[this.selStart.Row, this.selStart.Col];
                 if (cell != null && cell.body != null)
@@ -2003,14 +1990,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         internal bool OnKeyUp(KeyCode keyData)
         {
-#if EX_SCRIPT
-            object rs = RaiseScriptEvent("onkeyup", new RSKeyEvent((int)keyData));
-            if (rs != null && !ScriptRunningMachine.GetBoolValue(rs))
-            {
-                return false;
-            }
-#endif
-
             if (!this.selStart.IsEmpty &&
                 // if there is request to cancel notify to cell body about this KeyUp event
                 // do not pass key up to cell body.

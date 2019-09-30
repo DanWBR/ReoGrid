@@ -411,13 +411,24 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                     (int)Math.Round(bounds.Width), (int)Math.Round(bounds.Height));
 
                 editTextbox.SuspendLayout();
+                editTextbox.TextWrap = true;
                 editTextbox.Size = new Size(rect.Size);
+                switch (cell.Style.HAlign)
+                {
+                    case ReoGridHorAlign.Left:
+                        editTextbox.TextAlignment = TextAlignment.Left;  
+                        break;
+                    case ReoGridHorAlign.Center:
+                        editTextbox.TextAlignment = TextAlignment.Center;
+                        break;
+                    case ReoGridHorAlign.Right:
+                        editTextbox.TextAlignment = TextAlignment.Right;
+                        break;
+                }
                 var position = rect.Location;
                 position.Offset(control.LocationOffset);
                 control.PixelLayoutParent.Move(editTextbox, position);
-                editTextbox.TextWrap = cell.IsMergedCell || cell.InnerStyle.TextWrapMode != TextWrapMode.NoWrap;
                 editTextbox.InitialSize = rect.Size;
-                editTextbox.VAlign = cell.InnerStyle.VAlign;
                 editTextbox.Font = cell.RenderFont;
                 editTextbox.BackgroundColor = cell.InnerStyle.HasStyle(PlainStyleFlag.BackColor)
                     ? cell.InnerStyle.BackColor.ToEto() : this.control.ControlStyle[ControlAppearanceColors.GridBackground].ToEto();
@@ -727,6 +738,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         {
             if (!this.currentWorksheet.OnKeyDown(e.KeyData.ToKeyCode()))
             {
+                this.currentWorksheet.StartEdit();
                 base.OnKeyDown(e);
             }
         }
@@ -832,7 +844,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         #region Edit Control
 
         #region InputTextBox
-        public class InputTextBox : Eto.Forms.TextBox
+        public class InputTextBox : Eto.Forms.TextArea
         {
             private ReoGridControl owner;
             internal bool TextWrap { get; set; }
@@ -881,9 +893,12 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
                     if (!isProcessed)
                     {
-                        if (e.Key == Keys.Enter || e.Key == Keys.Tab)
+                        if (!e.Shift)
                         {
-                            ProcessSelectionMoveKey(e, sheet, () => sheet.MoveSelectionForward());
+                            if (e.Key == Keys.Enter || e.Key == Keys.Tab)
+                            {
+                                ProcessSelectionMoveKey(e, sheet, () => sheet.MoveSelectionForward());
+                            }
                         }
                     }
                 }
@@ -924,7 +939,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             {
                 base.OnTextChanged(e);
 
-                this.Text = this.owner.currentWorksheet.RaiseCellEditTextChanging(this.Text);
+                this.owner.currentWorksheet.RaiseCellEditTextChanging(this.Text);
+                //this.Text = this.owner.currentWorksheet.RaiseCellEditTextChanging(this.Text);
 
                 CheckAndUpdateWidth();
             }

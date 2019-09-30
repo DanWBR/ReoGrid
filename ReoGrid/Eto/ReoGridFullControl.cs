@@ -57,6 +57,14 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 backValue = tbFormula.Text;
             };
 
+            tbFormula.KeyDown += (sender, e) => {
+                if (e.Key == Keys.Enter)
+                {
+                    worksheet.Cells[worksheet.selectionRange.StartPos].Formula = tbFormula.Text.TrimStart('=');
+                    GridControl.Focus();
+                }
+            };
+
             fontPicker = new FontPicker { Width = 100, Value = SystemFonts.Default() };
 
             colorPickerBack = new ColorPicker() { Value = SystemColors.ControlBackground };
@@ -118,7 +126,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             colorPickerFore.ValueChanged += ColorPickerFore_ValueChanged;
             colorPickerBorder.ValueChanged += ColorPickerBorder_ValueChanged;
 
-            var functionPanel3 = new TableLayout() { Spacing = new Size(4, 4), Height = 30, Padding = new Padding(5) };
+            var functionPanel3 = new TableLayout() { Spacing = new Size(4, 4), Height = 34, Padding = new Padding(5) };
             functionPanel3.Rows.Add(new TableRow
             {
                 Cells = { btnNew, btnOpen, btnSave, new Label {Text = " " },
@@ -132,7 +140,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             container.Add(functionPanel3, true, false);
 
-            var functionPanel2 = new TableLayout() { Spacing = new Size(4, 4), Height = 30, Padding = new Padding(5) };
+            var functionPanel2 = new TableLayout() { Spacing = new Size(4, 4), Height = 34, Padding = new Padding(5) };
             functionPanel2.Rows.Add(new TableRow
             {
                 Cells = { lbFont, fontPicker, lbFore, colorPickerFore, lbBack, colorPickerBack,
@@ -142,7 +150,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             container.Add(functionPanel2, true, false);
 
-            var functionPanel = new TableLayout() { Spacing = new Size(4, 4), Height = 30, Padding = new Padding(5) };
+            var functionPanel = new TableLayout() { Spacing = new Size(4, 4), Height = 34, Padding = new Padding(5) };
             functionPanel.Rows.Add(new TableRow { Cells = { cbNamedRanges, btnFunction, tbFormula }, ScaleHeight = true });
 
             container.Add(functionPanel, true, false);
