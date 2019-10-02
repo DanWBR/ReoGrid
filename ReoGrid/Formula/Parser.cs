@@ -524,7 +524,14 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
         public IWorkbook Workbook { get; set; }
         public Cell Cell { get; set; }
 
-        private static readonly Regex TokenRegex = new Regex("\\s*((?<string>\"(?:\"\"|[^\"])*\")|(?<union_ranges>[A-Z]+[0-9]+:[A-Z]+[0-9]+(\\s[A-Z]+[0-9]+:[A-Z]+[0-9]+)+)" + "|(?<range>\\$?[A-Z]+\\$?[0-9]*:\\$?[A-Z]+\\$?[0-9]*)" + "|(?<cell>\\$?[A-Z]+\\$?[0-9]+)" + "|(?<token>-)|(?<number>\\-?\\d*\\" + System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator + "?\\d+)" + "|(?<true>(?i)TRUE)|(?<false>(?i)FALSE)|(?<identifier>\\w+)" + "|(?<token>\\=\\=|\\<\\>|\\<\\=|\\>\\=|\\<\\>|\\=|\\!|[\\=\\." + System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ListSeparator + "\\+\\-\\*\\/\\%\\<\\>\\(\\)\\&\\^]))", RegexOptions.Compiled);
+        private static readonly Regex TokenRegex = new Regex("\\s*((?<string>\"(?:\"\"|[^\"])*\")|(?<union_ranges>[A-Z]+[0-9]+:[A-Z]+[0-9]+(\\s[A-Z]+[0-9]+:[A-Z]+[0-9]+)+)" 
+            + "|(?<range>\\$?[A-Z]+\\$?[0-9]*:\\$?[A-Z]+\\$?[0-9]*)" + "|(?<cell>\\$?[A-Z]+\\$?[0-9]+)" 
+            + "|(?<token>-)|(?<number>\\-?\\d*\\" 
+            + System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator 
+            + "?\\d+)" + "|(?<true>(?i)TRUE)|(?<false>(?i)FALSE)|(?<identifier>\\w+)"
+            + "|(?<token>\\=\\=|\\<\\>|\\<\\=|\\>\\=|\\<\\>|\\=|\\!|[\\=\\." 
+            + ";"
+            + "\\+\\-\\*\\/\\%\\<\\>\\(\\)\\&\\^]))", RegexOptions.Compiled);
 
         public string Input { get; set; }
 

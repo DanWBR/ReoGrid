@@ -760,6 +760,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             // cell.Style is null (cell.Style.FontSize is zero)
             if (style.FontSize <= 0) style.FontSize = 6f;
 
+            if (style.FontSize >= 100) style.FontSize /= 100;
+
             RGFloat fontSize = (RGFloat)Math.Round(style.FontSize * sheet.renderScaleFactor, 1);
 
             var renderFont = cell.RenderFont;
@@ -794,8 +796,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 c = Math.Cos(d);
             }
 
-            //lock (sf)
-            //{
             // merged cell need word break automatically
             if (style.TextWrapMode == TextWrapMode.NoWrap)
             {
@@ -830,7 +830,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
 
                 // word break
                 fieldWidth = (int)Math.Round(cellWidth * scale);
-                //sf.FormatFlags &= ~Eto.Drawing.StringFormatFlags.NoWrap;
             }
 
             if (cell.FontDirty)
@@ -839,6 +838,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             }
 
             var g = this.cachedGraphics;
+
+            if (style.FontSize > 1000) style.FontSize /= 100;
 
             Eto.Drawing.Font scaledFont;
             switch (drawMode)
@@ -856,6 +857,10 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                     System.Diagnostics.Debug.Assert(g != null);
                     break;
             }
+
+            if (scaledFont.Size > 1000) scaledFont = new Font(scaledFont.FamilyName, scaledFont.Size / 100, scaledFont.FontStyle, scaledFont.FontDecoration)  ;
+
+            Console.WriteLine(String.Format("Scaled Font: {0}", scaledFont));
 
             SizeF size;
             if (g.IsDisposed)

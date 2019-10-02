@@ -875,6 +875,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         internal void UpdateCellTextBounds(IRenderer ig, Cell cell, DrawMode drawMode, RGFloat scaleFactor, UpdateFontReason reason)
         {
 
+            Console.WriteLine(String.Format("Scale Factor: {0}", ScaleFactor));
+
             bool shoulddiposeig = false;
 
             if (cell == null || string.IsNullOrEmpty(cell.DisplayText)) return;
@@ -894,7 +896,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             Size size;
 
             oldSize = cell.TextBounds.Size;
-
 
             if (ig.PlatformGraphics.IsDisposed)
             {

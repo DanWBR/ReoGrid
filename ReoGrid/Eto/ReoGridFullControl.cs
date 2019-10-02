@@ -215,8 +215,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             container.Add(GridControl, true, true);
 
-            GridControl.Load("Z:\\Downloads\\visctest.xlsx");
-
             if (Application.Instance.Platform.IsWpf)
             {
                 container.KeyDown += (sender, e) =>
