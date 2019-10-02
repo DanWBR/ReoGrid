@@ -651,11 +651,16 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of mouse pressing event.</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            this.Focus();
             if (!DoubleClickHandled)
             {
-                this.Focus();
                 this.OnWorksheetMouseDown(e.Location, e.Buttons.ToMouseButtons());
             }
+        }
+
+        public void OnMD(MouseEventArgs e)
+        {
+            OnMouseDown(e);
         }
 
         /// <summary>
@@ -664,9 +669,19 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of mouse moving event.</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-
-            TableLayout table = (TableLayout)(((DynamicLayout)this.Parent).Content);
-            this.LocationOffset = table.Rows[1].Cells[0].Control.Location;
+            if (!Application.Instance.Platform.IsMac)
+            {
+                TableLayout table = (TableLayout)(((DynamicLayout)this.Parent.Parent).Content);
+                Scrollable scroll = (Scrollable)this.Parent;
+                var ofs = table.Rows[1].Cells[0].Control.Location;
+                ofs.Offset(-scroll.ScrollPosition);
+                this.LocationOffset = ofs;
+            }
+            else
+            {
+                TableLayout table = (TableLayout)(((DynamicLayout)this.Parent).Content);
+                this.LocationOffset = table.Rows[1].Cells[0].Control.Location;
+            }
 
             var p = e.Location;
             this.OnWorksheetMouseMove(new Point((int)p.X, (int)p.Y), e.Buttons.ToMouseButtons());
@@ -1029,7 +1044,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 #endif
             if (Renderer == null)
             {
-                Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
+                Renderer = new EtoRenderer.EtoRenderer(e.Graphics, null);
             }
             else
             {
@@ -1048,7 +1063,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 sheet.ViewportController.Draw(dc);
             }
 
-            //Renderer = null;
+            base.OnPaint(e);
 
 #if DEBUG
             Console.WriteLine(String.Format("Total Rendering Time: {0} ms", (DateTime.Now - starttime).TotalMilliseconds));

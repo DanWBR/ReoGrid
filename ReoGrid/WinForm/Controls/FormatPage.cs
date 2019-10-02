@@ -308,7 +308,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.PropertyPages
 		{
 			currentFormatArgs = null;
 
-			switch (currentFormat)
+			switch (currentFormat.GetValueOrDefault())
 			{
 				case CellDataFormatFlag.Number:
 					numberFormatArgs.DecimalPlaces = (short)numberDecimalPlaces.Value;

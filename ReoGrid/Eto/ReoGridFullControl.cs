@@ -44,7 +44,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             this.SizeChanged += (sender, e) =>
             {
-                Console.WriteLine("PixelLayout Size Changed");
+                //Console.WriteLine("PixelLayout Size Changed");
                 container.Size = new Size(this.Width, this.Height);
             };
 
@@ -97,7 +97,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             btnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Merge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_merge.png").WithSize(16, 16) };
             btnUnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Unmerge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_unmerge.png").WithSize(16, 16) };
 
-            btnFormat = new Button() { Text = "Format Cell/Range", Height = 24 };
+            btnFormat = new Button() { Text = "Format Cell/Range", Height = 24, Width = 150 };
 
             cbBorderStyle = new DropDown() { Items = { "No Borders", "All Borders", "External Only", "Top Only", "Bottom Only", "Left Only", "Right Only" } };
 
@@ -223,18 +223,29 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             this.Add(container, 0, 0);
             this.Add(GridControl.editTextbox, 0, 0);
 
-            container.Add(GridControl, true, true);
-
-            if (Application.Instance.Platform.IsWpf)
+            if (!Application.Instance.Platform.IsMac)
             {
-                container.KeyDown += (sender, e) =>
+                var scrollable = new Scrollable { Content = GridControl };
+                container.Add(scrollable, true, true);
+                if (!Application.Instance.Platform.IsMac)
                 {
-                    GridControl.OnKD(e);
-                };
-                container.KeyUp += (sender, e) =>
-                {
-                    GridControl.OnKU(e);
-                };
+                    scrollable.MouseDown += (sender, e) =>
+                    {
+                        GridControl.OnMD(e);
+                    };
+                    container.KeyDown += (sender, e) =>
+                    {
+                        GridControl.OnKD(e);
+                    };
+                    container.KeyUp += (sender, e) =>
+                    {
+                        GridControl.OnKU(e);
+                    };
+                }
+            }
+            else
+            {
+                container.Add(GridControl, true, true);
             }
 
             container.Add(GridControl.bottomPanel, true, false);

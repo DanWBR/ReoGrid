@@ -49,7 +49,7 @@ using Common;
 namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
 {
 
-    internal class EtoGraphics : IGraphics
+    internal class EtoGraphics : IGraphics, IDisposable
     {
 
         protected static ResourcePoolManager resourceManager = new ResourcePoolManager();
@@ -507,27 +507,55 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 case LineStyles.DashDotDot: return Eto.Drawing.DashStyles.DashDotDot;
             }
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing && g != null)
+                {
+                    if (!g.IsDisposed) g.Dispose();
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
         #endregion // Utility
 
     }
 
     #region EtoRenderer
 
-    internal class EtoRenderer : EtoGraphics, IRenderer
+    internal class EtoRenderer : EtoGraphics, IRenderer, IDisposable
     {
-        private Eto.Drawing.Graphics cachedGraphics;
 
         internal static readonly Eto.Drawing.Font HeaderFont = new Eto.Drawing.Font(
             Eto.Drawing.SystemFonts.Default().FamilyName, 8f, Eto.Drawing.FontStyle.None);
 
-        internal EtoRenderer(Eto.Drawing.Graphics g) : base(g)
+        internal Bitmap b;
+
+        internal EtoRenderer(Eto.Drawing.Graphics g, Bitmap bmp) : base(g)
         {
-            this.cachedGraphics = g;
+            b = bmp;
         }
 
         public static EtoRenderer Create()
         {
-            return new EtoRenderer(new Eto.Drawing.Graphics(new Eto.Drawing.Bitmap(10, 10, Eto.Drawing.PixelFormat.Format24bppRgb)));
+            var bmp = new Eto.Drawing.Bitmap(10, 10, Eto.Drawing.PixelFormat.Format24bppRgb);
+            return new EtoRenderer(new Eto.Drawing.Graphics(bmp), bmp);
         }
 
         public static Eto.Drawing.Graphics CreateGraphics()
@@ -839,7 +867,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 sheet.UpdateCellRenderFont(this, cell, drawMode, UpdateFontReason.FontChanged);
             }
 
-            var g = this.cachedGraphics;
+            var g = this.PlatformGraphics;
 
             if (style.FontSize > 1000) style.FontSize /= 100;
 
@@ -861,8 +889,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             }
 
             if (scaledFont.Size > 1000) scaledFont = new Font(scaledFont.FamilyName, scaledFont.Size / 100, scaledFont.FontStyle, scaledFont.FontDecoration)  ;
-
-            Console.WriteLine(String.Format("Scaled Font: {0}", scaledFont));
 
             SizeF size;
             if (g.IsDisposed)
@@ -949,12 +975,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             get { return EtoRenderer.resourceManager; }
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
 #if DEBUG
             var starttime = DateTime.Now;
 #endif
-
 
             if (this.cappedLinePen != null)
             {
@@ -967,17 +992,22 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                 this.linePen.Dispose();
             }
 
-            if (this.cachedGraphics != null)
+            if (this.PlatformGraphics != null)
             {
-                this.cachedGraphics.Dispose();
-                this.cachedGraphics = null;
+                this.PlatformGraphics.Dispose();
+                this.PlatformGraphics = null;
             }
+
+            if (b != null) b.Dispose();
+
+            base.Dispose();
 
 #if DEBUG
             Console.WriteLine(String.Format("Renderer Dispose Time: {0} ms", (DateTime.Now - starttime).TotalMilliseconds));
 #endif
 
         }
+
     }
     #endregion // GDIRenderer
 }

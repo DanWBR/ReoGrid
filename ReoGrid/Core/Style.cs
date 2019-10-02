@@ -825,15 +825,15 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             if (ir == null)
             {
-                var newig = EtoRenderer.EtoRenderer.Create();
-                newig.UpdateCellRenderFont(cell, reason);
-                newig.Dispose();
+                using (var newig = EtoRenderer.EtoRenderer.Create())
+                {
+                    newig.UpdateCellRenderFont(cell, reason);
+                }
             }
             else
             {
                 ir.UpdateCellRenderFont(cell, reason);
             }
-
 
             cell.FontDirty = false;
 
@@ -875,10 +875,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         internal void UpdateCellTextBounds(IRenderer ig, Cell cell, DrawMode drawMode, RGFloat scaleFactor, UpdateFontReason reason)
         {
 
-            Console.WriteLine(String.Format("Scale Factor: {0}", ScaleFactor));
-
-            bool shoulddiposeig = false;
-
             if (cell == null || string.IsNullOrEmpty(cell.DisplayText)) return;
 
             if (ig == null && this.controlAdapter != null)
@@ -886,31 +882,30 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 ig = this.controlAdapter.Renderer;
             }
 
-            if (ig == null)
-            {
-                ig = EtoRenderer.EtoRenderer.Create();
-                shoulddiposeig = true;
-            }
-
             Size oldSize;
-            Size size;
+            Size size = new Size();
 
             oldSize = cell.TextBounds.Size;
 
-            if (ig.PlatformGraphics.IsDisposed)
+            if (ig == null)
             {
-                var newig = EtoRenderer.EtoRenderer.Create();
-                size = newig.MeasureCellText(cell, drawMode, scaleFactor);
-                newig.Dispose();
+                using (EtoRenderer.EtoRenderer newig = EtoRenderer.EtoRenderer.Create())
+                {
+                    size = newig.MeasureCellText(cell, drawMode, scaleFactor);
+                }
             }
-            else
-            {
-                size = ig.MeasureCellText(cell, drawMode, scaleFactor);
-            }
-
-            if (shoulddiposeig) {
-                ig.PlatformGraphics.Dispose();
-                ig = null;
+            else {
+                if (ig.PlatformGraphics.IsDisposed)
+                {
+                    using (EtoRenderer.EtoRenderer newig = EtoRenderer.EtoRenderer.Create())
+                    {
+                        size = newig.MeasureCellText(cell, drawMode, scaleFactor);
+                    }
+                }
+                else
+                {
+                    size = ig.MeasureCellText(cell, drawMode, scaleFactor);
+                }
             }
 
             if (size.Width <= 0 || size.Height <= 0) return;
@@ -975,8 +970,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                     break;
             }
             #endregion // Update Text Size Cache
-
-            Console.WriteLine(String.Format("Cell Text Bounds: {0}", cell.TextBounds));
 
             if (drawMode == DrawMode.View
                 && reason != UpdateFontReason.ScaleChanged)

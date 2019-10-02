@@ -845,9 +845,12 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
 
             int width = tab.Width;
 
-            using (var newg = new Eto.Drawing.Graphics(new Eto.Drawing.Bitmap(1, 1, PixelFormat.Format24bppRgb)))
+            using (var b = new Eto.Drawing.Bitmap(1, 1, PixelFormat.Format24bppRgb))
             {
-                width = (int)Math.Round(newg.MeasureString(Font, title).Width + 20);
+                using (var newg = new Eto.Drawing.Graphics(b))
+                {
+                    width = (int)Math.Round(newg.MeasureString(Font, title).Width + 20);
+                }
             }
 
             int diff = (width - tab.Width);
