@@ -910,8 +910,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 					//dc.Renderer.DrawRectangle(cell.PrintTextBounds, SolidColor.Blue);
 				}
 
-				#endregion // Determine clip region
+                #endregion // Determine clip region
 
+                //Console.WriteLine(String.Format("Cell bounds: {0}", cell.Bounds.ToString()));
 				dc.Renderer.DrawCellText(cell, textColor, dc.DrawMode, this.scaleFactor);
 
 				#region clip region

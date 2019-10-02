@@ -214,6 +214,21 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             this.Add(GridControl.editTextbox, 0, 0);
 
             container.Add(GridControl, true, true);
+
+            GridControl.Load("Z:\\Downloads\\visctest.xlsx");
+
+            if (Application.Instance.Platform.IsWpf)
+            {
+                container.KeyDown += (sender, e) =>
+                {
+                    GridControl.OnKD(e);
+                };
+                container.KeyUp += (sender, e) =>
+                {
+                    GridControl.OnKU(e);
+                };
+            }
+
             container.Add(GridControl.bottomPanel, true, false);
 
             container.EndVertical();

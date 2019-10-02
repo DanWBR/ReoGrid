@@ -416,7 +416,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 switch (cell.Style.HAlign)
                 {
                     case ReoGridHorAlign.Left:
-                        editTextbox.TextAlignment = TextAlignment.Left;  
+                        editTextbox.TextAlignment = TextAlignment.Left;
                         break;
                     case ReoGridHorAlign.Center:
                         editTextbox.TextAlignment = TextAlignment.Center;
@@ -717,7 +717,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         {
             var p = e.Location;
             DoubleClickHandled = true;
-            this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(p.X, p.Y), e.Buttons.ToMouseButtons());            
+            this.currentWorksheet.OnMouseDoubleClick(new Graphics.Point(p.X, p.Y), e.Buttons.ToMouseButtons());
         }
 
         //protected override void OnDragOver(DragEventArgs drgevent)
@@ -743,6 +743,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             }
         }
 
+        public void OnKD(KeyEventArgs e)
+        {
+            OnKeyDown(e);
+        }
+
         /// <summary>
         /// Overrides key-up event
         /// </summary>
@@ -750,6 +755,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         protected override void OnKeyUp(KeyEventArgs e)
         {
             this.currentWorksheet.OnKeyUp(e.KeyData.ToKeyCode());
+        }
+
+        public void OnKU(KeyEventArgs e)
+        {
+            OnKeyUp(e);
         }
 
         #endregion // Keyboard
@@ -1008,19 +1018,18 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="e">Argument of visible-changed event</param>
         protected override void OnPaint(PaintEventArgs e)
         {
+
             var sheet = this.currentWorksheet;
+
+            paintcalls += 1;
 
 #if DEBUG
             var starttime = DateTime.Now;
-            paintcalls += 1;
             Console.WriteLine(String.Format("OnPaint() called {0} times", paintcalls));
 #endif
             if (Renderer == null)
             {
                 Renderer = new EtoRenderer.EtoRenderer(e.Graphics);
-#if DEBUG
-                Console.WriteLine(String.Format("Created New Renderer"));
-#endif
             }
             else
             {
@@ -1037,7 +1046,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                     sheet.UpdateViewportControllBounds();
                 }
                 sheet.ViewportController.Draw(dc);
-
             }
 
             //Renderer = null;

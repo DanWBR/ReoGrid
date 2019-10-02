@@ -874,6 +874,9 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="scaleFactor">Scale factor of current worksheet</param>
         internal void UpdateCellTextBounds(IRenderer ig, Cell cell, DrawMode drawMode, RGFloat scaleFactor, UpdateFontReason reason)
         {
+
+            bool shoulddiposeig = false;
+
             if (cell == null || string.IsNullOrEmpty(cell.DisplayText)) return;
 
             if (ig == null && this.controlAdapter != null)
@@ -881,30 +884,14 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 ig = this.controlAdapter.Renderer;
             }
 
-            if (ig == null) return;
+            if (ig == null)
+            {
+                ig = EtoRenderer.EtoRenderer.Create();
+                shoulddiposeig = true;
+            }
 
             Size oldSize;
             Size size;
-
-#if RICHTEXT
-			if (cell.Data is Drawing.RichText)
-			{
-				var rt = (Drawing.RichText)cell.Data;
-
-				oldSize = rt.TextSize;
-
-				rt.TextWrap = cell.InnerStyle.TextWrapMode;
-				rt.DefaultHorizontalAlignment = cell.Style.HAlign;
-				rt.VerticalAlignment = cell.Style.VAlign;
-
-				rt.Size = new Size(cell.Width - cell.InnerStyle.Indent, cell.Height);
-
-				size = rt.TextSize;
-				return;
-			}
-			else
-			{
-#endif // DRAWING
 
             oldSize = cell.TextBounds.Size;
 
@@ -920,6 +907,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 size = ig.MeasureCellText(cell, drawMode, scaleFactor);
             }
 
+            if (shoulddiposeig) {
+                ig.PlatformGraphics.Dispose();
+                ig = null;
+            }
+
             if (size.Width <= 0 || size.Height <= 0) return;
 
             // TODO: need fix: get incorrect size if CJK fonts
@@ -929,36 +921,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             Rectangle cellBounds = cell.Bounds;
 
             RGFloat cellWidth = cellBounds.Width * scaleFactor;
-
-#if WINFORM
-
-				if (cell.InnerStyle.HAlign == ReoGridHorAlign.DistributedIndent)
-				{
-					size.Width--;
-
-					if (drawMode == DrawMode.View)
-					{
-						cell.DistributedIndentSpacing = ((cellWidth - size.Width - 3) / (cell.DisplayText.Length - 1)) - 1;
-						if (cell.DistributedIndentSpacing < 0) cell.DistributedIndentSpacing = 0;
-					}
-					else
-					{
-						cell.DistributedIndentSpacingPrint = ((cellWidth - size.Width - 3) / (cell.DisplayText.Length - 1)) - 1;
-						if (cell.DistributedIndentSpacingPrint < 0) cell.DistributedIndentSpacingPrint = 0;
-					}
-
-					cell.RenderHorAlign = ReoGridRenderHorAlign.Center;
-					if (size.Width < cellWidth - 1) size.Width = (float)(Math.Round(cellWidth - 1));
-				}
-
-#elif WPF
-
-			if (cell.InnerStyle.TextWrapMode != TextWrapMode.NoWrap)
-			{
-				cell.formattedText.MaxTextWidth = cellWidth;
-			}
-
-#endif // WPF
 
             #region Update Text Size Cache
             RGFloat x = 0;
@@ -1013,9 +975,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             }
             #endregion // Update Text Size Cache
 
-#if RICHTEXT
-			}
-#endif // DRAWING
+            Console.WriteLine(String.Format("Cell Text Bounds: {0}", cell.TextBounds));
 
             if (drawMode == DrawMode.View
                 && reason != UpdateFontReason.ScaleChanged)
