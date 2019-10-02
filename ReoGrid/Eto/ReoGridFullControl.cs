@@ -66,7 +66,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 }
             };
 
-            fontPicker = new FontPicker { Width = 100, Value = SystemFonts.Default() };
+            fontPicker = new FontPicker { Value = SystemFonts.Default() };
 
             colorPickerBack = new ColorPicker() { Value = SystemColors.ControlBackground };
             colorPickerFore = new ColorPicker() { Value = SystemColors.ControlText };
