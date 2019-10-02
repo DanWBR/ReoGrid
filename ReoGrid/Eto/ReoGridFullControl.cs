@@ -28,7 +28,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         private FontPicker fontPicker;
         private Button btnLeftAlign, btnRightAlign, btnCenterAlign, btnTopAlign, btnBottomAlign, btnMiddleAlign;
 
-        private Button btnNew, btnOpen, btnSave, btnUndo, btnRedo, btnCut, btnCopy, btnPaste, btnMerge, btnUnMerge;
+        private Button btnNew, btnOpen, btnSave, btnUndo, btnRedo, btnCut, btnCopy, btnPaste, btnMerge, btnUnMerge, btnFormat;
         private ColorPicker colorPickerBorder;
 
         private DropDown cbBorderStyle;
@@ -49,7 +49,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             };
 
             cbNamedRanges = new ComboBox() { Width = 100, Height = 22 };
-            var btnFunction = new Button() {ImagePosition = ButtonImagePosition.Overlay,  Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png").WithSize(16, 16) };
+            var btnFunction = new Button() { ImagePosition = ButtonImagePosition.Overlay, Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png").WithSize(16, 16) };
             tbFormula = new TextBox() { Height = 22 };
 
             tbFormula.GotFocus += (sender, e) =>
@@ -96,6 +96,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             btnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Merge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_merge.png").WithSize(16, 16) };
             btnUnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Unmerge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_unmerge.png").WithSize(16, 16) };
+
+            btnFormat = new Button() { Text = "Format Cell/Range", Height = 24 };
 
             cbBorderStyle = new DropDown() { Items = { "No Borders", "All Borders", "External Only", "Top Only", "Bottom Only", "Left Only", "Right Only" } };
 
@@ -182,6 +184,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             var functionPanel2 = new StackLayout() { VerticalContentAlignment = VerticalAlignment.Center, Orientation = Orientation.Horizontal, Spacing = 5, Padding = new Padding(5) };
             functionPanel2.Items.Add(new StackLayoutItem(lbFont, VerticalAlignment.Center));
             functionPanel2.Items.Add(new StackLayoutItem(fontPicker));
+            functionPanel2.Items.Add(new StackLayoutItem(btnFormat));
             functionPanel2.Items.Add(new StackLayoutItem(lbFore, VerticalAlignment.Center));
             functionPanel2.Items.Add(new StackLayoutItem(colorPickerFore));
             functionPanel2.Items.Add(new StackLayoutItem(lbBack, VerticalAlignment.Center));
@@ -207,6 +210,13 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             container.BeginVertical();
 
             GridControl = new ReoGridControl(this);
+
+            btnFormat.Click += (sender, e) =>
+            {
+                var form = new PropertyPages.PropertyForm(GridControl);
+                form.TopMost = true;
+                form.ShowDialog();
+            };
 
             worksheet = GridControl.CurrentWorksheet;
 

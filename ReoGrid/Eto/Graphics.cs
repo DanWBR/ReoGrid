@@ -670,7 +670,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             {
                 default:
                 case DrawMode.View:
-                    textBounds = cell.TextBounds;
+                    textBounds = cell.Bounds;
                     scaledFont = cell.RenderFont;
                     break;
                 case DrawMode.Preview:
@@ -682,9 +682,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             }
             #endregion // Determine text bounds
 
+            textBounds.Inflate(-2, -2);
+
             var g = base.PlatformGraphics;
 
-            var tsize = g.MeasureString(scaledHeaderFont, cell.DisplayText);
+            var tsize = g.MeasureString(scaledFont, cell.DisplayText);
 
             RGFloat dx, dy;
 
@@ -720,7 +722,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
                         break;
 
                     case ReoGridRenderHorAlign.Right:
-                        dx = textBounds.Width - tsize.Width - 2;
+                        dx = textBounds.Width - tsize.Width;
                         break;
                 }
 

@@ -347,10 +347,6 @@
     <Compile Include="Utility\MeasureToolkit.cs" />
     <Compile Include="Utility\PrinterUtility.cs" />
     <Compile Include="Utility\StyleUtility.cs" />
-    <Compile Include="WinForm\AboutForm.cs" />
-    <Compile Include="WinForm\AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Actions.cs" />
     <Compile Include="CellTypes.cs" />
     <Compile Include="Chart\Interface.cs" />
@@ -404,25 +400,16 @@
     <Compile Include="Control\ISheetTabControl.cs" />
     <Compile Include="Views\Layer.cs" />
     <Compile Include="Views\CellsViewport.cs" />
-    <Compile Include="WinForm\Graphics.cs" />
+    <Compile Include="WinForm\Controls\ColoredListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForm\Controls\FormatPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\Controls\FormatPage.Designer.cs" />
+    <Compile Include="WinForm\Controls\LangResource.Designer.cs" />
     <Compile Include="Views\NormalViewportController.cs" />
-    <Compile Include="WinForm\FormulaParserForm.cs" />
-    <Compile Include="WinForm\FormulaParserForm.designer.cs">
-      <DependentUpon>FormulaParserForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinForm\Platform.cs" />
-    <Compile Include="WinForm\RenameSheetDialog.cs" />
-    <Compile Include="WinForm\RenameSheetDialog.Designer.cs">
-      <DependentUpon>RenameSheetDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinForm\SheetTabControl.cs" />
     <Compile Include="Utility\XMLHelper.cs" />
-    <Compile Include="WinForm\Designer\EditorServiceContext.cs" />
-    <Compile Include="WinForm\Designer\WorkbookEditorForm.cs" />
-    <Compile Include="WinForm\Designer\WorkbookEditorForm.Designer.cs">
-      <DependentUpon>WorkbookEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinForm\FilterGUI.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="IO\ExcelReader.cs" />
     <Compile Include="Exceptions.cs" />
@@ -431,7 +418,14 @@
     <Compile Include="IO\HTMLExporter.cs" />
     <Compile Include="ClipboardMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinForm\Designer\WorkbookEditor.cs" />
+    <Compile Include="WinForm\Controls\PropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Controls\PropertyForm.Designer.cs" />
+    <Compile Include="WinForm\Controls\ProtectionPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\Controls\ProtectionPage.Designer.cs" />
     <Compile Include="Zip\CRC32.cs" />
     <Compile Include="Zip\Deflate.cs" />
     <Compile Include="Zip\Events.cs" />
@@ -450,27 +444,16 @@
     <EmbeddedResource Include="Test\RichTextTestForm.resx">
       <DependentUpon>RichTextTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\DebugForm.resx">
-      <DependentUpon>DebugForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\Designer\WorkbookEditorForm.resx">
-      <DependentUpon>WorkbookEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\FormulaParserForm.resx">
-      <DependentUpon>FormulaParserForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\RenameSheetDialog.resx">
-      <DependentUpon>RenameSheetDialog.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Controls\FormatPage.resx" />
+    <EmbeddedResource Include="WinForm\Controls\LangResource.pt-BR.resx" />
+    <EmbeddedResource Include="WinForm\Controls\LangResource.resx" />
+    <EmbeddedResource Include="WinForm\Controls\PropertyForm.resx" />
+    <EmbeddedResource Include="WinForm\Controls\ProtectionPage.resx" />
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -482,14 +465,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WinForm\DebugForm.cs" />
-    <Compile Include="WinForm\DebugForm.Designer.cs">
-      <DependentUpon>DebugForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Rendering\BorderPainter.cs" />
     <Compile Include="Rendering\DrawingContext.cs" />
-    <Compile Include="WinForm\Designer\IntegrateDesigner.cs" />
-    <Compile Include="WinForm\WinFormControl.cs" />
     <Compile Include="Worksheet.cs" />
     <Compile Include="ExtendTrigger.cs" />
     <Compile Include="Utility\RGUtility.cs" />
