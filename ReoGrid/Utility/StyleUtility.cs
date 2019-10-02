@@ -413,7 +413,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 			if (StyleUtility.HasStyle(style, PlainStyleFlag.FontName))
 				xmlStyle.font = style.FontName;
 			if (StyleUtility.HasStyle(style, PlainStyleFlag.FontSize))
-				xmlStyle.fontSize = style.FontSize.ToString();
+				xmlStyle.fontSize = style.FontSize.ToString(System.Globalization.CultureInfo.InvariantCulture);
 			if (StyleUtility.HasStyle(style, PlainStyleFlag.FontStyleBold))
 				xmlStyle.bold = style.Bold.ToString().ToLower();
 			if (StyleUtility.HasStyle(style, PlainStyleFlag.FontStyleItalic))
@@ -433,7 +433,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility
 			if (StyleUtility.HasStyle(style, PlainStyleFlag.Padding))
 				xmlStyle.padding = TextFormatHelper.EncodePadding(style.Padding);
 			if (StyleUtility.HasStyle(style, PlainStyleFlag.RotationAngle))
-				xmlStyle.rotateAngle = style.RotationAngle.ToString();
+				xmlStyle.rotateAngle = style.RotationAngle.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
 			return xmlStyle;
 		}

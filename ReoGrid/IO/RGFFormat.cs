@@ -143,7 +143,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 			this.ScaleFactor = 1f;
 
 			// todo: clear current view controller and viewport position
-			CultureInfo culture = Thread.CurrentThread.CurrentCulture;
+			CultureInfo culture = System.Globalization.CultureInfo.InvariantCulture;
 
 			#region Head
 			// head

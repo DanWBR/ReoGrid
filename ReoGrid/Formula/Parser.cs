@@ -51,15 +51,10 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Formula
             return node;
         }
 
-        private static string ParameterSeparator = ",";
+        private static string ParameterSeparator = ";";
 
         static Parser()
         {
-            try
-            {
-                ParameterSeparator = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ListSeparator;
-            }
-            catch { }
         }
         #endregion // Parser API
 
