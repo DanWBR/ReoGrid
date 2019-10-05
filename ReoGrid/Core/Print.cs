@@ -301,8 +301,15 @@ namespace unvell.ReoGrid
 			/// <returns></returns>
 			public bool Contains(int index)
 			{
-				return ValidPageBreakArray.Contains(index);
-			}
+                if (ValidPageBreakArray != null)
+                {
+                    return ValidPageBreakArray.Contains(index);
+                }
+                else
+                {
+                    return false;
+                }
+            }
 
 			/// <summary>
 			/// Copy elements to another array
@@ -472,14 +479,20 @@ namespace unvell.ReoGrid
 				this.Worksheet.ClearColumnPageBreaks();
 			}
 
-			/// <summary>
-			/// Check whether or not a column page break has already added
-			/// </summary>
-			/// <param name="index">number of column index to be checked</param>
-			/// <returns>true if the page break has been added, otherwise return false</returns>
-			public bool Contains(int index)
-			{
-				return ValidPageBreakArray.Contains(index);
+            /// <summary>
+            /// Check whether or not a column page break has already added
+            /// </summary>
+            /// <param name="index">number of column index to be checked</param>
+            /// <returns>true if the page break has been added, otherwise return false</returns>
+            public bool Contains(int index)
+            {
+                if (ValidPageBreakArray != null)
+                {
+                    return ValidPageBreakArray.Contains(index);
+                }
+                else{
+                    return false;
+                }
 			}
 
 			/// <summary>
