@@ -673,9 +673,19 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             {
                 TableLayout table = (TableLayout)(((DynamicLayout)this.Parent.Parent).Content);
                 Scrollable scroll = (Scrollable)this.Parent;
-                var ofs = table.Rows[1].Cells[0].Control.Location;
-                ofs.Offset(-scroll.ScrollPosition);
-                this.LocationOffset = ofs;
+                if (Application.Instance.Platform.IsGtk)
+                {
+                    var ofs = new Point(0, table.Rows[0].Cells[0].Control.Bounds.Bottom);
+                    ofs.Offset(-scroll.ScrollPosition);
+                    this.LocationOffset = ofs;
+                    Console.WriteLine(ofs);
+                }
+                else
+                {
+                    var ofs = table.Rows[1].Cells[0].Control.Location;
+                    ofs.Offset(-scroll.ScrollPosition);
+                    this.LocationOffset = ofs;
+                }
             }
             else
             {
