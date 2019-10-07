@@ -33,6 +33,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         private DropDown cbBorderStyle;
 
+        public ButtonMenuItem ImportDataMenuItem, ExportDataMenuItem, CreateChartMenuItem;
+
         public ReoGridFullControl() : base()
         {
 
@@ -263,7 +265,109 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             this.worksheet.SelectionRangeChanged += grid_SelectionRangeChanged;
             this.worksheet.FocusPosChanged += grid_FocusPosChanged;
 
+            var cutRowMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Cut())) { Text = "Cut" };
+            var copyRowMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Copy())) { Text = "Copy" };
+            var pasteRowMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Paste())) { Text = "Paste" };
+
+            var cutColMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Cut())) { Text = "Cut" };
+            var copyColMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Copy())) { Text = "Copy" };
+            var pasteColMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Paste())) { Text = "Paste" };
+
+            var cutCellMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Cut())) { Text = "Cut" };
+            var copyCellMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Copy())) { Text = "Copy" };
+            var pasteCellMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => Paste())) { Text = "Paste" };
+
+            var mergeMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => BtnMerge_Click(s, e))) { Text = "Merge" };
+            var unmergeMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() => BtnUnMerge_Click(s, e))) { Text = "Unmerge" };
+
+            var hideRowsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new HideRowsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Row, 
+                                GridControl.CurrentWorksheet.SelectionRange.Rows));
+            }))
+            { Text = "Hide" };
+
+            var unhideRowsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new UnhideRowsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Row,
+                                GridControl.CurrentWorksheet.SelectionRange.Rows));
+            }))
+            { Text = "Unhide" };
+
+            var hideColsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new HideColumnsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Col,
+                                GridControl.CurrentWorksheet.SelectionRange.Cols));
+            }))
+            { Text = "Hide" };
+
+            var unhideColsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new UnhideColumnsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Col,
+                                GridControl.CurrentWorksheet.SelectionRange.Cols));
+            })){ Text = "Unhide" };
+
+            ImportDataMenuItem = new ButtonMenuItem { Text = "Import Data from Flowsheet Object" };
+
+            ExportDataMenuItem = new ButtonMenuItem { Text = "Export Data to Flowsheet Object" };
+
+            CreateChartMenuItem = new ButtonMenuItem { Text = "Create Chart from Selected Range" };
+
+            var insertRowsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new InsertRowsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Row,
+                                GridControl.CurrentWorksheet.SelectionRange.Rows));
+            }))
+            { Text = "Insert" };
+
+            var deleteRowsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new RemoveRowsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Row,
+                                GridControl.CurrentWorksheet.SelectionRange.Rows));
+            }))
+            { Text = "Delete" };
+
+            var insertColsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new InsertColumnsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Col,
+                                GridControl.CurrentWorksheet.SelectionRange.Cols));
+            }))
+            { Text = "Insert" };
+
+            var deleteColsMI = new ButtonMenuItem((s, e) => Application.Instance.Invoke(() =>
+            {
+                GridControl.DoAction(new RemoveColumnsAction(
+                                GridControl.CurrentWorksheet.SelectionRange.Col,
+                                GridControl.CurrentWorksheet.SelectionRange.Cols));
+            }))
+            { Text = "Delete" };
+
             RefreshCurrentAddress();
+
+            var columnMenu = new ContextMenu();
+
+            columnMenu.Items.AddRange( new MenuItem[]{cutColMI, copyColMI, pasteColMI, new SeparatorMenuItem(), insertColsMI, deleteColsMI, new SeparatorMenuItem(), hideColsMI, unhideColsMI });
+
+            GridControl.ColumnHeaderContextMenu = columnMenu;
+
+            var rowMenu = new ContextMenu();
+
+            rowMenu.Items.AddRange(new MenuItem[] {cutRowMI, copyRowMI, pasteRowMI, new SeparatorMenuItem(), insertRowsMI, deleteRowsMI, new SeparatorMenuItem(), hideRowsMI, unhideRowsMI });
+
+            GridControl.RowHeaderContextMenu = rowMenu;
+
+            var cellMenu = new ContextMenu();
+
+            cellMenu.Items.AddRange(new MenuItem[] {cutCellMI, copyCellMI, pasteCellMI, new SeparatorMenuItem(), mergeMI, unmergeMI, new SeparatorMenuItem(), ImportDataMenuItem, ExportDataMenuItem, new SeparatorMenuItem(), CreateChartMenuItem });
+
+            GridControl.ContextMenu = cellMenu;
 
         }
 
