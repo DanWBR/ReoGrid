@@ -678,7 +678,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                     var ofs = new Point(0, table.Rows[0].Cells[0].Control.Bounds.Bottom);
                     ofs.Offset(-scroll.ScrollPosition);
                     this.LocationOffset = ofs;
-                    Console.WriteLine(ofs);
                 }
                 else
                 {
