@@ -142,12 +142,12 @@ namespace unvell.ReoGrid
 
 			this.ScaleFactor = 1f;
 
-			// todo: clear current view controller and viewport position
-			CultureInfo culture = Thread.CurrentThread.CurrentCulture;
+            // todo: clear current view controller and viewport position
+            CultureInfo culture = System.Globalization.CultureInfo.InvariantCulture;
 
-			#region Head
-			// head
-			if (xmlSheet.head != null)
+            #region Head
+            // head
+            if (xmlSheet.head != null)
 			{
 				var head = xmlSheet.head;
 
