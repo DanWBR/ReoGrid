@@ -218,19 +218,23 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					// highlight current copy range
 					currentCopingRange = selectionRange;
 
-#if WINFORM || WPF
-					DataObject data = new DataObject();
-					data.SetData(ClipBoardDataFormatIdentify,
-						GetPartialGrid(currentCopingRange, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None, true));
+#if ETO
+					var pgrid = GetPartialGrid(currentCopingRange, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None, true);
 
 					string text = StringifyRange(currentCopingRange);
-					if (!string.IsNullOrEmpty(text)) data.SetText(text);
 
-					// set object data into clipboard
-					Clipboard.SetDataObject(data);
+                    if (!string.IsNullOrEmpty(text)) {
+                        Eto.Forms.Clipboard.Instance.Text = text;
+                    }
+                    else
+                    {
+                        var datastring = Newtonsoft.Json.JsonConvert.SerializeObject(pgrid);
+                        // set object data into clipboard
+                        Eto.Forms.Clipboard.Instance.SetString(datastring, "PartialGrid");
+                    }
 #endif // WINFORM || WPF
 
-					if (AfterCopy != null)
+                    if (AfterCopy != null)
 					{
 						AfterCopy(this, new RangeEventArgs(this.selectionRange));
 					}
@@ -293,23 +297,18 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					PartialGrid partialGrid = null;
 					string clipboardText = null;
 
-#if WINFORM || WPF
-					DataObject data = Clipboard.GetDataObject() as DataObject;
-					if (data != null)
-					{
-						partialGrid = data.GetData(ClipBoardDataFormatIdentify) as PartialGrid;
-
-						if (data.ContainsText())
-						{
-							clipboardText = data.GetText();
-						}
-					}
-
-#elif ANDROID
-
-#endif // WINFORM || WPF
-
-					if (partialGrid != null)
+                    if (Eto.Forms.Clipboard.Instance.ContainsText)
+                    {
+                        clipboardText = Eto.Forms.Clipboard.Instance.Text;
+                    }
+                    else {
+                        var data = Eto.Forms.Clipboard.Instance.GetString("PartialGrid");
+                        if (data != null)
+                        {
+                            partialGrid = Newtonsoft.Json.JsonConvert.DeserializeObject<PartialGrid>(data);
+                        }
+                    }
+                    if (partialGrid != null)
 					{
 						#region Partial Grid Pasting
 						int startRow = selectionRange.Row;

@@ -163,7 +163,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					{
 						string text = tabs[c];
 
-						if (text.StartsWith("\"") && text.EndsWith("\""))
+						if (text.StartsWith("\"") && text.EndsWith("\"") && text.Length > 1)
 						{
 							text = text.Substring(1, text.Length - 2);
 						}
