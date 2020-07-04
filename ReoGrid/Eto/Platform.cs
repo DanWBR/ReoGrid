@@ -126,7 +126,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Rendering
     partial class StaticResources
     {
         internal static readonly string SystemDefaultFontName = Eto.Drawing.SystemFonts.Default().FamilyName;
-        internal static readonly float SystemDefaultFontSize = System.Drawing.SystemFonts.DefaultFont.Size;
+        internal static readonly float SystemDefaultFontSize = Eto.Drawing.SystemFonts.Default().Size;
 
         internal static readonly SolidColor EmptyColor = Eto.Drawing.Colors.Transparent.ToSolidColor();
 
