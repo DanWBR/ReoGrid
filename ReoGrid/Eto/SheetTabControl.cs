@@ -58,8 +58,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.EtoRenderer
             this.grid = grid;
             this.Font = SystemFonts.Default();
             this.NewButtonVisible = true;
-            this.newButtonImage = Bitmap.FromResource("DWSIM.CrossPlatform.UI.Controls.ReoGrid.Resources.icons8-add_row_focused.png").WithSize(16, 16);
-            this.newButtonDisableImage = Bitmap.FromResource("DWSIM.CrossPlatform.UI.Controls.ReoGrid.Resources.icons8-add_row.png").WithSize(16, 16);
+            this.newButtonImage = Bitmap.FromResource("DWSIM.CrossPlatform.UI.Controls.ReoGrid.Resources.icons8-add_row_focused.png", this.GetType().Assembly).WithSize(16, 16);
+            this.newButtonDisableImage = Bitmap.FromResource("DWSIM.CrossPlatform.UI.Controls.ReoGrid.Resources.icons8-add_row.png", this.GetType().Assembly).WithSize(16, 16);
         }
 
         protected override void Dispose(bool disposing)

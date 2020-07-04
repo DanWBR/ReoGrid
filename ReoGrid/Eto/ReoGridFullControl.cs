@@ -51,7 +51,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             };
 
             cbNamedRanges = new ComboBox() { Width = 100, Height = 22 };
-            var btnFunction = new Button() { ImagePosition = ButtonImagePosition.Overlay, Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png").WithSize(16, 16) };
+            var btnFunction = new Button() { ImagePosition = ButtonImagePosition.Overlay, Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "FunctionHS.png", this.GetType().Assembly).WithSize(16, 16) };
             tbFormula = new TextBox() { Height = 22 };
 
             tbFormula.GotFocus += (sender, e) =>
@@ -78,26 +78,26 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             var lbFore = new Label { Text = "Text Color", VerticalAlignment = VerticalAlignment.Center };
             var lbBack = new Label { Text = "Background Color", VerticalAlignment = VerticalAlignment.Center };
 
-            btnLeftAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Left", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleLeftJustHS.PNG").WithSize(16, 16) };
-            btnCenterAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Center", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleCenterHS.png").WithSize(16, 16) };
-            btnRightAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Right", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleRightHS.png").WithSize(16, 16) };
-            btnTopAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Top", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutTop.png").WithSize(16, 16) };
-            btnMiddleAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Middle", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutMiddle.png").WithSize(16, 16) };
-            btnBottomAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Bottom", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutBottom.png").WithSize(16, 16) };
+            btnLeftAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Left", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleLeftJustHS.PNG", this.GetType().Assembly).WithSize(16, 16) };
+            btnCenterAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Center", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleCenterHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnRightAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Right", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignTableCellMiddleRightHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnTopAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Top", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutTop.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnMiddleAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Middle", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutMiddle.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnBottomAlign = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Align Bottom", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "AlignLayoutBottom.png", this.GetType().Assembly).WithSize(16, 16) };
 
-            btnNew = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "New Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "NewDocumentHS.png").WithSize(16, 16) };
-            btnOpen = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Open Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "openHS.png").WithSize(16, 16) };
-            btnSave = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Save Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "saveHS.png").WithSize(16, 16) };
+            btnNew = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "New Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "NewDocumentHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnOpen = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Open Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "openHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnSave = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Save Workbook", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "saveHS.png", this.GetType().Assembly).WithSize(16, 16) };
 
-            btnCut = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Cut", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CutHS.png").WithSize(16, 16) };
-            btnCopy = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Copy", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CopyHS.png").WithSize(16, 16) };
-            btnPaste = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Paste", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "PasteHS.png").WithSize(16, 16) };
+            btnCut = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Cut", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CutHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnCopy = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Copy", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "CopyHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnPaste = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Paste", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "PasteHS.png", this.GetType().Assembly).WithSize(16, 16) };
 
-            btnUndo = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Undo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_UndoHS.png").WithSize(16, 16) };
-            btnRedo = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Redo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_RedoHS.png").WithSize(16, 16) };
+            btnUndo = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Undo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_UndoHS.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnRedo = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Redo", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "Edit_RedoHS.png", this.GetType().Assembly).WithSize(16, 16) };
 
-            btnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Merge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_merge.png").WithSize(16, 16) };
-            btnUnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Unmerge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_unmerge.png").WithSize(16, 16) };
+            btnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Merge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_merge.png", this.GetType().Assembly).WithSize(16, 16) };
+            btnUnMerge = new Button() { ImagePosition = ButtonImagePosition.Overlay, ToolTip = "Unmerge", Height = 24, Width = 24, Image = Bitmap.FromResource(imgpfx + "cell_unmerge.png", this.GetType().Assembly).WithSize(16, 16) };
 
             btnFormat = new Button() { Text = "Format Cell/Range", Height = 24, Width = 150 };
 
