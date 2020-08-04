@@ -528,7 +528,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					WorksheetRangeStyle style = StyleUtility.ConvertFromXmlStyle(this, xmlCell.style, culture);
 					if (style != null)
 					{
-						SetCellStyle(cell, style, StyleParentKind.Own);
+						SetCellStyle(null, cell, style, StyleParentKind.Own);
 					}
 				}
 

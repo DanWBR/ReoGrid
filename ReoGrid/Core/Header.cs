@@ -343,7 +343,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 						if (cell.IsEndMergedCell)
 						{
 							Cell mergedStartCell = GetCell(cell.MergeStartPos);
-							UpdateCellBounds(mergedStartCell);
+							UpdateCellBounds(null, mergedStartCell);
 
 							mergedStartCell.UpdateContentBounds();
 						}
@@ -356,7 +356,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 							if (cell.InternalCol < applyEndCol && cell.Colspan == 1 && cell.Rowspan == 1)
 							{
 								cell.Width = width + 1;
-								UpdateCellTextBounds(cell);
+								UpdateCellTextBounds(null, cell);
 							}
 
 							cell.UpdateContentBounds();
@@ -550,7 +550,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 						if (cell.IsEndMergedCell)
 						{
 							Cell mergedStartCell = GetCell(cell.MergeStartPos);
-							UpdateCellBounds(mergedStartCell);
+							UpdateCellBounds(null,  mergedStartCell);
 						}
 						else
 						{
@@ -561,7 +561,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 							if (cell.InternalRow < applyEndRow && cell.Colspan == 1 && cell.Rowspan == 1)
 							{
 								cell.Height = height + 1;
-								UpdateCellTextBounds(cell);
+								UpdateCellTextBounds(null, cell);
 							}
 
 							cell.UpdateContentBounds();
@@ -708,7 +708,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
 			if (cell.FontDirty)
 			{
-				UpdateCellFont(cell);
+				UpdateCellFont(null, cell);
 			}
 
 			if (!string.IsNullOrEmpty(cell.DisplayText))
@@ -732,7 +732,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
 			if (cell.FontDirty)
 			{
-				UpdateCellFont(cell);
+				UpdateCellFont(null, cell);
 			}
 
 			if (!string.IsNullOrEmpty(cell.DisplayText))
@@ -776,7 +776,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 				{
 					if (cell.FontDirty)
 					{
-						this.UpdateCellFont(cell);
+						this.UpdateCellFont(null, cell);
 					}
 
 #if RICHTEXT
@@ -858,7 +858,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 				{
 					if (cell.FontDirty)
 					{
-						this.UpdateCellFont(cell);
+						this.UpdateCellFont(null, cell);
 					}
 
 #if RICHTEXT

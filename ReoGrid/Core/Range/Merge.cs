@@ -147,7 +147,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 			startCell.Colspan = (short)fixedRange.Cols;
 
 			// update content bounds
-			UpdateCellBounds(startCell);
+			UpdateCellBounds(null, startCell);
 
 			// fix selection
 			if (this.selectionRange.IntersectWith(fixedRange))
@@ -237,7 +237,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					cell.MergeEndPos = CellPosition.Empty;
 					cell.Colspan = 1;
 					cell.Rowspan = 1;
-					UpdateCellBounds(cell);
+					UpdateCellBounds(null, cell);
 
 					if (r != source.InternalRow) hBorders[r, c] = null;
 					if (c != source.InternalCol) vBorders[r, c] = null;

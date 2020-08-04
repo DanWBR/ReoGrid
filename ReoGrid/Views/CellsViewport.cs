@@ -848,7 +848,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
 
 				if (cell.FontDirty)
 				{
-					sheet.UpdateCellFont(cell);
+					sheet.UpdateCellFont(dc.Renderer, cell);
 				}
 
 				#endregion // Determine text color

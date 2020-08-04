@@ -937,7 +937,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 StyleUtility.UpdateCellRenderAlign(this, cell);
 
                 // update font of cell
-                UpdateCellFont(cell);
+                UpdateCellFont(null, cell);
             }
 
             return cell;

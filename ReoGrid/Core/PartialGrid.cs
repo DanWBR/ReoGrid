@@ -650,7 +650,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 									// copy cell content
 									CellUtility.CopyCellContent(tocell, fromCell);
 
-									UpdateCellFont(tocell);
+									UpdateCellFont(null, tocell);
 								}
 								else
 								{
@@ -731,7 +731,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 									// copy cell content
 									CellUtility.CopyCellContent(tocell, fromCell);
 
-									UpdateCellFont(tocell);
+									UpdateCellFont(null, tocell);
 								}
 								else
 								{
@@ -828,7 +828,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 								}
 								else
 								{
-									UpdateCellFont(toCell);
+									UpdateCellFont(null, toCell);
 								}
 #endregion // Copy Merged info
 
@@ -865,11 +865,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 									Cell cell = GetCell(toCell.MergeStartPos);
 									Debug.Assert(cell != null);
 
-									UpdateCellBounds(cell);
+									UpdateCellBounds(null, cell);
 								}
 								else if (toCell.Rowspan == 1 && toCell.Colspan == 1)
 								{
-									UpdateCellFont(toCell);
+									UpdateCellFont(null, toCell);
 								}
 							}
 							else

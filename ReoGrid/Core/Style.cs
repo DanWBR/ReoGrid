@@ -238,91 +238,93 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
             WorksheetRangeStyle rowStyle = null;
             WorksheetRangeStyle colStyle = null;
-
-            // update cells
-            for (int r = r1; r <= r2; r++)
+            using (var newig = EtoRenderer.EtoRenderer.Create())
             {
-                rowStyle = null;
-
-                for (int c = c1; c <= c2; c++)
+                // update cells
+                for (int r = r1; r <= r2; r++)
                 {
-                    Cell cell = cells[r, c];
-                    colStyle = null;
+                    rowStyle = null;
 
-                    if (cell != null)
+                    for (int c = c1; c <= c2; c++)
                     {
-                        if (
-                            cell.IsValidCell
+                        Cell cell = cells[r, c];
+                        colStyle = null;
 
-                            &&
-
-                            // if is a part of merged cell, check whether all rows or columns is selected
-                            // if all rows or columns is selected, skip set styles
-                            ((!isRowStyle && !isColStyle)
-                            || (r1 <= cell.InternalRow && r2 >= cell.MergeEndPos.Row
-                            && c1 <= cell.InternalCol && c2 >= cell.MergeEndPos.Col))
-                            )
+                        if (cell != null)
                         {
-                            if (pkind == StyleParentKind.Row)
+                            if (
+                                cell.IsValidCell
+
+                                &&
+
+                                // if is a part of merged cell, check whether all rows or columns is selected
+                                // if all rows or columns is selected, skip set styles
+                                ((!isRowStyle && !isColStyle)
+                                || (r1 <= cell.InternalRow && r2 >= cell.MergeEndPos.Row
+                                && c1 <= cell.InternalCol && c2 >= cell.MergeEndPos.Col))
+                                )
                             {
-                                if (cell.StyleParentKind == StyleParentKind.Col)
+                                if (pkind == StyleParentKind.Row)
                                 {
-                                    SetCellStyle(cell, style, StyleParentKind.Own);
+                                    if (cell.StyleParentKind == StyleParentKind.Col)
+                                    {
+                                        SetCellStyle(newig, cell, style, StyleParentKind.Own);
+                                    }
+                                    else
+                                    {
+                                        if (rowStyle == null)
+                                        {
+                                            rowStyle = this.rows[r].InnerStyle;
+                                        }
+
+                                        SetCellStyle(newig, cell, style, pkind, rowStyle);
+                                    }
+                                }
+                                else if (pkind == StyleParentKind.Col)
+                                {
+                                    if (colStyle == null)
+                                    {
+                                        colStyle = this.cols[c].InnerStyle;
+                                    }
+                                    SetCellStyle(newig, cell, style, pkind, colStyle);
                                 }
                                 else
                                 {
-                                    if (rowStyle == null)
-                                    {
-                                        rowStyle = this.rows[r].InnerStyle;
-                                    }
-
-                                    SetCellStyle(cell, style, pkind, rowStyle);
+                                    SetCellStyle(newig, cell, style, pkind, this.RootStyle);
                                 }
                             }
-                            else if (pkind == StyleParentKind.Col)
+                        }
+                        else
+                        {
+
+                            // allow to create cells
+                            if (isRange)
                             {
-                                if (colStyle == null)
+                                cell = CreateCell(r, c, false);
+                                SetCellStyle(newig, cell, style, StyleParentKind.Own);
+                            }
+                            // if full grid style then skip all null cells
+                            else if (isRootStyle)
+                            {
+                                continue;
+                            }
+                            // if the column of cell has styles, compare to row style
+                            else if (isColStyle)
+                            {
+                                if (rowStyle == null)
                                 {
-                                    colStyle = this.cols[c].InnerStyle;
+                                    rowStyle = this.rows[r].InnerStyle;
                                 }
-                                SetCellStyle(cell, style, pkind, colStyle);
-                            }
-                            else
-                            {
-                                SetCellStyle(cell, style, pkind, this.RootStyle);
-                            }
-                        }
-                    }
-                    else
-                    {
 
-                        // allow to create cells
-                        if (isRange)
-                        {
-                            cell = CreateCell(r, c, false);
-                            SetCellStyle(cell, style, StyleParentKind.Own);
-                        }
-                        // if full grid style then skip all null cells
-                        else if (isRootStyle)
-                        {
-                            continue;
-                        }
-                        // if the column of cell has styles, compare to row style
-                        else if (isColStyle)
-                        {
-                            if (rowStyle == null)
-                            {
-                                rowStyle = this.rows[r].InnerStyle;
-                            }
-
-                            // if row has style, then create cell, else skip creating null cell
-                            if (rowStyle != null)
-                            // full column selected but the row of cell has also style,
-                            // row style has the higher priority than the column style,
-                            // so it is need to create instance of cell to 
-                            // get highest priority for cell styles
-                            {
-                                SetCellStyle(CreateCell(r, c, false), style, StyleParentKind.Own);
+                                // if row has style, then create cell, else skip creating null cell
+                                if (rowStyle != null)
+                                // full column selected but the row of cell has also style,
+                                // row style has the higher priority than the column style,
+                                // so it is need to create instance of cell to 
+                                // get highest priority for cell styles
+                                {
+                                    SetCellStyle(newig, CreateCell(r, c, false), style, StyleParentKind.Own);
+                                }
                             }
                         }
                     }
@@ -339,7 +341,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         internal void SetCellStyleOwn(Cell cell, WorksheetRangeStyle style)
         {
-            this.SetCellStyle(cell, style, StyleParentKind.Own);
+            this.SetCellStyle(null, cell, style, StyleParentKind.Own);
         }
 
         internal void SetCellStyleOwn(CellPosition pos, WorksheetRangeStyle style)
@@ -355,10 +357,10 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <param name="style">style will be copied</param>
         internal void SetCellStyleOwn(int row, int col, WorksheetRangeStyle style)
         {
-            this.SetCellStyle(CreateAndGetCell(row, col), style, StyleParentKind.Own);
+            this.SetCellStyle(null, CreateAndGetCell(row, col), style, StyleParentKind.Own);
         }
 
-        private void SetCellStyle(Cell cell, WorksheetRangeStyle style,
+        private void SetCellStyle(IRenderer ig, Cell cell, WorksheetRangeStyle style,
             StyleParentKind parentKind, WorksheetRangeStyle parentStyle = null)
         {
             // do nothing if cell is a part of merged range
@@ -403,7 +405,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                 if (style.Flag.HasAny(PlainStyleFlag.FontAll))
                 {
                     // update cell font and text's bounds
-                    UpdateCellFont(cell);
+                    UpdateCellFont(ig, cell);
                 }
                 // when font is not changed but alignment is changed, only update the bounds of text
                 else if (style.Flag.HasAny(PlainStyleFlag.HorizontalAlign
@@ -412,7 +414,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                     | PlainStyleFlag.Indent
                     | PlainStyleFlag.RotationAngle))
                 {
-                    UpdateCellTextBounds(cell);
+                    UpdateCellTextBounds(ig, cell);
                 }
             }
             //else
@@ -786,7 +788,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         #endregion
 
         #region UpdateCellBounds
-        private void UpdateCellBounds(Cell cell)
+        private void UpdateCellBounds(IRenderer ig, Cell cell)
         {
 #if DEBUG
             Debug.Assert(cell.Rowspan >= 1 && cell.Colspan >= 1);
@@ -794,16 +796,16 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 			if (cell.Rowspan < 1 || cell.Colspan < 1) return;
 #endif
             cell.Bounds = GetRangeBounds(cell.InternalRow, cell.InternalCol, cell.Rowspan, cell.Colspan);
-            UpdateCellTextBounds(cell);
+            UpdateCellTextBounds(ig, cell);
             cell.UpdateContentBounds();
         }
         #endregion // UpdateCellBounds
 
         #region Update Font & Text
 
-        internal void UpdateCellFont(Cell cell, UpdateFontReason reason = UpdateFontReason.FontChanged)
+        internal void UpdateCellFont(IRenderer ig, Cell cell, UpdateFontReason reason = UpdateFontReason.FontChanged)
         {
-            UpdateCellRenderFont(null, cell, DrawMode.View, reason);
+            UpdateCellRenderFont(ig, cell, DrawMode.View, reason);
         }
 
         internal void UpdateCellRenderFont(IRenderer ir, Cell cell, DrawMode drawMode, UpdateFontReason reason)
@@ -845,15 +847,15 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// </summary>
         /// <param name="cell"></param>
         /// <param name="updateRowHeight"></param>
-        internal void UpdateCellTextBounds(Cell cell)
+        internal void UpdateCellTextBounds(IRenderer ig, Cell cell)
         {
             if (cell.FontDirty)
             {
-                this.UpdateCellFont(cell);
+                this.UpdateCellFont(ig, cell);
             }
             else
             {
-                this.UpdateCellTextBounds(null, cell, DrawMode.View, UpdateFontReason.FontChanged);
+                this.UpdateCellTextBounds(ig, cell, DrawMode.View, UpdateFontReason.FontChanged);
             }
         }
 
@@ -894,7 +896,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
                     size = newig.MeasureCellText(cell, drawMode, scaleFactor);
                 }
             }
-            else {
+            else
+            {
                 if (ig.PlatformGraphics.IsDisposed)
                 {
                     using (EtoRenderer.EtoRenderer newig = EtoRenderer.EtoRenderer.Create())

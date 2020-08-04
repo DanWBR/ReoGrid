@@ -122,7 +122,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 			DataFormatterManager.Instance.FormatCell(cell);
 
 			DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
-			UpdateCellTextBounds(cell);
+			UpdateCellTextBounds(null, cell);
 
 #if FORMULA
 			if (formulaDirtyCells != null)
@@ -216,7 +216,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 							DWSIM.CrossPlatform.UI.Controls.ReoGrid.Utility.StyleUtility.UpdateCellRenderAlign(this, cell);
 
 							// update text bounds
-							UpdateCellTextBounds(cell);
+							UpdateCellTextBounds(null, cell);
 
 							c += cell.Colspan > 1 ? cell.Colspan : 1;
 						}
