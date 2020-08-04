@@ -272,6 +272,14 @@ namespace unvell.ReoGrid
 
 			ResumeLayout();
 
+			bottomPanel.SizeChanged += (s, e) => {
+				using (var g2 = System.Drawing.Graphics.FromHwnd(this.Handle))
+				{
+					var ds = g2.DpiX / 96.0f;
+					this.bottomPanel.Height = (int)(20 * ds);
+				}
+			};
+
 			//TODO: detect clipboard changes
 			// need detect and remove the hightlight range when content has been removed from System Clipboard
 			//ClipboardMonitor.Instance.ClipboardChanged += new EventHandler<ClipboardChangedEventArgs>(ClipboardMonitor_ClipboardChanged);

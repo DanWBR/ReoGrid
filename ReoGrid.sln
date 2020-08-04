@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Test", "Test\Test.vbproj", "{8AD40828-8F3C-4D2F-997E-757F104EE60F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,14 @@ Global
 		{EE03A6AF-2937-4893-80F4-DD71F099A76C}.Minimum|Any CPU.Build.0 = Release|Any CPU
 		{EE03A6AF-2937-4893-80F4-DD71F099A76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE03A6AF-2937-4893-80F4-DD71F099A76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Extension|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Extension|Any CPU.Build.0 = Release|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Minimum|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Minimum|Any CPU.Build.0 = Release|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD40828-8F3C-4D2F-997E-757F104EE60F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
