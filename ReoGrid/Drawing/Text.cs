@@ -77,7 +77,7 @@ namespace unvell.ReoGrid.Drawing
 
 		#region Constants
 		internal const string BuiltInDefaultFontName = "Calibri";
-		internal const RGFloat BuiltInDefaultFontSize = 10.25f;
+		internal const RGFloat BuiltInDefaultFontSize = 10f;
 		#endregion // Constants
 
 		#region Size

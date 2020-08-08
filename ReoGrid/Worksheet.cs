@@ -126,8 +126,8 @@ namespace unvell.ReoGrid
 		public static readonly WorksheetRangeStyle DefaultStyle = new WorksheetRangeStyle
 		{
 			Flag = PlainStyleFlag.FontName | PlainStyleFlag.FontSize | PlainStyleFlag.AlignAll,
-			FontName = "Calibri",
-			FontSize = 10.25f,
+			FontName = "Arial",
+			FontSize = 10f,
 			HAlign = ReoGridHorAlign.General,
 			VAlign = ReoGridVerAlign.General,
 		};
