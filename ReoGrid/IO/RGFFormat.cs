@@ -730,7 +730,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 			foreach (var cell in this.formulaRanges.Keys)
 			{
 				// TODO: pass dirty stack?
-				RecalcCell(cell);
+				// RecalcCell(cell);
 			}
 
 			if (cellsTracePrecedents != null)
