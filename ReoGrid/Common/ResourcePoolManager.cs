@@ -64,7 +64,7 @@ namespace unvell.Common
 
 		internal ResourcePoolManager()
 		{
-			Logger.Log("resource pool", "create resource pool...");
+			//Logger.Log("resource pool", "create resource pool...");
 		}
 
 #region Brush
