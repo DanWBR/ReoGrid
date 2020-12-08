@@ -826,6 +826,8 @@ namespace unvell.ReoGrid.WinForm
                 c = Math.Cos(d);
             }
 
+            if (sf == null) return new Graphics.Size(0.0f, 0.0f);
+
             lock (sf)
             {
                 // merged cell need word break automatically
