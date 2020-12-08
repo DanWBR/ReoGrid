@@ -605,6 +605,10 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 				string cellValue = null;
 
 #if FORMULA
+				string ds = CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator;
+				string from;
+				if (ds == ".") from = ","; else from = ".";
+
 				if (xmlCell.formula != null && !string.IsNullOrEmpty(xmlCell.formula.val))
 				{
 					formula = xmlCell.formula.val;
@@ -612,11 +616,19 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 				}
 				else if (xmlCell.data != null && xmlCell.data.StartsWith("="))
 				{
-					formula = xmlCell.data.Substring(1);
+					formula = xmlCell.data.Substring(1).Replace(from, ds);
 				}
 				else
 				{
-					cellValue = xmlCell.data;
+					double d;
+					if (double.TryParse(xmlCell.data, out d))
+					{
+						cellValue = double.Parse(xmlCell.data, System.Globalization.CultureInfo.InvariantCulture).ToString();
+					}
+					else
+					{
+						cellValue = xmlCell.data;
+					}
 				}
 #else
 				cellValue = xmlCell.data;
@@ -1345,7 +1357,22 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
 										 if (cell.HasFormula || !(cell.InnerData is bool))
 										 {
-											 xmlCell.data = Convert.ToString(cell.InnerData);
+											 if (cell.InnerData != null)
+											 {
+												 double d;
+												 if (double.TryParse(cell.InnerData.ToString(), out d))
+												 {
+													 xmlCell.data = double.Parse(cell.InnerData.ToString()).ToString(CultureInfo.InvariantCulture);
+												 }
+												 else
+												 {
+													 xmlCell.data = Convert.ToString(cell.InnerData);
+												 }
+											 }
+											 else
+											 {
+												 xmlCell.data = Convert.ToString(cell.InnerData);
+											 }
 											 xmlCell.formula = cell.HasFormula ? new RGXmlCellFormual { val = cell.InnerFormula } : null;
 										 }
 										 else if (cell.InnerData is bool)
