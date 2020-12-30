@@ -84,7 +84,7 @@ namespace Common
 
         internal ResourcePoolManager()
         {
-            Logger.Log("resource pool", "create resource pool...");
+            //Logger.Log("resource pool", "create resource pool...");
         }
 
         #region Brush
@@ -228,7 +228,7 @@ namespace Common
 
                     if ((cachedPens.Count % 10) == 0)
                     {
-                        Logger.Log("resource pool", "wf pen count: " + cachedPens.Count);
+                        //Logger.Log("resource pool", "wf pen count: " + cachedPens.Count);
                     }
                 }
                 else
@@ -255,7 +255,7 @@ namespace Common
 
                         if ((cachedPens.Count % 10) == 0)
                         {
-                            Logger.Log("resource pool", "pen count: " + cachedPens.Count);
+                            //Logger.Log("resource pool", "pen count: " + cachedPens.Count);
                         }
                     }
                 }
@@ -334,7 +334,7 @@ namespace Common
                     {
                         fonts.Add(family.Name, fontGroup = new List<WFFont> { font });
                     }
-                    Logger.Log("resource pool", "font resource group added. font groups: " + fonts.Count);
+                    //Logger.Log("resource pool", "font resource group added. font groups: " + fonts.Count);
                 }
                 else
                 {
@@ -342,7 +342,7 @@ namespace Common
                     {
                         fontGroup.Add(font);
                     }
-                    Logger.Log("resource pool", "font resource added. fonts: " + fontGroup.Count);
+                    //Logger.Log("resource pool", "font resource added. fonts: " + fontGroup.Count);
                 }
 
             }
@@ -488,7 +488,7 @@ namespace Common
 
         internal void ReleaseAllResources()
         {
-            Logger.Log("resource pool", "release all resources...");
+            //Logger.Log("resource pool", "release all resources...");
 
             int count = cachedPens.Count
 
@@ -572,7 +572,7 @@ namespace Common
 
 #endif // WINFORM
 
-            Logger.Log("resource pool", count + " objects released.");
+           // Logger.Log("resource pool", count + " objects released.");
         }
 
         public void Dispose()

@@ -35,8 +35,12 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 
         public ButtonMenuItem ImportDataMenuItem, ExportDataMenuItem, CreateChartMenuItem;
 
-        public ReoGridFullControl() : base()
+        public ReoGridFullControl(bool automationmode) : base()
         {
+
+            GridControl = new ReoGridControl(this);
+
+            if (automationmode) return;
 
             var container = new DynamicLayout();
 
@@ -210,8 +214,6 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             container.EndVertical();
 
             container.BeginVertical();
-
-            GridControl = new ReoGridControl(this);
 
             btnFormat.Click += (sender, e) =>
             {
