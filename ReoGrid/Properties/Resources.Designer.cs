@@ -81,7 +81,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to END-USER LICENSE AGREEMENT FOR DWSIM.CrossPlatform.UI.Controls IMPORTANT PLEASE READ THE TERMS AND CONDITIONS OF THIS LICENSE AGREEMENT CAREFULLY BEFORE CONTINUING WITH THIS PROGRAM INSTALL: DWSIM.CrossPlatform.UI.Controls End-User License Agreement (&quot;EULA&quot;) is a legal agreement between you (either an individual or a single entity) and DWSIM.CrossPlatform.UI.Controls. for the DWSIM.CrossPlatform.UI.Controls software product(s) identified above which may include associated software components, media, printed [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to END-USER LICENSE AGREEMENT FOR DWSIM.CrossPlatform.UI.Controls IMPORTANT PLEASE READ THE TERMS AND CONDITIONS OF THIS LICENSE AGREEMENT CAREFULLY BEFORE CONTINUING WITH THIS PROGRAM INSTALL: DWSIM.CrossPlatform.UI.Controls End-User License Agreement (&quot;EULA&quot;) is a legal agreement between you (either an individual or a single entity) and DWSIM.CrossPlatform.UI.Controls. for the DWSIM.CrossPlatform.UI.Controls software product(s) identified above which may include associated software components, media, printed materials, and &quot;online&quot; or electronic documentation (&quot;EULA&quot;). By installing, copying, or otherwise  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string EULA_EN {
             get {
