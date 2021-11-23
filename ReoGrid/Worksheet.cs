@@ -109,12 +109,12 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
         /// <summary>
         /// Default number of columns
         /// </summary>
-        internal const int DefaultCols = 100;
+        public const int DefaultCols = 100;
 
         /// <summary>
         /// Default number of rows
         /// </summary>
-        internal const int DefaultRows = 200;
+        public const int DefaultRows = 200;
 
         /// <summary>
         /// Default button size of outlinetextColor buttons
