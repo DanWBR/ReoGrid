@@ -169,9 +169,9 @@
     <Reference Include="Antlr3.Runtime" Condition=" '$(Configuration)|$(Platform)' == 'WPFExtension|AnyCPU' ">
       <HintPath>..\Ref\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Eto, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Eto, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.dll</HintPath>
+      <HintPath>..\..\dwsim\DistPackages\Windows\Eto.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>

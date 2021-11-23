@@ -35,24 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Eto, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.Gtk2">
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.Gtk2.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.WinForms, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.Wpf, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\net45\Eto.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.XamMac2">
-      <HintPath>..\Eto.Forms\Eto.Forms\Release\modern\Eto.XamMac2.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
