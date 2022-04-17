@@ -791,8 +791,8 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid.Views
             //if (this.mainViewport.Height < 0) this.mainViewport.Height = 0;
 
 #if WINFORM || ANDROID || ETO
-            this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange = this.scrollHorLarge = (int)Math.Round(this.view.Width);
-            this.worksheet.controlAdapter.ScrollBarVerticalLargeChange = this.scrollVerLarge = (int)Math.Round(this.view.Height);
+            //this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange = this.scrollHorLarge = (int)Math.Round(this.view.Width);
+            //this.worksheet.controlAdapter.ScrollBarVerticalLargeChange = this.scrollVerLarge = (int)Math.Round(this.view.Height);
 #if DEBUG
             Console.WriteLine(String.Format("Set ScrollBarHorizontalLargeChange to {0}", this.worksheet.controlAdapter.ScrollBarHorizontalLargeChange));
             Console.WriteLine(String.Format("Set ScrollBarVerticalLargeChange to {0}", this.worksheet.controlAdapter.ScrollBarVerticalLargeChange));
