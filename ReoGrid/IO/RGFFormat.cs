@@ -978,7 +978,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 			}
 
 			System.Reflection.Assembly assembly = this.GetType().Assembly;
-			FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+			//FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
 
 			#region Head
 			RGXmlSheet body = new RGXmlSheet()
@@ -1038,7 +1038,7 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
 					{
 						culture = Thread.CurrentThread.CurrentCulture.Name,
 						editor = editorProgram,
-						controlVersion = fvi.FileVersion,
+						//controlVersion = fvi.FileVersion,
 					},
 
 					script = new RGXmlScript() { content = this.workbook.Script },
