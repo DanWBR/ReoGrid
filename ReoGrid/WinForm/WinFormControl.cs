@@ -508,6 +508,11 @@ namespace unvell.ReoGrid
 					? cell.InnerStyle.BackColor : this.control.ControlStyle[ControlAppearanceColors.GridBackground];
 				editTextbox.ResumeLayout();
 
+				//float dpi = PlatformUtility.GetDPI();
+				//float scale = dpi / 96.0f;
+
+				//editTextbox.Font = new Font(editTextbox.Font.FontFamily,  editTextbox.Font.Size / scale);
+
 				editTextbox.Visible = true;
 				editTextbox.Focus();
 			}

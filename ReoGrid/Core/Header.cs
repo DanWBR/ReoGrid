@@ -796,6 +796,7 @@ namespace unvell.ReoGrid
 #endif // DRAWING
 						RGFloat textHeight = cell.TextBounds.Height / this.renderScaleFactor;
 
+					
 						if (maxHeight < textHeight)
 						{
 							maxHeight = textHeight;

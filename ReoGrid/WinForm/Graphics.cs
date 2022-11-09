@@ -790,8 +790,11 @@ namespace unvell.ReoGrid.WinForm
             // unknown bugs happened here (several times)
             // cell.Style is null (cell.Style.FontSize is zero)
             if (style.FontSize <= 0) style.FontSize = 6f;
+            
+            float dpi = PlatformUtility.GetDPI();
+            float scale = dpi / 96.0f;
 
-            float fontSize = (float)Math.Round(style.FontSize * sheet.renderScaleFactor, 1);
+            float fontSize = (float)Math.Round(style.FontSize * sheet.renderScaleFactor / scale, 1);
 
             var renderFont = cell.RenderFont;
 
