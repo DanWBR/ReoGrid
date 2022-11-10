@@ -511,6 +511,7 @@ namespace unvell.ReoGrid.WinForm
         private System.Drawing.Graphics cachedGraphics;
 
         private StringFormat headerSf;
+        private StringFormat rowheaderSf;
 
         internal static readonly System.Drawing.Font HeaderFont = new System.Drawing.Font(
             System.Drawing.SystemFonts.DefaultFont.Name, 8f, System.Drawing.FontStyle.Regular);
@@ -523,6 +524,14 @@ namespace unvell.ReoGrid.WinForm
             {
                 LineAlignment = System.Drawing.StringAlignment.Center,
                 Alignment = System.Drawing.StringAlignment.Center,
+                Trimming = System.Drawing.StringTrimming.None,
+                FormatFlags = System.Drawing.StringFormatFlags.LineLimit,
+            };
+
+            this.rowheaderSf = new System.Drawing.StringFormat
+            {
+                LineAlignment = System.Drawing.StringAlignment.Center,
+                Alignment = System.Drawing.StringAlignment.Near,
                 Trimming = System.Drawing.StringTrimming.None,
                 FormatFlags = System.Drawing.StringFormatFlags.LineLimit,
             };
@@ -925,6 +934,11 @@ namespace unvell.ReoGrid.WinForm
         public void DrawHeaderText(string text, System.Drawing.Brush brush, Rectangle rect)
         {
             base.PlatformGraphics.DrawString(text, scaledHeaderFont, brush, rect, this.headerSf);
+        }
+
+        public void DrawRowHeaderText(string text, System.Drawing.Brush brush, Rectangle rect)
+        {
+            base.PlatformGraphics.DrawString(text, scaledHeaderFont, brush, rect, rowheaderSf);
         }
 
         #endregion // Header

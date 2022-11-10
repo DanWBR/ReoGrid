@@ -94,7 +94,9 @@ namespace unvell.ReoGrid.Rendering
 
 		void DrawHeaderText(string text, RGBrush brush, Rectangle rect);
 
-		void DrawLeadHeadArrow(Graphics.Rectangle bounds, SolidColor startColor, SolidColor endColor);
+        void DrawRowHeaderText(string text, RGBrush brush, Rectangle rect);
+
+        void DrawLeadHeadArrow(Graphics.Rectangle bounds, SolidColor startColor, SolidColor endColor);
 
 		RGPen GetPen(SolidColor color);
 

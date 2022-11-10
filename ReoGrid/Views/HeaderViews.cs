@@ -535,7 +535,7 @@ namespace unvell.ReoGrid.Views
 								textBrush = defaultTextBrush;
 							}
 
-							g.DrawHeaderText(headerText, textBrush, rect);
+							g.DrawRowHeaderText(headerText, textBrush, rect);
 						}
 
 						if (row.Body != null)
