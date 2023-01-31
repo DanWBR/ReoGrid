@@ -41,7 +41,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\dwsim\DWSIM\bin\x64\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;WINFORM;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

@@ -1325,8 +1325,15 @@ namespace unvell.ReoGrid
 											 case CellDataFormatFlag.Percent:
 												 NumberDataFormatter.NumberFormatArgs pargs = (NumberDataFormatter.NumberFormatArgs)cell.DataFormatArgs;
 												 xmlFormatArgs = new RGXmlCellDataFormatArgs();
-												 xmlFormatArgs.decimalPlaces = pargs.DecimalPlaces.ToString();
-												 break;
+												 if (pargs != null)
+                                                 {
+                                                     xmlFormatArgs.decimalPlaces = pargs.DecimalPlaces.ToString();
+                                                 }
+                                                 else
+                                                 {
+                                                     xmlFormatArgs.decimalPlaces = "0";
+                                                 }
+                                                 break;
 										 }
 									 }
 									 #endregion // Data Format
