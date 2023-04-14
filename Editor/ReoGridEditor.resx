@@ -1419,6 +1419,9 @@
   <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
     <value>Arquivo</value>
   </data>
+  <data name="arquivoToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="undoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1426,7 +1429,7 @@
     <value>False</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Undo</value>
@@ -1438,13 +1441,13 @@
     <value>False</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Redo</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>162, 6</value>
   </data>
   <data name="repeatLastActionToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1453,19 +1456,19 @@
     <value>False</value>
   </data>
   <data name="repeatLastActionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="repeatLastActionToolStripMenuItem.Text" xml:space="preserve">
     <value>Repeat Last Action</value>
   </data>
   <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>162, 6</value>
   </data>
   <data name="cutToolStripMenuItem.ShowShortcutKeys" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Cut</value>
@@ -1474,7 +1477,7 @@
     <value>False</value>
   </data>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copy</value>
@@ -1483,7 +1486,7 @@
     <value>False</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Paste</value>
@@ -1534,13 +1537,13 @@
     <value>Borders</value>
   </data>
   <data name="clearToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="clearToolStripMenuItem.Text" xml:space="preserve">
     <value>Clear</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>162, 6</value>
   </data>
   <data name="focusStyleDefaultToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 22</value>
@@ -1555,7 +1558,7 @@
     <value>None</value>
   </data>
   <data name="focusCellStyleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="focusCellStyleToolStripMenuItem.Text" xml:space="preserve">
     <value>Focus Cell Style</value>
@@ -1654,7 +1657,7 @@
     <value>Moving Forward Direction</value>
   </data>
   <data name="selectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="selectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Selection</value>
@@ -1663,7 +1666,7 @@
     <value>False</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>165, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Select All</value>
@@ -1675,19 +1678,19 @@
     <value>Editar</value>
   </data>
   <data name="toolbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="toolbarToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Toolbar</value>
   </data>
   <data name="formulaBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="formulaBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Formula Bar</value>
   </data>
   <data name="statusBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="statusBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Status Bar</value>
@@ -1864,31 +1867,31 @@
     <value>Visualizar</value>
   </data>
   <data name="mergeCellsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="mergeCellsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Merge Cells</value>
   </data>
   <data name="unmergeCellsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="unmergeCellsToolStripMenuItem.Text" xml:space="preserve">
     <value>Unmerge Cells</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>167, 6</value>
   </data>
   <data name="changeCellsTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="changeCellsTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Change Cells Type</value>
   </data>
   <data name="toolStripMenuItem19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>167, 6</value>
   </data>
   <data name="formatCellsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="formatCellsToolStripMenuItem.Text" xml:space="preserve">
     <value>Format Cells...</value>
@@ -1900,19 +1903,19 @@
     <value>Células</value>
   </data>
   <data name="filterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="filterToolStripMenuItem.Text" xml:space="preserve">
     <value>Filter</value>
   </data>
   <data name="clearFilterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="clearFilterToolStripMenuItem.Text" xml:space="preserve">
     <value>Clear Filter</value>
   </data>
   <data name="toolStripMenuItem34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>127, 6</value>
   </data>
   <data name="groupRowsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -1927,7 +1930,7 @@
     <value>Columns</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Group</value>
@@ -1960,22 +1963,22 @@
     <value>All Columns</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Ungroup</value>
   </data>
   <data name="toolStripMenuItem15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>127, 6</value>
   </data>
   <data name="resizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="resizeToolStripMenuItem.Text" xml:space="preserve">
     <value>Resize...</value>
   </data>
   <data name="sheetReadonlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="sheetReadonlyToolStripMenuItem.Text" xml:space="preserve">
     <value>Read-only</value>
@@ -1987,31 +1990,31 @@
     <value>Planilha</value>
   </data>
   <data name="AutoFunctionSumToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>123, 22</value>
   </data>
   <data name="AutoFunctionSumToolStripMenuItem.Text" xml:space="preserve">
     <value>SUM</value>
   </data>
   <data name="AutoFunctionAverageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>123, 22</value>
   </data>
   <data name="AutoFunctionAverageToolStripMenuItem.Text" xml:space="preserve">
     <value>AVERAGE</value>
   </data>
   <data name="AutoFunctionCountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>123, 22</value>
   </data>
   <data name="AutoFunctionCountToolStripMenuItem.Text" xml:space="preserve">
     <value>COUNT</value>
   </data>
   <data name="AutoFunctionMaxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>123, 22</value>
   </data>
   <data name="AutoFunctionMaxToolStripMenuItem.Text" xml:space="preserve">
     <value>MAX</value>
   </data>
   <data name="AutoFunctionMinToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>123, 22</value>
   </data>
   <data name="AutoFunctionMinToolStripMenuItem.Text" xml:space="preserve">
     <value>MIN</value>
@@ -2104,16 +2107,16 @@
     <value>Fuchsia</value>
   </data>
   <data name="scriptEditorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>154, 22</value>
   </data>
   <data name="scriptEditorToolStripMenuItem.Text" xml:space="preserve">
     <value>Script &amp;Editor...</value>
   </data>
   <data name="toolStripMenuItem16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>151, 6</value>
   </data>
   <data name="runFunctionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>154, 22</value>
   </data>
   <data name="runFunctionToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Run Function...</value>
@@ -2182,7 +2185,7 @@
     <value>Ferramentas</value>
   </data>
   <data name="homepageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>142, 22</value>
   </data>
   <data name="homepageToolStripMenuItem.Text" xml:space="preserve">
     <value>Homepage...</value>
@@ -2344,7 +2347,7 @@
     <value>59</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 10</value>

@@ -2743,7 +2743,7 @@ namespace unvell.ReoGrid.Editor
             // ReoGridEditor
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.grid);
             this.Controls.Add(this.formulaBar);
             this.Controls.Add(this.statusStrip1);

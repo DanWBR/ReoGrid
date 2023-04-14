@@ -46,83 +46,83 @@ namespace unvell.ReoGrid.Editor
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.labFunctions = new System.Windows.Forms.Label();
-			this.functionList = new System.Windows.Forms.ListBox();
-			this.btnRun = new System.Windows.Forms.Button();
-			this.btnClose = new System.Windows.Forms.Button();
-			this.chkCloseAfterRun = new System.Windows.Forms.CheckBox();
-			this.SuspendLayout();
-			// 
-			// labFunctions
-			// 
-			this.labFunctions.AutoSize = true;
-			this.labFunctions.Location = new System.Drawing.Point(12, 12);
-			this.labFunctions.Name = "labFunctions";
-			this.labFunctions.Size = new System.Drawing.Size(56, 13);
-			this.labFunctions.TabIndex = 0;
-			this.labFunctions.Text = "Functions:";
-			// 
-			// functionList
-			// 
-			this.functionList.FormattingEnabled = true;
-			this.functionList.Location = new System.Drawing.Point(12, 28);
-			this.functionList.Name = "functionList";
-			this.functionList.Size = new System.Drawing.Size(267, 238);
-			this.functionList.TabIndex = 1;
-			// 
-			// btnRun
-			// 
-			this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRun.Location = new System.Drawing.Point(285, 28);
-			this.btnRun.Name = "btnRun";
-			this.btnRun.Size = new System.Drawing.Size(75, 23);
-			this.btnRun.TabIndex = 2;
-			this.btnRun.Text = "Run";
-			this.btnRun.UseVisualStyleBackColor = true;
-			this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
-			// 
-			// btnClose
-			// 
-			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnClose.Location = new System.Drawing.Point(285, 57);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(75, 23);
-			this.btnClose.TabIndex = 2;
-			this.btnClose.Text = "Close";
-			this.btnClose.UseVisualStyleBackColor = true;
-			// 
-			// chkCloseAfterRun
-			// 
-			this.chkCloseAfterRun.AutoSize = true;
-			this.chkCloseAfterRun.Checked = true;
-			this.chkCloseAfterRun.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkCloseAfterRun.Location = new System.Drawing.Point(12, 272);
-			this.chkCloseAfterRun.Name = "chkCloseAfterRun";
-			this.chkCloseAfterRun.Size = new System.Drawing.Size(172, 17);
-			this.chkCloseAfterRun.TabIndex = 3;
-			this.chkCloseAfterRun.Text = "Close this window after running";
-			this.chkCloseAfterRun.UseVisualStyleBackColor = true;
-			// 
-			// RunFunctionForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(372, 299);
-			this.Controls.Add(this.chkCloseAfterRun);
-			this.Controls.Add(this.btnClose);
-			this.Controls.Add(this.btnRun);
-			this.Controls.Add(this.functionList);
-			this.Controls.Add(this.labFunctions);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "RunFunctionForm";
-			this.ShowIcon = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Run Function - ReoGrid";
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.labFunctions = new System.Windows.Forms.Label();
+            this.functionList = new System.Windows.Forms.ListBox();
+            this.btnRun = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.chkCloseAfterRun = new System.Windows.Forms.CheckBox();
+            this.SuspendLayout();
+            // 
+            // labFunctions
+            // 
+            this.labFunctions.AutoSize = true;
+            this.labFunctions.Location = new System.Drawing.Point(12, 12);
+            this.labFunctions.Name = "labFunctions";
+            this.labFunctions.Size = new System.Drawing.Size(56, 13);
+            this.labFunctions.TabIndex = 0;
+            this.labFunctions.Text = "Functions:";
+            // 
+            // functionList
+            // 
+            this.functionList.FormattingEnabled = true;
+            this.functionList.Location = new System.Drawing.Point(12, 28);
+            this.functionList.Name = "functionList";
+            this.functionList.Size = new System.Drawing.Size(267, 238);
+            this.functionList.TabIndex = 1;
+            // 
+            // btnRun
+            // 
+            this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRun.Location = new System.Drawing.Point(285, 28);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.TabIndex = 2;
+            this.btnRun.Text = "Run";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(285, 57);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // chkCloseAfterRun
+            // 
+            this.chkCloseAfterRun.AutoSize = true;
+            this.chkCloseAfterRun.Checked = true;
+            this.chkCloseAfterRun.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCloseAfterRun.Location = new System.Drawing.Point(12, 272);
+            this.chkCloseAfterRun.Name = "chkCloseAfterRun";
+            this.chkCloseAfterRun.Size = new System.Drawing.Size(172, 17);
+            this.chkCloseAfterRun.TabIndex = 3;
+            this.chkCloseAfterRun.Text = "Close this window after running";
+            this.chkCloseAfterRun.UseVisualStyleBackColor = true;
+            // 
+            // RunFunctionForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(372, 299);
+            this.Controls.Add(this.chkCloseAfterRun);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnRun);
+            this.Controls.Add(this.functionList);
+            this.Controls.Add(this.labFunctions);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "RunFunctionForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Run Function - ReoGrid";
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 

@@ -43,6 +43,9 @@ using unvell.ReoGrid.Editor.LangRes;
 using unvell.ReoGrid.Print;
 using unvell.ReoGrid.Drawing;
 using unvell.ReoGrid.Drawing.Text;
+using static System.Net.WebRequestMethods;
+using System.Collections.Generic;
+using System.Runtime;
 
 #if EX_SCRIPT
 using unvell.ReoScript.Editor;
@@ -92,8 +95,31 @@ namespace unvell.ReoGrid.Editor
                 false;
 
             zoomToolStripDropDownButton.Text = "100%";
-
             isUIUpdating = false;
+
+            var scale = Common.Shared.DpiScale;
+
+            if (scale > 1.0)
+            {
+                toolStrip1.ImageScalingSize = new System.Drawing.Size((int)(20 * scale), (int)(20 * scale));
+                foreach (var item in toolStrip1.Items)
+                {
+                    if (item is ToolStripButton)
+                    {
+                        ((ToolStripButton)item).Size = new System.Drawing.Size(toolStrip1.ImageScalingSize.Width, toolStrip1.ImageScalingSize.Height);                    
+                    }
+                }
+                toolStrip1.AutoSize = true;
+                fontToolStrip.ImageScalingSize = new System.Drawing.Size((int)(20 * scale), (int)(20 * scale));
+                foreach (var item in fontToolStrip.Items)
+                {
+                    if (item is ToolStripButton)
+                    {
+                        ((ToolStripButton)item).Size = new System.Drawing.Size(fontToolStrip.ImageScalingSize.Width, fontToolStrip.ImageScalingSize.Height);
+                    }
+                }
+                fontToolStrip.AutoSize = true;
+            }
 
             toolbarToolStripMenuItem.Click += (s, e) => fontToolStrip.Visible = toolStrip1.Visible = toolbarToolStripMenuItem.Checked;
             formulaBarToolStripMenuItem.CheckedChanged += (s, e) => formulaBar.Visible = formulaBarToolStripMenuItem.Checked;
@@ -224,69 +250,73 @@ namespace unvell.ReoGrid.Editor
                 }
             };
 
-            exportAsHtmlToolStripMenuItem.Click += (s, e) =>
+            if (!Common.Shared.IsPro)
             {
-                using (SaveFileDialog sfd = new SaveFileDialog())
-                {
-                    sfd.Filter = "HTML File(*.html;*.htm)|*.html;*.htm";
-                    sfd.FileName = "Exported ReoGrid Worksheet";
 
-                    if (sfd.ShowDialog() == DialogResult.OK)
+                exportAsHtmlToolStripMenuItem.Click += (s, e) =>
+                {
+                    using (SaveFileDialog sfd = new SaveFileDialog())
                     {
-                        using (FileStream fs = new FileStream(sfd.FileName, FileMode.Create))
+                        sfd.Filter = "HTML File(*.html;*.htm)|*.html;*.htm";
+                        sfd.FileName = "Exported ReoGrid Worksheet";
+
+                        if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            this.CurrentWorksheet.ExportAsHTML(fs);
+                            using (FileStream fs = new FileStream(sfd.FileName, FileMode.Create))
+                            {
+                                this.CurrentWorksheet.ExportAsHTML(fs);
+                            }
+
+                            Process.Start(sfd.FileName);
                         }
-
-                        Process.Start(sfd.FileName);
                     }
-                }
-            };
+                };
 
-            editXMLToolStripMenuItem.Click += (s, e) =>
-            {
-                string filepath = null;
-
-                if (string.IsNullOrEmpty(this.CurrentFilePath))
+                editXMLToolStripMenuItem.Click += (s, e) =>
                 {
-                    if (string.IsNullOrEmpty(currentTempFilePath))
+                    string filepath = null;
+
+                    if (string.IsNullOrEmpty(this.CurrentFilePath))
                     {
-                        currentTempFilePath = Path.Combine(Path.GetTempPath(),
-                            Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".txt");
+                        if (string.IsNullOrEmpty(currentTempFilePath))
+                        {
+                            currentTempFilePath = Path.Combine(Path.GetTempPath(),
+                                Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".txt");
+                        }
+                        filepath = currentTempFilePath;
                     }
-                    filepath = currentTempFilePath;
-                }
-                else if (!this.CurrentFilePath.EndsWith(".rgf")
-                    && !this.CurrentFilePath.EndsWith(".xml"))
-                {
-                    MessageBox.Show(LangResource.Msg_Only_RGF_Edit_XML);
-                    return;
-                }
-                else
-                {
-                    if (MessageBox.Show(LangResource.Msg_Save_File_Immediately,
-                        "Edit XML", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
-                        == System.Windows.Forms.DialogResult.Cancel)
+                    else if (!this.CurrentFilePath.EndsWith(".rgf")
+                        && !this.CurrentFilePath.EndsWith(".xml"))
                     {
+                        MessageBox.Show(LangResource.Msg_Only_RGF_Edit_XML);
                         return;
                     }
+                    else
+                    {
+                        if (MessageBox.Show(LangResource.Msg_Save_File_Immediately,
+                            "Edit XML", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                            == System.Windows.Forms.DialogResult.Cancel)
+                        {
+                            return;
+                        }
 
-                    filepath = this.CurrentFilePath;
-                }
+                        filepath = this.CurrentFilePath;
+                    }
 
-                using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
-                {
-                    this.CurrentWorksheet.Save(fs);
-                }
+                    using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+                    {
+                        this.CurrentWorksheet.Save(fs);
+                    }
 
-                Process p = Process.Start("notepad.exe", filepath);
-                p.WaitForExit();
+                    Process p = Process.Start("notepad.exe", filepath);
+                    p.WaitForExit();
 
-                if (p.ExitCode == 0)
-                {
-                    this.CurrentWorksheet.Load(filepath);
-                }
-            };
+                    if (p.ExitCode == 0)
+                    {
+                        this.CurrentWorksheet.Load(filepath);
+                    }
+                };
+            }
 
             saveToolStripButton.Click += (s, e) => SaveDocument();
             saveToolStripMenuItem.Click += (s, e) => SaveDocument();
@@ -1572,20 +1602,28 @@ namespace unvell.ReoGrid.Editor
                 fm = FileFormat.CSV;
             }
 
-            try
+            if (Common.Shared.IsPro)
             {
-                this.grid.Save(path, fm);
+                Common.Shared.SaveInPro.Invoke(this.grid);
+            }
+            else
+            {
+                try
+                {
+                    this.grid.Save(path, fm);
 
-                this.SetCurrentDocumentFile(path);
+                    this.SetCurrentDocumentFile(path);
 
 #if DEBUG
-                Process.Start(path);
+                    Process.Start(path);
 #endif
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Save error: " + ex.Message, "Save Workbook", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, "Save error: " + ex.Message, "Save Workbook", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+
         }
 
         private void SetCurrentDocumentFile(string filepath)
@@ -1607,14 +1645,21 @@ namespace unvell.ReoGrid.Editor
         {
             if (MessageBox.Show(LangResource.DataLossWarning, LangResource.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                using (OpenFileDialog ofd = new OpenFileDialog())
+                if (Common.Shared.IsPro)
                 {
-                    ofd.Filter = LangResource.Filter_Load_File;
-
-                    if (ofd.ShowDialog(this) == DialogResult.OK)
+                    Common.Shared.OpenInPro.Invoke(this.grid);
+                }
+                else
+                {
+                    using (OpenFileDialog ofd = new OpenFileDialog())
                     {
-                        LoadFile(ofd.FileName);
-                        this.SetCurrentDocumentFile(ofd.FileName);
+                        ofd.Filter = LangResource.Filter_Load_File;
+
+                        if (ofd.ShowDialog(this) == DialogResult.OK)
+                        {
+                            LoadFile(ofd.FileName);
+                            this.SetCurrentDocumentFile(ofd.FileName);
+                        }
                     }
                 }
             }

@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Common\FontToolkit.cs" />
     <Compile Include="Common\GraphicsToolkit.cs" />
+    <Compile Include="Common\Shared.cs" />
     <Compile Include="DefineNamedRangeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
