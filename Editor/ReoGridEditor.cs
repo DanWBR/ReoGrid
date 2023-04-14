@@ -106,7 +106,7 @@ namespace unvell.ReoGrid.Editor
                 {
                     if (item is ToolStripButton)
                     {
-                        ((ToolStripButton)item).Size = new System.Drawing.Size(toolStrip1.ImageScalingSize.Width, toolStrip1.ImageScalingSize.Height);                    
+                        ((ToolStripButton)item).Size = new System.Drawing.Size(toolStrip1.ImageScalingSize.Width, toolStrip1.ImageScalingSize.Height);
                     }
                 }
                 toolStrip1.AutoSize = true;
@@ -673,11 +673,11 @@ namespace unvell.ReoGrid.Editor
 
 #else // !EX_SCRIPT
 
-			//scriptToolStripMenuItem.Visible = false;
-			scriptEditorToolStripMenuItem.Click += (s, e) =>
-			{
-				MessageBox.Show("Script execution is not supported by this edition.", Application.ProductName);
-			};
+            //scriptToolStripMenuItem.Visible = false;
+            scriptEditorToolStripMenuItem.Click += (s, e) =>
+            {
+                MessageBox.Show("Script execution is not supported by this edition.", Application.ProductName);
+            };
 #endif // EX_SCRIPT
 
             homepageToolStripMenuItem.Click += (s, e) =>
@@ -1383,7 +1383,7 @@ namespace unvell.ReoGrid.Editor
             }
 
 #if !DEBUG
-			debugToolStripMenuItem.Enabled = false;
+            debugToolStripMenuItem.Enabled = false;
 #endif // DEBUG
 
         }
@@ -1602,28 +1602,20 @@ namespace unvell.ReoGrid.Editor
                 fm = FileFormat.CSV;
             }
 
-            if (Common.Shared.IsPro)
+            try
             {
-                Common.Shared.SaveInPro.Invoke(this.grid);
-            }
-            else
-            {
-                try
-                {
-                    this.grid.Save(path, fm);
+                this.grid.Save(path, fm);
 
-                    this.SetCurrentDocumentFile(path);
+                this.SetCurrentDocumentFile(path);
 
 #if DEBUG
                     Process.Start(path);
 #endif
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, "Save error: " + ex.Message, "Save Workbook", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Save error: " + ex.Message, "Save Workbook", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void SetCurrentDocumentFile(string filepath)
@@ -1670,13 +1662,20 @@ namespace unvell.ReoGrid.Editor
         /// </summary>
         public void SaveDocument()
         {
-            if (string.IsNullOrEmpty(CurrentFilePath))
+            if (Common.Shared.IsPro)
             {
-                SaveAsDocument();
+                Common.Shared.SaveInPro.Invoke(this.grid);
             }
             else
             {
-                SaveFile(this.CurrentFilePath);
+                if (string.IsNullOrEmpty(CurrentFilePath))
+                {
+                    SaveAsDocument();
+                }
+                else
+                {
+                    SaveFile(this.CurrentFilePath);
+                }
             }
         }
 
@@ -1686,39 +1685,46 @@ namespace unvell.ReoGrid.Editor
         /// <returns>true if operation is successful, otherwise false</returns>
         public bool SaveAsDocument()
         {
-            using (SaveFileDialog sfd = new SaveFileDialog())
+            if (Common.Shared.IsPro)
             {
-                sfd.Filter = LangResource.Filter_Save_File;
-
-                if (!string.IsNullOrEmpty(this.CurrentFilePath))
+                Common.Shared.SaveInPro.Invoke(this.grid);
+                return true;
+            }
+            else
+            {
+                using (SaveFileDialog sfd = new SaveFileDialog())
                 {
-                    sfd.FileName = Path.GetFileNameWithoutExtension(this.CurrentFilePath);
+                    sfd.Filter = LangResource.Filter_Save_File;
 
-                    var format = GetFormatByExtension(this.CurrentFilePath);
-
-                    switch (format)
+                    if (!string.IsNullOrEmpty(this.CurrentFilePath))
                     {
-                        case FileFormat.Excel2007:
-                            sfd.FilterIndex = 1;
-                            break;
+                        sfd.FileName = Path.GetFileNameWithoutExtension(this.CurrentFilePath);
 
-                        case FileFormat.ReoGridFormat:
-                            sfd.FilterIndex = 2;
-                            break;
+                        var format = GetFormatByExtension(this.CurrentFilePath);
 
-                        case FileFormat.CSV:
-                            sfd.FilterIndex = 3;
-                            break;
+                        switch (format)
+                        {
+                            case FileFormat.Excel2007:
+                                sfd.FilterIndex = 1;
+                                break;
+
+                            case FileFormat.ReoGridFormat:
+                                sfd.FilterIndex = 2;
+                                break;
+
+                            case FileFormat.CSV:
+                                sfd.FilterIndex = 3;
+                                break;
+                        }
+                    }
+
+                    if (sfd.ShowDialog(this) == DialogResult.OK)
+                    {
+                        SaveFile(sfd.FileName);
+                        return true;
                     }
                 }
-
-                if (sfd.ShowDialog(this) == DialogResult.OK)
-                {
-                    SaveFile(sfd.FileName);
-                    return true;
-                }
             }
-
             return false;
         }
 
