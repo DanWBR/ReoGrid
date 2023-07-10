@@ -144,8 +144,8 @@ namespace unvell.ReoGrid.Rendering
 	#region StaticResources
 	partial class StaticResources
 	{
-		internal static readonly string SystemDefaultFontName = System.Drawing.SystemFonts.DefaultFont.Name;
-		internal static readonly float SystemDefaultFontSize = System.Drawing.SystemFonts.DefaultFont.Size;
+		internal static readonly string SystemDefaultFontName = System.Drawing.SystemFonts.MessageBoxFont.Name;
+		internal static readonly float SystemDefaultFontSize = System.Drawing.SystemFonts.MessageBoxFont.Size;
 
 		internal static readonly SolidColor EmptyColor = System.Drawing.Color.Empty;
 

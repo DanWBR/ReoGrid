@@ -514,7 +514,7 @@ namespace unvell.ReoGrid.WinForm
         private StringFormat rowheaderSf;
 
         internal static readonly System.Drawing.Font HeaderFont = new System.Drawing.Font(
-            System.Drawing.SystemFonts.DefaultFont.Name, 8f, System.Drawing.FontStyle.Regular);
+            System.Drawing.SystemFonts.MessageBoxFont.Name, 8f, System.Drawing.FontStyle.Regular);
 
         internal GDIRenderer(System.Drawing.Graphics cg)
         {
