@@ -1111,7 +1111,13 @@ namespace unvell.ReoGrid
 
 					return true;
 				}
-				else
+                else if (keyData == System.Windows.Forms.Keys.Enter)
+                {
+                    sheet.EndEdit(EndEditReason.NormalFinish);
+                    sheet.OnKeyDown((KeyCode)keyData);
+                    return true;
+                }
+                else
 				{
 					return base.ProcessCmdKey(ref msg, keyData);
 				}
