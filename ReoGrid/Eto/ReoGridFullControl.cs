@@ -75,8 +75,11 @@ namespace DWSIM.CrossPlatform.UI.Controls.ReoGrid
             fontPicker = new FontPicker { Value = SystemFonts.Default() };
 
             colorPickerBack = new ColorPicker() { Value = SystemColors.ControlBackground };
+            colorPickerBack.Style = "colorpicker-wpf-fix";
             colorPickerFore = new ColorPicker() { Value = SystemColors.ControlText };
+            colorPickerFore.Style = "colorpicker-wpf-fix";
             colorPickerBorder = new ColorPicker() { Value = SystemColors.ControlText };
+            colorPickerBorder.Style = "colorpicker-wpf-fix";
 
             var lbFont = new Label { Text = "Font", VerticalAlignment = VerticalAlignment.Center };
             var lbFore = new Label { Text = "Text Color", VerticalAlignment = VerticalAlignment.Center };
