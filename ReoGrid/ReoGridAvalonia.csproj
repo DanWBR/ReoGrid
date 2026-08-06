@@ -21,8 +21,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <StartupObject></StartupObject>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>AvaloniaDebug;AvaloniaRelease</Configurations>
+    <Configurations>AvaloniaDebug;AvaloniaRelease;Debug;Release</Configurations>
   </PropertyGroup>
 	<PropertyGroup>
 		<Authors>Jingwood</Authors>
@@ -51,9 +50,16 @@
     <DefineConstants>TRACE;AVALONIA;GLOBALUSING;FORMULA;LANG_JP;OUTLINE;DRAWING;RICHTEXT;</DefineConstants>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;AVALONIA;GLOBALUSING;EX_SCRIPT;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;RICHTEXT;</DefineConstants>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;AVALONIA;GLOBALUSING;FORMULA;LANG_JP;OUTLINE;DRAWING;RICHTEXT;</DefineConstants>
+  </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='AvaloniaRelease|net6.0|AnyCPU'">
     <DocumentationFile></DocumentationFile>
