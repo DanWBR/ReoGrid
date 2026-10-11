@@ -1311,6 +1311,9 @@ namespace unvell.ReoGrid
 
                     if (cell.InnerData != null || cell.Rowspan > 1 || cell.Colspan > 1 || cell.body != null) addCell = true;
 
+                    // a formula that does not parse leaves the cell without data; keep its text so it is not lost
+                    if (cell.HasFormula) addCell = true;
+
                     RGXmlCellStyle xmlStyle = null;
 
                     if (cell.StyleParentKind == StyleParentKind.Own)
