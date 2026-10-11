@@ -780,7 +780,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 								if (!string.IsNullOrEmpty(formula.val))
 								{
 									// parent
-									cellFormula = formula.val;
+									cellFormula = unvell.ReoGrid.Formula.FormulaNotation.FromExcel(formula.val);
 
 									sharedFormulas[sharedIndex] = new SharedFormulaInfo { pos = pos, formula = cellFormula };
 								}
@@ -795,7 +795,8 @@ namespace unvell.ReoGrid.IO.OpenXML
 						}
 						else
 						{
-							cellFormula = formula.val;
+							// the file format separates arguments with "," and uses "." as decimal mark
+							cellFormula = unvell.ReoGrid.Formula.FormulaNotation.FromExcel(formula.val);
 						}
 
 						if (cellFormula != null)

@@ -149,6 +149,70 @@ namespace unvell.ReoGrid
             }
         }
 
+#if FORMULA
+        /// <summary>
+        /// The formula text of a stored cell, as the loader reads it, or null for a cell without one.
+        /// </summary>
+        private static string StoredFormulaText(RGXmlCell xmlCell)
+        {
+            if (xmlCell.formula != null && !string.IsNullOrEmpty(xmlCell.formula.val)) return xmlCell.formula.val;
+            if (xmlCell.data != null && xmlCell.data.StartsWith("=")) return xmlCell.data.Substring(1);
+            return null;
+        }
+
+        /// <summary>
+        /// The culture the numbers of a stored worksheet were written in: invariant in a file marked
+        /// canonical and in a file of the classic DWSIM spreadsheet (ReoGrid 2.x), the culture in the
+        /// head in an older file of this version, and null (read as text, as before) when the head says nothing.
+        /// </summary>
+        private static CultureInfo StoredNumberCulture(RGXmlMeta meta)
+        {
+            if (meta == null) return null;
+            if (string.Equals(meta.notation, unvell.ReoGrid.Formula.FormulaNotation.CanonicalFormatName, StringComparison.OrdinalIgnoreCase))
+                return CultureInfo.InvariantCulture;
+            if (!string.IsNullOrEmpty(meta.controlVersion) && Version.TryParse(meta.controlVersion, out var v) && v.Major < 3)
+                return CultureInfo.InvariantCulture;
+            if (meta.culture == null) return null;
+            if (meta.culture.Length == 0) return CultureInfo.InvariantCulture;
+            try { return new CultureInfo(meta.culture, false); }
+            catch { return null; }
+        }
+#endif // FORMULA
+
+        /// <summary>
+        /// The text a cell value is written as: numbers in the invariant culture unless
+        /// <see cref="unvell.ReoGrid.Formula.FormulaNotation.CanonicalStorage"/> is off.
+        /// </summary>
+        private static string StorableData(object data)
+        {
+#if FORMULA
+            if (unvell.ReoGrid.Formula.FormulaNotation.CanonicalStorage)
+            {
+                switch (data)
+                {
+                    case double _: case float _: case decimal _:
+                    case int _: case long _: case short _: case byte _:
+                    case uint _: case ulong _: case ushort _: case sbyte _:
+                        return Convert.ToString(data, CultureInfo.InvariantCulture);
+                }
+            }
+#endif // FORMULA
+            return Convert.ToString(data);
+        }
+
+        /// <summary>
+        /// A formula as it is written to an RGF file: in the canonical form (";" between arguments,
+        /// "." as decimal mark) unless <see cref="unvell.ReoGrid.Formula.FormulaNotation.CanonicalStorage"/> is off.
+        /// </summary>
+        private static string StorableFormula(string formula)
+        {
+#if FORMULA
+            if (unvell.ReoGrid.Formula.FormulaNotation.CanonicalStorage)
+                return unvell.ReoGrid.Formula.FormulaNotation.ToCanonical(formula);
+#endif // FORMULA
+            return formula;
+        }
+
         /// <summary>
         /// Load worksheet from specified input stream.
         /// </summary>
@@ -544,6 +608,38 @@ namespace unvell.ReoGrid
 
             suspendDataChangedEvent = true;
 
+#if FORMULA
+            // formulas are stored in the canonical form (";" and "."), or, in files written before
+            // it, in the form of the machine that wrote them; read them in the parser's form
+            Dictionary<RGXmlCell, string> storedFormulas = null;
+
+            // numbers are stored in the invariant culture, or, in files written before by this
+            // version, in the culture of the machine that wrote them
+            CultureInfo storedNumberCulture = StoredNumberCulture(xmlSheet.head?.meta);
+            {
+                var xmlCells = new List<RGXmlCell>();
+                var rawFormulas = new List<string>();
+                foreach (RGXmlCell xmlCell in xmlSheet.cells)
+                {
+                    string raw = StoredFormulaText(xmlCell);
+                    if (!string.IsNullOrEmpty(raw))
+                    {
+                        xmlCells.Add(xmlCell);
+                        rawFormulas.Add(raw);
+                    }
+                }
+
+                if (rawFormulas.Count > 0)
+                {
+                    var meta = xmlSheet.head?.meta;
+                    var translated = unvell.ReoGrid.Formula.FormulaNotation.FromStored(rawFormulas,
+                        meta?.notation, meta?.culture, meta?.controlVersion);
+                    storedFormulas = new Dictionary<RGXmlCell, string>();
+                    for (int i = 0; i < xmlCells.Count; i++) storedFormulas[xmlCells[i]] = translated[i];
+                }
+            }
+#endif // FORMULA
+
             #region Cells
             foreach (RGXmlCell xmlCell in xmlSheet.cells)
             {
@@ -656,6 +752,11 @@ namespace unvell.ReoGrid
                 {
                     cellValue = xmlCell.data;
                 }
+
+                if (formula != null && storedFormulas != null && storedFormulas.TryGetValue(xmlCell, out var parserFormula))
+                {
+                    formula = parserFormula;
+                }
 #else
 				cellValue = xmlCell.data;
 #endif // FORMULA
@@ -731,7 +832,16 @@ namespace unvell.ReoGrid
 
                 if (!string.IsNullOrEmpty(cellValue))
                 {
-                    SetSingleCellData(cell, cellValue);
+                    object value = cellValue;
+#if FORMULA
+                    if (storedNumberCulture != null && cell.body == null
+                        && cell.DataFormat != CellDataFormatFlag.Text
+                        && double.TryParse(cellValue, NumberStyles.Float, storedNumberCulture, out var number))
+                    {
+                        value = number;
+                    }
+#endif // FORMULA
+                    SetSingleCellData(cell, value);
                 }
 
 #if FORMULA
@@ -1068,6 +1178,10 @@ namespace unvell.ReoGrid
                         culture = Thread.CurrentThread.CurrentCulture.Name,
                         editor = editorProgram,
                         controlVersion = fvi.FileVersion,
+#if FORMULA
+                        notation = unvell.ReoGrid.Formula.FormulaNotation.CanonicalStorage
+                            ? unvell.ReoGrid.Formula.FormulaNotation.CanonicalFormatName : null,
+#endif // FORMULA
                     },
 
                     script = new RGXmlScript() { content = this.workbook.Script },
@@ -1389,8 +1503,8 @@ namespace unvell.ReoGrid
 
                         if (cell.HasFormula || !(cell.InnerData is bool))
                         {
-                            xmlCell.data = Convert.ToString(cell.InnerData);
-                            xmlCell.formula = cell.HasFormula ? new RGXmlCellFormual { val = cell.InnerFormula } : null;
+                            xmlCell.data = StorableData(cell.InnerData);
+                            xmlCell.formula = cell.HasFormula ? new RGXmlCellFormual { val = StorableFormula(cell.InnerFormula) } : null;
                         }
                         else if (cell.InnerData is bool)
                         {

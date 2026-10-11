@@ -1288,7 +1288,12 @@ namespace unvell.ReoGrid.IO.OpenXML
 							// formula
 							if (hasFormula)
 							{
+#if FORMULA
+								// the file format separates arguments with "," and uses "." as decimal mark
+								cell.formula = new Schema.Formula { val = unvell.ReoGrid.Formula.FormulaNotation.ToExcel(rgCell.InnerFormula) };
+#else
 								cell.formula = new Schema.Formula { val = rgCell.InnerFormula };
+#endif // FORMULA
 							}
 #endregion // Formula
 

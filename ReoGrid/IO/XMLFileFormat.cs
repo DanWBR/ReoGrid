@@ -519,6 +519,14 @@ namespace unvell.ReoGrid
 
 			[XmlElement("core-ver")]
 			public string controlVersion;
+
+			/// <summary>
+			/// "canonical" when formulas are stored with ";" between arguments and "." as decimal mark
+			/// and numbers in the invariant culture; missing in files written before, which carry the
+			/// form of the machine that wrote them.
+			/// </summary>
+			[XmlElement("notation")]
+			public string notation;
 		}
 
 		[Obfuscation(Feature = "renaming", Exclude = true)]

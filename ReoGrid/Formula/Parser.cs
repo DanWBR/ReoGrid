@@ -512,16 +512,53 @@ namespace unvell.ReoGrid.Formula
 		public IWorkbook Workbook { get; set; }
 		public Cell Cell { get; set; }
 
-		private static readonly Regex TokenRegex = new Regex(
-			"\\s*((?<string>\"(?:\"\"|[^\"])*\")|(?<union_ranges>[A-Z]+[0-9]+:[A-Z]+[0-9]+(\\s[A-Z]+[0-9]+:[A-Z]+[0-9]+)+)"
-			+ "|(?<range>\\$?[A-Z]+\\$?[0-9]*:\\$?[A-Z]+\\$?[0-9]*)"
-			+ "|(?<cell>\\$?[A-Z]+\\$?[0-9]+)"
-			+ "|(?<token>-)|(?<number>\\-?\\d*\\" + FormulaExtension.NumberDecimalSeparator + "?\\d+)"
-			+ "|(?<true>(?i)TRUE)|(?<false>(?i)FALSE)|(?<identifier>\\w+)"
-			+ "|(?<token>\\=\\=|\\<\\>|\\<\\=|\\>\\=|\\<\\>|\\=|\\!|[\\=\\.\\"
-			+ FormulaExtension.ParameterSeparator // ,
-			+ "\\+\\-\\*\\/\\%\\<\\>\\(\\)\\&\\^]))",
-			RegexOptions.Compiled);
+		/// <summary>
+		/// The token grammar of a formula written with the given argument separator and decimal mark.
+		/// The parser reads formulas with the separators in <see cref="FormulaExtension"/>; the
+		/// notation converter (<see cref="FormulaNotation"/>) reads them with the separators of the
+		/// form it converts from, so both see the same tokens.
+		/// </summary>
+		internal static Regex BuildTokenRegex(string parameterSeparator, string decimalSeparator)
+		{
+			return new Regex(
+				"\\s*((?<string>\"(?:\"\"|[^\"])*\")|(?<union_ranges>[A-Z]+[0-9]+:[A-Z]+[0-9]+(\\s[A-Z]+[0-9]+:[A-Z]+[0-9]+)+)"
+				+ "|(?<range>\\$?[A-Z]+\\$?[0-9]*:\\$?[A-Z]+\\$?[0-9]*)"
+				+ "|(?<cell>\\$?[A-Z]+\\$?[0-9]+)"
+				+ "|(?<token>-)|(?<number>\\-?\\d*\\" + decimalSeparator + "?\\d+)"
+				+ "|(?<true>(?i)TRUE)|(?<false>(?i)FALSE)|(?<identifier>\\w+)"
+				+ "|(?<token>\\=\\=|\\<\\>|\\<\\=|\\>\\=|\\<\\>|\\=|\\!|[\\=\\.\\"
+				+ parameterSeparator // ,
+				+ "\\+\\-\\*\\/\\%\\<\\>\\(\\)\\&\\^]))",
+				RegexOptions.Compiled);
+		}
+
+		private sealed class TokenGrammar
+		{
+			internal string ParameterSeparator;
+			internal string DecimalSeparator;
+			internal Regex Regex;
+		}
+
+		private static TokenGrammar tokenGrammar;
+
+		/// <summary>
+		/// The token regex for the separators currently in <see cref="FormulaExtension"/>. It is
+		/// rebuilt only when they change, so they can be set after the first formula is parsed.
+		/// </summary>
+		private static Regex TokenRegex
+		{
+			get
+			{
+				var g = tokenGrammar;
+				string ps = FormulaExtension.ParameterSeparator, ds = FormulaExtension.NumberDecimalSeparator;
+				if (g == null || g.ParameterSeparator != ps || g.DecimalSeparator != ds)
+				{
+					g = new TokenGrammar { ParameterSeparator = ps, DecimalSeparator = ds, Regex = BuildTokenRegex(ps, ds) };
+					tokenGrammar = g;
+				}
+				return g.Regex;
+			}
+		}
 
 		public string Input { get; set; }
 
